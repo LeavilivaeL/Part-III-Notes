@@ -1,0 +1,135 @@
+\documentclass[10pt,a4paper]{article}
+\input{./preamble.tex}
+
+\title{Local Fields}
+\begin{document}
+\maketitle
+
+\section{Basic Theory}
+Suppose we have a diophantine polynomial $f(x_1, \ldots, x_r) \in \Z[x_1, \ldots, x_r]$. Then we might want to find integer solutions to the equation $f(x_1, \ldots, x_r) = 0$. However, it turns out this can be very difficult to do, for instance showing $x^n + y^n - z^n = 0$ has no solutions for $x,y,z \in \Z$ took hundreds of years and a lot of advanced mathematics.
+
+Instead, we study congruences of the form $f(x_1, \ldots, x_r) \equiv 0 \mod p^n$, for prime $p$ and integer $n$. This then becomes a finite computation, and hence a much easier problem. Local fields will give us a way to package all this information together.
+
+\subsection{Absolute Values}
+\begin{definition}
+Let $K$ be a field. An \emph{absolute value} on $K$ is a function $|\cdot|:K \to \R_{\geq 0}$ such that:
+\begin{enumerate}
+  \item $|x| = 0 \iff x = 0$
+  \item $|xy| = |x||y|\forall x, y \in K$
+  \item $|x+y| \leq |x|+|y|\forall x, y \in K$
+\end{enumerate}
+We say that $(K, |\cdot|)$ is a valued field.
+\end{definition}
+\underline{Examples: }
+\begin{enumerate}
+  \item $K = \R$ or $\C$ with $|\cdot|$ the usual absolute value. We write $|\cdot|_\infty$ for this absolute value.
+  \item $K$ is any field. The \emph{trivial absolute value} on $K$ is defined by:
+  \begin{align}
+    |x| = \begin{cases} 0 & x = 0 \\ 1 & x \neq 0 \end{cases}
+  \end{align}
+  We will ignore this absolute value in this course.
+  \item $K = \Q$, $p$ a prime. For $0 \neq x \in \Q$, we can write $x = p^n \frac{a}{b}$, where $a, b \in \Z, (a, p) = 1$, and $(b, p) = 1$. The \emph{p-adic absolute value} is defined to be:
+  \begin{align*}
+    |x|_p = \begin{cases} 0 & x = 0 \\ p^{-n} & x = p^n\frac{a}{b} \end{cases}
+  \end{align*}
+  We check the axioms.
+  \begin{enumerate}[label=\textit{\arabic*.}]
+    \item Clear from the definition.
+    \item $|xy|_p = |p^{m+n}\frac{ac}{bd}|_p = p^{-m-n} = |x|_p|y|_p$
+    \item \textsc{Wlog}, $m\geq n$. $|x+y|_p = \left|p^n\left(\frac{ad+p^{m-n}bc}{bd}\right)\right|_p \leq p^{-n} = \max(|x|_p, |y|_p)$
+  \end{enumerate}
+\end{enumerate}
+An absolute value on $K$ induces a metric $d(x,y) = |x-y|$ on $K$, and hence induces a topology on $K$. As an exercise, check that $+, \cdot$ are continuous.
+
+\begin{definition}
+  Let $|\cdot|, |\cdot|'$ be absolute values on a field $K$. We say that $|\cdot|, |\cdot|'$ are \emph{equivalent} if they induce the same topology on $K$. An equivalence class of absolute values is called a \emph{place}.
+\end{definition}
+
+\begin{proposition}
+  Let $|\cdot|, |\cdot|'$ be non-trivial absolute values on $K$. The following are equivalent:
+  \begin{enumerate}
+    \item $|\cdot|, |\cdot|'$ are equivalent.
+    \item $|x| < 1 \iff |x|' < 1 \forall x\in K$.
+    \item $\exists c \in \R_{>0} \st |x|^c = |x|' \forall x \in K$
+  \end{enumerate}
+\end{proposition}
+\begin{proof}\hspace*{0cm}\\
+  \imp{1}{2}
+  \begin{align}
+    |x|<1 &\iff x^n \to 0 \wrt |\cdot|\\
+    &\iff x^n \to 0 \wrt |\cdot|'\\
+    &\iff |x|' < 1
+  \end{align}
+
+  \imp{2}{3} Let $a \in K^{\times} \st |a| < 1$, which exists since $|\cdot|$ is non-trivial. We need to show that, for all $x \in K^\times$, we have:
+  \begin{align*}
+    \frac{\log|x|}{\log|a|} = \frac{\log|x|'}{\log|a|'}
+  \end{align*}
+  Assume $\frac{\log|x|}{\log|a|} < \frac{\log|x|'}{\log|a|'}$. Then choose $m,n \in \Z$ so that $\frac{\log|x|}{\log|a|} < \frac{m}{n} < \frac{\log|x|'}{\log|a|'}$. Then we have:
+  \begin{align*}
+    n \log |x| &< m \log |a|\\
+    n \log |x|' &> m \log |a|'
+  \end{align*}
+  and hence $|\frac{x^n}{a^m}| < 1, |\frac{x^n}{a^m}|' > 1, \contr.$
+
+  \imp{3}{1} This is clear, as open balls in one topology will also be open balls in the other, hence the topologies will be the same.
+\end{proof}
+
+In this course, we will be mainly interested in the following types of absolute values:
+\begin{definition}
+  An absolute value $|\cdot|$ on $K$ is said to be \emph{non-archimedean} if it satisfies the ultrametric inequality $|x+y| \leq \max(|x|, |y|)$
+\end{definition}
+If $|\cdot|$ is not non-archimedean, then it is archimedean.\\
+\underline{Examples: }
+\begin{enumerate}
+  \item $|\cdot|_\infty$ on $\R$ is archimedean.
+  \item $|\cdot|_p$ is a non-archimedean absolute value on $\Q$.
+\end{enumerate}
+\begin{lemma}[All triangles are isosceles]
+    Let $(K, |\cdot|)$ be a non-archimedean valued field, and $x, y \in K$. If $|x|<|y|$, then $|x-y| = |y|$.
+\end{lemma}
+\begin{proof}
+  Observe that $|1| = |1\cdot 1| = |1|\cdot |1|$, and so $|1| = 1$ or $0$. But $1 \neq 0$, so $|1| = 1$. Similarly, $|-1| = 1$, and so $|-y| = |y|$ for all $y \in K$.
+
+  Then if $|x| < |y|$,  $|x-y| \leq \max(|x|, |y|) = |y|$.
+
+  At the same time $|y| \leq \max(|x|, |x-y|) \implies |y| \leq |x-y|$.
+
+  Hence $|y| = |x-y|$.
+\end{proof}
+
+\begin{proposition}
+  Let $(K, |\cdot|)$ be non-archimedean, and $(x_n)_{n=1}^\infty$ be a sequence in $K$.
+
+  If $|x_n-x_{n+1}| \to 0$, then $(x_n)_{n=1}^\infty$ is Cauchy.
+
+  In particular, if $K$ is in addition complete, then $(x_n)_{n=1}^\infty$ converges.
+\end{proposition}
+\begin{proof}
+  For $\epsilon > 0$, choose $N$ such that $|x_n - x_{n+1}| < \epsilon\forall n>N$.
+
+  Then for $N < n < m$, we have:
+  \begin{align*}
+    |x_n-x_m| &= |(x_n-x_{n+1}) + (x_{n+1}-x_{n+1}) +\ldots + (x_{m-1} - x_m)| < \epsilon
+  \end{align*}
+  And so the sequence is Cauchy.
+\end{proof}
+
+For example, if $p=5$, construct the sequence $(x_n)_{n=1}^\infty$ such that:
+\begin{enumerate}
+  \item $x_n^2+ 1\equiv 0 \mod 5^n$
+  \item $x_n \equiv x_{n+1} \mod 5^n$
+\end{enumerate}
+as follows:
+
+Take $x_1 = 2$. Suppose we have constructed $x_n$. Let $x_n^2 + 1 = a5^n$, and set $x_{n+1} = x_n + b5^n$. Then $x_{n+1}^2 + 1=  x_n^2 + 2b5^nx_n + b^2 5^{2n} + 1 = a5^n + 2b5^nx_n + b^2 5^{2n}$.
+
+We choose $b$ such that $a+2bx_n \equiv 0 \mod 5$, i.e. $b \equiv -\frac{a}{2x_n} \mod 5$, and then we have $x_{n+1}^2 +1 \equiv 0 \mod 5^{n+1}$ as desired.
+
+The second property implies that $|x_{n+1} - x_n|_5 < 5^{-n} \to 0$, and so the sequence is Cauchy. Now suppose that $x_n \to L \in \Q$. Then $x_n^2 \to L^2$. But the first property then gives us that $x_n^2 \to -1 \implies L^2 = -1 \contr.$ So $(\Q, |\cdot|_5)$ is not complete.
+
+\begin{definition}
+  The $p$-adic numbers $\Q_p$ is the completion of $\Q$ with respect to $|\cdot|_p$.
+\end{definition}
+We have an analogy with $\R$, in that $\R$ is the completion of $\Q$ with respect to $|\cdot|_\infty$.
+\end{document}

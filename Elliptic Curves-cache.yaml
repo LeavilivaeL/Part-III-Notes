@@ -1,0 +1,3488 @@
+version: 0.12.2
+filePath: Elliptic Curves.tex
+options:
+  $BIBINPUTS:
+    - $ROOTDIR
+    - $ROOTDIR/$OUTDIR
+    - ''
+  $TEXINPUTS:
+    - $ROOTDIR
+    - $ROOTDIR/$OUTDIR
+    - ''
+  bibtexEngine: bibtex
+  cleanPatterns:
+    - '**/*.aux'
+    - '**/*.aux.bak'
+    - '**/*.bbl'
+    - '**/*.bcf'
+    - '**/*.blg'
+    - '**/*.dvi'
+    - '**/*.fdb_latexmk'
+    - '**/*.fls'
+    - '**/*.idx'
+    - '**/*.idx.bak'
+    - '**/*.ilg'
+    - '**/*.ind'
+    - '**/*.lof'
+    - '**/*.log'
+    - '**/*.lol'
+    - '**/*.lot'
+    - '**/*.nav'
+    - '**/*.out'
+    - '**/*.pdf'
+    - '**/*.ps'
+    - '**/*.snm'
+    - '**/*.synctex.gz'
+    - '**/*.toc'
+    - '/**/_minted-${JOB}'
+    - '/${OUTDIR}/sage-plots-for-${JOB}.tex'
+    - /missfont.log
+    - /texput.log
+    - /texput.aux
+  dviToPdfEngine: xdvipdfmx
+  engine: pdflatex
+  epstopdfBoundingBox: default
+  epstopdfOutputPath: $DIR_0/$NAME_0.pdf
+  indexAutomaticRanges: true
+  indexEngine: makeindex
+  indexOrdering: word
+  indexSorting: default
+  knitrConcordance: true
+  knitrOutputPath: $JOB.tex
+  lhs2texStyle: poly
+  literateAgdaEngine: agda
+  literateHaskellEngine: lhs2TeX
+  loadCache: true
+  loadUserOptions: true
+  outputFormat: pdf
+  phaseCycles: 20
+  pweaveCacheDirectory: pweave-cache-for-$JOB
+  pweaveFigureDirectory: pweave-figures-for-$JOB
+  pweaveKernel: python3
+  pweaveOutputFormat: tex
+  pweaveOutputPath: $JOB.tex
+  saveCache: true
+  severity: info
+  validateCache: true
+  synctex: true
+  copyTargetsToRoot: true
+  outputDirectory: ''
+  intermediatePostScript: false
+  $PATH: >-
+    %SystemDrive%\texlive\2017\bin\win32;%SystemDrive%\texlive\2016\bin\win32;%SystemDrive%\texlive\2015\bin\win32;%ProgramFiles%\MiKTeX
+    2.9\miktex\bin\x64;%ProgramFiles(x86)%\MiKTeX 2.9\miktex\bin;$PATH
+files:
+  dicy-instance.yaml-ParsedYAML:
+    timeStamp: 2020-10-09T09:41:43.343Z
+    jobNames: []
+    value:
+      severity: info
+    type: ParsedYAML
+  dicy.yaml-ParsedYAML:
+    jobNames: []
+    type: ParsedYAML
+  Elliptic Curves.yaml-ParsedYAML:
+    jobNames: []
+    type: ParsedYAML
+  Elliptic Curves.tex-ParsedLaTeXMagic:
+    timeStamp: 2020-10-09T09:41:43.362Z
+    jobNames: []
+    value: {}
+    type: ParsedLaTeXMagic
+  'C:\Users\Harry\AppData\Roaming\dicy\config.yaml-ParsedYAML':
+    timeStamp: 2020-10-09T09:41:43.361Z
+    jobNames: []
+    value:
+      synctex: true
+      engine: pdflatex
+      severity: warning
+      copyTargetsToRoot: true
+      outputDirectory: ''
+      outputFormat: pdf
+      cleanPatterns:
+        - '**/*.aux'
+        - '**/*.aux.bak'
+        - '**/*.bbl'
+        - '**/*.bcf'
+        - '**/*.blg'
+        - '**/*.dvi'
+        - '**/*.fdb_latexmk'
+        - '**/*.fls'
+        - '**/*.idx'
+        - '**/*.idx.bak'
+        - '**/*.ilg'
+        - '**/*.ind'
+        - '**/*.lof'
+        - '**/*.log'
+        - '**/*.lol'
+        - '**/*.lot'
+        - '**/*.nav'
+        - '**/*.out'
+        - '**/*.pdf'
+        - '**/*.ps'
+        - '**/*.snm'
+        - '**/*.synctex.gz'
+        - '**/*.toc'
+        - '/**/_minted-${JOB}'
+        - '/${OUTDIR}/sage-plots-for-${JOB}.tex'
+        - /missfont.log
+        - /texput.log
+        - /texput.aux
+      intermediatePostScript: false
+      $PATH: >-
+        %SystemDrive%\texlive\2017\bin\win32;%SystemDrive%\texlive\2016\bin\win32;%SystemDrive%\texlive\2015\bin\win32;%ProgramFiles%\MiKTeX
+        2.9\miktex\bin\x64;%ProgramFiles(x86)%\MiKTeX 2.9\miktex\bin;$PATH
+    type: ParsedYAML
+  Elliptic Curves.tex:
+    timeStamp: 2020-10-09T10:39:04.506Z
+    jobNames: []
+    hash: Zxr9Zak6wZxnzM/zcjkmEzzrAWIxPCXfKCpNwAlM0/A=
+    type: LaTeX
+    subType: article
+  'C:\Users\Harry\AppData\Roaming\dicy\config.yaml':
+    timeStamp: 2020-10-09T08:12:35.505Z
+    jobNames: []
+    type: YAML
+  x.y-Nil:
+    jobNames: []
+    type: Nil
+  Elliptic Curves.fls-ParsedFileListing:
+    timeStamp: 2020-10-09T10:13:43.013Z
+    jobNames: []
+    value:
+      messages: []
+      inputs:
+        - >-
+          C:\Users\Harry\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\public\stmaryrd\dpi600\stmary10.pk
+        - >-
+          C:\Users\Harry\AppData\Local\MiKTeX\2.9\fonts\tfm\public\rsfs\rsfs10.tfm
+        - >-
+          C:\Users\Harry\AppData\Local\MiKTeX\2.9\fonts\tfm\public\rsfs\rsfs5.tfm
+        - >-
+          C:\Users\Harry\AppData\Local\MiKTeX\2.9\fonts\tfm\public\rsfs\rsfs7.tfm
+        - >-
+          C:\Users\Harry\AppData\Local\MiKTeX\2.9\fonts\tfm\public\stmaryrd\stmary10.tfm
+        - >-
+          C:\Users\Harry\AppData\Local\MiKTeX\2.9\fonts\tfm\public\stmaryrd\stmary5.tfm
+        - >-
+          C:\Users\Harry\AppData\Local\MiKTeX\2.9\fonts\tfm\public\stmaryrd\stmary6.tfm
+        - >-
+          C:\Users\Harry\AppData\Local\MiKTeX\2.9\fonts\tfm\public\stmaryrd\stmary7.tfm
+        - >-
+          C:\Users\Harry\AppData\Local\MiKTeX\2.9\fonts\tfm\public\stmaryrd\stmary8.tfm
+        - >-
+          C:\Users\Harry\AppData\Local\MiKTeX\2.9\miktex\data\le\pdftex\pdflatex.fmt
+        - 'C:\Users\Harry\AppData\Local\MiKTeX\2.9\pdftex\config\pdftex.map'
+        - Elliptic Curves.aux
+        - Elliptic Curves.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\fonts\tfm\public\amsfonts\cmextra\cmex7.tfm
+        - >-
+          S:\HDD Program
+          Files\MikTeX\fonts\tfm\public\amsfonts\cmextra\cmex8.tfm
+        - >-
+          S:\HDD Program
+          Files\MikTeX\fonts\tfm\public\amsfonts\symbols\msam10.tfm
+        - >-
+          S:\HDD Program
+          Files\MikTeX\fonts\tfm\public\amsfonts\symbols\msam5.tfm
+        - >-
+          S:\HDD Program
+          Files\MikTeX\fonts\tfm\public\amsfonts\symbols\msam7.tfm
+        - >-
+          S:\HDD Program
+          Files\MikTeX\fonts\tfm\public\amsfonts\symbols\msbm10.tfm
+        - >-
+          S:\HDD Program
+          Files\MikTeX\fonts\tfm\public\amsfonts\symbols\msbm5.tfm
+        - >-
+          S:\HDD Program
+          Files\MikTeX\fonts\tfm\public\amsfonts\symbols\msbm7.tfm
+        - 'S:\HDD Program Files\MikTeX\fonts\tfm\public\cm\cmbx10.tfm'
+        - 'S:\HDD Program Files\MikTeX\fonts\tfm\public\cm\cmbx12.tfm'
+        - 'S:\HDD Program Files\MikTeX\fonts\tfm\public\cm\cmbxti10.tfm'
+        - 'S:\HDD Program Files\MikTeX\fonts\tfm\public\cm\cmex10.tfm'
+        - 'S:\HDD Program Files\MikTeX\fonts\tfm\public\cm\cmmi12.tfm'
+        - 'S:\HDD Program Files\MikTeX\fonts\tfm\public\cm\cmmi6.tfm'
+        - 'S:\HDD Program Files\MikTeX\fonts\tfm\public\cm\cmmi8.tfm'
+        - 'S:\HDD Program Files\MikTeX\fonts\tfm\public\cm\cmr12.tfm'
+        - 'S:\HDD Program Files\MikTeX\fonts\tfm\public\cm\cmr17.tfm'
+        - 'S:\HDD Program Files\MikTeX\fonts\tfm\public\cm\cmr6.tfm'
+        - 'S:\HDD Program Files\MikTeX\fonts\tfm\public\cm\cmr8.tfm'
+        - 'S:\HDD Program Files\MikTeX\fonts\tfm\public\cm\cmsy10.tfm'
+        - 'S:\HDD Program Files\MikTeX\fonts\tfm\public\cm\cmsy6.tfm'
+        - 'S:\HDD Program Files\MikTeX\fonts\tfm\public\cm\cmsy8.tfm'
+        - 'S:\HDD Program Files\MikTeX\fonts\tfm\public\cm\cmti10.tfm'
+        - 'S:\HDD Program Files\MikTeX\fonts\type1\public\amsfonts\cm\cmbx10.pfb'
+        - 'S:\HDD Program Files\MikTeX\fonts\type1\public\amsfonts\cm\cmbx12.pfb'
+        - 'S:\HDD Program Files\MikTeX\fonts\type1\public\amsfonts\cm\cmmi10.pfb'
+        - 'S:\HDD Program Files\MikTeX\fonts\type1\public\amsfonts\cm\cmmi7.pfb'
+        - 'S:\HDD Program Files\MikTeX\fonts\type1\public\amsfonts\cm\cmr10.pfb'
+        - 'S:\HDD Program Files\MikTeX\fonts\type1\public\amsfonts\cm\cmr12.pfb'
+        - 'S:\HDD Program Files\MikTeX\fonts\type1\public\amsfonts\cm\cmr17.pfb'
+        - 'S:\HDD Program Files\MikTeX\fonts\type1\public\amsfonts\cm\cmr5.pfb'
+        - 'S:\HDD Program Files\MikTeX\fonts\type1\public\amsfonts\cm\cmr7.pfb'
+        - 'S:\HDD Program Files\MikTeX\fonts\type1\public\amsfonts\cm\cmsy10.pfb'
+        - 'S:\HDD Program Files\MikTeX\fonts\type1\public\amsfonts\cm\cmsy7.pfb'
+        - 'S:\HDD Program Files\MikTeX\fonts\type1\public\amsfonts\cm\cmti10.pfb'
+        - >-
+          S:\HDD Program
+          Files\MikTeX\fonts\type1\public\amsfonts\symbols\msbm10.pfb
+        - 'S:\HDD Program Files\MikTeX\tex\context\base\mkii\supp-pdf.mkii'
+        - 'S:\HDD Program Files\MikTeX\tex\generic\iftex\iftex.sty'
+        - 'S:\HDD Program Files\MikTeX\tex\generic\iftex\ifvtex.sty'
+        - 'S:\HDD Program Files\MikTeX\tex\generic\kvsetkeys\kvsetkeys.sty'
+        - 'S:\HDD Program Files\MikTeX\tex\generic\ltxcmds\ltxcmds.sty'
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\basiclayer\pgfcore.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\basiclayer\pgfcorearrows.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\basiclayer\pgfcoreexternal.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\basiclayer\pgfcoregraphicstate.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\basiclayer\pgfcoreimage.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\basiclayer\pgfcorelayers.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\basiclayer\pgfcoreobjects.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\basiclayer\pgfcorepathconstruct.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\basiclayer\pgfcorepathprocessing.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\basiclayer\pgfcorepathusage.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\basiclayer\pgfcorepatterns.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\basiclayer\pgfcorepoints.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\basiclayer\pgfcorequick.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\basiclayer\pgfcorerdf.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\basiclayer\pgfcorescopes.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\basiclayer\pgfcoreshade.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\basiclayer\pgfcoretransformations.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\basiclayer\pgfcoretransparency.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryarrows.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryautomata.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarycalc.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarydecorations.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarydecorations.pathmorphing.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarydecorations.pathreplacing.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarypatterns.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryplotmarks.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryshapes.arrows.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryshapes.callouts.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryshapes.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryshapes.geometric.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryshapes.misc.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryshapes.multipart.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryshapes.symbols.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarytopaths.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\frontendlayer\tikz\tikz.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\libraries\decorations\pgflibrarydecorations.pathmorphing.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\libraries\decorations\pgflibrarydecorations.pathreplacing.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\libraries\pgflibraryarrows.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\libraries\pgflibraryfpu.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\libraries\pgflibrarypatterns.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\libraries\pgflibraryplothandlers.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\libraries\pgflibraryplotmarks.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\libraries\shapes\pgflibraryshapes.arrows.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\libraries\shapes\pgflibraryshapes.callouts.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\libraries\shapes\pgflibraryshapes.geometric.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\libraries\shapes\pgflibraryshapes.misc.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\libraries\shapes\pgflibraryshapes.multipart.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\libraries\shapes\pgflibraryshapes.symbols.code.tex
+        - 'S:\HDD Program Files\MikTeX\tex\generic\pgf\math\pgfint.code.tex'
+        - 'S:\HDD Program Files\MikTeX\tex\generic\pgf\math\pgfmath.code.tex'
+        - 'S:\HDD Program Files\MikTeX\tex\generic\pgf\math\pgfmathcalc.code.tex'
+        - 'S:\HDD Program Files\MikTeX\tex\generic\pgf\math\pgfmathfloat.code.tex'
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\math\pgfmathfunctions.base.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\math\pgfmathfunctions.basic.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\math\pgfmathfunctions.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\math\pgfmathfunctions.comparison.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\math\pgfmathfunctions.integerarithmetics.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\math\pgfmathfunctions.misc.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\math\pgfmathfunctions.random.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\math\pgfmathfunctions.round.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\math\pgfmathfunctions.trigonometric.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\math\pgfmathparser.code.tex
+        - 'S:\HDD Program Files\MikTeX\tex\generic\pgf\math\pgfmathutil.code.tex'
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\modules\pgfmoduledecorations.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\modules\pgfmodulematrix.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\modules\pgfmoduleplot.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\modules\pgfmoduleshapes.code.tex
+        - 'S:\HDD Program Files\MikTeX\tex\generic\pgf\pgf.revision.tex'
+        - 'S:\HDD Program Files\MikTeX\tex\generic\pgf\systemlayer\pgf.cfg'
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\systemlayer\pgfsys-common-pdf.def
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\systemlayer\pgfsys-luatex.def
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\systemlayer\pgfsys-pdftex.def
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\systemlayer\pgfsys.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\systemlayer\pgfsysprotocol.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\systemlayer\pgfsyssoftpath.code.tex
+        - 'S:\HDD Program Files\MikTeX\tex\generic\pgf\utilities\pgffor.code.tex'
+        - 'S:\HDD Program Files\MikTeX\tex\generic\pgf\utilities\pgfkeys.code.tex'
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\utilities\pgfkeysfiltered.code.tex
+        - 'S:\HDD Program Files\MikTeX\tex\generic\pgf\utilities\pgfrcs.code.tex'
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\utilities\pgfutil-common-lists.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\utilities\pgfutil-common.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\utilities\pgfutil-latex.def
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgfplots\libs\pgflibrarypgfplots.surfshading.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgfplots\libs\pgfplotslibrary.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgfplots\liststructure\pgfplotsarray.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgfplots\liststructure\pgfplotsdeque.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgfplots\liststructure\pgfplotsliststructure.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgfplots\liststructure\pgfplotsliststructureext.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgfplots\liststructure\pgfplotsmatrix.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgfplots\numtable\pgfplotstableshared.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgfplots\oldpgfcompatib\pgfplotsoldpgfsupp_loader.code.tex
+        - 'S:\HDD Program Files\MikTeX\tex\generic\pgfplots\pgfplots.code.tex'
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgfplots\pgfplots.errorbars.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgfplots\pgfplots.markers.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgfplots\pgfplots.paths.code.tex
+        - 'S:\HDD Program Files\MikTeX\tex\generic\pgfplots\pgfplots.revision.tex'
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgfplots\pgfplots.scaling.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgfplots\pgfplotscoordprocessing.code.tex
+        - 'S:\HDD Program Files\MikTeX\tex\generic\pgfplots\pgfplotscore.code.tex'
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgfplots\pgfplotsmeshplothandler.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgfplots\pgfplotsmeshplotimage.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgfplots\pgfplotsplothandlers.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgfplots\pgfplotsstackedplots.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgfplots\pgfplotsticks.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgfplots\sys\pgflibrarypgfplots.surfshading.pgfsys-pdftex.def
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgfplots\sys\pgfplotssysgeneric.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgfplots\util\pgfplotsbinary.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgfplots\util\pgfplotsbinary.data.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgfplots\util\pgfplotscolor.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgfplots\util\pgfplotscolormap.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgfplots\util\pgfplotsutil.code.tex
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgfplots\util\pgfplotsutil.verb.code.tex
+        - 'S:\HDD Program Files\MikTeX\tex\latex\amscls\amsthm.sty'
+        - 'S:\HDD Program Files\MikTeX\tex\latex\amsfonts\amsfonts.sty'
+        - 'S:\HDD Program Files\MikTeX\tex\latex\amsfonts\amssymb.sty'
+        - 'S:\HDD Program Files\MikTeX\tex\latex\amsfonts\umsa.fd'
+        - 'S:\HDD Program Files\MikTeX\tex\latex\amsfonts\umsb.fd'
+        - 'S:\HDD Program Files\MikTeX\tex\latex\amsmath\amsbsy.sty'
+        - 'S:\HDD Program Files\MikTeX\tex\latex\amsmath\amsgen.sty'
+        - 'S:\HDD Program Files\MikTeX\tex\latex\amsmath\amsmath.sty'
+        - 'S:\HDD Program Files\MikTeX\tex\latex\amsmath\amsopn.sty'
+        - 'S:\HDD Program Files\MikTeX\tex\latex\amsmath\amstext.sty'
+        - 'S:\HDD Program Files\MikTeX\tex\latex\base\article.cls'
+        - 'S:\HDD Program Files\MikTeX\tex\latex\base\inputenc.sty'
+        - 'S:\HDD Program Files\MikTeX\tex\latex\base\size10.clo'
+        - 'S:\HDD Program Files\MikTeX\tex\latex\caption\caption.sty'
+        - 'S:\HDD Program Files\MikTeX\tex\latex\caption\caption3.sty'
+        - 'S:\HDD Program Files\MikTeX\tex\latex\caption\subcaption.sty'
+        - 'S:\HDD Program Files\MikTeX\tex\latex\doublestroke\dsfont.sty'
+        - 'S:\HDD Program Files\MikTeX\tex\latex\enumitem\enumitem.sty'
+        - 'S:\HDD Program Files\MikTeX\tex\latex\epstopdf-pkg\epstopdf-base.sty'
+        - 'S:\HDD Program Files\MikTeX\tex\latex\etoolbox\etoolbox.sty'
+        - 'S:\HDD Program Files\MikTeX\tex\latex\float\float.sty'
+        - 'S:\HDD Program Files\MikTeX\tex\latex\geometry\geometry.cfg'
+        - 'S:\HDD Program Files\MikTeX\tex\latex\geometry\geometry.sty'
+        - 'S:\HDD Program Files\MikTeX\tex\latex\graphics-cfg\color.cfg'
+        - 'S:\HDD Program Files\MikTeX\tex\latex\graphics-cfg\graphics.cfg'
+        - 'S:\HDD Program Files\MikTeX\tex\latex\graphics-def\pdftex.def'
+        - 'S:\HDD Program Files\MikTeX\tex\latex\graphics\graphics.sty'
+        - 'S:\HDD Program Files\MikTeX\tex\latex\graphics\graphicx.sty'
+        - 'S:\HDD Program Files\MikTeX\tex\latex\graphics\keyval.sty'
+        - 'S:\HDD Program Files\MikTeX\tex\latex\graphics\trig.sty'
+        - 'S:\HDD Program Files\MikTeX\tex\latex\jknappen\mathrsfs.sty'
+        - 'S:\HDD Program Files\MikTeX\tex\latex\jknappen\ursfs.fd'
+        - 'S:\HDD Program Files\MikTeX\tex\latex\kvoptions\kvoptions.sty'
+        - 'S:\HDD Program Files\MikTeX\tex\latex\l3backend\l3backend-pdfmode.def'
+        - 'S:\HDD Program Files\MikTeX\tex\latex\marvosym\marvosym.sty'
+        - 'S:\HDD Program Files\MikTeX\tex\latex\mathtools\mathtools.sty'
+        - 'S:\HDD Program Files\MikTeX\tex\latex\mathtools\mhsetup.sty'
+        - 'S:\HDD Program Files\MikTeX\tex\latex\ms\everyshi.sty'
+        - 'S:\HDD Program Files\MikTeX\tex\latex\parskip\parskip.sty'
+        - 'S:\HDD Program Files\MikTeX\tex\latex\pgf\basiclayer\pgf.sty'
+        - 'S:\HDD Program Files\MikTeX\tex\latex\pgf\basiclayer\pgfcore.sty'
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\latex\pgf\compatibility\pgfcomp-version-0-65.sty
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\latex\pgf\compatibility\pgfcomp-version-1-18.sty
+        - 'S:\HDD Program Files\MikTeX\tex\latex\pgf\frontendlayer\tikz.sty'
+        - 'S:\HDD Program Files\MikTeX\tex\latex\pgf\math\pgfmath.sty'
+        - 'S:\HDD Program Files\MikTeX\tex\latex\pgf\systemlayer\pgfsys.sty'
+        - 'S:\HDD Program Files\MikTeX\tex\latex\pgf\utilities\pgffor.sty'
+        - 'S:\HDD Program Files\MikTeX\tex\latex\pgf\utilities\pgfkeys.sty'
+        - 'S:\HDD Program Files\MikTeX\tex\latex\pgf\utilities\pgfrcs.sty'
+        - 'S:\HDD Program Files\MikTeX\tex\latex\pgfplots\pgfplots.sty'
+        - 'S:\HDD Program Files\MikTeX\tex\latex\stmaryrd\stmaryrd.sty'
+        - 'S:\HDD Program Files\MikTeX\tex\latex\stmaryrd\ustmry.fd'
+        - 'S:\HDD Program Files\MikTeX\tex\latex\tikzducks\tikzducks.sty'
+        - >-
+          S:\HDD Program
+          Files\MikTeX\tex\latex\tikzducks\tikzlibraryducks.code.tex
+        - 'S:\HDD Program Files\MikTeX\tex\latex\tools\calc.sty'
+        - 'S:\HDD Program Files\MikTeX\tex\latex\tools\xspace.sty'
+        - 'S:\HDD Program Files\MikTeX\tex\latex\xcolor\xcolor.sty'
+        - preamble.tex
+      outputs:
+        - Elliptic Curves.aux
+        - Elliptic Curves.log
+        - Elliptic Curves.pdf
+      calls: []
+    type: ParsedFileListing
+  Elliptic Curves.log-ParsedLaTeXLog:
+    timeStamp: 2020-10-09T10:39:07.446Z
+    jobNames: []
+    value:
+      messages:
+        - name: pdfTeX
+          severity: info
+          text: inputenc 2018/08/11 v1.3c Input encoding file
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\base\inputenc.sty'
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 24
+              end: 24
+        - name: pdfTeX
+          severity: info
+          text: amsmath 2020/01/20 v2.17e AMS math features
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\amsmath\amsmath.sty'
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 28
+              end: 28
+        - name: pdfTeX
+          severity: info
+          text: amstext 2000/06/29 v2.01 AMS text
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\amsmath\amstext.sty'
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 32
+              end: 32
+        - name: pdfTeX
+          severity: info
+          text: amsbsy 1999/11/29 v1.2d Bold Symbols
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\amsmath\amsbsy.sty'
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 38
+              end: 38
+        - name: pdfTeX
+          severity: info
+          text: amsopn 2016/03/08 v2.02 operator names
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\amsmath\amsopn.sty'
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 41
+              end: 41
+        - severity: info
+          name: pdfTeX
+          category: LaTeX
+          text: Redefining \frac
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\amsmath\amsmath.sty'
+            range:
+              start: 227
+              end: 227
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 44
+              end: 44
+        - severity: info
+          name: pdfTeX
+          category: LaTeX
+          text: Redefining \overline
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\amsmath\amsmath.sty'
+            range:
+              start: 389
+              end: 389
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 47
+              end: 47
+        - severity: info
+          name: pdfTeX
+          category: LaTeX
+          text: Redefining \ldots
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\amsmath\amsmath.sty'
+            range:
+              start: 486
+              end: 486
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 50
+              end: 50
+        - severity: info
+          name: pdfTeX
+          category: LaTeX
+          text: Redefining \dots
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\amsmath\amsmath.sty'
+            range:
+              start: 489
+              end: 489
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 51
+              end: 51
+        - severity: info
+          name: pdfTeX
+          category: LaTeX
+          text: Redefining \cdots
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\amsmath\amsmath.sty'
+            range:
+              start: 610
+              end: 610
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 52
+              end: 52
+        - severity: info
+          name: pdfTeX
+          category: LaTeX Font
+          text: Redeclaring font encoding OML
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\amsmath\amsmath.sty'
+            range:
+              start: 733
+              end: 733
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 56
+              end: 56
+        - severity: info
+          name: pdfTeX
+          category: LaTeX Font
+          text: Redeclaring font encoding OMS
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\amsmath\amsmath.sty'
+            range:
+              start: 734
+              end: 734
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 57
+              end: 57
+        - severity: info
+          name: pdfTeX
+          category: LaTeX
+          text: 'Redefining \['
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\amsmath\amsmath.sty'
+            range:
+              start: 2859
+              end: 2859
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 78
+              end: 78
+        - severity: info
+          name: pdfTeX
+          category: LaTeX
+          text: 'Redefining \]'
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\amsmath\amsmath.sty'
+            range:
+              start: 2860
+              end: 2860
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 79
+              end: 79
+        - name: pdfTeX
+          severity: info
+          text: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\amsfonts\amsfonts.sty'
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 81
+              end: 81
+        - severity: info
+          name: pdfTeX
+          category: LaTeX Font
+          text: Redeclaring math symbol \hbar
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\amsfonts\amsfonts.sty'
+            range:
+              start: 98
+              end: 98
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 84
+              end: 84
+        - severity: info
+          name: pdfTeX
+          category: LaTeX Font
+          text: >-
+            Overwriting math alphabet `\mathfrak' in version `bold' U/euf/m/n
+            --> U/euf/b/n.
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\amsfonts\amsfonts.sty'
+            range:
+              start: 106
+              end: 106
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 85
+              end: 86
+        - name: pdfTeX
+          severity: info
+          text: amssymb 2013/01/14 v3.01 AMS font symbols
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\amsfonts\amssymb.sty'
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 88
+              end: 88
+        - name: pdfTeX
+          severity: info
+          text: amsthm 2017/10/31 v2.20.4
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\amscls\amsthm.sty'
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 90
+              end: 90
+        - name: pdfTeX
+          severity: info
+          text: float 2001/11/08 v1.3d Float enhancements (AL)
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\float\float.sty'
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 101
+              end: 101
+        - name: pdfTeX
+          severity: info
+          text: mathtools 2020/01/17 v1.23 mathematical typesetting tools
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\mathtools\mathtools.sty'
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 108
+              end: 108
+        - name: pdfTeX
+          severity: info
+          text: keyval 2014/10/28 v1.15 key=value parser (DPC)
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\graphics\keyval.sty'
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 110
+              end: 110
+        - name: pdfTeX
+          severity: info
+          text: 'calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)'
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\tools\calc.sty'
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 113
+              end: 113
+        - severity: info
+          name: pdfTeX
+          category: LaTeX
+          text: Redefining \setlength
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\tools\calc.sty'
+            range:
+              start: 80
+              end: 80
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 120
+              end: 120
+        - severity: info
+          name: pdfTeX
+          category: LaTeX
+          text: Redefining \addtolength
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\tools\calc.sty'
+            range:
+              start: 81
+              end: 81
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 121
+              end: 121
+        - name: pdfTeX
+          severity: info
+          text: mhsetup 2017/03/31 v1.3 programming setup (MH)
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\mathtools\mhsetup.sty'
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 125
+              end: 125
+        - severity: info
+          name: pdfTeX
+          category: LaTeX
+          text: Thecontrolsequence`\('isalreadyrobust
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\mathtools\mathtools.sty'
+            range:
+              start: 129
+              end: 129
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 127
+              end: 127
+        - severity: info
+          name: pdfTeX
+          category: LaTeX
+          text: Thecontrolsequence`\)'isalreadyrobust
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\mathtools\mathtools.sty'
+            range:
+              start: 129
+              end: 129
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 128
+              end: 128
+        - severity: info
+          name: pdfTeX
+          category: LaTeX
+          text: 'Thecontrolsequence`\[''isalreadyrobust'
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\mathtools\mathtools.sty'
+            range:
+              start: 129
+              end: 129
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 129
+              end: 129
+        - severity: info
+          name: pdfTeX
+          category: LaTeX
+          text: 'Thecontrolsequence`\]''isalreadyrobust'
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\mathtools\mathtools.sty'
+            range:
+              start: 129
+              end: 129
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 130
+              end: 130
+        - name: pdfTeX
+          severity: info
+          text: geometry 2020/01/02 v5.9 Page Geometry
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\geometry\geometry.sty'
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 141
+              end: 141
+        - name: pdfTeX
+          severity: info
+          text: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\generic\iftex\ifvtex.sty'
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 143
+              end: 143
+        - name: pdfTeX
+          severity: info
+          text: iftex 2019/11/07 v1.0c TeX engine tests
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\generic\iftex\iftex.sty'
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 145
+              end: 145
+        - name: pdfTeX
+          severity: info
+          text: 'xspace 2014/10/28 v1.13 Space after command names (DPC,MH)'
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\tools\xspace.sty'
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 161
+              end: 161
+        - name: pdfTeX
+          severity: info
+          text: everyshi 2001/05/15 v3.00 EveryShipout Package (MS)
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\ms\everyshi.sty'
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 174
+              end: 174
+        - name: pdfTeX
+          severity: info
+          text: pgfrcs 2020/01/08 v3.1.5b (3.1.5b)
+          source:
+            file: >-
+              S:\HDD Program
+              Files\MikTeX\tex\generic\pgf\utilities\pgfrcs.code.tex
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 177
+              end: 177
+        - name: pdfTeX
+          severity: info
+          text: pgf 2020/01/08 v3.1.5b (3.1.5b)
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\pgf\basiclayer\pgf.sty'
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 179
+              end: 179
+        - name: pdfTeX
+          severity: info
+          text: 'graphicx 2019/11/30 v1.2a Enhanced LaTeX Graphics (DPC,SPQR)'
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\graphics\graphicx.sty'
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 182
+              end: 182
+        - name: pdfTeX
+          severity: info
+          text: 'graphics 2019/11/30 v1.4a Standard LaTeX Graphics (DPC,SPQR)'
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\graphics\graphics.sty'
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 184
+              end: 184
+        - name: pdfTeX
+          severity: info
+          text: trig 2016/01/03 v1.10 sin cos tan (DPC)
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\graphics\trig.sty'
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 186
+              end: 186
+        - severity: info
+          name: pdfTeX
+          category: Package graphics
+          text: 'Driver file: pdftex.def'
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\graphics\graphics.sty'
+            range:
+              start: 105
+              end: 105
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 190
+              end: 190
+        - name: pdfTeX
+          severity: info
+          text: pgfsys 2020/01/08 v3.1.5b (3.1.5b)
+          source:
+            file: >-
+              S:\HDD Program
+              Files\MikTeX\tex\generic\pgf\systemlayer\pgfsys.code.tex
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 198
+              end: 198
+        - name: pdfTeX
+          severity: info
+          text: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\xcolor\xcolor.sty'
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 247
+              end: 247
+        - severity: info
+          name: pdfTeX
+          category: Package xcolor
+          text: 'Driver file: pdftex.def'
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\xcolor\xcolor.sty'
+            range:
+              start: 225
+              end: 225
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 251
+              end: 251
+        - severity: info
+          name: pdfTeX
+          category: Package xcolor
+          text: Model `cmy' substituted by `cmy0'
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\xcolor\xcolor.sty'
+            range:
+              start: 1348
+              end: 1348
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 252
+              end: 252
+        - severity: info
+          name: pdfTeX
+          category: Package xcolor
+          text: Model `hsb' substituted by `rgb'
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\xcolor\xcolor.sty'
+            range:
+              start: 1352
+              end: 1352
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 253
+              end: 253
+        - severity: info
+          name: pdfTeX
+          category: Package xcolor
+          text: Model `RGB' extended
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\xcolor\xcolor.sty'
+            range:
+              start: 1364
+              end: 1364
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 254
+              end: 254
+        - severity: info
+          name: pdfTeX
+          category: Package xcolor
+          text: Model `HTML' substituted by `rgb'
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\xcolor\xcolor.sty'
+            range:
+              start: 1366
+              end: 1366
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 255
+              end: 255
+        - severity: info
+          name: pdfTeX
+          category: Package xcolor
+          text: Model `Hsb' substituted by `hsb'
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\xcolor\xcolor.sty'
+            range:
+              start: 1367
+              end: 1367
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 256
+              end: 256
+        - severity: info
+          name: pdfTeX
+          category: Package xcolor
+          text: Model `tHsb' substituted by `hsb'
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\xcolor\xcolor.sty'
+            range:
+              start: 1368
+              end: 1368
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 257
+              end: 257
+        - severity: info
+          name: pdfTeX
+          category: Package xcolor
+          text: Model `HSB' substituted by `hsb'
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\xcolor\xcolor.sty'
+            range:
+              start: 1369
+              end: 1369
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 258
+              end: 258
+        - severity: info
+          name: pdfTeX
+          category: Package xcolor
+          text: Model `Gray' substituted by `gray'
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\xcolor\xcolor.sty'
+            range:
+              start: 1370
+              end: 1370
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 259
+              end: 259
+        - severity: info
+          name: pdfTeX
+          category: Package xcolor
+          text: Model `wave' substituted by `hsb'
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\xcolor\xcolor.sty'
+            range:
+              start: 1371
+              end: 1371
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 260
+              end: 260
+        - name: pdfTeX
+          severity: info
+          text: pgfcore 2020/01/08 v3.1.5b (3.1.5b)
+          source:
+            file: >-
+              S:\HDD Program
+              Files\MikTeX\tex\generic\pgf\basiclayer\pgfcore.code.tex
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 262
+              end: 262
+        - name: pdfTeX
+          severity: info
+          text: pgfcomp-version-0-65 2020/01/08 v3.1.5b (3.1.5b)
+          source:
+            file: >-
+              S:\HDD Program
+              Files\MikTeX\tex\latex\pgf\compatibility\pgfcomp-version-0-65.
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 392
+              end: 392
+        - name: pdfTeX
+          severity: info
+          text: pgfcomp-version-1-18 2020/01/08 v3.1.5b (3.1.5b)
+          source:
+            file: >-
+              S:\HDD Program
+              Files\MikTeX\tex\latex\pgf\compatibility\pgfcomp-version-1-18.
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 398
+              end: 398
+        - name: pdfTeX
+          severity: info
+          text: pgffor 2020/01/08 v3.1.5b (3.1.5b)
+          source:
+            file: >-
+              S:\HDD Program
+              Files\MikTeX\tex\generic\pgf\utilities\pgffor.code.tex
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 405
+              end: 405
+        - name: pdfTeX
+          severity: info
+          text: tikz 2020/01/08 v3.1.5b (3.1.5b)
+          source:
+            file: >-
+              S:\HDD Program
+              Files\MikTeX\tex\generic\pgf\frontendlayer\tikz\tikz.code.t
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 413
+              end: 413
+        - name: pdfTeX
+          severity: info
+          text: mathrsfs 1996/01/01 Math RSFS package v1.0 (jk)
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\jknappen\mathrsfs.sty'
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 449
+              end: 449
+        - name: pdfTeX
+          severity: info
+          text: tikzducks 2020/01/03 version v1.3 Draw rubber ducks in TikZ
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\tikzducks\tikzducks.sty'
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 550
+              end: 550
+        - name: pdfTeX
+          severity: info
+          text: parskip 2020-01-22 v2.0d non-zero parskip adjustments
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\parskip\parskip.sty'
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 568
+              end: 568
+        - name: pdfTeX
+          severity: info
+          text: kvoptions 2019/11/29 v3.13 Key value format for package options (HO)
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\kvoptions\kvoptions.sty'
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 570
+              end: 570
+        - name: pdfTeX
+          severity: info
+          text: ltxcmds 2019/12/15 v1.24 LaTeX kernel commands for general use (HO)
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\generic\ltxcmds\ltxcmds.sty'
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 572
+              end: 572
+        - name: pdfTeX
+          severity: info
+          text: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\generic\kvsetkeys\kvsetkeys.sty'
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 574
+              end: 574
+        - name: pdfTeX
+          severity: info
+          text: etoolbox 2019/09/21 v2.5h e-TeX tools for LaTeX (JAW)
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\etoolbox\etoolbox.sty'
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 576
+              end: 576
+        - name: pdfTeX
+          severity: info
+          text: subcaption 2020/01/22 v1.3d Sub-captions (AR)
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\caption\subcaption.sty'
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 579
+              end: 579
+        - name: pdfTeX
+          severity: info
+          text: caption 2020/01/03 v3.4h Customizing captions (AR)
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\caption\caption.sty'
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 581
+              end: 581
+        - name: pdfTeX
+          severity: info
+          text: caption3 2020/01/03 v1.8h caption3 kernel (AR)
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\caption\caption3.sty'
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 583
+              end: 583
+        - severity: info
+          name: pdfTeX
+          category: Package caption3
+          text: 'TeX engine: e-TeX'
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\caption\caption3.sty'
+            range:
+              start: 61
+              end: 61
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 584
+              end: 584
+        - severity: info
+          name: pdfTeX
+          category: Package caption
+          text: Standard document class detected.
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\caption\caption3.sty'
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 592
+              end: 592
+        - severity: info
+          name: pdfTeX
+          category: Package caption
+          text: float package is loaded.
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\caption\caption.sty'
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 596
+              end: 596
+        - name: pdfTeX
+          severity: info
+          text: stmaryrd 1994/03/03 St Mary's Road symbol package
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\stmaryrd\stmaryrd.sty'
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 601
+              end: 601
+        - severity: info
+          name: pdfTeX
+          category: LaTeX Font
+          text: >-
+            Overwriting symbol font `stmry' in version `bold' U/stmry/m/n -->
+            U/stmry/b/n.
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\stmaryrd\stmaryrd.sty'
+            range:
+              start: 89
+              end: 89
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 603
+              end: 604
+        - name: pdfTeX
+          severity: info
+          text: marvosym 2011/07/20 v2.2 Martin Vogel's Symbols font definitions
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\marvosym\marvosym.sty'
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 606
+              end: 606
+        - name: pdfTeX
+          severity: info
+          text: dsfont 1995/08/01 v0.1 Double stroke roman fonts
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\doublestroke\dsfont.sty'
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 608
+              end: 608
+        - name: pdfTeX
+          severity: info
+          text: pgfplots 2018/03/28 v1.16 Data Visualization (1.16)
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\pgfplots\pgfplots.sty'
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 611
+              end: 611
+        - name: pdfTeX
+          severity: info
+          text: enumitem 2019/06/20 v3.9 Customized lists
+          source:
+            file: 'S:\HDD Program Files\MikTeX\tex\latex\enumitem\enumitem.sty'
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 695
+              end: 695
+        - severity: info
+          name: pdfTeX
+          category: LaTeX Font
+          text: Checking defaults for OML/cmm/m/it ... okay
+          source:
+            file: Elliptic Curves.tex
+            range:
+              start: 5
+              end: 5
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 711
+              end: 712
+        - severity: info
+          name: pdfTeX
+          category: LaTeX Font
+          text: Checking defaults for OMS/cmsy/m/n ... okay
+          source:
+            file: Elliptic Curves.tex
+            range:
+              start: 5
+              end: 5
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 713
+              end: 714
+        - severity: info
+          name: pdfTeX
+          category: LaTeX Font
+          text: Checking defaults for OT1/cmr/m/n ... okay
+          source:
+            file: Elliptic Curves.tex
+            range:
+              start: 5
+              end: 5
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 715
+              end: 716
+        - severity: info
+          name: pdfTeX
+          category: LaTeX Font
+          text: Checking defaults for T1/cmr/m/n ... okay
+          source:
+            file: Elliptic Curves.tex
+            range:
+              start: 5
+              end: 5
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 717
+              end: 718
+        - severity: info
+          name: pdfTeX
+          category: LaTeX Font
+          text: Checking defaults for TS1/cmr/m/n ... okay
+          source:
+            file: Elliptic Curves.tex
+            range:
+              start: 5
+              end: 5
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 719
+              end: 720
+        - severity: info
+          name: pdfTeX
+          category: LaTeX Font
+          text: Checking defaults for OMX/cmex/m/n ... okay
+          source:
+            file: Elliptic Curves.tex
+            range:
+              start: 5
+              end: 5
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 721
+              end: 722
+        - severity: info
+          name: pdfTeX
+          category: LaTeX Font
+          text: Checking defaults for U/cmr/m/n ... okay
+          source:
+            file: Elliptic Curves.tex
+            range:
+              start: 5
+              end: 5
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 723
+              end: 724
+        - name: pdfTeX
+          severity: info
+          text: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+          source:
+            file: >-
+              S:\HDD Program
+              Files\MikTeX\tex\latex\epstopdf-pkg\epstopdf-base.sty
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 774
+              end: 774
+        - severity: info
+          name: pdfTeX
+          category: Package epstopdf-base
+          text: Redefining graphics rule for `.eps'
+          source:
+            file: >-
+              S:\HDD Program
+              Files\MikTeX\tex\latex\epstopdf-pkg\epstopdf-base.sty
+            range:
+              start: 485
+              end: 485
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 775
+              end: 776
+        - severity: info
+          name: pdfTeX
+          category: Package caption
+          text: Begin \AtBeginDocument code.
+          source:
+            file: Elliptic Curves.tex
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 778
+              end: 778
+        - severity: info
+          name: pdfTeX
+          category: Package caption
+          text: End \AtBeginDocument code.
+          source:
+            file: Elliptic Curves.tex
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 779
+              end: 779
+        - severity: warning
+          name: pdfTeX
+          category: Package pgfplots
+          text: >-
+            running in backwards compatibility mode (unsuitable tick labels;
+            missing features). Consider writing \pgfplotsset{compat=1.16} into
+            your preamble.
+          source:
+            file: Elliptic Curves.tex
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 781
+              end: 783
+        - severity: info
+          name: pdfTeX
+          category: LaTeX Font
+          text: Trying to load font information for U+msa
+          source:
+            file: Elliptic Curves.tex
+            range:
+              start: 6
+              end: 6
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 786
+              end: 786
+        - severity: info
+          name: pdfTeX
+          category: LaTeX Font
+          text: Trying to load font information for U+msb
+          source:
+            file: Elliptic Curves.tex
+            range:
+              start: 6
+              end: 6
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 790
+              end: 790
+        - severity: info
+          name: pdfTeX
+          category: LaTeX Font
+          text: Trying to load font information for U+rsfs
+          source:
+            file: Elliptic Curves.tex
+            range:
+              start: 6
+              end: 6
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 794
+              end: 794
+        - severity: info
+          name: pdfTeX
+          category: LaTeX Font
+          text: Trying to load font information for U+stmry
+          source:
+            file: Elliptic Curves.tex
+            range:
+              start: 6
+              end: 6
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 799
+              end: 800
+        - severity: warning
+          name: pdfTeX
+          category: LaTeX
+          text: No \author given.
+          source:
+            file: Elliptic Curves.tex
+          log:
+            file: Elliptic Curves.log
+            range:
+              start: 803
+              end: 803
+      inputs: []
+      outputs:
+        - Elliptic Curves.pdf
+      calls: []
+    type: ParsedLaTeXLog
+  Elliptic Curves.aux:
+    timeStamp: 2020-10-09T10:39:07.285Z
+    jobNames: []
+    hash: uYYxs2M35thdFE5Qsf3dm4i3q8wBzyNHwtjct419Tcc=
+    type: LaTeXAuxilary
+  Elliptic Curves.fls:
+    timeStamp: 2020-10-09T10:39:07.349Z
+    jobNames: []
+    hash: 6KAZ7nwUw47sj+I/bEwnO5f36bpo1tX3RCXzWg0qjY0=
+    type: FileListing
+  Elliptic Curves.log:
+    timeStamp: 2020-10-09T10:39:07.340Z
+    jobNames: []
+    hash: uB94Qg8RfSbp5V+8ufP67MUI/Ql/Qwg7wiPMQY9Avw8=
+    type: LaTeXLog
+    subType: pdfTeX
+  Elliptic Curves.synctex.gz:
+    timeStamp: 2020-10-09T10:39:07.335Z
+    jobNames: []
+    hash: L45jACPXhxyFBrA9xas8hvEvtoUzjbqE55Qur/4g/uM=
+    type: SyncTeX
+  Elliptic Curves.pdf:
+    timeStamp: 2020-10-09T10:39:07.328Z
+    jobNames: []
+    hash: Djzal5h5fWn92COB/ftA21ZCgVaUPFwEkCJxBh3BeSc=
+    type: PortableDocumentFormat
+  Elliptic Curves.aux-ParsedLaTeXAuxilary:
+    timeStamp: 2020-10-09T10:15:48.988Z
+    jobNames: []
+    value:
+      commands:
+        - relax
+        - '@writefile'
+        - '@writefile'
+    type: ParsedLaTeXAuxilary
+  'C:\Users\Harry\AppData\Local\MiKTeX\2.9\fonts\tfm\public\rsfs\rsfs10.tfm':
+    timeStamp: 2020-04-21T10:28:45.549Z
+    jobNames: []
+  'C:\Users\Harry\AppData\Local\MiKTeX\2.9\fonts\tfm\public\rsfs\rsfs5.tfm':
+    timeStamp: 2020-04-21T10:28:47.063Z
+    jobNames: []
+  'C:\Users\Harry\AppData\Local\MiKTeX\2.9\fonts\tfm\public\stmaryrd\stmary10.tfm':
+    timeStamp: 2020-04-21T10:28:47.811Z
+    jobNames: []
+  'C:\Users\Harry\AppData\Local\MiKTeX\2.9\fonts\tfm\public\stmaryrd\stmary6.tfm':
+    timeStamp: 2020-10-08T08:17:47.996Z
+    jobNames: []
+  'C:\Users\Harry\AppData\Local\MiKTeX\2.9\fonts\tfm\public\stmaryrd\stmary8.tfm':
+    timeStamp: 2020-10-08T08:17:47.396Z
+    jobNames: []
+  'C:\Users\Harry\AppData\Local\MiKTeX\2.9\miktex\data\le\pdftex\pdflatex.fmt':
+    timeStamp: 2020-10-08T11:56:36.233Z
+    jobNames: []
+  'C:\Users\Harry\AppData\Local\MiKTeX\2.9\pdftex\config\pdftex.map':
+    timeStamp: 2020-03-21T12:01:28.733Z
+    jobNames: []
+  'S:\HDD Program Files\MikTeX\fonts\tfm\public\amsfonts\cmextra\cmex7.tfm':
+    timeStamp: 2009-02-06T20:24:08.000Z
+    jobNames: []
+  'S:\HDD Program Files\MikTeX\fonts\tfm\public\amsfonts\cmextra\cmex8.tfm':
+    timeStamp: 2009-02-06T20:24:08.000Z
+    jobNames: []
+  'S:\HDD Program Files\MikTeX\fonts\tfm\public\amsfonts\symbols\msam10.tfm':
+    timeStamp: 2009-02-06T20:24:14.000Z
+    jobNames: []
+  'S:\HDD Program Files\MikTeX\fonts\tfm\public\amsfonts\symbols\msam7.tfm':
+    timeStamp: 2009-02-06T20:24:14.000Z
+    jobNames: []
+  'S:\HDD Program Files\MikTeX\fonts\tfm\public\amsfonts\symbols\msbm10.tfm':
+    timeStamp: 2009-02-06T20:24:14.000Z
+    jobNames: []
+  'S:\HDD Program Files\MikTeX\fonts\tfm\public\amsfonts\symbols\msbm7.tfm':
+    timeStamp: 2009-02-06T20:24:14.000Z
+    jobNames: []
+  'S:\HDD Program Files\MikTeX\fonts\tfm\public\cm\cmex10.tfm':
+    timeStamp: 2006-01-09T00:04:13.000Z
+    jobNames: []
+  'S:\HDD Program Files\MikTeX\fonts\tfm\public\cm\cmmi12.tfm':
+    timeStamp: 2006-01-09T00:04:13.000Z
+    jobNames: []
+  'S:\HDD Program Files\MikTeX\fonts\tfm\public\cm\cmmi6.tfm':
+    timeStamp: 2006-01-09T00:04:13.000Z
+    jobNames: []
+  'S:\HDD Program Files\MikTeX\fonts\tfm\public\cm\cmmi8.tfm':
+    timeStamp: 2006-01-09T00:04:13.000Z
+    jobNames: []
+  'S:\HDD Program Files\MikTeX\fonts\tfm\public\cm\cmr12.tfm':
+    timeStamp: 2006-01-09T00:04:13.000Z
+    jobNames: []
+  'S:\HDD Program Files\MikTeX\fonts\tfm\public\cm\cmr17.tfm':
+    timeStamp: 2006-01-09T00:04:13.000Z
+    jobNames: []
+  'S:\HDD Program Files\MikTeX\fonts\tfm\public\cm\cmr6.tfm':
+    timeStamp: 2006-01-09T00:04:13.000Z
+    jobNames: []
+  'S:\HDD Program Files\MikTeX\fonts\tfm\public\cm\cmr8.tfm':
+    timeStamp: 2006-01-09T00:04:13.000Z
+    jobNames: []
+  'S:\HDD Program Files\MikTeX\fonts\tfm\public\cm\cmsy10.tfm':
+    timeStamp: 2006-01-09T00:04:13.000Z
+    jobNames: []
+  'S:\HDD Program Files\MikTeX\fonts\tfm\public\cm\cmsy6.tfm':
+    timeStamp: 2006-01-09T00:04:13.000Z
+    jobNames: []
+  'S:\HDD Program Files\MikTeX\fonts\tfm\public\cm\cmsy8.tfm':
+    timeStamp: 2006-01-09T00:04:13.000Z
+    jobNames: []
+  'S:\HDD Program Files\MikTeX\fonts\type1\public\amsfonts\cm\cmr10.pfb':
+    timeStamp: 2009-07-14T18:37:47.000Z
+    jobNames: []
+  'S:\HDD Program Files\MikTeX\fonts\type1\public\amsfonts\cm\cmr12.pfb':
+    timeStamp: 2009-07-14T18:37:47.000Z
+    jobNames: []
+  'S:\HDD Program Files\MikTeX\fonts\type1\public\amsfonts\cm\cmr17.pfb':
+    timeStamp: 2009-07-14T18:37:46.000Z
+    jobNames: []
+  'S:\HDD Program Files\MikTeX\tex\context\base\mkii\supp-pdf.mkii':
+    timeStamp: 2020-01-30T13:15:58.000Z
+    jobNames: []
+  'S:\HDD Program Files\MikTeX\tex\generic\iftex\iftex.sty':
+    timeStamp: 2019-11-09T15:04:36.000Z
+    jobNames: []
+    type: LaTeXStyle
+  'S:\HDD Program Files\MikTeX\tex\generic\iftex\ifvtex.sty':
+    timeStamp: 2019-11-09T15:04:36.000Z
+    jobNames: []
+    type: LaTeXStyle
+  'S:\HDD Program Files\MikTeX\tex\generic\kvsetkeys\kvsetkeys.sty':
+    timeStamp: 2019-12-15T18:17:00.000Z
+    jobNames: []
+    type: LaTeXStyle
+  'S:\HDD Program Files\MikTeX\tex\generic\ltxcmds\ltxcmds.sty':
+    timeStamp: 2019-12-15T18:18:20.000Z
+    jobNames: []
+    type: LaTeXStyle
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\basiclayer\pgfcore.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\basiclayer\pgfcorearrows.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\basiclayer\pgfcoreexternal.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\basiclayer\pgfcoregraphicstate.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\basiclayer\pgfcoreimage.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\basiclayer\pgfcorelayers.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\basiclayer\pgfcoreobjects.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\basiclayer\pgfcorepathconstruct.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\basiclayer\pgfcorepathprocessing.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\basiclayer\pgfcorepathusage.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\basiclayer\pgfcorepatterns.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\basiclayer\pgfcorepoints.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\basiclayer\pgfcorequick.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\basiclayer\pgfcorerdf.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\basiclayer\pgfcorescopes.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\basiclayer\pgfcoreshade.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\basiclayer\pgfcoretransformations.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\basiclayer\pgfcoretransparency.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryarrows.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryautomata.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarycalc.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarydecorations.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarydecorations.pathmorphing.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarydecorations.pathreplacing.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarypatterns.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryplotmarks.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryshapes.arrows.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryshapes.callouts.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryshapes.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryshapes.geometric.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryshapes.misc.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryshapes.multipart.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryshapes.symbols.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarytopaths.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\frontendlayer\tikz\tikz.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\libraries\decorations\pgflibrarydecorations.pathmorphing.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\libraries\decorations\pgflibrarydecorations.pathreplacing.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\libraries\pgflibraryarrows.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\libraries\pgflibraryfpu.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\libraries\pgflibrarypatterns.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\libraries\pgflibraryplothandlers.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\libraries\pgflibraryplotmarks.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\libraries\shapes\pgflibraryshapes.arrows.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\libraries\shapes\pgflibraryshapes.callouts.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\libraries\shapes\pgflibraryshapes.geometric.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\libraries\shapes\pgflibraryshapes.misc.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\libraries\shapes\pgflibraryshapes.multipart.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\libraries\shapes\pgflibraryshapes.symbols.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\math\pgfint.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\math\pgfmath.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\math\pgfmathcalc.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\math\pgfmathfloat.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\math\pgfmathfunctions.base.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\math\pgfmathfunctions.basic.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\math\pgfmathfunctions.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\math\pgfmathfunctions.comparison.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\math\pgfmathfunctions.integerarithmetics.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\math\pgfmathfunctions.misc.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\math\pgfmathfunctions.random.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\math\pgfmathfunctions.round.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\math\pgfmathfunctions.trigonometric.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\math\pgfmathparser.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\math\pgfmathutil.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\modules\pgfmoduledecorations.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\modules\pgfmodulematrix.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\modules\pgfmoduleplot.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\modules\pgfmoduleshapes.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\pgf.revision.tex':
+    timeStamp: 2020-01-08T01:31:11.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\systemlayer\pgf.cfg':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\systemlayer\pgfsys-common-pdf.def':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\systemlayer\pgfsys-luatex.def':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\systemlayer\pgfsys-pdftex.def':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\systemlayer\pgfsys.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\systemlayer\pgfsysprotocol.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\systemlayer\pgfsyssoftpath.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\utilities\pgffor.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\utilities\pgfkeys.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\utilities\pgfkeysfiltered.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\utilities\pgfrcs.code.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\utilities\pgfutil-common-lists.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\utilities\pgfutil-common.tex':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgf\utilities\pgfutil-latex.def':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+  'S:\HDD Program Files\MikTeX\tex\generic\pgfplots\libs\pgflibrarypgfplots.surfshading.code.tex':
+    timeStamp: 2018-04-06T14:34:18.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgfplots\libs\pgfplotslibrary.code.tex':
+    timeStamp: 2018-04-06T14:34:18.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgfplots\liststructure\pgfplotsarray.code.tex':
+    timeStamp: 2018-04-06T14:34:18.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgfplots\liststructure\pgfplotsdeque.code.tex':
+    timeStamp: 2018-04-06T14:34:18.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgfplots\liststructure\pgfplotsliststructure.code.tex':
+    timeStamp: 2018-04-06T14:34:18.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgfplots\liststructure\pgfplotsliststructureext.code.tex':
+    timeStamp: 2018-04-06T14:34:18.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgfplots\liststructure\pgfplotsmatrix.code.tex':
+    timeStamp: 2018-04-06T14:34:18.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgfplots\numtable\pgfplotstableshared.code.tex':
+    timeStamp: 2018-04-06T14:34:18.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgfplots\oldpgfcompatib\pgfplotsoldpgfsupp_loader.code.tex':
+    timeStamp: 2018-04-06T14:34:18.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgfplots\pgfplots.code.tex':
+    timeStamp: 2018-04-06T14:34:18.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgfplots\pgfplots.errorbars.code.tex':
+    timeStamp: 2018-04-06T14:34:18.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgfplots\pgfplots.markers.code.tex':
+    timeStamp: 2018-04-06T14:34:18.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgfplots\pgfplots.paths.code.tex':
+    timeStamp: 2018-04-06T14:34:18.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgfplots\pgfplots.revision.tex':
+    timeStamp: 2018-04-06T14:34:18.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgfplots\pgfplots.scaling.code.tex':
+    timeStamp: 2018-04-06T14:34:18.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgfplots\pgfplotscoordprocessing.code.tex':
+    timeStamp: 2018-04-06T14:34:18.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgfplots\pgfplotscore.code.tex':
+    timeStamp: 2018-04-06T14:34:18.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgfplots\pgfplotsmeshplothandler.code.tex':
+    timeStamp: 2018-04-06T14:34:18.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgfplots\pgfplotsmeshplotimage.code.tex':
+    timeStamp: 2018-04-06T14:34:18.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgfplots\pgfplotsplothandlers.code.tex':
+    timeStamp: 2018-04-06T14:34:18.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgfplots\pgfplotsstackedplots.code.tex':
+    timeStamp: 2018-04-06T14:34:18.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgfplots\pgfplotsticks.code.tex':
+    timeStamp: 2018-04-06T14:34:18.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgfplots\sys\pgflibrarypgfplots.surfshading.pgfsys-pdftex.def':
+    timeStamp: 2018-04-06T14:34:18.000Z
+    jobNames: []
+  'S:\HDD Program Files\MikTeX\tex\generic\pgfplots\sys\pgfplotssysgeneric.code.tex':
+    timeStamp: 2018-04-06T14:34:18.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgfplots\util\pgfplotsbinary.code.tex':
+    timeStamp: 2018-04-06T14:34:18.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgfplots\util\pgfplotsbinary.data.code.tex':
+    timeStamp: 2018-04-06T14:34:18.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgfplots\util\pgfplotscolor.code.tex':
+    timeStamp: 2018-04-06T14:34:18.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgfplots\util\pgfplotscolormap.code.tex':
+    timeStamp: 2018-04-06T14:34:18.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgfplots\util\pgfplotsutil.code.tex':
+    timeStamp: 2018-04-06T14:34:18.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\generic\pgfplots\util\pgfplotsutil.verb.code.tex':
+    timeStamp: 2018-04-06T14:34:18.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\latex\amscls\amsthm.sty':
+    timeStamp: 2017-10-31T15:15:00.000Z
+    jobNames: []
+    type: LaTeXStyle
+  'S:\HDD Program Files\MikTeX\tex\latex\amsfonts\amsfonts.sty':
+    timeStamp: 2013-01-14T21:09:32.000Z
+    jobNames: []
+    type: LaTeXStyle
+  'S:\HDD Program Files\MikTeX\tex\latex\amsfonts\amssymb.sty':
+    timeStamp: 2013-01-14T21:09:32.000Z
+    jobNames: []
+    type: LaTeXStyle
+  'S:\HDD Program Files\MikTeX\tex\latex\amsfonts\umsa.fd':
+    timeStamp: 2013-01-14T21:09:32.000Z
+    jobNames: []
+    type: FontDescription
+  'S:\HDD Program Files\MikTeX\tex\latex\amsfonts\umsb.fd':
+    timeStamp: 2013-01-14T21:09:32.000Z
+    jobNames: []
+    type: FontDescription
+  'S:\HDD Program Files\MikTeX\tex\latex\amsmath\amsbsy.sty':
+    timeStamp: 2020-02-03T16:16:15.000Z
+    jobNames: []
+    type: LaTeXStyle
+  'S:\HDD Program Files\MikTeX\tex\latex\amsmath\amsgen.sty':
+    timeStamp: 2020-02-03T16:16:17.000Z
+    jobNames: []
+    type: LaTeXStyle
+  'S:\HDD Program Files\MikTeX\tex\latex\amsmath\amsmath.sty':
+    timeStamp: 2020-02-03T16:16:18.000Z
+    jobNames: []
+    type: LaTeXStyle
+  'S:\HDD Program Files\MikTeX\tex\latex\amsmath\amsopn.sty':
+    timeStamp: 2020-02-03T16:16:19.000Z
+    jobNames: []
+    type: LaTeXStyle
+  'S:\HDD Program Files\MikTeX\tex\latex\amsmath\amstext.sty':
+    timeStamp: 2020-02-03T16:16:20.000Z
+    jobNames: []
+    type: LaTeXStyle
+  'S:\HDD Program Files\MikTeX\tex\latex\base\article.cls':
+    timeStamp: 2020-02-13T14:59:28.000Z
+    jobNames: []
+    type: LaTeXClass
+  'S:\HDD Program Files\MikTeX\tex\latex\base\inputenc.sty':
+    timeStamp: 2020-02-13T14:59:28.000Z
+    jobNames: []
+    type: LaTeXStyle
+  'S:\HDD Program Files\MikTeX\tex\latex\base\size10.clo':
+    timeStamp: 2020-02-13T14:59:28.000Z
+    jobNames: []
+  'S:\HDD Program Files\MikTeX\tex\latex\caption\caption.sty':
+    timeStamp: 2020-01-22T20:24:12.000Z
+    jobNames: []
+    type: LaTeXStyle
+  'S:\HDD Program Files\MikTeX\tex\latex\caption\caption3.sty':
+    timeStamp: 2020-01-22T20:24:12.000Z
+    jobNames: []
+    type: LaTeXStyle
+  'S:\HDD Program Files\MikTeX\tex\latex\caption\subcaption.sty':
+    timeStamp: 2020-01-22T20:24:12.000Z
+    jobNames: []
+    type: LaTeXStyle
+  'S:\HDD Program Files\MikTeX\tex\latex\doublestroke\dsfont.sty':
+    timeStamp: 2002-08-27T17:46:12.000Z
+    jobNames: []
+    type: LaTeXStyle
+  'S:\HDD Program Files\MikTeX\tex\latex\enumitem\enumitem.sty':
+    timeStamp: 2019-06-20T14:10:20.000Z
+    jobNames: []
+    type: LaTeXStyle
+  'S:\HDD Program Files\MikTeX\tex\latex\epstopdf-pkg\epstopdf-base.sty':
+    timeStamp: 2020-01-26T12:25:42.000Z
+    jobNames: []
+    type: LaTeXStyle
+  'S:\HDD Program Files\MikTeX\tex\latex\etoolbox\etoolbox.sty':
+    timeStamp: 2019-09-21T16:26:10.000Z
+    jobNames: []
+    type: LaTeXStyle
+  'S:\HDD Program Files\MikTeX\tex\latex\float\float.sty':
+    timeStamp: 2016-07-20T14:12:33.000Z
+    jobNames: []
+    type: LaTeXStyle
+  'S:\HDD Program Files\MikTeX\tex\latex\geometry\geometry.cfg':
+    timeStamp: 2020-01-03T12:12:25.000Z
+    jobNames: []
+  'S:\HDD Program Files\MikTeX\tex\latex\geometry\geometry.sty':
+    timeStamp: 2020-01-03T12:12:25.000Z
+    jobNames: []
+    type: LaTeXStyle
+  'S:\HDD Program Files\MikTeX\tex\latex\graphics-cfg\color.cfg':
+    timeStamp: 2016-06-14T08:51:32.000Z
+    jobNames: []
+  'S:\HDD Program Files\MikTeX\tex\latex\graphics-cfg\graphics.cfg':
+    timeStamp: 2016-06-14T08:51:32.000Z
+    jobNames: []
+  'S:\HDD Program Files\MikTeX\tex\latex\graphics-def\pdftex.def':
+    timeStamp: 2018-01-08T21:51:40.000Z
+    jobNames: []
+  'S:\HDD Program Files\MikTeX\tex\latex\graphics\graphics.sty':
+    timeStamp: 2020-02-03T16:15:42.000Z
+    jobNames: []
+    type: LaTeXStyle
+  'S:\HDD Program Files\MikTeX\tex\latex\graphics\graphicx.sty':
+    timeStamp: 2020-02-03T16:15:42.000Z
+    jobNames: []
+    type: LaTeXStyle
+  'S:\HDD Program Files\MikTeX\tex\latex\graphics\keyval.sty':
+    timeStamp: 2020-02-03T16:15:42.000Z
+    jobNames: []
+    type: LaTeXStyle
+  'S:\HDD Program Files\MikTeX\tex\latex\graphics\trig.sty':
+    timeStamp: 2020-02-03T16:15:42.000Z
+    jobNames: []
+    type: LaTeXStyle
+  'S:\HDD Program Files\MikTeX\tex\latex\jknappen\mathrsfs.sty':
+    timeStamp: 1999-06-30T17:48:12.000Z
+    jobNames: []
+    type: LaTeXStyle
+  'S:\HDD Program Files\MikTeX\tex\latex\jknappen\ursfs.fd':
+    timeStamp: 1999-06-30T17:48:06.000Z
+    jobNames: []
+    type: FontDescription
+  'S:\HDD Program Files\MikTeX\tex\latex\kvoptions\kvoptions.sty':
+    timeStamp: 2019-11-29T20:31:22.000Z
+    jobNames: []
+    type: LaTeXStyle
+  'S:\HDD Program Files\MikTeX\tex\latex\l3backend\l3backend-pdfmode.def':
+    timeStamp: 2020-02-03T19:10:30.000Z
+    jobNames: []
+  'S:\HDD Program Files\MikTeX\tex\latex\marvosym\marvosym.sty':
+    timeStamp: 2012-04-02T08:06:01.000Z
+    jobNames: []
+    type: LaTeXStyle
+  'S:\HDD Program Files\MikTeX\tex\latex\mathtools\mathtools.sty':
+    timeStamp: 2020-01-17T10:24:57.000Z
+    jobNames: []
+    type: LaTeXStyle
+  'S:\HDD Program Files\MikTeX\tex\latex\mathtools\mhsetup.sty':
+    timeStamp: 2020-01-17T10:24:57.000Z
+    jobNames: []
+    type: LaTeXStyle
+  'S:\HDD Program Files\MikTeX\tex\latex\ms\everyshi.sty':
+    timeStamp: 2019-08-02T15:05:28.000Z
+    jobNames: []
+    type: LaTeXStyle
+  'S:\HDD Program Files\MikTeX\tex\latex\parskip\parskip.sty':
+    timeStamp: 2020-01-23T09:34:39.000Z
+    jobNames: []
+    type: LaTeXStyle
+  'S:\HDD Program Files\MikTeX\tex\latex\pgf\basiclayer\pgf.sty':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: LaTeXStyle
+  'S:\HDD Program Files\MikTeX\tex\latex\pgf\basiclayer\pgfcore.sty':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: LaTeXStyle
+  'S:\HDD Program Files\MikTeX\tex\latex\pgf\compatibility\pgfcomp-version-0-65.sty':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: LaTeXStyle
+  'S:\HDD Program Files\MikTeX\tex\latex\pgf\compatibility\pgfcomp-version-1-18.sty':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: LaTeXStyle
+  'S:\HDD Program Files\MikTeX\tex\latex\pgf\frontendlayer\tikz.sty':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: LaTeXStyle
+  'S:\HDD Program Files\MikTeX\tex\latex\pgf\math\pgfmath.sty':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: LaTeXStyle
+  'S:\HDD Program Files\MikTeX\tex\latex\pgf\systemlayer\pgfsys.sty':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: LaTeXStyle
+  'S:\HDD Program Files\MikTeX\tex\latex\pgf\utilities\pgffor.sty':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: LaTeXStyle
+  'S:\HDD Program Files\MikTeX\tex\latex\pgf\utilities\pgfkeys.sty':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: LaTeXStyle
+  'S:\HDD Program Files\MikTeX\tex\latex\pgf\utilities\pgfrcs.sty':
+    timeStamp: 2020-01-08T01:30:59.000Z
+    jobNames: []
+    type: LaTeXStyle
+  'S:\HDD Program Files\MikTeX\tex\latex\pgfplots\pgfplots.sty':
+    timeStamp: 2018-04-06T14:34:18.000Z
+    jobNames: []
+    type: LaTeXStyle
+  'S:\HDD Program Files\MikTeX\tex\latex\stmaryrd\stmaryrd.sty':
+    timeStamp: 2011-04-19T16:04:28.000Z
+    jobNames: []
+    type: LaTeXStyle
+  'S:\HDD Program Files\MikTeX\tex\latex\stmaryrd\ustmry.fd':
+    timeStamp: 2011-04-19T16:04:28.000Z
+    jobNames: []
+    type: FontDescription
+  'S:\HDD Program Files\MikTeX\tex\latex\tikzducks\tikzducks.sty':
+    timeStamp: 2020-01-03T11:35:36.000Z
+    jobNames: []
+    type: LaTeXStyle
+  'S:\HDD Program Files\MikTeX\tex\latex\tikzducks\tikzlibraryducks.code.tex':
+    timeStamp: 2020-01-03T11:35:36.000Z
+    jobNames: []
+    type: TeX
+  'S:\HDD Program Files\MikTeX\tex\latex\tools\calc.sty':
+    timeStamp: 2020-02-02T12:01:26.000Z
+    jobNames: []
+    type: LaTeXStyle
+  'S:\HDD Program Files\MikTeX\tex\latex\tools\xspace.sty':
+    timeStamp: 2020-02-02T12:01:26.000Z
+    jobNames: []
+    type: LaTeXStyle
+  'S:\HDD Program Files\MikTeX\tex\latex\xcolor\xcolor.sty':
+    timeStamp: 2016-05-13T10:33:01.000Z
+    jobNames: []
+    type: LaTeXStyle
+  preamble.tex:
+    timeStamp: 2020-10-09T10:21:01.329Z
+    jobNames: []
+    hash: SnZbAdyb+o31906A10QMuUxXiHNf34ts+JPvb8o98nk=
+    type: TeX
+  'S:\HDD Program Files\MikTeX\fonts\tfm\public\cm\cmbx12.tfm':
+    timeStamp: 2006-01-09T00:04:13.000Z
+    jobNames: []
+  'S:\HDD Program Files\MikTeX\fonts\type1\public\amsfonts\cm\cmbx12.pfb':
+    timeStamp: 2009-07-14T18:37:46.000Z
+    jobNames: []
+  'C:\Users\Harry\AppData\Local\MiKTeX\2.9\fonts\tfm\public\rsfs\rsfs7.tfm':
+    timeStamp: 2020-04-21T10:28:46.244Z
+    jobNames: []
+  'C:\Users\Harry\AppData\Local\MiKTeX\2.9\fonts\tfm\public\stmaryrd\stmary5.tfm':
+    timeStamp: 2020-04-21T10:28:49.243Z
+    jobNames: []
+  'C:\Users\Harry\AppData\Local\MiKTeX\2.9\fonts\tfm\public\stmaryrd\stmary7.tfm':
+    timeStamp: 2020-04-21T10:28:48.475Z
+    jobNames: []
+  'S:\HDD Program Files\MikTeX\fonts\tfm\public\amsfonts\symbols\msam5.tfm':
+    timeStamp: 2009-02-06T20:24:14.000Z
+    jobNames: []
+  'S:\HDD Program Files\MikTeX\fonts\tfm\public\amsfonts\symbols\msbm5.tfm':
+    timeStamp: 2009-02-06T20:24:14.000Z
+    jobNames: []
+  'S:\HDD Program Files\MikTeX\fonts\type1\public\amsfonts\cm\cmmi10.pfb':
+    timeStamp: 2009-07-14T18:37:47.000Z
+    jobNames: []
+  'S:\HDD Program Files\MikTeX\fonts\type1\public\amsfonts\cm\cmr7.pfb':
+    timeStamp: 2009-07-14T18:37:47.000Z
+    jobNames: []
+  'S:\HDD Program Files\MikTeX\fonts\tfm\public\cm\cmbx10.tfm':
+    timeStamp: 2006-01-09T00:04:13.000Z
+    jobNames: []
+  'S:\HDD Program Files\MikTeX\fonts\tfm\public\cm\cmbxti10.tfm':
+    timeStamp: 2006-01-09T00:04:13.000Z
+    jobNames: []
+  'S:\HDD Program Files\MikTeX\fonts\tfm\public\cm\cmti10.tfm':
+    timeStamp: 2006-01-09T00:04:13.000Z
+    jobNames: []
+  'S:\HDD Program Files\MikTeX\fonts\type1\public\amsfonts\cm\cmbx10.pfb':
+    timeStamp: 2009-07-14T18:37:46.000Z
+    jobNames: []
+  'S:\HDD Program Files\MikTeX\fonts\type1\public\amsfonts\cm\cmsy10.pfb':
+    timeStamp: 2009-07-14T18:37:47.000Z
+    jobNames: []
+  'S:\HDD Program Files\MikTeX\fonts\type1\public\amsfonts\cm\cmti10.pfb':
+    timeStamp: 2009-07-14T18:37:47.000Z
+    jobNames: []
+  'S:\HDD Program Files\MikTeX\fonts\type1\public\amsfonts\symbols\msbm10.pfb':
+    timeStamp: 2009-07-14T18:37:53.000Z
+    jobNames: []
+  'S:\HDD Program Files\MikTeX\fonts\type1\public\amsfonts\cm\cmmi7.pfb':
+    timeStamp: 2009-07-14T18:37:47.000Z
+    jobNames: []
+  'S:\HDD Program Files\MikTeX\fonts\type1\public\amsfonts\cm\cmsy7.pfb':
+    timeStamp: 2009-07-14T18:37:46.000Z
+    jobNames: []
+  'S:\HDD Program Files\MikTeX\fonts\type1\public\amsfonts\cm\cmr5.pfb':
+    timeStamp: 2009-07-14T18:37:47.000Z
+    jobNames: []
+  'C:\Users\Harry\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\public\stmaryrd\dpi600\stmary10.pk':
+    timeStamp: 2020-10-08T11:56:39.682Z
+    jobNames: []
+rules:
+  - name: ApplyOptions
+    command: load
+    phase: initialize
+    parameters: []
+    inputs:
+      - file: dicy.yaml-ParsedYAML
+        type: default
+      - file: Elliptic Curves.yaml-ParsedYAML
+        type: default
+      - file: Elliptic Curves.tex-ParsedLaTeXMagic
+        type: default
+      - file: dicy-instance.yaml-ParsedYAML
+        type: default
+      - file: 'C:\Users\Harry\AppData\Roaming\dicy\config.yaml-ParsedYAML'
+        type: default
+    outputs: []
+  - name: LoadAndValidateCache
+    command: load
+    phase: initialize
+    parameters: []
+    inputs: []
+    outputs: []
+  - name: Migrate
+    command: load
+    phase: initialize
+    parameters: []
+    inputs: []
+    outputs: []
+  - name: ApplyOptions
+    command: load
+    phase: execute
+    parameters: []
+    inputs:
+      - file: dicy.yaml-ParsedYAML
+        type: default
+      - file: Elliptic Curves.yaml-ParsedYAML
+        type: default
+      - file: Elliptic Curves.tex-ParsedLaTeXMagic
+        type: default
+      - file: dicy-instance.yaml-ParsedYAML
+        type: default
+      - file: 'C:\Users\Harry\AppData\Roaming\dicy\config.yaml-ParsedYAML'
+        type: default
+    outputs: []
+  - name: ParseOptionsFile
+    command: load
+    phase: execute
+    parameters: []
+    inputs:
+      - file: 'C:\Users\Harry\AppData\Roaming\dicy\config.yaml'
+        type: default
+    outputs:
+      - file: 'C:\Users\Harry\AppData\Roaming\dicy\config.yaml-ParsedYAML'
+        type: default
+  - name: ParseLaTeXMagic
+    command: load
+    phase: execute
+    parameters:
+      - Elliptic Curves.tex
+    inputs:
+      - file: Elliptic Curves.tex
+        type: default
+    outputs:
+      - file: Elliptic Curves.tex-ParsedLaTeXMagic
+        type: default
+  - name: AssignJobNames
+    command: load
+    phase: finalize
+    parameters: []
+    inputs: []
+    outputs: []
+  - name: FindLogFiles
+    command: build
+    phase: initialize
+    parameters: []
+    inputs: []
+    outputs: []
+  - name: LaTeX
+    command: build
+    phase: execute
+    parameters:
+      - Elliptic Curves.tex
+    inputs:
+      - file: Elliptic Curves.tex
+        type: default
+      - file: Elliptic Curves.fls-ParsedFileListing
+        type: default
+      - file: Elliptic Curves.log-ParsedLaTeXLog
+        type: default
+      - file: Elliptic Curves.aux
+        type: default
+      - file: >-
+          C:\Users\Harry\AppData\Local\MiKTeX\2.9\fonts\tfm\public\rsfs\rsfs10.tfm
+        type: default
+      - file: >-
+          C:\Users\Harry\AppData\Local\MiKTeX\2.9\fonts\tfm\public\rsfs\rsfs5.tfm
+        type: default
+      - file: >-
+          C:\Users\Harry\AppData\Local\MiKTeX\2.9\fonts\tfm\public\stmaryrd\stmary10.tfm
+        type: default
+      - file: >-
+          C:\Users\Harry\AppData\Local\MiKTeX\2.9\fonts\tfm\public\stmaryrd\stmary6.tfm
+        type: default
+      - file: >-
+          C:\Users\Harry\AppData\Local\MiKTeX\2.9\fonts\tfm\public\stmaryrd\stmary8.tfm
+        type: default
+      - file: >-
+          C:\Users\Harry\AppData\Local\MiKTeX\2.9\miktex\data\le\pdftex\pdflatex.fmt
+        type: default
+      - file: 'C:\Users\Harry\AppData\Local\MiKTeX\2.9\pdftex\config\pdftex.map'
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\fonts\tfm\public\amsfonts\cmextra\cmex7.tfm
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\fonts\tfm\public\amsfonts\cmextra\cmex8.tfm
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\fonts\tfm\public\amsfonts\symbols\msam10.tfm
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\fonts\tfm\public\amsfonts\symbols\msam7.tfm
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\fonts\tfm\public\amsfonts\symbols\msbm10.tfm
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\fonts\tfm\public\amsfonts\symbols\msbm7.tfm
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\fonts\tfm\public\cm\cmex10.tfm'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\fonts\tfm\public\cm\cmmi12.tfm'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\fonts\tfm\public\cm\cmmi6.tfm'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\fonts\tfm\public\cm\cmmi8.tfm'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\fonts\tfm\public\cm\cmr12.tfm'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\fonts\tfm\public\cm\cmr17.tfm'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\fonts\tfm\public\cm\cmr6.tfm'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\fonts\tfm\public\cm\cmr8.tfm'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\fonts\tfm\public\cm\cmsy10.tfm'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\fonts\tfm\public\cm\cmsy6.tfm'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\fonts\tfm\public\cm\cmsy8.tfm'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\fonts\type1\public\amsfonts\cm\cmr10.pfb'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\fonts\type1\public\amsfonts\cm\cmr12.pfb'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\fonts\type1\public\amsfonts\cm\cmr17.pfb'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\context\base\mkii\supp-pdf.mkii'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\generic\iftex\iftex.sty'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\generic\iftex\ifvtex.sty'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\generic\kvsetkeys\kvsetkeys.sty'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\generic\ltxcmds\ltxcmds.sty'
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\basiclayer\pgfcore.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\basiclayer\pgfcorearrows.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\basiclayer\pgfcoreexternal.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\basiclayer\pgfcoregraphicstate.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\basiclayer\pgfcoreimage.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\basiclayer\pgfcorelayers.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\basiclayer\pgfcoreobjects.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\basiclayer\pgfcorepathconstruct.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\basiclayer\pgfcorepathprocessing.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\basiclayer\pgfcorepathusage.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\basiclayer\pgfcorepatterns.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\basiclayer\pgfcorepoints.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\basiclayer\pgfcorequick.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\basiclayer\pgfcorerdf.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\basiclayer\pgfcorescopes.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\basiclayer\pgfcoreshade.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\basiclayer\pgfcoretransformations.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\basiclayer\pgfcoretransparency.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryarrows.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryautomata.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarycalc.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarydecorations.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarydecorations.pathmorphing.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarydecorations.pathreplacing.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarypatterns.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryplotmarks.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryshapes.arrows.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryshapes.callouts.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryshapes.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryshapes.geometric.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryshapes.misc.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryshapes.multipart.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryshapes.symbols.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarytopaths.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\frontendlayer\tikz\tikz.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\libraries\decorations\pgflibrarydecorations.pathmorphing.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\libraries\decorations\pgflibrarydecorations.pathreplacing.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\libraries\pgflibraryarrows.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\libraries\pgflibraryfpu.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\libraries\pgflibrarypatterns.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\libraries\pgflibraryplothandlers.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\libraries\pgflibraryplotmarks.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\libraries\shapes\pgflibraryshapes.arrows.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\libraries\shapes\pgflibraryshapes.callouts.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\libraries\shapes\pgflibraryshapes.geometric.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\libraries\shapes\pgflibraryshapes.misc.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\libraries\shapes\pgflibraryshapes.multipart.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\libraries\shapes\pgflibraryshapes.symbols.code.tex
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\generic\pgf\math\pgfint.code.tex'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\generic\pgf\math\pgfmath.code.tex'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\generic\pgf\math\pgfmathcalc.code.tex'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\generic\pgf\math\pgfmathfloat.code.tex'
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\math\pgfmathfunctions.base.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\math\pgfmathfunctions.basic.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\math\pgfmathfunctions.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\math\pgfmathfunctions.comparison.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\math\pgfmathfunctions.integerarithmetics.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\math\pgfmathfunctions.misc.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\math\pgfmathfunctions.random.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\math\pgfmathfunctions.round.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\math\pgfmathfunctions.trigonometric.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\math\pgfmathparser.code.tex
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\generic\pgf\math\pgfmathutil.code.tex'
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\modules\pgfmoduledecorations.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\modules\pgfmodulematrix.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\modules\pgfmoduleplot.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\modules\pgfmoduleshapes.code.tex
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\generic\pgf\pgf.revision.tex'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\generic\pgf\systemlayer\pgf.cfg'
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\systemlayer\pgfsys-common-pdf.def
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\systemlayer\pgfsys-luatex.def
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\systemlayer\pgfsys-pdftex.def
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\systemlayer\pgfsys.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\systemlayer\pgfsysprotocol.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\systemlayer\pgfsyssoftpath.code.tex
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\generic\pgf\utilities\pgffor.code.tex'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\generic\pgf\utilities\pgfkeys.code.tex'
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\utilities\pgfkeysfiltered.code.tex
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\generic\pgf\utilities\pgfrcs.code.tex'
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\utilities\pgfutil-common-lists.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\utilities\pgfutil-common.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgf\utilities\pgfutil-latex.def
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgfplots\libs\pgflibrarypgfplots.surfshading.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgfplots\libs\pgfplotslibrary.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgfplots\liststructure\pgfplotsarray.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgfplots\liststructure\pgfplotsdeque.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgfplots\liststructure\pgfplotsliststructure.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgfplots\liststructure\pgfplotsliststructureext.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgfplots\liststructure\pgfplotsmatrix.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgfplots\numtable\pgfplotstableshared.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgfplots\oldpgfcompatib\pgfplotsoldpgfsupp_loader.code.tex
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\generic\pgfplots\pgfplots.code.tex'
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgfplots\pgfplots.errorbars.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgfplots\pgfplots.markers.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgfplots\pgfplots.paths.code.tex
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\generic\pgfplots\pgfplots.revision.tex'
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgfplots\pgfplots.scaling.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgfplots\pgfplotscoordprocessing.code.tex
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\generic\pgfplots\pgfplotscore.code.tex'
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgfplots\pgfplotsmeshplothandler.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgfplots\pgfplotsmeshplotimage.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgfplots\pgfplotsplothandlers.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgfplots\pgfplotsstackedplots.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgfplots\pgfplotsticks.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgfplots\sys\pgflibrarypgfplots.surfshading.pgfsys-pdftex.def
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgfplots\sys\pgfplotssysgeneric.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgfplots\util\pgfplotsbinary.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgfplots\util\pgfplotsbinary.data.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgfplots\util\pgfplotscolor.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgfplots\util\pgfplotscolormap.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgfplots\util\pgfplotsutil.code.tex
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\generic\pgfplots\util\pgfplotsutil.verb.code.tex
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\latex\amscls\amsthm.sty'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\latex\amsfonts\amsfonts.sty'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\latex\amsfonts\amssymb.sty'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\latex\amsfonts\umsa.fd'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\latex\amsfonts\umsb.fd'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\latex\amsmath\amsbsy.sty'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\latex\amsmath\amsgen.sty'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\latex\amsmath\amsmath.sty'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\latex\amsmath\amsopn.sty'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\latex\amsmath\amstext.sty'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\latex\base\article.cls'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\latex\base\inputenc.sty'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\latex\base\size10.clo'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\latex\caption\caption.sty'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\latex\caption\caption3.sty'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\latex\caption\subcaption.sty'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\latex\doublestroke\dsfont.sty'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\latex\enumitem\enumitem.sty'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\latex\epstopdf-pkg\epstopdf-base.sty'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\latex\etoolbox\etoolbox.sty'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\latex\float\float.sty'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\latex\geometry\geometry.cfg'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\latex\geometry\geometry.sty'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\latex\graphics-cfg\color.cfg'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\latex\graphics-cfg\graphics.cfg'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\latex\graphics-def\pdftex.def'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\latex\graphics\graphics.sty'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\latex\graphics\graphicx.sty'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\latex\graphics\keyval.sty'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\latex\graphics\trig.sty'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\latex\jknappen\mathrsfs.sty'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\latex\jknappen\ursfs.fd'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\latex\kvoptions\kvoptions.sty'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\latex\l3backend\l3backend-pdfmode.def'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\latex\marvosym\marvosym.sty'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\latex\mathtools\mathtools.sty'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\latex\mathtools\mhsetup.sty'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\latex\ms\everyshi.sty'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\latex\parskip\parskip.sty'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\latex\pgf\basiclayer\pgf.sty'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\latex\pgf\basiclayer\pgfcore.sty'
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\latex\pgf\compatibility\pgfcomp-version-0-65.sty
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\latex\pgf\compatibility\pgfcomp-version-1-18.sty
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\latex\pgf\frontendlayer\tikz.sty'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\latex\pgf\math\pgfmath.sty'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\latex\pgf\systemlayer\pgfsys.sty'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\latex\pgf\utilities\pgffor.sty'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\latex\pgf\utilities\pgfkeys.sty'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\latex\pgf\utilities\pgfrcs.sty'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\latex\pgfplots\pgfplots.sty'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\latex\stmaryrd\stmaryrd.sty'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\latex\stmaryrd\ustmry.fd'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\latex\tikzducks\tikzducks.sty'
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\tex\latex\tikzducks\tikzlibraryducks.code.tex
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\latex\tools\calc.sty'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\latex\tools\xspace.sty'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\tex\latex\xcolor\xcolor.sty'
+        type: default
+      - file: preamble.tex
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\fonts\tfm\public\cm\cmbx12.tfm'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\fonts\type1\public\amsfonts\cm\cmbx12.pfb'
+        type: default
+      - file: >-
+          C:\Users\Harry\AppData\Local\MiKTeX\2.9\fonts\tfm\public\rsfs\rsfs7.tfm
+        type: default
+      - file: >-
+          C:\Users\Harry\AppData\Local\MiKTeX\2.9\fonts\tfm\public\stmaryrd\stmary5.tfm
+        type: default
+      - file: >-
+          C:\Users\Harry\AppData\Local\MiKTeX\2.9\fonts\tfm\public\stmaryrd\stmary7.tfm
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\fonts\tfm\public\amsfonts\symbols\msam5.tfm
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\fonts\tfm\public\amsfonts\symbols\msbm5.tfm
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\fonts\type1\public\amsfonts\cm\cmmi10.pfb'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\fonts\type1\public\amsfonts\cm\cmr7.pfb'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\fonts\tfm\public\cm\cmbx10.tfm'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\fonts\tfm\public\cm\cmbxti10.tfm'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\fonts\tfm\public\cm\cmti10.tfm'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\fonts\type1\public\amsfonts\cm\cmbx10.pfb'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\fonts\type1\public\amsfonts\cm\cmsy10.pfb'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\fonts\type1\public\amsfonts\cm\cmti10.pfb'
+        type: default
+      - file: >-
+          S:\HDD Program
+          Files\MikTeX\fonts\type1\public\amsfonts\symbols\msbm10.pfb
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\fonts\type1\public\amsfonts\cm\cmmi7.pfb'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\fonts\type1\public\amsfonts\cm\cmsy7.pfb'
+        type: default
+      - file: 'S:\HDD Program Files\MikTeX\fonts\type1\public\amsfonts\cm\cmr5.pfb'
+        type: default
+      - file: >-
+          C:\Users\Harry\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\public\stmaryrd\dpi600\stmary10.pk
+        type: default
+    outputs:
+      - file: Elliptic Curves.aux
+        type: default
+      - file: Elliptic Curves.fls
+        type: default
+      - file: Elliptic Curves.log
+        type: default
+      - file: Elliptic Curves.synctex.gz
+        type: target
+      - file: Elliptic Curves.pdf
+        type: target
+  - name: ParseLaTeXAuxilary
+    command: build
+    phase: execute
+    parameters:
+      - Elliptic Curves.aux
+    inputs:
+      - file: Elliptic Curves.aux
+        type: default
+    outputs:
+      - file: Elliptic Curves.aux-ParsedLaTeXAuxilary
+        type: default
+  - name: ParseFileListing
+    command: build
+    phase: execute
+    parameters:
+      - Elliptic Curves.fls
+    inputs:
+      - file: Elliptic Curves.fls
+        type: default
+    outputs:
+      - file: Elliptic Curves.fls-ParsedFileListing
+        type: default
+  - name: ParseLaTeXLog
+    command: build
+    phase: execute
+    parameters:
+      - Elliptic Curves.log
+    inputs:
+      - file: Elliptic Curves.log
+        type: default
+    outputs:
+      - file: Elliptic Curves.log-ParsedLaTeXLog
+        type: default
+  - name: LogProducedTargets
+    command: build
+    phase: finalize
+    parameters: []
+    inputs: []
+    outputs: []
+  - name: CheckForMissingBuildRule
+    command: build
+    phase: finalize
+    parameters:
+      - Elliptic Curves.tex
+    inputs:
+      - file: Elliptic Curves.tex
+        type: default
+    outputs: []
+  - name: FindLogFiles
+    command: log
+    phase: initialize
+    parameters: []
+    inputs: []
+    outputs: []
+  - name: ReportLogMessages
+    command: log
+    phase: execute
+    parameters:
+      - Elliptic Curves.log-ParsedLaTeXLog
+    inputs:
+      - file: Elliptic Curves.log-ParsedLaTeXLog
+        type: default
+    outputs: []
+  - name: ParseLaTeXLog
+    command: log
+    phase: execute
+    parameters:
+      - Elliptic Curves.log
+    inputs:
+      - file: Elliptic Curves.log
+        type: default
+    outputs:
+      - file: Elliptic Curves.log-ParsedLaTeXLog
+        type: default
+  - name: SaveCache
+    command: save
+    phase: execute
+    parameters: []
+    inputs: []
+    outputs: []

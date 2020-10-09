@@ -1,0 +1,88 @@
+\documentclass[10pt,a4paper]{article}
+\input{./preamble.tex}
+
+\title{Elliptic Curves}
+\begin{document}
+\maketitle
+\section{Fermat's Method of Infinite Descent}
+Suppose we have a right-angled triangle $\Delta$ with side lengths $a, b, c$, so that by Pythagoras we have $a^2 + b^2 = c^2$, and $\text{area}(\Delta) = \frac12 ab$.
+\begin{definition}
+  $\Delta$ is \emph{rational} if $a, b, c \in \Q$, and \emph{primitive} if $a, b, c \in \Z$ coprime.
+\end{definition}
+\begin{lemma}
+  Every primitive triangle is of the form $a = u^2-v^2, b = 2uv, c = u^2+v^2$ for coprime integers $u > v > 0$.
+\end{lemma}
+\begin{proof}
+  If $a, b$ were both odd, then $a^2 + b^2 \equiv 2 \mod 4$, and we have no solutions for $c$. If $a,b$ both even, then they are not coprime. So we may assume $a$ is odd, $b$ is even, $c$ is odd.
+
+  Then $(\frac{b}{2})^2 = \frac{c+a}{2}\frac{c-a}{2}$, and the right hand side is a product of coprime positive integers. So by unique prime factorisation in the integers, $\frac{c+a}{2} = u^2, \frac{c-a}{2} = v^2$ for some coprime integers $u, v$. Rearranging, we have the lemma.
+\end{proof}
+
+\begin{definition}
+  $D \in \Q_{>0}$ is a \emph{congruent number} if it is the area of a rational triangle.
+\end{definition}
+Note that, by scaling the triangle, it suffices to consider $D \in \Z_{>0}$ squarefree.
+
+For example, $D = 5,6$ are congruent numbers. $6 = \frac12\cdot 3\cdot 4$, and $3^2+4^2 = 5^2$, and 5 is left as an exercise.
+
+\begin{lemma}
+  $D \in \Q_{>0}$ is congruent if and only if $Dy^2 = x^3-x$ for some $x, y \in \Q, y \neq 0$.
+\end{lemma}
+\begin{proof}
+  Lemma \textbf{1.2} shows that $D$ is congruent if and only if $Dw^2 = uv(u^2-v^2)$ for some $u,v,w\in \Q, w\neq 0$.
+
+  Setting $x = \frac{u}{v}, y = \frac{w}{v^2}$ finishes the proof.
+\end{proof}
+
+Fermat showed that 1 is not a congruent number.
+\begin{theorem}
+  There is no solution to
+  \begin{align*}
+    w^2 = uv(u+v)(u-v)\tag{$\ast$}
+  \end{align*} in integers $u,v,w$ with $w \neq 0$.
+\end{theorem}
+\begin{proof}
+  Without loss of generality, $u,v$ are coprime with $u > 0, w> 0$. If $v < 0$ then replace $(u,v,w)$ by $(-v, u, w)$. If $u, v$ are both odd, then replace $(u,v,w)$ by $(\frac{u+v}{2}, \frac{u-v}{2}, \frac{w}{2})$. So we may assume that all of $u, v, u+v, u-v$ are coprime positive integers whose product is a square, and hence are all squares, say $a^2, b^2, c^2, d^2$ respectively, where $a,b,c,d \in \Z_{>0}$.
+
+  Since $u \nequiv v \mod 2$, both $c, d$ are odd. Consider the right angled triangle with side lengths, $\frac{c+d}{2}, \frac{c-d}{2}, a$. This is a primitive triangle, and it has area $\frac{c^2-d^2}{8} = \frac{v}{4} = (\frac{b}{2})^2$.
+
+  Let $w_1 = \frac{b}{2}$. Then lemma \textbf{1.2} gives $w_1^2 = u_1v_1(u_1^2-v_1^2)$ for some $u_1, v_1 \in \Z$, giving a new solution to $(\ast)$. But $4w_1^2 = b^2 = v | w^2$, and so $w_1 \leq \frac12 w$.
+
+  So by Fermat's method of infinite descent, if there were a solution we would have a strictly decreasing infinite sequence of positive integers $\contr$. Hence there is no solution to $(\ast)$.
+\end{proof}
+
+\subsection{A Variant for Polynomials}
+Here, $K$ is a field with $\charr K \neq 2$. The algebraic closure of $K$ will be $\overline{K}$.
+\begin{lemma}
+  Let $u, v \in K[t]$ be coprime. If $\alpha u + \beta v$ is a square for four distinct $(\alpha :\beta) \in \P^1$, then $u, v \in K$.
+\end{lemma}
+\begin{proof}
+  Without loss of generality we may assume $K = \overline{K}$, as that doesn't change the degree of polynomials, and every square is still a square.
+
+  Changing coordinates on $\P^1$, we may assume the ratios $\alpha:\beta$ are $(1:0), (0:1), (1:-1), (1:-\lambda)$ for some $\lambda \in K\setminus\{0, 1\}$, with $\mu = \sqrt{\lambda}$.
+
+  Then $u = a^2, v = b^2, u-v = (a+b)(a-b), u-\lambda v = (a+\mu b)(a-\mu b)$ are all squares. They are also coprime, and so by unique factorisation in $K[t]$, $(a+b), (a-b), (a+\mu b), (a-\mu b)$ are all squares.
+
+  But $\max \{\deg a, \deg b\} \leq \frac12 \max \{\deg u, \deg v\}$. So by Fermat's method of infinite descent, we get that the original $u,v \in K$.
+\end{proof}
+
+Now we have some important definitions:
+\begin{definition}\hspace*{0cm}
+  \begin{enumerate}
+    \item An \emph{elliptic curve} $E$ over a field $K$ is the projective closure of the affine curve $y^2 = f(x)$ where $f \in K[x]$ is a monic cubic polynomial with distinct roots.
+    \item For $L/K$ any field extension, $E(L) = \{ (x,y) \in L^2 : y^2 = f(x)\} \cup \{0\}$. $0$ is called the \emph{point at infinity}.
+  \end{enumerate}
+\end{definition}
+We call the point at infinity $0$ because we will see that $E(L)$ is naturally an abelian group under an operation we will denote by $+$, and $0$ will be the identity for that group. In this course we will study $E(L)$ for $L$ a finite field, a local field, and a number field.
+
+Lemma \textbf{1.4} and theorem \textbf{1.5} together imply that, if $E$ is given by $y^2 = x^3-x$, then $E(\Q) = \{0, (0,0), (\pm 1, 0)\}$, which we will see is the group $C_2\times C_2$.
+
+\begin{corollary}
+  Let $E/K$ be an elliptic curve. Then $E(K(t)) = E(K)$.
+\end{corollary}
+\begin{proof}
+  Without loss of generality, $K = \overline{K}$. By a change of coordinates we may assume $E: y^2 = x(x-1)(x-\lambda)$ for some $\lambda \in K\setminus\{0, 1\}$. Suppose $(x, y) \in E(K(t))$. Write $x = \frac{u}{v}$ with $u, v \in K[t]$ coprime. Then $w^2 = uv(u-v)(u-\lambda v)$ for some $w \in K[t]$.
+
+  Unique factorisation in $K[t]$ gives $u, v, u-v, u-\lambda v$ are all squares, and so by lemma \textbf{1.6}, $u, v \in K$, and so $x, y \in K$.
+\end{proof}
+\end{document}
