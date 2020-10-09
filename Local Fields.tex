@@ -124,7 +124,7 @@ as follows:
 
 Take $x_1 = 2$. Suppose we have constructed $x_n$. Let $x_n^2 + 1 = a5^n$, and set $x_{n+1} = x_n + b5^n$. Then $x_{n+1}^2 + 1=  x_n^2 + 2b5^nx_n + b^2 5^{2n} + 1 = a5^n + 2b5^nx_n + b^2 5^{2n}$.
 
-We choose $b$ such that $a+2bx_n \equiv 0 \mod 5$, i.e. $b \equiv -\frac{a}{2x_n} \mod 5$, and then we have $x_{n+1}^2 +1 \equiv 0 \mod 5^{n+1}$ as desired.
+We can then choose $b$ such that $a+2bx_n \equiv 0 \mod 5$, i.e. $b \equiv -\frac{a}{2x_n} \mod 5$, and then we have $x_{n+1}^2 +1 \equiv 0 \mod 5^{n+1}$ as desired.
 
 The second property implies that $|x_{n+1} - x_n|_5 < 5^{-n} \to 0$, and so the sequence is Cauchy. Now suppose that $x_n \to L \in \Q$. Then $x_n^2 \to L^2$. But the first property then gives us that $x_n^2 \to -1 \implies L^2 = -1 \contr.$ So $(\Q, |\cdot|_5)$ is not complete.
 

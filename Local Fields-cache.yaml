@@ -134,9 +134,9 @@ files:
         2.9\miktex\bin\x64;%ProgramFiles(x86)%\MiKTeX 2.9\miktex\bin;$PATH
     type: ParsedYAML
   Local Fields.tex:
-    timeStamp: 2020-10-09T15:43:41.942Z
+    timeStamp: 2020-10-09T16:03:15.851Z
     jobNames: []
-    hash: LLJp8K7PfiogQge7JYFdcrES1tORkVRKK1WrhY3OsJM=
+    hash: GMDWziVSQi7DI/3wgLYqvxEVXTJcwZJZyJHN6aShxZs=
     type: LaTeX
     subType: article
   'C:\Users\Harry\AppData\Roaming\dicy\config.yaml':
@@ -1772,19 +1772,19 @@ files:
       calls: []
     type: ParsedLaTeXLog
   Local Fields.aux:
-    timeStamp: 2020-10-09T15:43:44.734Z
+    timeStamp: 2020-10-09T16:03:18.868Z
     jobNames: []
     hash: nx1JHZMGQanmczLbMi0CSVp3BZHcQ8ZXWDO6QMJ8+zw=
     type: LaTeXAuxilary
   Local Fields.fls:
-    timeStamp: 2020-10-09T15:43:44.804Z
+    timeStamp: 2020-10-09T16:03:18.950Z
     jobNames: []
     hash: XsQ4yRt5kfKr0lOu+7nMDacsSBAP9riuL/dYXZl4laM=
     type: FileListing
   Local Fields.log:
-    timeStamp: 2020-10-09T15:43:44.795Z
+    timeStamp: 2020-10-09T16:03:18.939Z
     jobNames: []
-    hash: iHcrVTRSx1noZbd7rxXAGarnUwAWJzy7RVYYQPVoSDI=
+    hash: fsYeVYYSfpuf0me6vPaOfiB60N0BHa8LwdrKfrvjNN4=
     type: LaTeXLog
     subType: pdfTeX
   Local Fields.aux-ParsedLaTeXAuxilary:
@@ -2626,14 +2626,14 @@ files:
     jobNames: []
     type: LaTeXStyle
   Local Fields.synctex.gz:
-    timeStamp: 2020-10-09T15:43:44.790Z
+    timeStamp: 2020-10-09T16:03:18.934Z
     jobNames: []
-    hash: 1VxekD/9uaczStAquZneYrxRLIQPz3o2AnGGO8z70w8=
+    hash: 1KJ1BrJlnzFrbi/z8YdFW2ImZmeSGIV9CIPesxgmxWg=
     type: SyncTeX
   Local Fields.pdf:
-    timeStamp: 2020-10-09T15:43:44.781Z
+    timeStamp: 2020-10-09T16:03:18.925Z
     jobNames: []
-    hash: MneUDF9Ma/pWi3z5t+P91V0tsyWoqYOgXxgO9SZIy7Q=
+    hash: FfBENEQ3LcCao11irn5ZE/MS9sMGqox9KpHzawaiMMI=
     type: PortableDocumentFormat
   'S:\HDD Program Files\MikTeX\fonts\tfm\public\cm\cmcsc10.tfm':
     timeStamp: 2006-01-09T00:04:13.000Z
