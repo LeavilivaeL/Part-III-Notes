@@ -1,5 +1,5 @@
-.aux
-.fls
-.log
-.yaml
-.synctex.gz
+*.aux
+*.fls
+*.log
+*.yaml
+*.synctex.gz
