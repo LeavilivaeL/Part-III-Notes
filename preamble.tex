@@ -17,6 +17,7 @@
 \usepackage{dsfont}
 \usepackage{pgfplots}
 \usepackage{enumitem}
+\usepackage{calc}
 
 \newcommand{\st}{\text{ s.t. }}
 \newcommand{\contr}{\lightning}
@@ -30,6 +31,8 @@
 \newcommand{\Z}{\mathbb{Z}}
 \renewcommand{\P}{\mathbb{P}}
 \renewcommand{\H}{\mathds{H}}
+\renewcommand{\O}{\mathcal{O}}
+\newcommand{\A}{\mathbb{A}}
 \newcommand{\nequiv}{\not\equiv}
 \newcommand{\powset}{\mathcal{P}}
 \renewcommand{\th}[1][th]{\textsuperscript{#1}\xspace}
@@ -71,6 +74,9 @@
 \DeclareMathOperator{\ecl}{ecl}
 \DeclareMathOperator{\Span}{Span}
 \DeclareMathOperator{\Gal}{Gal}
+\let\div\relax
+\DeclareMathOperator{\div}{div}
+\DeclareMathOperator{\Div}{Div}
 \let\Re\relax
 \let\Im\relax
 \DeclareMathOperator{\Re}{\mathfrak{Re}}

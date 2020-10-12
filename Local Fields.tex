@@ -132,4 +132,140 @@ The second property implies that $|x_{n+1} - x_n|_5 < 5^{-n} \to 0$, and so the 
   The $p$-adic numbers $\Q_p$ is the completion of $\Q$ with respect to $|\cdot|_p$.
 \end{definition}
 We have an analogy with $\R$, in that $\R$ is the completion of $\Q$ with respect to $|\cdot|_\infty$.
+
+If $(K, |\cdot|)$ is a valued field, for $x \in K, r \in \R_{>0}$, we define:
+\begin{align*}
+  B(x, r) &= \{y \in K : |x-y| < r \}\\
+  \overline{B}(x, r) &= \{y \in K : |x-y| \leq r\}
+\end{align*}
+and call these the \emph{open} and \emph{closed balls} of radius $r$ centred at $x$, respectively.
+
+\begin{lemma}
+  Let $(K, |\cdot|)$ be non-archimedean. Then:
+  \begin{enumerate}
+    \item If $z \in B(x, r)$, then $B(z, r) = B(x, r)$.
+    \item If $z \in \overline{B}(x, r)$, then $\overline{B}(z, r) = \overline{B}(x, r)$.
+    \item $B(x, r)$ is closed.
+    \item $\overline{B}(x, r)$ is open.
+  \end{enumerate}
+\end{lemma}
+\begin{proof}\hspace*{0cm}
+  \begin{enumerate}[label=\textit{\arabic*.}]
+    \item Let $y \in B(x, r)$. Then $|x-y| < r \implies |z-y| = |(z-x) + (x-y)| \leq \max(|z-x|, |x-y|) < r$.
+    \item Same as in \textit{1.}, but with $\leq$ instead of $<$.
+    \item Let $y \notin B(x, r)$. We need to show there is an open neighbourhood of $y$ not intersecting $B(x, r)$. If $z \in B(x, r) \cap B(y, r)$, then $B(x, r) = B(z, r) = B(y, r)$. But then $y \in B(x, r) \contr.$ So $B(x, r)$ and $B(y, r)$ are disjoint, and so $B(x, r)$ is closed.
+    \item If $z \in \overline{B}(x, r)$, then we need to show there is an open neighbourhood of $z$ contained in $\overline{B}(x, r)$. But $B(z, r) \subseteq \overline{B}(z, r) = \overline{B}(x, r)$, and so $\overline{B}(x, r)$ is open.
+  \end{enumerate}
+\end{proof}
+
+\section{Valuation Rings}
+\begin{definition}
+  Let $K$ be a field. A \emph{valuation} on $K$ is a function $v: K^\times \to \R$ such that:
+  \begin{enumerate}
+    \item $v(xy) = v(x) + v(y)$
+    \item $v(x+y) \leq \min(v(x), v(y))$
+  \end{enumerate}
+\end{definition}
+Fix $0 <\alpha<1$. If $v$ is a valuation on $K$, then $|x| = \begin{cases} \alpha^{v(x)} & x \neq 0 \\ 0 & x = 0\end{cases}\;$ determines a non-archimedean absolute value. Conversely, a non-archimedean absolute value determines a valuation $v(x) = \log_\alpha |x|$.
+
+We will ignore the trivial valuation $v(x) \equiv 0$, which corresponds to the trivial absolute value.
+
+We say $v_1, v_2$ are \emph{equivalent} if $\exists c \in \R_{>0}$ such that $v_1(x) = cv_2(x) \forall x \in K^\times$.
+
+\underline{Examples:}
+\begin{itemize}
+  \item $K = \Q, v_p() = -\log_p |x|_p$ is the $p$-adic valuation.
+  \item $k$ any field, $K = k(t) = \Frac(k[t])$, the rational function field. $v\left(t^n \frac{f(t)}{g(t)}\right) =n$ where $f, g \in k[t], f(0), g(0) \neq 0$. This is the $t$-adic valuation.
+  \item $K = k((t)) = \Frac(k[[t]])$, the field of \emph{formal Laurent series over k}. Then we have $v\left(\sum_i a_i t^i\right) = \min \{i : a_i \neq 0\}$ is the $t$-adic valuation on $K$.
+\end{itemize}
+
+\begin{definition}
+  Let $(K, |\cdot|)$ be a non-archimedean valued field. The \emph{valuation ring} of $K$ is defined to be:
+  \begin{align*}
+    \O_K &= \{ x \in K : |x| \leq 1\}\;\;\; (= \bar{B}(0, 1))\\
+    &= \{x \in K^\times : v(x) \geq 0\}\cup\{0\}
+  \end{align*}
+\end{definition}
+\begin{proposition}\hspace*{0cm}
+  \begin{enumerate}
+    \item $\O_K$ is an open subring of $K$.
+    \item The subsets $\{x \in K : |x| \leq r\}$ and $\{x \in K : |x| < r\}$ for $r \leq 1$ are open ideals in $\O_K$.
+    \item $\O_K^\times = \{x\in K : |x| = 1\}$.
+  \end{enumerate}
+\end{proposition}
+\begin{proof}\hspace*{0cm}
+  \begin{enumerate}[label = \textit{\arabic*}.]
+    \item $|1| = 1, |0| = 0$, so $1, 0 \in \O_K$. $|-x| = |x|$, so $x \in \O_K \implies -x \in \O_K$. If $x, y \in \O_K$, then $|x+y| \leq \max(|x|, |y|) \leq 1$, and so $x+y \in \O_K$, and $|xy| = |x||y| \leq 1$, so $xy \in \O_K$. Since $\O_K = \bar{B}(0, 1)$, it is open.
+    \item The proof of this is the same as \textit{1.}
+    \item Note that $|x||x^{-1}| = |xx^{-1}| = 1$. So $|x| = 1 \iff |x^{-1}| = 1$. This can happen if and only if $x, x^{-1} \in \O_K$, i.e. $x \in \O_K^\times$.
+  \end{enumerate}
+\end{proof}
+As a point of notation, we will define $m \coloneqq \{x \in \O_K : |x|<1\}$, a maximal ideal of $\O_K$, and $k \coloneqq \O_K/m$ to be the \emph{residue field}.
+
+\begin{corollary}
+  $\O_K$ is a local ring with a unique maximal ideal $m$.
+\end{corollary}
+\begin{proof}
+  Suppose $x \in \O_K \setminus m$. Then $|x| = 1$, so $x^{-1} \in \O_K$, and so any ideal containing $x$ contains $x^{-1}x = 1$, i.e. is all of $\O_K$, and hence $m$ is the unique maximal ideal in $\O_K$.
+\end{proof}
+
+\underline{Examples:}
+\begin{itemize}
+  \item $K = k((t)), \O_K = k[[t]], m = (t)$, and the residue field is $k$.
+  \item $K = \Q$ with $|\cdot|_p$. $\O_K = \Z_{(p)}, m = p\Z_{(p)}, k = \F_p$.
+\end{itemize}
+
+\begin{definition}
+  Let $v : K^\times \to \R$ be a valuation. If $v(K^\times) \cong \Z$, we say $v$ is a \emph{discrete valuation}, and $K$ is said to be a \emph{discretely valued field}. An element $\pi \in \O_K$ is a \emph{uniformizer} if $v(\pi) = 0$ and $v(\pi)$ generates $v(K^\times)$.
+\end{definition}
+\underline{Remark:} If $v$ is a discrete valuation, we can replace it with an equivalent one such that $v(K^\times) = \Z \subseteq \R$. Such $v$ are called \emph{normalized valuations}, and have $v(\pi) = 1$ for $\pi$ a uniformizer.
+
+\begin{lemma}
+  Let $v$ be a valuation on $K$. Then the following are all equivalent:
+  \begin{enumerate}
+    \item $v$ is discrete.
+    \item $\O_K$ is a PID.
+    \item $\O_K$ is noetherian.
+    \item $m$ is principal.
+  \end{enumerate}
+\end{lemma}
+\begin{proof}\hspace*{0cm}\\
+    \imp{1}{2} Let $I\subseteq \O_K$ be a non-zero ideal. Let $x \in I$ such that $v(x) = \min\{v(a) : a \in I\}$, which exists since $v$ is discrete. Then $x \O_K = \{a \in O_K : v(a) \geq v(x) \} \subseteq I$, and hence $x\O_K = I$ by definition of $x$ - if $y \in I\setminus (x)$, then $v(y) < v(x) \contr.$
+
+    \imp{2}{3} Every PID is noetherian, as all ideals are finitely generated (by a single element).
+
+    \imp{3}{4} Write $m = x_1\O_K + \ldots + x_n\O_K$. \textsc{Wlog}, $v(x_1) \leq v(x_2) \leq\ldots\leq v(x_n)$. Then $m = x_1\O_K$.
+
+    \imp{4}{1} Let $m=\pi\O_K$ for some $\pi\in\O_K$, and let $c = v(\pi)$. Then if $v(x) > 0$, $x \in m$ and hence $v(x) \geq c$. Thus $v(K^\times)\cap(0, c) = \emptyset$. Since $v(K^\times)$ is a subgroup of $(\R, +)$, we have $v(K^\times) = c\Z$.
+\end{proof}
+\begin{lemma}
+  Let $v$ be a discrete valuation on $K$, and $\pi \in \O_K$ a uniformizer. Then for any $x \in K^\times$ there exists $n \in \Z$ and $u \in \O_K^\times$ such that $x = \pi^n u$. In particular, $K = \O_K\left[\frac{1}{x}\right]$ for any $x \in m$ and hence $K = \Frac \O_K$.
+\end{lemma}
+\begin{proof}
+  For any $x \in K^\times$, let $n$ be such that $v(x) = v(\pi^n) = nv(\pi)$, then $v(x\pi^{-n}) = 0 \implies u = x\pi^{-n}\in \O_K^\times$.
+\end{proof}
+
+\begin{definition}
+  A ring $R$ is called a \emph{discrete valuation ring (DVR)} if it is a PID with exactly one non-zero prime ideal.
+\end{definition}
+\begin{lemma}\hspace*{0cm}
+  \begin{enumerate}
+    \item Let $v$ be a discrete valuation on $K$. Then $\O_K$ is a DVR.
+    \item Let $R$ be a DVR. Then there is a valuation $v$ on $K \coloneqq \Frac(R)$ such that $R = \O_K$.
+  \end{enumerate}
+\end{lemma}
+\begin{proof}\hspace*{0cm}
+  \begin{enumerate}
+    \item $\O_K$ is a PID by \textbf{2.6}. Let $0 \neq I \subseteq \O_K$ be an ideal, then $I = (x)$ for some $x$. If $x = \pi^nu$ for $\pi$ a uniformizer, then $(x)$ is prime if and only if $n = 1$, and $I = (\pi) = m$.
+
+    \item Let $R$ be a DVR with maximal ideal $m$. Then $m = (\pi)$ for some $\pi \in R$. Since PIDs are UFDs, we may write $x \in R\setminus\{0\}$ uniquely as $\pi^n u, n\geq0, u \in R^\times$. Then any $y \in K\setminus\{0\}$ can be written uniquely as $\pi^m u, u \in R^\times, m \in \Z$. Then define $v(\pi^m u) = m$, and it is easy to check $v$ is a valuation and $\O_K = R$.
+  \end{enumerate}
+\end{proof}
+
+\underline{Examples:}
+\begin{itemize}
+  \item $\Z_{(p)}$ is a DVR, the valuation ring of $|\cdot|_p$ on $\Q$.
+  \item $k[[t]]$ is a DVR, the valuation ring of the $t$-adic valuation on $k((t))$.
+  \item $K = k(t), K' = K\left(t^{\frac12}, t^{\frac14}, t^{\frac18}, \ldots\right)$. The $t$-adic valuation extends to $K'$, but we must have $v(t^{\frac{1}{2^n}}) = \frac{1}{2^n}$, which is not discrete.
+\end{itemize}
 \end{document}

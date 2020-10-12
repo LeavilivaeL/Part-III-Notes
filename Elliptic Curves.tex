@@ -85,4 +85,124 @@ Lemma \textbf{1.4} and theorem \textbf{1.5} together imply that, if $E$ is given
 
   Unique factorisation in $K[t]$ gives $u, v, u-v, u-\lambda v$ are all squares, and so by lemma \textbf{1.6}, $u, v \in K$, and so $x, y \in K$.
 \end{proof}
+
+\section{Some Remarks on Algebraic Curves}
+We will be working over an algebraically closed field $K$.
+\begin{definition}
+  An (irreducible) plane algebraic curve $C = \{f(x, y) = 0\}\subset \A^2$ is \emph{rational} if it has a rational parametrization, i.e. there are $\phi, \psi \in K(t)$ such that:
+  \begin{enumerate}
+    \item $\A^1 \to \A^2; t \mapsto (\phi(t), \psi(t))$ is injective on $\A^1 \setminus\{\text{finite set}\}$.
+    \item $f(\phi(t), \psi(t)) = 0$.
+  \end{enumerate}
+\end{definition}
+
+\stepcounter{theorem}
+\textbf{Examples \thetheorem.}
+\begin{enumerate}
+  \item Any nonsingular plane conic is rational. For example, take a circle $x^2+y^2 = 1$. Pick a point on it, $(-1, 0)$. Now draw a line through it with slope $t$, and solve for the points of intersection between the curve and the line.
+  \begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+      \begin{axis}[xmin = -2, xmax=2, ymin=-2, ymax=2, ticks=none, axis lines=middle, axis equal, trig format plots = rad, xscale=1.2, yscale=1.2]
+        \addplot[domain=0:2*pi, samples=50, blue] ({sin(x)}, {cos(x)});
+        \addplot[domain=-3:3, green!60!black] {0.4*(x+1)} node[above left, pos=0.9] {$y=t(x+1)$};
+        \node[circle, draw, fill, inner sep=0pt, minimum size=2pt, label={below right:$(-1,0)$}] at (axis cs:-1, 0) {};
+        \node[circle, draw, fill, inner sep=0pt, minimum size=2pt, label={below:$p$}] at (axis cs:0.7241,0.6897) {};
+      \end{axis}
+    \end{tikzpicture}
+  \end{figure}
+  Solving for the coordinates of $p$, we get the quadratic $x^2 + t^2(x+1)^2 = 1$, i.e. $x = -1$ or $\frac{1-t^2}{1+t^2}$. So we have the rational parametrization $(x,y) = \left(\frac{1-t^2}{1+t^2}, \frac{2t}{1+t^2}\right)$
+
+  \item Any singular plane cubic is rational.
+  \begin{figure}[H]
+    \begin{subfigure}{0.5\textwidth}
+      \begin{tikzpicture}
+        \begin{axis}[xmin = -2, xmax=2, ymin=-2, ymax=2, ticks=none, axis lines=middle, axis equal]
+          \addplot[domain=0:2, samples=50, blue] {sqrt(x^3)} node[left, pos=0.6] {$y^2=x^3$};
+          \addplot[domain=0:2, samples=50, blue] {-sqrt(x^3)};
+          \addplot[domain=-3:3, green!60!black] {0.8*x} node[above left, pos=0.4] {$y=tx$};
+        \end{axis}
+      \end{tikzpicture}
+      \caption{Rational Parametrization $(x,y) = (t^2, t^3)$}
+    \end{subfigure}
+    \begin{subfigure}{0.5\textwidth}
+      \begin{tikzpicture}
+        \begin{axis}[xmin = -2, xmax=2, ymin=-2, ymax=2, ticks=none, axis lines=middle, axis equal]
+          \addplot[domain=-1:2, samples=100, blue] {sqrt(x^3+x^2)} node[left, pos=0.62] {$y^2 = x^2(x+1)$};
+          \addplot[domain=-1:2, samples=100, blue] {-sqrt(x^3+x^2)};
+          \addplot[domain=-3:3, green!60!black] {0.4*x} node[above left, pos=0.9] {$y=tx$};
+        \end{axis}
+      \end{tikzpicture}
+      \caption{Left as an example on the first sheet}
+    \end{subfigure}
+  \end{figure}
+
+  \item Corollary \textbf{1.8} shows that elliptic curves are \textit{not} rational.
+\end{enumerate}
+
+\begin{definition}
+  The \emph{genus} $g(C) \in \Z_{\geq 0}$ is an invariant of a smooth projective curve.
+  \begin{itemize}
+    \item If $K = \C$, then $g(C) = $ genus of the Riemann surface $C$.
+    \item A smooth plane curve $C \subset \P^2$ of degree $d$ has genus $g(C) = \frac{(d-1)(d-2)}{2}$.
+  \end{itemize}
+\end{definition}
+\begin{proposition}
+  Let $C$ be a smooth projective curve over $K$, an algebraically closed field. Then:
+  \begin{enumerate}
+    \item $C$ is rational $\iff g(C) = 0$.
+    \item $C$ is an elliptic curve $\iff g(C) = 1$.
+  \end{enumerate}
+\end{proposition}
+\begin{proof}
+  A proof of \textit{1} is omitted from this course. For \textit{2}, we check (on the first example sheet) that elliptic curves are smooth plane curves. Then they have degree 3, so genus $\frac{2\cdot 1}{2} = 1$. For the other direction, see later on in the course.
+\end{proof}
+
+\subsection{Order of Vanishing}
+$C$ will be an algebraic curve, and $K(C)$ its function field, with $P \in C$ a smooth point. Write $\ord_P(f)$ to mean the order of vanishing of $f \in K(C)$ at $P$ (negative if $f$ has a pole).
+
+Fact: $\ord_P : K(C)^\times \to \Z$ is a discrete valuation, i.e. $\ord_P(f_1f_2) = \ord_P(f_1) + \ord_P(f_2)$ and $\ord_P(f_1+f_2) \geq \min \{\ord_P(f_1), \ord_P(f_2)\}$.
+
+We say $t \in K(C)^\times$ is a \emph{uniformizer} at the point $P$ if $\ord_P(t) = 1$.
+
+\stepcounter{theorem}
+\textbf{Example \thetheorem.} Let $C = \{g(x,y) = 0\}\subseteq \A^2$, where $g \in K[x,y]$ is irreducible. Then $K(C) = \Frac \frac{K[x,y]}{(g)}$, with $g = g_0 + g_1(x,y) + g_2(x,y) + \ldots$, $g_i$ homogeneous of degree $i$.
+
+Suppose $P = (0, 0) \in C$ is a smooth point, i.e. $g_0 = 0, g_1(x, y) = \alpha x + \beta y$ with $\alpha, \beta$ not both zero.
+
+Let $\gamma, \delta \in K$. It is a fact that $\gamma x + \delta y \in K(C)$ is a uniformizer at $P$ if and only if $\frac{\gamma}{\delta} \neq \frac{\alpha}{\beta}$, i.e. $\alpha\delta-\beta\gamma \neq 0.$
+
+\stepcounter{theorem}
+\textbf{Example \thetheorem.} $\{y^2 = x(x-1)(x-\lambda)\}\subset\A^2$, $\lambda \neq 0, 1$. We take the projective closure, i.e. homogenize the equation as $\{Y^2Z = X(X-Z)(X-\lambda Z)\}\subset \P^2$ by setting $x = X/Z, y = Y/Z$.
+
+Have we got new points by taking projective closure? We only get these when $Z = 0$, i.e. $0 = X^3 \implies X = 0$, $Y\neq 0$. Since we're in projective space, this is just one point: $P = (0:1:0)$. We compute $\ord_P(x)$ and $\ord_P(y)$. Put $t = X/Y, w = Z/Y$ (since we can't return to the original affine piece, as it doesn't contain $Z=0$). Then we get $w = t(t-w)(t-\lambda w)$. Now $P$ is the point $(t,w) = (0,0)$. This is a smooth point, as there are linear terms at that point (namely $w$). So $\ord_P(t) = \ord_P(t-2) = \ord_P(t-\lambda w) = 1$, and $\ord_P(w) = 1+1+1 = 3$.
+
+Then:
+\begin{align*}
+  \ord_P(x) &= \ord_P(X/Z) = \ord_P(t/w) = 1-3 = -2\\
+  \ord_P(y) &= \ord_P(Y/Z) = \ord_P(1/w) = -3
+\end{align*}
+
+\subsection{Riemann Roch Spaces}
+Let $C$ be a smooth projective curve. Then a \emph{divisor} is a formal sum of points on $C$, say $D = \sum_{P \in C} n_P P$ where $n_P \in \Z$, and only finitely many $n_P$ are nonzero, and let $\deg D = \sum_{P \in C} n_P$. These divisors form a group under addition, denoted $\Div(C)$.
+
+$D$ is said to be \emph{effective}, written $D \geq 0$ if $n_p \geq 0$ for all $P \in C$.
+
+If $f \in K(C)^\times$, we write $\div(f) = \sum_{P \in C} \ord_P(f) P$.
+
+The Riemann Roch space of $D \in \Div(C)$ is:
+\begin{align*}
+  \mathscr{L}(D) = \{f \in K(C) : \div(f) + D \geq 0\}\cup\{0\}
+\end{align*}
+i.e. the $K$-vector space of rational functions on $C$ with ``poles no worse than specified by $D$."
+
+\begin{theorem}[Riemann Roch for genus 1]
+  \begin{align*}
+    \dim \mathscr{L}(D) = \begin{cases} 0 & \deg D < 0 \\ 0\text{ or } 1 & \deg D = 0 \\ \deg D & \deg D > 0 \end{cases}
+  \end{align*}
+\end{theorem}
+
+\textbf{Example 2.6 (revisited).} Our curve is $\{y^2 = x(x-1)(x-\lambda) \} \subset \A^2$, together with $P = (0:1:0)$, the point at infinity. Recall $\ord_P(x) = -2, \ord_P(x) = -3$.
+
+We thus deduce that $\mathscr{L}(2P) = \angle{1, x}, \mathscr{L}(3P) = \angle{1, x, y}$.
 \end{document}
