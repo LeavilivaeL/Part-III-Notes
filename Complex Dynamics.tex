@@ -18,18 +18,25 @@ Newton's method (also called Newton-Raphson) is an algorithm for finding roots o
     \begin{tikzpicture}
       \begin{axis}[xmin = -3, xmax = 7, ymin = -2, ymax = 4, restrict y to domain=-10:10, axis lines=middle, xtick={-3,-2,...,7}, ytick={-1,0,...,4}, axis equal]
         \node[burgundy, circle, draw, fill, scale=0.1, label={[burgundy]below:$z_0$}] (a) at (4, 2.6875) {};
-        \node[scale=0] (b) at (2.6875, 2.6875) {};
+        \node[scale=0.01] (b) at (2.6875, 2.6875) {};
         \node[burgundy, circle, draw, fill, scale=0.1, label={[burgundy]below:$z_1$}] (c) at (2.6875, 1.8378) {};
-        \node[scale=0] (d) at (1.8378, 1.8378) {};
-        \node[scale=0] (e) at (1.8378, 1.3239) {};
-        \node[scale=0] (f) at (1.3239, 1.3239) {};
-        \node[scale=0] (g) at (1.3239, 1.0727) {};
-        \node[scale=0] (h) at (1.0727, 1.0727) {};
-        \node[scale=0] (i) at (1.0727, 1.0048) {};
-        \node[scale=0] (j) at (1.0048, 1.0048) {};
+        \node[scale=0.01] (d) at (1.8378, 1.8378) {};
+        \node[scale=0.01] (e) at (1.8378, 1.3239) {};
+        \node[scale=0.01] (f) at (1.3239, 1.3239) {};
+        \node[scale=0.01] (g) at (1.3239, 1.0727) {};
+        \node[scale=0.01] (h) at (1.0727, 1.0727) {};
+        \node[scale=0.01] (i) at (1.0727, 1.0048) {};
+        \node[scale=0.01] (j) at (1.0048, 1.0048) {};
 
-        \draw[burgundy, ->] (a) edge (b) (b) edge (c) (c) edge (d) (d) edge (e) (e) edge (f);
-        \draw[burgundy] (f) -- (g) -- (h) -- (i) -- (j);
+        \draw[burgundy, ->] (a) -- (b);
+        \draw[burgundy, ->] (b) -- (c);
+        \draw[burgundy, ->] (c) -- (d);
+        \draw[burgundy, ->] (d) -- (e);
+        \draw[burgundy, ->] (e) -- (f);
+        \draw[burgundy] (f) -- (g);
+        \draw[burgundy] (g) -- (h);
+        \draw[burgundy] (h) -- (i);
+        \draw[burgundy] (i) -- (j);
 
         \addplot+[samples=100, mark=none, domain=-3:-0.24, blue] {(2*x^3+1)/(3*x^2)};
         \addplot+[samples=100, mark=none, domain=0.25:5, blue] {(2*x^3+1)/(3*x^2)} node[right, pos=1] {$f(x) = \frac{2x^3+1}{3x^2}$};
@@ -41,7 +48,7 @@ Newton's method (also called Newton-Raphson) is an algorithm for finding roots o
 
 It's not too hard to see that, no matter our starting choice of $z_0$, this process will always eventually converge towards $z=1$, and that $p(1) = 0$.
 
-If instead we consider this iteration for \emph{complex} values of $z_0$, we might converge to different roots of $p(z)$, since $p$ also has two complex roots. It turns out that the question of deciding which root we will converge to is not easy, and in fact we can see which root will be converged to in the following convergence diagram\footnote{Courtesy of \url{usefuljs.net/fractals/docs/newtonian_fractals.html}}
+If instead we consider this iteration for \emph{complex} values of $z_0$, we might converge to different roots of $p(z)$, since $p$ also has two complex roots. It turns out that the question of deciding which root we will converge to is not easy, and in fact we can see which root will be converged to in the following convergence diagram\footnote{Courtesy of usefuljs.net/fractals/docs/newtonian\_fractals.html}
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.95\textwidth]{compdyn01.png}
@@ -128,4 +135,122 @@ Replace by $\frac{1}{f}$ if necessary to assume $f(\infty) \in \C$. By the ident
 
 \subsection{The Derivative at Infinity}
 Caution: there is not a globally well defined notion of a derivative of $f:\hat{\C} \to \hat{\C}$, since we can change coordinates in many different ways. However, if $f(\infty) = \infty$, then we do, as the local derivative is independent of choice of coordinates. In this case, we define $f'(\infty)$ to be the derivative at 0 of $\frac{1}{f(1/z)}$.
+
+\subsection{Uniformizations}
+We say a group $\Gamma$ acts \emph{properly discontinuously} on a set if all points $p$ have a neighbourhood $N \ni p$ with $g(N) \cap h(N) = \emptyset$ for all $g \neq h \in \Gamma$
+
+\begin{theorem}[Uniformization in $\hat{C}$]
+  Let $U$ be a domain in $\hat{C}$. Then the universal cover $\tilde{U}$ of $U$ is either $\hat{\C}$, $\C$, or $\D$, and $U \simeq \tilde{U}/\Gamma$ for some subgroup $\Gamma \leq \Aut(\tilde{U})$ which acts properly discontinuously.
+\end{theorem}
+
+We now consider the different cases:
+\begin{itemize}
+  \item Universal Cover $\hat{\C}$: $\Aut(\hat{C}) = \{$M\"obius transformations$\}$
+
+  All M\"obius transformations have at least one fixed point. So if $\Gamma$ acts properly discontinuously on $\hat{C}$, $\Gamma$ must be $\{\id\}$, and as such $U = \tilde{U} = \hat{C}$.
+
+  \item Universal Cover $\C$: $\Aut(\C) = \{$M\"obius transformations fixing $\infty\}$
+
+  These transformations are the linear maps, i.e. $f(z) = az+b, a \neq 0$. If a non-identity map lies in $\Gamma$, then it has no fixed point, and hence $az+b=z$ has no solutions, i.e. $a=1, b \neq 0$. So $\Gamma$ consists of the translations, and we can identify $g \in \Gamma$ with $g(0) \in \C$.
+
+  $\Gamma \leq \C$ consists of isolated points, so $\Gamma = \{\id\}, \angle{\omega}$ for some $\omega \in \C$, or a lattice $\Lambda$.
+
+  These correspond respectively to $U \simeq \C, U \simeq \C^\times$, and a complex torus (which is not a subdomain of $\C$).
+
+  \item Universal Cover $\D$: $\Aut(\D) = \left\{e^{\im\theta} \frac{z-\omega}{1-\bar{\omega}z} : \theta \in \R, \omega \in \D\right\}$.
+
+  All the rest! Any domain which omits at least three points of $\hat{\C}$ has the disc as its universal cover. This gives a lot of different subgroups of $\Aut(\D)$ - we won't study which ones are possible in this course.
+\end{itemize}
+
+\begin{definition}
+  We say a domain $U \subseteq \hat{C}$ is \emph{hyperbolic} if it has universal cover $\D$, or equivalently if it omits at least 3 points.
+\end{definition}
+
+If $U$ is a hyperbolic domain, then the covering maps $\tilde{U} \to U$ are holomorphic. So if $f:U \to V$ is a holomorphic map between hyperbolic domains, then its lifted map $g$ is also holomorphic. $g$ is also unique up to a choice of an element of $\Gamma_V$
+
+\begin{theorem}[Picard Theorem]
+  If $U$ is a hyperbolic domain, and $f : \C \to U$ is holomorphic, then $f$ is constant.
+\end{theorem}
+\begin{proof}
+  The following diagram commutes:
+  \begin{tikzcd}
+    \C \arrow{d}{\id} \arrow{r}{g} & \D \arrow{d}{\pi_U} \\ \C \arrow{r}{f} & U
+  \end{tikzcd}
+
+  So $g$ is a holomorphic function from $\C$ to $\D$, so bounded, so constant by Liouville's theorem. Hence $f$ must also be constant.
+\end{proof}
+
+In fact, there are no non-constant holomorphic maps from $\hat{C}, \C, \C^\ast$ to any hyperbolic domain.
+
+Recall that the hyperbolic (or Poincar\'e) distance between any two points on the disc is the infimum along smooth curves $\gamma : [a,b] \to \D$ which connect the two points of the length value:\[ \ell(\gamma) = \int_a^b \frac{2}{1-|\gamma(t)|^2}|\gamma'(t)| dt\]
+
+Using the origin and automorphisms, one computes that the distance function is given by \[d(x,y) = \frac{\log(1+R)}{\log(1-R)}\] where $R = \left|\frac{y-x}{1-xy}\right|$.
+
+\begin{definition}[Hyperbolic/Poincar\'e metric of a hyperbolic domain]
+  Taking the covering map $\pi:\D\to U$ for $U$ a hyperbolic domain to be a local isometry, we define a unique metric on $U$ known as the hyperbolic/Poincar\'e metric on $U$.
+\end{definition}
+
+\begin{theorem}[Pick Theorem]
+  The $f:U\to V$ be a holomorphic map of hyperbolic domains $U, V \subset \hat{\C}$ with Poincar\'e metrics $\rho_U, \rho_V$ respectively. Then for all $x, y \in U$:\[ \rho_V(f(x), f(y)) \leq \rho_U(x,y)\] with strict inequality unless $f$ lifts to an automorphism of $\D$.
+\end{theorem}
+\begin{proof}
+  By definition of $\rho_U, \rho_V$, it suffices to prove this for $f: \D \to \D$. We want to show that \[\frac{\log(1+R')}{\log(1-R')} \leq \frac{\log(1+R)}{\log(1-R)}\] where
+  \begin{align*}
+    R &= \left|\frac{y-x}{1-\bar{x}y}\right|,\;\;\;  R' = \left|\frac{f(y)-f(x)}{1-\overline{f(x)}f(y)}\right|
+  \end{align*}
+
+  As $\frac{\log(1+x)}{\log(1-x)}$ is strictly increasing, it is sufficient to show $R' \leq R$. Define:
+  \begin{align*}
+    \sigma_1(z) = \frac{y-z}{1-\bar{y}z},\;\;\;\;\sigma_2(z) = \frac{f(y)-f(z)}{1-\overline{f(y)}f(z)}
+  \end{align*}
+  Then $\sigma_2 \circ f \circ \sigma_1^{-1} : \D \to \D$ fixes 0. So by Schwarz's lemma, $|\sigma_2 \circ f \circ \sigma_1^{-1}(z)| \leq |z|$, i.e.
+  \[
+    \left|\frac{f(y)-f(x)}{1-\overline{f(y)}f(x)}\right| \leq \left|\frac{y-x}{1-\bar{y}x}\right|
+  \]
+by setting $\sigma_1^{-1}(z) = x$. The statement with strict inequality follows similarly.
+\end{proof}
+
+Thus all maps of hyperbolic domains are (weakly) contracting with respect to the hyperbolic metric. This is in contrast to the non-hyperbolic case, where we can have things like $f:\C \to \C, z \mapsto 2z$ which is expanding, or $g:\hat{C} \to \hat{C}, z\mapsto z+1$, which has expansion and contraction at the same time in different regions.
+
+\section{What is a reasonable notion of stable/predictable behaviour under iteration?}
+
+For example, take $f(z) = z^2$, so that $f^n(z) = z^{2^n}$. If $|z| > 1$, then $|f^n(z)| = |z|^{2^n} \to \infty$. On the other hand, if we start with a point inside the unit disc, then $|f^n(z)| \to 0$. This is a stable property - if $z$ goes off to $\infty$ or $0$ under iteration of $f$, then $z+\epsilon$ for $|\epsilon|$ small also goes off towards $\infty$ or 0 respectively.
+
+In contrast, if $|z|=1$, then we do not have this stable behaviour.
+
+\begin{definition}
+  Let $S, T$ be metric spaces and $f_n : S \to T$ a sequence of continuous maps. We say that $\{f_n\}$ \emph{converges locally uniformly} if for all compact $K \subset S$ and all $\epsilon >0$ there exists $N \in \N$ such that
+  \[
+    \sup_{z \in K} d_T(f_n(z), f_m(z)) < \epsilon
+  \]
+  for all $n, m \geq N$.
+
+  We say that $\{f_n\}$ \emph{diverges locally uniformly} if for all compact $K \subset S$ and compact $K' \subset T$, we have $N \in \N$ such that $f_n(K) \cap K' = \emptyset$ for all $n \geq N$.
+\end{definition}
+
+\underline{Example:} Let $p(z) = a_dz^d + \ldots + a_0 \in \C[z]$ a polynomial, with sequence of iterates $\{p^n(z) : n \in \N\}$. If $|z| \gg \max\{|a_d|, \ldots, |a_0|\}$, then $|p(z)| \approx |a_dz^d|$. So $|p^n(z)| \to \infty$ as $n \to \infty$. Considering $p:\hat{\C} \to \hat{\C}$, the sequence $\{p^n(z)\}$ converges locally uniformly on a neighbourhood of $\infty$.
+
+Note that the definition of $S, T$ matter - if we consider $p:\C \to \C$ instead then the sequence of iterates $\{p^n(z)\}$ diverges locally uniformly on the complement of some large disc.
+
+\begin{definition}
+  A family $\mathcal{F}$ of continuous functions $f: S \to T$ is \emph{normal} if every sequence in $\mathcal{F}$ has a subsequence which is either locally uniformly convergent or locally uniformly divergent.
+\end{definition}
+
+\begin{lemma}
+  Let $U, V$ be domains and $\mathcal{F}$ a normal family of holomorphic maps $U \to V$. Then any sequence $\{f_n\}$ in $\mathcal{F}$ has a subsequence which converges to a holomorphic limit $g: U \to \bar{V}$, where $\bar{V}$ is the closure of $V$ in the Riemann sphere.
+\end{lemma}
+\begin{proof}
+  $\mathcal{F}$ is normal, so pass to a subsequence of holomorphic maps to assume locally uniform convergence or divergence.
+
+  If $\{f_n\}$ converges locally uniformly, then $\bar{V}$ compact implies we have a limit function $g: U \to \bar{V}$, by taking $K = \{\text{pt}\}$ in the definition. By the Weierstrass uniform convergence theorem, this is holomorphic.
+
+  If $\{f_n\}$ diverges locally uniformly, then for any compact $K \subset U$, we have some convergent subsequence $f_{n_K}(z) \to z_0 \in \partial V$ for any choice of $z \in K$. If $U, V$ are hyperbolic, then by Pick's theorem, all elements of $K$ converge to $z_0$, and so we have local uniform convergence to the constant function at $z_0$. If $U, V$ are not hyperbolic, we may shrink $U$ slightly to still contain $K$, but be hyperbolic $U_0$ with compact closure in $U$.
+  By local divergence, we can remove points from $V$ and initial elements of the sequence $\{f_n\}$ to assume $V$ is hyperbolic.
+\end{proof}
+
+\underline{Example:} $f(z) = z^2$. $\mathcal{F} \coloneqq \{f^n(z) : n \in \N\}$.
+
+$\hat{\C} \setminus \bar\D$ is a hyperbolic domain, and $f:\hat\C\setminus\bar\D\to\hat\C\setminus\bar\D$, and the iterates $\{f^n(z)|_{\hat\C\setminus\bar\D}\}$ converge locally uniformly to the constant map at $\infty$. Similarly, $\{f^n(z)|_\D\}$ converge locally uniformly to the constant map at 0.
+
+These sets are maximal for these behaviours, i.e. $\{f^n\}$ is a normal family on $\D$ and on $\hat\C\setminus\bar\D$ but on no larger set. If $|z_0| = 1$, then we have for any neighbourhood of $z_0$, some points go to infinity and some go to zero, and so there can be no holomorphic limit of iterates on any neighbourhood of $z_0$.
 \end{document}

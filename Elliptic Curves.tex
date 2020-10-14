@@ -205,4 +205,103 @@ i.e. the $K$-vector space of rational functions on $C$ with ``poles no worse tha
 \textbf{Example 2.6 (revisited).} Our curve is $\{y^2 = x(x-1)(x-\lambda) \} \subset \A^2$, together with $P = (0:1:0)$, the point at infinity. Recall $\ord_P(x) = -2, \ord_P(x) = -3$.
 
 We thus deduce that $\mathscr{L}(2P) = \angle{1, x}, \mathscr{L}(3P) = \angle{1, x, y}$.
+
+\begin{proposition}
+  Let $K$ be an algebraically closed field not of characteristic 2. Let $C \subset \P^2$ be a smooth plane cubic, and that $P \in C$ is a point of inflection. Then we may change coordinates such that:
+  \begin{align*}
+    C: Y^2Z &= X(X-Z)(X-\lambda Z),\;\;\lambda \neq 0, 1\\
+    P &= (0:1:0)
+  \end{align*}
+\end{proposition}
+\begin{proof}
+  We make a change of coordinates such that $P = (0:1:0)$ and the tangent line to $C$ at $P$, $T_P(C) = \{Z=0\}$. Now let $C = \{F(X,Y,Z) = 0\}$.
+
+  Since $P \in C$ is a point of inflection, $F(t, 1, 0)$ has a triple root at $t = 0$. But $F$ is degree 3, so we have $F(t,1,0) = kt^3$ for $k$ some constant. I.e., there are no terms in $F$ of the form $X^2Y, XY^2, Y^3$.
+
+  So $F \in \angle{Y^2Z, XYZ, YZ^2, X^3, X^2Z, XZ^2, Z^3}$. The coefficient of $Y^2Z$ is nonzero, as otherwise $P$ would be singular. The coefficient of $X^3$ is also nonzero, as $C$ is irreducible and otherwise $\{Z=0\}\subset C$.
+
+  We are free to rescale $X,Y,Z,F$, and so \textsc{wlog} $C$ is defined by \[Y^2Z + a_1XYZ + a_3YZ^2 = X^3+a_2X^2Z+a_4XZ^2+a_6Z^3\]. We call this Weierstrass form.
+
+  Since our field doesn't have characteristic 2, we may complete the square by substituting $Y = Y - \frac12 a_1X - \frac12 a_3Z$, we may assume $a_1 = a_3 = 0$.
+
+  Now $C: Y^2Z = Z^3f(X/Z)$, where $f$ is a monic cubic polynomial. Since $C$ is smooth, $f$ has distinct roots, which are \textsc{wlog} $0, 1, \lambda$. So \[C : Y^2Z = X(X-Z)(X-\lambda Z)\], which we call the Legendre form.
+\end{proof}
+
+It may be shown that the points of inflection on $C = \{F=0\}\subset \P^2$ are given by $F = \det\left(\frac{\partial^2 f}{\partial X_i \partial X_j}\right) = 0$
+
+\subsection{The Degree of a Morphism}
+Let $\phi : C_1 \to C_2$ be a nonconstant morphism of smooth projective curves. Let $\phi^\ast : K(C_2) \to K(C_1), f \mapsto f \circ \phi$.
+
+\textbf{Definition.}
+\textit{
+  \begin{enumerate}
+    \item $\deg \phi = [K(C_1) : \phi^\ast K(C_2)]$
+    \item $\phi$ is separable if $K(C_1)/\phi^\ast K(C_2)$ is a separable field extension (which by Galois theory is automatic if $\charr K = 0$)
+  \end{enumerate}
+}
+
+Suppose $P \in C_1, Q \in C_2, \phi:P \to Q$. Let $t \in K(C_2)$ be a uniformizer at $Q$. We then define $e_\phi(p) = \ord_P(\phi^\ast t)$, which is always $\geq 1$, and independent of $t$. $e_\phi(P)$ is called the \emph{ramification index} of $\phi$ at $p$.
+
+\begin{theorem}
+  Let $\phi : C_1 \to C_2$ be a nonconstant morphism of smooth projective curves. Then
+  \begin{align*}
+      \sum_{p \in \phi^{-1}(Q)} e_\phi(P) = \deg \phi
+  \end{align*}
+  for any point $Q \in C_2$. Moreover, if $\phi$ is separable then $e_\phi(P) = 1$ with at most finitely many exceptions.
+
+  In particular:
+  \begin{enumerate}
+    \item $\phi$ is surjective
+    \item If $\phi$ is separable, $\#\phi^{-1}(Q) \leq \deg \phi$, with equality for all but finitely many choices of $Q$.
+  \end{enumerate}
+\end{theorem}
+
+\stepcounter{theorem}
+\textbf{Remark \thetheorem.} Let $C$ be an algebraic curve. A rational map is given by $\phi: C \dashrightarrow \P^n, P \mapsto (f_0(P):\ldots:f_n(P))$, where $f_0, \ldots, f_n \in K(C)$ are not all zero. If $C$ is smooth then $\phi$ is a morphism.
+
+\section{Weierstrass Equations}
+In this section, $K$ is a perfect field (so that all finite extensions of $K$ are separable), with algebraic closure $\bar{K}$.
+
+\textbf{Definition.} An elliptic curve $E$ over $K$ is a smooth projective curve of genus 1 defined over $K$ with a specified $K$-rational point $O_E$.
+
+\underline{Example:} Take $\{X^3+pY^3+p^2Z^3 = 0\} \subset \P^2$ for $p$ prime. This is not an elliptic curve over $\Q$ since there is no $\Q$-points.
+
+\begin{theorem}
+  Every elliptic curve $E$ is isomorphic over $K$ to a curve in Weierstrass form via an isomorphism taking $O_E$ to $(0:1:0)$.
+\end{theorem}
+Proposition \textbf{2.8} treated the special case where $E$ is a smooth plane cubic and $O_E$ is a point of inflection.
+
+If $D \in \Div(E)$ is defined over $K$ (i.e. fixed by the natural action of $\Gal(\bar{K}/K)$, then $\mathscr{L}(D)$ has a basis in $K(E)$, not just in $\bar{K}(E)$).
+
+\begin{proof}
+  Note that
+  \[\mathscr{L}(2O_E) \subset \mathscr{L}(3O_E)\]
+  Pick bases of these spaces, say $\{1, x\}$ and $\{1, x, y\}$.
+
+  Note that $\ord_{O_E}(x) = -2, \ord_{O_E}(y) = -3$. The 7 elements $\{1, x, y, x^2, xy, x^3, y^2\}$ are rational functions with no pole except at $O_E$, where they have poles of degree at most 6, so they all lie in $\mathscr{L}(6O_E)$. Riemann-Roch tells us this space has dimension 6, so there is a dependence relation between these elements.
+
+  Leaving out $x^3$ or $y^2$ gives a basis for $\mathscr{L}(6O_E)$ since each term has a different order pole at $O_E$, so they are independent.
+
+  Therefore this dependence relation \textit{must} involve both $x^3$ and $y^2$. Rescaling $x, y$ we get
+  \[ y^2 + a_1 xy + a_3 y = x^3 + a_2 x^2 + a_4 x + a_6 \]
+  Let $E'$ be the curve defined by this equation (or rather its projective closure).
+
+  There is a morphism
+  \begin{align*}
+    \phi: E &\to E'\\
+    P &\mapsto (x(P): y(P): 1) = \left(\frac{x}{y}(P) : 1 : \frac{1}{y}(P)\right)\\
+    O_E &\mapsto (0:1:0)
+  \end{align*}
+  $[K(E):K(x)] = \deg(E\xrightarrow{x}\P^1) = \ord_{O_E}\left(\frac{1}{x}\right) = 2$\\
+  $[K(E):K(y)] = \deg(E\xrightarrow{y}\P^1) = \ord_{O_E}\left(\frac{1}{y}\right) = 3$\\
+
+  This gives us a diagram of field extensions
+  \begin{tikzcd}
+    & K(E) \arrow[dash]{d}{} \arrow[dash, swap]{ddl}{2} \arrow[dash]{ddr}{3}\\
+    & K(x,y) \arrow[dash]{dl}{} \arrow[dash]{dr}{}\\
+    K(x) & & K(y)
+  \end{tikzcd}
+  
+  So $[K(E):K(x,y)]$ divides both 2 and 3 by the tower law, and hence $K(E) = K(x,y)$, and hence $\deg(E\xrightarrow{\phi}E') = 1$, and $\phi$ is birational. If $E'$ is singular, then it is rational, and so $E$ is also rational $\contr$. So $E'$ is not singular and hence smooth, and we may use remark \textbf{2.10} to $\phi^{-1}$ to see that $\phi^{-1}$ is a morphism, and hence $\phi$ is an isomorphism.
+\end{proof}
 \end{document}
