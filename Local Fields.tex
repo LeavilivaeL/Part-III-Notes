@@ -163,7 +163,7 @@ and call these the \emph{open} and \emph{closed balls} of radius $r$ centred at 
   Let $K$ be a field. A \emph{valuation} on $K$ is a function $v: K^\times \to \R$ such that:
   \begin{enumerate}
     \item $v(xy) = v(x) + v(y)$
-    \item $v(x+y) \leq \min(v(x), v(y))$
+    \item $v(x+y) \geq \min(v(x), v(y))$
   \end{enumerate}
 \end{definition}
 Fix $0 <\alpha<1$. If $v$ is a valuation on $K$, then $|x| = \begin{cases} \alpha^{v(x)} & x \neq 0 \\ 0 & x = 0\end{cases}\;$ determines a non-archimedean absolute value. Conversely, a non-archimedean absolute value determines a valuation $v(x) = \log_\alpha |x|$.
@@ -174,7 +174,7 @@ We say $v_1, v_2$ are \emph{equivalent} if $\exists c \in \R_{>0}$ such that $v_
 
 \underline{Examples:}
 \begin{itemize}
-  \item $K = \Q, v_p() = -\log_p |x|_p$ is the $p$-adic valuation.
+  \item $K = \Q, v_p(x) = -\log_p |x|_p$ is the $p$-adic valuation.
   \item $k$ any field, $K = k(t) = \Frac(k[t])$, the rational function field. $v\left(t^n \frac{f(t)}{g(t)}\right) =n$ where $f, g \in k[t], f(0), g(0) \neq 0$. This is the $t$-adic valuation.
   \item $K = k((t)) = \Frac(k[[t]])$, the field of \emph{formal Laurent series over k}. Then we have $v\left(\sum_i a_i t^i\right) = \min \{i : a_i \neq 0\}$ is the $t$-adic valuation on $K$.
 \end{itemize}
@@ -201,6 +201,8 @@ We say $v_1, v_2$ are \emph{equivalent} if $\exists c \in \R_{>0}$ such that $v_
   \end{enumerate}
 \end{proof}
 As a point of notation, we will define $m \coloneqq \{x \in \O_K : |x|<1\}$, a maximal ideal of $\O_K$, and $k \coloneqq \O_K/m$ to be the \emph{residue field}.
+
+We say a ring $R$ is \emph{local} if it has a unique maximal ideal. As an exercise, prove that $R$ is local if and only if $R\setminus R^\times$ is an ideal of $R$. We can use this to prove the following:
 
 \begin{corollary}
   $\O_K$ is a local ring with a unique maximal ideal $m$.
@@ -268,4 +270,133 @@ As a point of notation, we will define $m \coloneqq \{x \in \O_K : |x|<1\}$, a m
   \item $k[[t]]$ is a DVR, the valuation ring of the $t$-adic valuation on $k((t))$.
   \item $K = k(t), K' = K\left(t^{\frac12}, t^{\frac14}, t^{\frac18}, \ldots\right)$. The $t$-adic valuation extends to $K'$, but we must have $v(t^{\frac{1}{2^n}}) = \frac{1}{2^n}$, which is not discrete.
 \end{itemize}
+
+\section{The p-adic Numbers}
+Recall that $\Q_p$ is defined to be the completion of $\Q$ with respect to the metric induced by $|\cdot|_p$. On example sheet 1, we prove that $\Q_p$ is a field. $|\cdot|_p$ extends from $\Q$ to $\Q_p$, and the associated valuation is discrete, so $\Q_p$ is a discretely valued field.
+
+\begin{definition}
+  The \emph{ring of p-adic integers}, $\Z_p$, is the valuation ring $\{x \in \Q_p : |x|_p \leq 1\}$.
+\end{definition}
+$\Z_p$ is a discrete valuation ring with maximal ideal $p\Z_p$, and all non-zero ideals in $\Z_p$ are of the form $p^n \Z_p$ for $n \in \N$.
+
+\begin{proposition}
+  $\Z_p$ is the closure of $\Z$ inside $\Q_p$. In particular, $\Z_p$ is the completion of $\Z$ with respect to $|\cdot|_p$.
+\end{proposition}
+\begin{proof}
+  We need to show that $\Z$ is dense in $\Z_p$. We know that $\Q$ is dense in $\Q_p$. Since $\Z_p \subseteq \Q_p$ is a closed ball and hence open, $\Z_p \cap \Q$ is dense in $\Z_p$.
+  \begin{align*}
+    \Z_p \cap \Q &= \{x \in \Q : |x|_p \leq 1\}\\
+    &= \left\{\frac{a}{b} \in \Q : p \nmid b\right\}\\
+    &= \Z_{(p)}
+  \end{align*}
+  Thus it suffices to show that $\Z$ is dense in $\Z_{(p)}$.
+
+  Let $\frac{a}{b} \in \Z_{(p)}$, so that $a, b \in \Z, p\nmid b$. For $n \in \N$, choose $y_n\in\Z$ such that $by_n \equiv a \mod p^n$. Then $y_n \to \frac{a}{b}$ as $n \to \infty$.
+
+  In particular, $\Z$ is dense in $\Z_p$ which is complete.
+\end{proof}
+
+\subsection{Brief Digression on Inverse Limits}
+Let $(A_n)_{n=1}^\infty$ be a sequence of sets/groups/rings together with homomorphisms $\varphi_n : A_{n+1} \to A_n$, called transition maps. The \emph{inverse limit} of $(A_n)_{n=1}^\infty$ is the set of sequences of elements given by:
+\begin{align*}
+  \lim_{\xleftarrow[n]{}} A_n = \left\{(a_n)_{n=1}^\infty \in \prod_{n=1}^\infty A_n : \varphi_n(a_{n+1}) = a_n\right\}
+\end{align*}
+so that $a_{n+1} \xmapsto{\varphi_{n}} a_n \xmapsto{\varphi_{n-1}} a_{n-1}$. If the $A_n$ are groups/rings, then $\lim_{\xleftarrow[n]{}} A_n$ is a group/ring respectively.
+
+Let $\theta_m : \lim_{\xrightarrow[n]{}}A_n \to A_m$ denote the natural projection map.
+
+The inverse limit satisfies the following universal property:
+\begin{proposition}
+  Let $((A_n)_{n=1}^\infty, (\varphi_n)_{n=1}^\infty)$ as above. Then for any set/group/ring $B$ together with homomorphisms $\psi_n : B \to A_n$ such that the diagram
+  \begin{tikzcd}
+    B \arrow{r}{\psi_{n+1}} \arrow{dr}{\psi_n} & A_{n+1} \arrow{d}{\varphi_n} \\ & A_n
+  \end{tikzcd} commutes for all $n$, there is a unique homomorphism $\psi: B \to \lim\limits_{\xleftarrow[n]{}} A_n$ such that $\theta_n \circ \psi = \psi_n$.
+\end{proposition}
+
+\begin{proof}
+  Define $\psi: B \to \prod_{n=1}^\infty A_n$ by $b \mapsto \prod_{n=1}^\infty \{\psi_n(b)\}$.
+
+  Then $\psi_n = \varphi_n \circ \psi_{n+1} \implies \psi(b) \in \lim\limits_{\xleftarrow[n]{}} A_n$.
+
+  This map is clearly unique, as it is determined by $\psi_n = \varphi_n \circ \psi_{n+1}$, and is a homomorphism of rings.
+\end{proof}
+
+\begin{definition}
+  Let $R$ be a ring and $I \subseteq R$ an ideal. The \emph{I-adic completion of R} is the ring $\hat{R} \coloneqq \lim\limits_{\xleftarrow[n]{}} R/I^n$, where $\varphi_n : R/I^{n+1} \to R/I^n$ is the natural projection.
+\end{definition}
+
+Note that there is a natural map $i:R \to \hat{R}$ by the universal property. We say that $R$ is $I$-adically complete if $i$ is an isomorphism.
+
+As a fact, $\ker(i: R \to \hat{R}) = \bigcap_{n=1}^\infty I^n$.
+
+Let $(K, |\cdot|)$ be a non-archimedean valued field, and $\pi \in \O_K$ such that $|\pi| < 1$.
+\begin{proposition}
+  Assume that $K$ is complete. Then:
+  \begin{enumerate}
+    \item $\O_K \cong \lim\limits_{\xleftarrow[n]{}} \O_K/\pi^n\O_K$, i.e. $\O_K$ is $\pi$-adically complete.
+    \item If in addition $K$ is discretely valued and $\pi$ is a uniformizer, then every element $x \in \O_K$ can be written uniquely as $x = \sum_{i=0}^\infty a_i \pi^i$ for $a_i \in A$ where $A$ is a set of coset representatives for $k\coloneqq \O_K/\pi\O_K$.
+
+    Moreover, any series $\sum_{i=0}^\infty a_i \pi^i$ converges in $\O_K$.
+  \end{enumerate}
+\end{proposition}
+
+\begin{proof}\hspace*{0cm}
+  \begin{enumerate}[label=\textit{\arabic*.}]
+    \item There is a natural map $i:\O_K \to \lim\limits_{\xleftarrow[n]{}} \O_K/\pi\O_K$. Since $\bigcap_{n=1}^\infty \pi^n \O_K = \{0\}$, $i$ is injective. Now let $(x_n)_{n=1}^\infty \in \lim\limits_{\xleftarrow[n]{}}\O_K/\pi^n\O_K$,
+    and for each $n$ choose $y_n \in \O_K$ a lift of $x_n \in \O_K/\pi^n\O_K$.
+
+    Let $v$ be the valuation on $K$ normalised such that $v(\pi) = 1$, then $v(y_n - y_{n+1}) \geq n$, as $y_n - y_{n+1} \in \pi^n \O_K$.
+
+    So $(y_n)_{n=1}^\infty$ is a Cauchy sequence in $\O_K$, but $\O_K$ is complete as $\O_K \subseteq K$ is closed, and we assumed $K$ complete.
+
+    So $y_n \to y$ and $i(y) = (x_n)_{n=1}^\infty$, so $i$ is surjective, and hence an isomorphism.
+
+    \item Let $x \in \O_K$. Choose $a_i$ inductively as follows:
+
+    Choose $a_0 \in A$ such that $a_0 \equiv x \mod \pi\O_K$. Suppose we have chosen $a_0, \ldots, a_k$ such that $\sum_{i=0}^k a_i \pi^i \equiv x \mod \pi^{k+1}$, Then $a_i \pi^i - x  = c\pi^{k+1}$ for some $c \in \O_K$. Then choose $a_{k+1} \equiv c \mod \pi\O_K$.
+
+    Then $\sum_{i=0}^{k+1} a_i \equiv x \mod \pi^{k+2}\O_K$, and so $\sum_{i=0}^\infty a_i =x$.
+
+    For uniqueness, assume that $\sum_{i=0}^\infty a_i \pi^i = \sum_{i=0}^\infty b_i \pi^i \in \O_K$. Let $n$ be minimal such that $a_n \neq b_n$. Then $\sum_{i=0}^\infty a_i \nequiv \sum_{i=0}^\infty b_i \pi^i \mod \pi^{n+1} \contr.$
+
+    For the moreover part, any series of this form defines a Cauchy sequence, which as in \textit{1} converges in $\O_K$.
+  \end{enumerate}
+\end{proof}
+
+Warning: if $(K, |\cdot|)$ is not discretely valued, then $\O_K$ is not necessarily $m$-adically complete.
+
+\begin{corollary}
+  If $K$ is as in \textit{2} of \textbf{3.5}, then every $x \in K$ can be written uniquely as a series of the form $\sum_{i=n}^\infty a_i \pi^i, a_i \in A$. Conversely, any such expression defines an element of $K$.
+\end{corollary}
+
+\begin{proof}
+  Use the fact that $K = \O_K[\frac{1}{\pi}]$.
+\end{proof}
+\begin{corollary}\hspace*{0cm}
+  \begin{enumerate}
+    \item $\Z_p \cong \lim\limits_{\xleftarrow[n]{}} \Z/p^n\Z$.
+    \item Every element of $\Q_p$ can be written uniquely as $\sum_{i=n}^\infty a_i p^i$ where $a_i \in \{0, 1, \ldots, p-1\}$.
+  \end{enumerate}
+\end{corollary}
+\begin{proof}\hspace*{0cm}
+  \begin{enumerate}[label=\textit{\arabic*.}]
+    \item By \textbf{3.5} it is sufficient to show that $\Z_p/p^n\Z_p \cong \Z/p^n\Z$. Note that there is a natural map $f_n : \Z \to \Z_p/p^n\Z_p$, since $\Z \subseteq \Z_p$.
+
+    We have that $\ker f_n = \{x \in \Z : |x|_p \leq p^{-n}\} = p^n \Z$.
+
+    Hence, $\Z/p^n\Z \to \Z_p/p^n\Z_p$ is injective.
+
+    For surjectivity, let $\bar{c} \in \Z_p/p^n\Z_p$, and $c \in \Z_p$ a lift. Since $\Z$ is dense in $\Z_p$, we can choose $x \in \Z$ such that $x \in c + p^n\Z_p$. This is a closed ball and hence open, so $f_n(x) = \bar{c}$, and the map is surjective.
+
+    \item Follows from \textbf{3.6}, noting that $\Z_p/p^n\Z_p \cong \F_p$ by \textit{1.}
+  \end{enumerate}
+\end{proof}
+
+\underline{Examples:}
+\begin{itemize}
+  \item $\frac{1}{1-p} = 1 + p + p^2 + p^3 + \ldots \in \Q_p$.
+  \item Let $K = k((t))$ with the $t$-adic valuation. Then $\O_K = k[[t]] = \lim\limits_{\xleftarrow[n]{}} k[[t]]/(t^n)$. Moreover, $\O_K$ is the $t$-adic completion of $k[t]$.
+\end{itemize}
+
+
 \end{document}
