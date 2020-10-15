@@ -253,4 +253,106 @@ Note that the definition of $S, T$ matter - if we consider $p:\C \to \C$ instead
 $\hat{\C} \setminus \bar\D$ is a hyperbolic domain, and $f:\hat\C\setminus\bar\D\to\hat\C\setminus\bar\D$, and the iterates $\{f^n(z)|_{\hat\C\setminus\bar\D}\}$ converge locally uniformly to the constant map at $\infty$. Similarly, $\{f^n(z)|_\D\}$ converge locally uniformly to the constant map at 0.
 
 These sets are maximal for these behaviours, i.e. $\{f^n\}$ is a normal family on $\D$ and on $\hat\C\setminus\bar\D$ but on no larger set. If $|z_0| = 1$, then we have for any neighbourhood of $z_0$, some points go to infinity and some go to zero, and so there can be no holomorphic limit of iterates on any neighbourhood of $z_0$.
+
+\section{A More Useful Criterion for Normality}
+\textbf{Definition.} A family $\mathcal{F}$ of continuous functions $S \to T$ is \emph{equicontinuous} if, for all $\epsilon > 0$ there is $\delta >0$ such that, for all $f \in \mathcal{F}$ and all $s, t \in S$:
+\[d_s(s,t) < \delta \implies d_T(f(s), f(t)) < \epsilon\]
+
+\begin{theorem}[Arzel\`a-Ascoli in $\hat\C$]
+  A family $\mathcal{F}: S \to T$ of continuous maps of domains $S, T \subset \hat\C$ has the property that all sequences have a locally uniformly convergent subsequence if and only if the following are both satisfied:
+  \begin{itemize}
+    \item $\mathcal{F}$ is equicontinuous on any compact subset of $S$, and
+    \item For all $z \in S, \{f(z):f \in \mathcal{F}\}$ lies in a compact subset of $T$.
+  \end{itemize}
+\end{theorem}
+\begin{proof}
+  The forwards direction is left as an exercise.
+
+  For the reverse direction, since $S, T \subseteq \hat\C$, we can fix a countable dense subset $\{z_k\}$ of $S$. Fix a sequence $\{f_n\}$ of elements of $\mathcal{F}$. We can find a set of indices $\{n_{ij}\}$ such that:
+  \begin{align*}
+    &n_{11} < n_{12} < n_{13} < \ldots < n_{1j} < \ldots\\
+    &n_{21} < n_{22} < n_{23} < \ldots < n_{2j} < \ldots\\
+    &\;\;\;\vdots\\
+    &n_{i1} < n_{i2} < n_{i3} < \ldots < n_{ij} < \ldots\\
+  \end{align*}
+  so that each row is contained in the previous as a subsequence, and $\lim\limits_{j \to \infty} f_{n_{kj}}(z_k)$ exists for each $k$.
+
+  The diagonal sequence $g_k \coloneqq f_{n_{kk}}$ is strictly increasing in index, and for each $k$, eventually contained in the $k\th$ row. So $g_k$ converges at each $z_k$.
+
+  Consider now $K$, a compact subset of $S$. Given $\epsilon > 0$ there is $\delta >0$ such that, for all $x,y \in K$ and all $g_k$, $d_S(x, y) < \delta \implies d_T(g_k(x), g_k(y)) < \epsilon/3$.
+
+  Cover $K$ by finitely many $\delta/2$ diameter neighbourhoods, selecting some $z_k$ for each of these neighbourhoods.
+
+  Given $z \in K$, we have some $z_k$ with $\delta$, and there are only finitely many $z_k$ in this set, so in fact we can find $N$ such that $n, m > N$ implies $d_T(g_n(z_k), g_m(z_k)) < \frac{\epsilon}{3}$.
+
+  So we have:
+  \begin{align*}
+    d_T(g_n(z), g_m(z)) &\leq d_T(g_n(z), g_m(z_k)) + d_T(g_n(z_k), g_m(z_k)) + d_T(g_m(z_k), g_m(z))\\
+    &< \epsilon/3 + \epsilon/3 + \epsilon/3\\
+    &= \epsilon
+  \end{align*}
+  Since this holds for all $z \in K$, we have locally uniform convergence as claimed.
+\end{proof}
+\addtocounter{theorem}{-1}
+\begin{corollary}
+  If $T$ is compact, a family of continuous maps from $S$ to $T$ is normal if and only if it is equicontinuous on compact subsets.
+\end{corollary}
+
+This brings us to the critical takeaway applicable to dynamics:
+\begin{theorem}[Montel's theorem]
+  Let $U, V$ be domains with $V$ hyperbolic. Then the family of holomorphic maps from $U$ to $V$ forms a normal family.
+\end{theorem}
+\begin{proof}
+  Suppose first that $U$ is hyperbolic. By Pick's theorem, the family is equicontinuous.
+
+  If $\exists x \in U$ such that $\{f(x) : f \in \mathcal{F}\}$ is in some compact $K \subseteq V$, then again by Pick's theorem, the same is true for all points in $U$. So by Arzel\`a-Ascoli, we have a normal family.
+
+  Otherwise, we can fix $x \in U, y \in V$, and an infinite sequence $\{f_n\}\subseteq \mathcal{F}$ such that $\rho_V(f_n(x), y) \to \infty$ as $n \to \infty$. Fix compact $K \subseteq U, K'\subseteq V$, noting that $\rho_U(x, K), \rho_V(y, K')$ are finite, we have by Pick's theorem that $f_n(K) \cap K' = \emptyset$ for all $n$ sufficiently large. So this sequence diverges locally uniformly, and again we have a normal family.
+
+  In the case where $U$ is not hyperbolic, then $\mathcal{F}$ consists of constant maps.
+
+  If there is a subsequence with images in a compact set, then we have a locally uniformly convergent subsequence.
+
+  If not, then only finitely many of these maps have image in any compact set - we have locally uniform divergence.
+\end{proof}
+
+\underline{Example:} $f(z) = z^2$. We've seen that $\{f^n(z) : n \in \N\}$ form a normal family on $\D$ and $\hat\C\setminus\bar\D$, by manual computation. But since $f^n(\D) \subseteq \D, f^n(\hat\C\setminus\bar\D)\subseteq\hat\C\setminus\bar\D$, the iterates of $f$ must form a normal family on these domains because the image spaces are hyperbolic.
+
+More generally, if $U \subseteq \hat\C$ is a hyperbolic domain, either $\{f^n(U) : n \in \N\}$ covers all but at most 2 points of $\hat\C$, or the iterates of $f$ form a normal family on $U$.
+
+\section{Degree and Ramification}
+\begin{definition}
+  A continuous map $f:U \to V$ of topological spaces is \emph{proper} if for all $K \subset V$, $f^{-1}(K)$ is compact in $U$.
+\end{definition}
+\addtocounter{theorem}{-1}
+\begin{lemma}
+  Let $f:U\to V$ be continuous. If $U$ is compact and $V$ is Hausdorff, then $f$ is proper.
+\end{lemma}
+\begin{proof}
+  Let $K \subseteq V$ be compact. $V$ is Hausdorff $\implies$ $K$ is closed, so $V \setminus K$ is open $\implies f^{-1}(V\setminus K)$ is open (as $f$ is continuous). So $f^{-1}(K) = U \setminus f^{-1}(V\setminus K)$ is closed, and so compact as it is a closed subset of a compact set. So $f$ is proper.
+\end{proof}
+
+Recall from complex analysis the concept of local degree/ramification: if $f$ is holomorphic on a neighbourhood of $z_0$, with $f(z_0) = w_0$, then locally we have an expansion\[f(z) = w_0 + (z-z_0)^eg(z-z_0)\] where $g(z-z_0)$ is nonzero at $z_0$, and holomorphic on a neighbourhood of $z_0$. Then $e$ is the local degree/ramification index at $z_0$. If $e > 1$, then $z_0$ is said to be critical.
+
+Let $U, V$ be domains in $\hat\C$.
+\addtocounter{theorem}{-1}
+\begin{proposition}
+  If $f:U \to V$ is a proper holomorphic map, then $f$ has a well defined degree on $U$, equal to\[\sum_{z \in U: f(z) = w} e_z\] for any $w \in V$, where $e_z$ is the ramification index of $f$ at $z$.
+\end{proposition}
+Note that this is independent of $w$, and by Lemma \textbf{5.1}, all rational maps have well-defined degree!
+\addtocounter{theorem}{-1}
+\begin{theorem}[Riemann-Hurwitz]
+  Let $f:U \to V$ be proper of degree $d$. Then\[\chi(U) = d\chi(V) - \sum_{p\in V}(e_p-1)\] where $e_p$ is the ramification index of $f$ at $p$ and $\chi$ is the Euler characteristic.
+\end{theorem}
+We will take both of these theorems for granted - they follow immediately from the corresponding statements for compact sets.
+
+\begin{corollary}
+  Any degree $d$ rational function $f$ has $2d-2$ critical points, counting multiplicity.
+\end{corollary}
+\begin{proof}
+  $\chi(\hat\C) = 2$, and use Riemann-Hurwitz.
+\end{proof}
+\begin{corollary}
+  If $U, V$ have $\chi(U) = \chi(V) = 0$, (e.g. annuli, punctured discs), then any proper holomorphic $f:U \to V$ is unramified.
+\end{corollary}
 \end{document}
