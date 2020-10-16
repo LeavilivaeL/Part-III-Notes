@@ -4,6 +4,8 @@
 \title{Elliptic Curves}
 \begin{document}
 \maketitle
+\tableofcontents
+\newpage
 \section{Fermat's Method of Infinite Descent}
 Suppose we have a right-angled triangle $\Delta$ with side lengths $a, b, c$, so that by Pythagoras we have $a^2 + b^2 = c^2$, and $\text{area}(\Delta) = \frac12 ab$.
 \begin{definition}
@@ -301,7 +303,130 @@ If $D \in \Div(E)$ is defined over $K$ (i.e. fixed by the natural action of $\Ga
     & K(x,y) \arrow[dash]{dl}{} \arrow[dash]{dr}{}\\
     K(x) & & K(y)
   \end{tikzcd}
-  
+
   So $[K(E):K(x,y)]$ divides both 2 and 3 by the tower law, and hence $K(E) = K(x,y)$, and hence $\deg(E\xrightarrow{\phi}E') = 1$, and $\phi$ is birational. If $E'$ is singular, then it is rational, and so $E$ is also rational $\contr$. So $E'$ is not singular and hence smooth, and we may use remark \textbf{2.10} to $\phi^{-1}$ to see that $\phi^{-1}$ is a morphism, and hence $\phi$ is an isomorphism.
 \end{proof}
+
+\begin{proposition}
+  Let $E, E'$ be elliptic curves over $K$ in Weierstrass form. Then $E \cong E'$ over $K$ if and only if the Weierstrass equations are related by a change of variables of the form
+  \begin{align*}
+    x &= u^2x' + r\\
+    y &= u^3yu' + u^2sx' + t
+  \end{align*}
+  for $u, r, s, t \in K, u \neq 0$.
+\end{proposition}
+\begin{proof}
+  Using the notation of the previous proof,
+  \begin{align*}
+    \angle{1, x} = &\mathscr{L}(2O_E) = \angle{1, x'}\\
+    \angle{1, x, y} = & \mathscr{L}(3O_E) = \angle{1, x', y'}\\
+    \implies &\begin{cases} x = \lambda x'+ r & \lambda_1 r \in K, \lambda \neq 0 \\ y = \mu y' + \sigma x' + t & \mu, \sigma, t \in K, \mu \neq 0\end{cases}
+  \end{align*}
+  Looking at the coefficients of $x^3$ and $y^2$, $\lambda^3 = \mu^2 \implies (\lambda, \mu) = (u^2, u^3)$ for $u \in K^\times$.
+
+  Put $s = \sigma/u^2$
+\end{proof}
+The effect of this transformation on the coefficients $a_i$ is on the formula sheet for this course. A Weierstrass equation defines an elliptic curve if and only if defines a smooth curve, if and only if $\Delta(a_1, \ldots, a_6) \neq 0$ where $\Delta$ is as follows:
+\begin{align*}
+  b_2 &\coloneqq a_1^2+4a_2\\
+  b_4 &\coloneqq 2a_4+a_1a_3\\
+  b_6 &\coloneqq a_3^2+4a_6\\
+  b_8 &\coloneqq a_1^2a_6 + 4a_2a_6 - a_1a_3a_4 + a_2a_3^2 - a_4^2\\
+  \Delta &\coloneqq -b_2^2b_8 - 8b_4^3 - 27b_6^2 + 9b_2b_4b_6
+\end{align*}
+
+If $\charr K \neq 2,3$, then we can reduce to the case
+\begin{align*}
+  E: y^2 &= x^3+ax+b \\ \Delta &= -16(4a^3+26b^2)
+\end{align*}
+\begin{corollary}
+  Assume $\charr K \neq 2, 3$. If we have two elliptic curves
+  \begin{align*}
+    E &: y^2 = x^3 + ax+b\\
+    E' &: y^2 = x^3+a'x + b'
+  \end{align*}
+  then they are isomorphic over $K$ if and only if
+  \begin{align*}
+    a' &= u^4 a\\
+    b' &= u^6 b
+  \end{align*}
+  for some $u \in K^\times$.
+\end{corollary}
+\begin{proof}
+  $E$ and $E'$ are related as in \textbf{3.2} with $r = s = t = 0$.
+\end{proof}
+
+\textbf{Definition.} The \emph{j-invariant} is $j(E) = \frac{1728(4a^3)}{4a^3+27b^2}$. Note that the denominator is nonzero since the discriminant is nonzero.
+
+\begin{corollary}
+  $E \cong E' \implies j(E) = j(E')$, and the converse holds if $K = \bar{K}$.
+\end{corollary}
+\begin{proof}
+  \begin{align*}
+    E \cong E' &\iff a' = u^4a; b' = u^6 b\text{ for some } u \in K^\times \\
+    &\implies (a^3:b^2) = ((a')^3:(b')^2)\\
+    &\iff j(E) = j(E')
+  \end{align*}
+  and the reverse implication holds in the second line if $K = \bar{K}$.
+\end{proof}
+
+\section{Group Law}
+Let $E \subset \P^2$ be a smooth plane cubic, and $O_E \in E(K)$. Since $E$ is of degree 3, it meets each line in 3 points counted with multiplicity. Hence, given two points $P, Q$ on $E$, the line $\overline{PQ}$ meets $E$ at a third point $S$. Then the line $\overline{O_E S}$ meets $E$ at a third point $R$. We then define $P \oplus Q = R$.
+
+If $P=Q$, then we take the tangent line at $P$, likewise if $S = O_E$. We can view this diagrammatically as follows:
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}[scale=2]
+      \draw plot [smooth, tension=1.1] coordinates {(0,2) (1,1) (0,0) (2,-1)};
+      \node[circle, draw, fill, minimum size=1pt, inner sep=0pt, label={above:$O_E$}] (O) at (0.6, 1.655) {};
+      \node[blue, circle, draw, fill, minimum size=1pt, inner sep=0pt, label={below:\color{blue}$P$}] (P) at (0.105, -0.15) {};
+      \node[blue, circle, draw, fill, minimum size=1pt, inner sep=0pt, label={right:\color{blue}$Q$}] (Q) at (0.887, 1.35) {};
+      \draw[blue] (P) -- (Q);
+      \node[burgundy, circle, draw, fill, minimum size=1pt, inner sep=0pt, label={[shift={(-0.2, -0.1)}]:\color{burgundy}$S$}] (S) at (0.457, 0.525) {};
+      \node[green!60!black, circle, draw, fill, minimum size=1pt, inner sep=0pt, label={right:\color{green!60!black}$R$}] (R) at (0.346, -0.355) {};
+      \draw[burgundy] (O) -- (R);
+  \end{tikzpicture}
+  \caption{Illustration of the group operation on an elliptic curve}
+\end{figure}
+
+We call this the ``chord and tangent process".
+
+\begin{theorem}
+  $(E, \oplus)$ is an abelian group.
+\end{theorem}
+\begin{proof}\hspace*{0cm}
+  \begin{enumerate}[label=(\roman*)]
+    \item $P\oplus Q = Q\oplus P$ by construction.
+    \item $O_E$ is the identity.
+    \item For inverses, let $S$ be the third point of intersection of $T_{O_E}$ and $E$, and $Q$ be the third point of intersection of $\overline{PS}$ and $E$. Then $P\oplus Q = O_E$.
+    \item Associativity is much harder.
+  \end{enumerate}
+\end{proof}
+\textbf{Definition.} $D_1, D_2 \in Div(E)$ are \emph{linearly equivalent} (written $D_1 \sim D_2$) if there is $f \in \bar{K}(E)^\times$ such that $\div(f)=D_1 - D_2$. Then we will let $[D] = \{D' : D'\sim D\}$.
+
+\textbf{Definition.} The \emph{Picard group of E}, $\Pic(E) = \Div(E)/\sim$. We write $\Div^0(E) \coloneqq \ker\left(\Div(E) \xrightarrow{\deg} \Z\right)$ for the group of degree 0 divisors on $E$, and then $\Pic^0(E) = \Div^0(E)/\sim$. Sometimes $\Pic^0$ is called the Jacobian.
+
+\begin{proposition}
+  Let $\psi : E \to \Pic^0(E); P \mapsto [(P) - (O_E)]$. Then:
+  \begin{enumerate}
+    \item $\psi(P \oplus Q) = \psi(P) + \psi(Q)$
+    \item $\psi$ is a bijection
+  \end{enumerate}
+\end{proposition}
+\begin{proof}\hspace*{0cm}
+  \begin{enumerate}[label=\textit{\arabic*.}]
+    \item Referring back to Fig. 2, let $\{\ell=0\}$ be the line {\color{blue}$\overline{PQ}$}, and $\{m=0\}$ be the line {\color{burgundy}$\overline{O_E R}$}. Then:
+    \begin{align*}
+      \div(\ell/m) &= (P)+(S)+(Q)-(R)-(S)-(O_E)\\
+      &= (P)+(Q)-(O_E)-(P\oplus Q)\\
+      \implies (P\oplus Q)+(O_E) &\sim (P)+(Q)\\
+      \implies (P\oplus Q)-(O_E) &\sim (P)-(O_E)+(Q)-(O_E)\\
+      \implies \psi(P\oplus Q) &= \psi(P) + \psi(Q)
+    \end{align*}
+    \item For injectivity, suppose $\psi(P) = \psi(Q)$. Then there is $f \in \bar{K}(E)^\times$ such that $\div(f) = P-Q$. Then $\deg\left(E\xrightarrow{f}\P^1\right) = \ord_P(f) = 1$. But then $f$ is a birational morphism, so an isomorphism, and $E \cong \P^1 \contr$.
+
+    For surjectivity, let $[D] \in \Pic^0(E)$. Then $D+(O_E)$ has degree 1 (as $D$ had degree $0$). Then Riemann-Roch tells us $\dim \mathscr{L}(D+(O_E)) = 1$, and so there exists some $f \in \bar{K}(E)^\times$ such that $\div(f)+D+(O_E) \geq 0$. Since $f$ is rational, $\deg \div(f) = 0$, and $\deg D = 0$. So the coefficients of $\div(f) + D + (O_E)$ are non-negative and sum to 1, hence one of them is 1 and the rest are 0. So $\div(f) + D + (O_E) = (P)$ for some $P \in E$. But then $(P) - (O_E) \sim D$, i.e. $\psi(P) = [D]$.
+  \end{enumerate}
+\end{proof}
+So $\psi$ is a bijection respecting the group law, and so we deduce that $\oplus$ is associative, and then $(E, \oplus) \overset{\psi}{\cong} (\Pic^0E, +)$.
 \end{document}

@@ -1,0 +1,7 @@
+\contentsline {section}{\numberline {1}Basic Theory}{2}%
+\contentsline {subsection}{\numberline {1.1}Absolute Values}{2}%
+\contentsline {section}{\numberline {2}Valuation Rings}{5}%
+\contentsline {section}{\numberline {3}The p-adic Numbers}{7}%
+\contentsline {subsection}{\numberline {3.1}Brief Digression on Inverse Limits}{8}%
+\contentsline {section}{\numberline {4}Complete Valued Fields}{10}%
+\contentsline {subsection}{\numberline {4.1}Hensel's Lemma}{10}%

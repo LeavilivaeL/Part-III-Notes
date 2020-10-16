@@ -4,7 +4,7 @@
 \title{Local Fields}
 \begin{document}
 \maketitle
-
+\tableofcontents\newpage
 \section{Basic Theory}
 Suppose we have a diophantine polynomial $f(x_1, \ldots, x_r) \in \Z[x_1, \ldots, x_r]$. Then we might want to find integer solutions to the equation $f(x_1, \ldots, x_r) = 0$. However, it turns out this can be very difficult to do, for instance showing $x^n + y^n - z^n = 0$ has no solutions for $x,y,z \in \Z$ took hundreds of years and a lot of advanced mathematics.
 
@@ -163,7 +163,7 @@ and call these the \emph{open} and \emph{closed balls} of radius $r$ centred at 
   Let $K$ be a field. A \emph{valuation} on $K$ is a function $v: K^\times \to \R$ such that:
   \begin{enumerate}
     \item $v(xy) = v(x) + v(y)$
-    \item $v(x+y) \geq \min(v(x), v(y))$
+    \item $v(x+y) \geq \min\{v(x), v(y)\}$
   \end{enumerate}
 \end{definition}
 Fix $0 <\alpha<1$. If $v$ is a valuation on $K$, then $|x| = \begin{cases} \alpha^{v(x)} & x \neq 0 \\ 0 & x = 0\end{cases}\;$ determines a non-archimedean absolute value. Conversely, a non-archimedean absolute value determines a valuation $v(x) = \log_\alpha |x|$.
@@ -397,6 +397,108 @@ Warning: if $(K, |\cdot|)$ is not discretely valued, then $\O_K$ is not necessar
   \item $\frac{1}{1-p} = 1 + p + p^2 + p^3 + \ldots \in \Q_p$.
   \item Let $K = k((t))$ with the $t$-adic valuation. Then $\O_K = k[[t]] = \lim\limits_{\xleftarrow[n]{}} k[[t]]/(t^n)$. Moreover, $\O_K$ is the $t$-adic completion of $k[t]$.
 \end{itemize}
+\section{Complete Valued Fields}
+\subsection{Hensel's Lemma}
+For complete valued fields, there is a nice way to produce solutions in $\O_K$ to certain equations from the solutions mod $m$.
 
+Given $f \in R[x]$ for some ring $R$, we will denote by $f'$ the \emph{formal derivative} of $f$, which is the image of $f$ under the linear map taking $x^n \mapsto nx^{n-1}$.
 
+\begin{theorem}[Hensel's Lemma, version 1]
+  Let $(K, |\cdot|)$ be a complete discretely valued field. Let $f(x) \in \O_K[x]$, and assume there exists $a \in \O_K$ such that $|f(a)| < |f'(a)|^2$.
+
+  Then there exists a unique $x \in \mathcal{O}_K$ such that $f(x) = 0$ and $|x-a| < |f'(a)|$.
+\end{theorem}
+
+\begin{proof}
+  Let $\pi \in \O_K$ be a uniformizer, and let $r = v(f'(a))$. We construct a sequence $(x_n)_{n=1}^\infty$ in $\O_K$ such that:
+  \begin{enumerate}[label=(\roman*)]
+    \item $f(x_n) \equiv 0 \mod \pi^{n+2r}$
+    \item $x_{n+1} \equiv x_n \mod \pi^{n+r}$
+  \end{enumerate}
+  Take $x_1 = a$; then $f(x_1) \equiv 0 \mod \pi^{1+2r}$.
+
+  Suppose we've constructed $x_1, \ldots, x_n$ satisfying (i) and (ii). Define $x_{n+1}\coloneqq x_n - \frac{f(x_n)}{f'(x_n)}$. Since $x_n \equiv x_1 \mod \pi^{r+1}, v(f'(x_n)) = r$, and hence $\frac{f(x_n)}{f'(x_n)}\equiv 0 \mod \pi^{n+r}$ by (i).
+
+  It follows that $x_{n+1} \equiv x_n \mod \pi^{n+r}$, so (ii) holds.
+
+  Note that for $x, y$ indeterminates, $f(x+y) = f_0(x)+f_1(x)y + f_2(x)y^2 + \ldots$, where $f_i(x) \in \O_K[x]$, and $f_0(x) = f(x), f_1(x) = f'(x)$.
+
+  Thus $f(x_{n+1}) = f(x_n) + f'(x_n)c+f_2(x_n)c^2 + \ldots$, where $c = -\frac{f(x_n)}{f'(x_n)} \equiv 0 \mod \pi^{n+r}$. Then since $v(f_i(x_n)) \geq 0$, we have $f(x_{n+1}) \equiv f(x_n) + f'(x_n)c \equiv 0 \mod \pi^{n+2r+1}$, and so (i) holds.
+
+  This gives a construction of $(x_n)_{n=1}^\infty$. Property (ii) implies our sequence is Cauchy, so by completeness it converges to $x \in \O_K$. Then $f(x) = \lim_{n\to\infty} f(x_n) = 0$, which is zero by $(i)$.
+
+  Moreover, (ii) implies:
+  \begin{align*}
+    a &= x_1 \equiv x_n \mod \pi^{r+1} \forall n\\
+    \implies a &\equiv x \mod \pi^{r+1}\\
+    \implies |x-a| &< |f'(a)|
+  \end{align*}
+  This proves existence.
+
+  For uniqueness, suppose $x'$ also satisfies $f(x') = 0, |x' - a| < |f'(a)|$. Let $\delta = |x'-x| \gneq 0$.
+
+  Then $|x'-a| < |f'(a)|, |x-a| < |f'(a)|$, and the ultrametric inequality implies:
+  \[|\delta| = |x-x'| < |f'(a)| = |f'(x)|\]
+  But $0 = f(x') = f(x+\delta) = f(x) + f'(x)+\delta + \ldots$, where absolute value of the higher order terms is $\leq |\delta|^2$.
+
+  Hence $|f'(x)\delta| \leq |\delta|^2 \implies |f'(x)| \leq |\delta| \contr$.
+\end{proof}
+
+The following corollary is a slightly weaker result, but will often turn out to be more useful for what we want to do.
+
+\begin{corollary}
+  Let $(K, |\cdot|)$ be a complete discretely valued field. Let $f(x)\in \O_K[x]$, and $\bar{c}\in k\coloneqq \O_K/m$ a simple root of $\bar{f}(x) \coloneqq f(x) \mod m \in k[x]$ (i.e. not a root of $\bar{f}'(x)$).
+
+  Then there is a unique $x \in \O_K$ such that $f(x) = 0$ and $x \equiv \bar{c} \mod m$.
+\end{corollary}
+\begin{proof}
+  Apply \textbf{4.1} to a lift $c \in \O_K$ of $\bar{c}$. Then $|f(c)| < |f'(c)|^2 = 1$, since $\bar{c}$ is a simple root.
+\end{proof}
+
+\underline{Example:} $f(x) = x^2-2$ has a simple root mod 7. Thus $\sqrt{2} \in \Z_7 \subseteq \Q_7$.
+
+\begin{corollary}
+  \[\Q_p^\times/(\Q_p^\times)^2 \cong \begin{cases} (\Z/2\Z)^2 & p > 2 \\ (\Z/2\Z)^3 & p=2 \end{cases}\]
+\end{corollary}
+\begin{proof}\hspace*{0cm}
+  \begin{itemize}
+    \item[\underline{$p>2$:}] Let $b \in \Z_p^\times$. By \textbf{4.2} applied to $f(x) = x^2-b$, we have $b \in (\Z_p^\times)^2$ if and only if $b \in (\F_p^\times)^2$.
+
+    Thus $\Z_p^\times/(\Z_p^\times)^2 \cong \F_p^\times/(\F_p^\times)^2 \cong \Z/2\Z$, since $\F_p^\times \cong \Z/(p-1)\Z$.
+
+    We have an isomorphism $\Q_p^\times \cong \Z_p^\times \times \Z$, given by $(u, p) \mapsto up^n$
+
+    Thus $\Q_p^\times/(\Q_p^\times)^2 \cong (\Z/2\Z)^2$.
+
+    \item[\underline{$p=2$:}] Let $b \in \Z_2^\times$. Consider $f(x) = x^2-b$. Then $f'(x) = 2x \cong 0 \mod 2$, so we can't use \textbf{4.1}.
+
+    Let $b \equiv 1 \mod 8$. Then $|f(1)|_2 \leq 2^{-3} < |f'(1)|_2^2 = 2^{-2}$. So by Hensel's lemma, $f(x)$ has a root in $\Z_2$.
+
+    Hence $b \in (\Z_p^\times)^2 \iff b \equiv 1 \mod 8$. So $\Z_2^\times/(\Z_2\times)^2 \equiv (\Z/8\Z)^\times \equiv (\Z/2\Z)^2$. Again, using $\Q_2^\times \cong \Z_2^\times \times \Z$, we fine that $\Q_2^\times/(\Q_2\times)^2 \cong (\Z/2\Z)^3$.
+  \end{itemize}
+\end{proof}
+
+The proof of Hensel's lemma uses the iteration $x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}$, which is the same iteration as used in the Newton-Raphson method for functions on the real numbers. In this case however we can do one better, as Hensel's lemma lets us know when the iteration will converge.
+
+For later applications, we will need the following version of Hensel's lemma:
+\begin{theorem}[Hensel's Lemma, version 2]
+  Let $(K, |\cdot|)$ be a complete discretely valued field, and $f(x) \in \O_K[x]$, and suppose that $\bar{f}(x) \coloneqq f(x) \mod m \in k[x]$ factorises as:
+  \begin{align*}
+    \bar{f}(x) = \bar{g}(x)\bar{h}(x)
+  \end{align*}
+  with $\bar{g}(x), \bar{h}(x)$ coprime.
+
+  Then there is a factorisation $f(x) = g(x)h(x)$ in $\O_K[x]$, with $g(x) \equiv \bar{g}(x)\mod m, \bar{h}(x) \equiv h(x) \mod m$, and $\deg \bar{g}= \deg g$.
+\end{theorem}
+\begin{proof}
+  Example sheet 1.
+\end{proof}
+\begin{corollary}
+  Let $f(x) = a_nx^n + \ldots + a_0 \in K[x]$ with $a_0, a_n \neq 0$. If $f(x)$ is irreducible, then $|a_i|\leq \max\{|a_0|, |a_n|\}$ for all $i$.
+\end{corollary}
+\begin{proof}
+  Upon scaling, we may assume $f(x) \in \O_K[x]$ with $\max_i\{|a_i|\} = 1$. Thus we need to show that $\max\{|a_0|, |a_1|\} = 1$. If not, let $r$ be minimal such that $|a_r|=1$, then $0 < r < n$. Thus we have $\bar{f}(x) = x^r(a_r + \ldots a_nx^{n-r}) \mod m$.
+
+  Then \textbf{4.5} tells us this factorisation lifts to a factorisation in $\O_K[x]$, which is a contradiction.
+\end{proof}
 \end{document}
