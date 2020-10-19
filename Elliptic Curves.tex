@@ -226,7 +226,7 @@ We thus deduce that $\mathscr{L}(2P) = \angle{1, x}, \mathscr{L}(3P) = \angle{1,
 
   Since our field doesn't have characteristic 2, we may complete the square by substituting $Y = Y - \frac12 a_1X - \frac12 a_3Z$, we may assume $a_1 = a_3 = 0$.
 
-  Now $C: Y^2Z = Z^3f(X/Z)$, where $f$ is a monic cubic polynomial. Since $C$ is smooth, $f$ has distinct roots, which are \textsc{wlog} $0, 1, \lambda$. So \[C : Y^2Z = X(X-Z)(X-\lambda Z)\], which we call the Legendre form.
+  Now $C: Y^2Z = Z^3f(X/Z)$, where $f$ is a monic cubic polynomial. Since $C$ is smooth, $f$ has distinct roots, which are \textsc{wlog} $0, 1, \lambda$. So \[C : Y^2Z = X(X-Z)(X-\lambda Z)\]which we call the Legendre form.
 \end{proof}
 
 It may be shown that the points of inflection on $C = \{F=0\}\subset \P^2$ are given by $F = \det\left(\frac{\partial^2 f}{\partial X_i \partial X_j}\right) = 0$
@@ -429,4 +429,131 @@ We call this the ``chord and tangent process".
   \end{enumerate}
 \end{proof}
 So $\psi$ is a bijection respecting the group law, and so we deduce that $\oplus$ is associative, and then $(E, \oplus) \overset{\psi}{\cong} (\Pic^0E, +)$.
+
+\subsection{Explicit Formulae for the Group Law}
+We consider $E$ in Weierstrass form, with $O_E$ the point at infinity:
+\[y^2 + a_1 xy + a_3 y = x^3 + a_2 x^2 + a_4 x + a^6\tag{$\ast$}\]
+Note that $O_E$ is a point of inflection. Now $P_1 \oplus P_2 \oplus P_3 = O_E \iff P_1, P_2, P_3$ are collinear.
+
+We will use the following notation:
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[
+      xmin = -2, xmax = 3, ymin = -4, ymax = 4,
+      axis equal,
+      ticks = none,
+      axis lines = middle,
+      ]
+      \addplot[domain=-1.32471796:3, blue, samples=100] {sqrt(x^3-x+1)};
+      \addplot[domain=-1.32471796:3, blue, samples=100] {-sqrt(x^3-x+1)};
+      \node[circle, burgundy, draw, fill, inner sep=0pt, minimum size=2pt, label={left:\textcolor{burgundy}{$P_1$}}] (P1) at (axis cs:-1.25,-0.54486) {};
+      \node[circle, burgundy, draw, fill, inner sep=0pt, minimum size=2pt, label={above:\textcolor{burgundy}{$P_2$}}] (P2) at (axis cs:0.3,0.85264) {};
+      \node[circle, burgundy, draw, fill, inner sep=0pt, minimum size=2pt, label={left:\textcolor{burgundy}{$P'$}}] (P3) at (axis cs:1.763, 2.17180) {};
+      \addplot[domain=-2.5:3, burgundy] {0.90161*x+0.58216};
+      \addplot[burgundy, mark=none] coordinates {(1.763, -3.5) (1.763, 3.5)};
+      \node[circle, burgundy, draw, fill, inner sep=0pt, minimum size=2pt, label={right:\textcolor{burgundy}{$P_3 = P_1 \oplus P_2$}}] (P4) at (axis cs:1.763, -2.17180) {};
+    \end{axis}
+  \end{tikzpicture}
+\end{figure}
+and put $P_i = (x_i, y_i)$, $P'=(x',y')$.
+
+Now $\ominus P_1 = (x_1, -(a_1x_1+a_3)-y_1)$, just by setting $y = -y_1$ in $(\ast)$.
+
+The line through $P_1, P_2$ has equation say $y = \lambda x + \nu$. Substituting into $(\ast)$ and looking at the coefficient of $x^2$, we get:
+\[\lambda^2 + a_1 \lambda - a_2 = x_1 + x_2 + x'\]
+Since $x_3 = x'$, we have:
+\begin{align*}
+   x_3 &= \lambda^2+a_1\lambda-a_2-x_1-x_2\\
+   y_3 &= -(a_1 x' + a_3) - y'\\
+   &= -(\lambda+a_1)x_3 - \nu - a_3
+\end{align*}
+It remains to find $\lambda$ and $\nu$. There are 3 cases:
+\begin{enumerate}
+  \item $x_1=x_2, P_1 \neq P_2$.
+
+  Then $P_1 \oplus P_2 = O_E$.
+
+  \item $x_1 \neq x_2$.
+
+  \[\lambda = \frac{y_2-y_1}{x_2-x_1},\;\; \nu = y_1-\lambda x_1 = \frac{y_1x_2-y_2x_1}{x_2-x_1}\]
+
+  \item $P_1 = P_2$.
+
+  Here we have to compute the equation of the tangent line etc. The solutions are:
+  \[ \lambda=\frac{3x_1^2+2a_2x_1+a_4-a_1y_1}{2y_1+a_1x_2+a_3},\;\;\nu = \frac{-x_1^3+a_4x_1+2a_6-a_3y_1}{2y_1+a_1x_1+a_3}\]
+\end{enumerate}
+
+\begin{corollary}
+  $E(K)$ is an abelian group.
+\end{corollary}
+\begin{proof}
+  It is a subgroup of $E$ ($=E(\bar{K})$).
+
+  \begin{itemize}[leftmargin=2cm]
+    \item[Identity:] $O_E \in E(K)$ by definition.
+    \item[Closure:] See formulae above.
+    \item[Inverses:] See formulae above.
+    \item[Associativity:] Inherited from $E(\bar{K})$.
+    \item[Commutativity:] Inherited from $E(\bar{K})$.
+  \end{itemize}
+\end{proof}
+
+If there is no ambiguity (i.e. we are not also adding numbers at the same time), the circles will be dropped from the group operation.
+\begin{theorem}
+  Elliptic curves are group varieties.
+
+  i.e., $[-1]:E \to E; P\mapsto -P$ and $+:E\times E \to E; (P,Q)\mapsto P+Q$ are morphisms of algebraic varieties.
+\end{theorem}
+\begin{proof}
+  The above formulae show that $[-1]$ and $+$ are rational maps. We know immediately that $[-1]$ is a morphism, as it is a rational map from a smooth curve to a projective variety.
+
+  The formulae also show that $+$ is regular on the set
+  \[ U = \{(P,Q) \in E \times E \mid P, Q, P+Q, P-Q \neq O_E\}\]
+  For $P \in E$, let $\tau_P:E \to E; X \mapsto P+X$ be the ``translation by $P$" map.
+
+  Then $\tau_P$ is a rational map from a smooth curve to a projective variety, so is a morphism.
+
+  We factor $+$ as:
+  \[ E\times E\xrightarrow[\tau_{-A}\times \tau_{-B}]{}E\times E \xrightarrow[\tau_{A+B}]{} E \xrightarrow[\tau_{A+B}]{} E\]
+
+  Now $+$ is regular on $(\tau_A \times \tau_B)(U)$ for all $A, B \in E$, and so $+$ is regular on $E \times E$.
+\end{proof}
+
+\underline{\textbf{Definition.}} For any $n \in \Z_{>0}$, let $[n]: E \to E; P \mapsto P+\ldots+P$, $n$ times, and $[-n] = [-1]\circ [n]$, $[0]:P \mapsto O_E$ (i.e., the standard way of turning an abelian group into $\Z$ module).
+
+\underline{\textbf{Definition.}} The \emph{n-torsion} subgroup of $E$ is $E[n] = \ker([n]:E\to E)$.
+
+\begin{lemma}
+  If $\charr(K) \neq 2$, and $E : y^2 = (x-e_1)(x-e_2)(x_e_3)$.
+
+  Then $E[2] = (0, (e_1, 0), (e_2, 0), (e_3 0)) \cong (\Z/2\Z)^2$.
+\end{lemma}
+\begin{proof}
+  Let $P = (x, y) \in E$. Then $[2]P = 0 \iff P = -P \iff (x, y) = (x, -y) \iff y = 0$.
+\end{proof}
+
+\subsection{Elliptic Curves over $\C$}
+Let $\Lambda = \{a\omega_1 + b\omega_2 : a, b \in \Z\}$, where $\omega_1, \omega_2$ form a basis for $\C$ over $\R$.
+
+Then the meromorphic functions on the Riemann surface (or lattice) $\C/\Lambda$ are the same as the $\Lambda$-invariant meromorphic functions on $\C$ (i.e. $f(z) = f(z+\lambda)$ for $\lambda \in \Lambda$).
+
+This set of functions is a field, and is generated by $\wp(z)$ and $\wp'(z)$, where:
+\begin{align*}
+  \wp(z) = \frac{1}{z^2} + \sum_{0 \neq \lambda\in\Lambda} \left(\frac{1}{(z-\lambda)^2} - \frac{1}{\lambda^2})
+\end{align*}
+They satisfy $\wp'(z)^2 = 4\wp(z)^3-g_2\wp(z)-g_3$, for some $g_1, g_3 \in \C$ depending on $\lambda$. We call $\wp$ the \emph{Weierstrass p-function}.
+
+One can show that $\C/\Lambda \cong E(\C)$, where $E$ is the elliptic curve $y^2=4x^3-g_2x-g_3$. This is an isomorphism, not only of Riemann surfaces, but moreover of groups
+
+\begin{theorem}[Uniformisation Theorem]
+  Every elliptic curve over $\C$ arises in this way.
+\end{theorem}
+
+Thus, for elliptic curves $E/\C$, we have:
+\begin{enumerate}[label=\protect\circled{\arabic*}]
+  \item $E[n] \cong (\Z/n\Z)^2$
+  \item $\deg[n] = n^2$
+\end{enumerate}
+We will show that \circled{2} holds over any field $K$, and \circled{1} holds if $\charr K \nmid n$.
 \end{document}

@@ -6,3 +6,5 @@
 \contentsline {subsection}{\numberline {2.3}The Degree of a Morphism}{7}%
 \contentsline {section}{\numberline {3}Weierstrass Equations}{7}%
 \contentsline {section}{\numberline {4}Group Law}{10}%
+\contentsline {subsection}{\numberline {4.1}Explicit Formulae for the Group Law}{11}%
+\contentsline {subsection}{\numberline {4.2}Elliptic Curves over $\mathbb {C}$}{13}%

@@ -501,4 +501,109 @@ For later applications, we will need the following version of Hensel's lemma:
 
   Then \textbf{4.5} tells us this factorisation lifts to a factorisation in $\O_K[x]$, which is a contradiction.
 \end{proof}
+
+\section{Teichm\"uller Lifts}
+Recall that every element of $\Q_p$ can be written as $x = \sum_{i=n}^\infty a_i p^i$, where \mbox{$a_i \in \{0,\ldots,p-1\}\eqqcolon A$.}
+
+We chose this set $A$ since we found that we needed coset representatives for $\F_p \leq \Z_p$. However, this choice of $A$ doesn't respect any of the algebraic structure on $\Z_p$.
+
+It turns out there is a natural choice of coset representatives in many cases which does respect some algebraic structure.
+
+\begin{definition}
+  A ring $R$ of characteristic $p$ is \emph{perfect} if the Frobenius map $\Frob: x \mapsto x^p$ is an automorphism of $R$. A field of characteristic $p$ is perfect if it is perfect as a ring.
+\end{definition}
+Note that since $\charr R = p, (x+y)^p = x^p + y^p$, so the Frobenius map is a ring homomorphism, so all that is needed is that it is bijective.
+
+\underline{Examples:}
+\begin{enumerate}
+  \item $\F_p$ and $\bar{F}_p$ are perfect fields.
+  \item $\F_p[t]$ is not perfect - $t \notin \Image(\Frob)$.
+  \item $\F_p\left(t^{1/p^\infty}\right) \coloneqq \F_p(t, t^{1/p}, t^{1/p^2}, \ldots)$ is a perfect field. This is the smallest perfect field containing $\F_p(t)$, so we call it the \emph{perfection} of $\F_p(t)$. The $t$-adic absolute value extends to $\F_p(t^{1/p^\infty})$, and the completion of $\F_p(t^{1/p^\infty})$ is called a \emph{perfectoid field}. These were the subject of Peter Scholze's PhD thesis.
+\end{enumerate}
+Fact: a field $k$ is perfect if and only if any finite extension of $k$ is separable.
+
+\begin{theorem}
+  Let $(K, |\cdot|)$ be a complete discretely valued field such that $k \coloneqq \O_K/m$ is a perfect field of characteristic $p$. Then there is a unique map \[ [\cdot]:k \to \O_K\] such that:
+  \begin{enumerate}
+    \item $a \equiv [a] \mod m$ for all $a \in k$.
+    \item $[ab] \equiv [ab]$ for all $a, b \in k$.
+  \end{enumerate}
+  Moreover, if $\charr \O_K = p$, then $[\cdot]$ is a ring homomorphism.
+\end{theorem}
+\begin{definition}
+  The element $[a] \in \O_K$ constructed in \textbf{5.2} is called the \emph{Teichm\"uller lift} of $a$.
+\end{definition}
+The idea of the proof of this theorem is that, if $\alpha \in O_K$ be a lift of $a \in k$. $\alpha$ is well defined then up to the ideal $\pi\O_K$ (where $\pi$ is a uniformizer).
+
+Then let $\beta \in \O_K$ be a lift of $a^{1/p}$; we claim that $\beta$ is a ``better" lift:
+
+Let $\beta' \in \O_k$ be another lift of $a^{1/p}$. Then $\beta = \beta' + \pi u, u \in \O_K$, and so $\beta^p = \beta'^p + \sum_{i=1}^\infty \binom{p}{i} \beta'^i(\pi u))^{p-i}$. Since $p \in \pi$, this sum term lies in $\pi^2 \O_K$, and so $\beta$ is well defined up to $\pi^2 \O_K$.
+
+The idea is then to repeat this process, getting a sequence of better and better lifts each time, which will converge to a ``canonical" lift. To do this rigorously we'll need the following lemma:
+
+\begin{lemma}
+  Let $(K, |\cdot|)$ be as in \textbf{5.3}, and fix $\pi \in\O_K$ a uniformizer. Let $x, y \in \O_K$ such that $x \equiv y \mod \pi^k$, for $k \geq 1$. Then $x^p \equiv y^p \mod \pi^{k+1}$.
+\end{lemma}
+\begin{proof}
+  Let $x = y+u\pi^k$. Then:
+  \begin{align*}
+    x^p &= \sum_{i=0}^p \binom{p}{i} y^i (u\pi^k)^{p-i}\\
+    &= y^p + pu\pi^k y^{p-1} + \sum_{i=2}^p\binom{p}{i}y^i(u\pi^k)^{p-i}\;\;\;\text{for $p>2$}\\
+  \end{align*}
+  Since $\O_K/\pi\O_K$ is of characteristic $p$, we have $p \in (\pi)$. Thus $pu\pi^ky^{p-1} \in \pi^{k+1}\O_K$. Additionally, for $i \geq 2$, $(u\pi^k)^i \in \pi^{k+1}\O_K$.
+
+  Hence $x^p \equiv y^p \mod \pi^{k+1}$.
+\end{proof}
+\begin{proof}[Proof of \textbf{Theorem 5.2}.]
+  Let $a \in k$. For each $i \geq 0$, we choose a lift $y_i \in \O_K$ of $a^{1/p^i}$, and we define:
+  \[x_i \coloneqq y_i^{p^i}\]
+  Then $x_i \equiv y_i^{p^i} \equiv\left(a_i^{1/p^i}\right)^{p^i} \equiv a \mod \pi$.
+
+  We then claim that $(x_i)_{i=1}^\infty$ is a Cauchy sequence, and that its limit $x_i \to x$ is independent of the choice of $y_i$.
+
+  By construction, $y_i \equiv y_{i+1}^p \mod \pi$. By \textbf{5.4} and using induction on $k$, we have $y_i^{p^k} \equiv y_{i+1}^{p^{k+1}} \mod \pi^{k+1}$, and hence $x_i \equiv x_{i+1} \mod \pi^{i+1}$, and so the sequence is Cauchy, so converges in $\O_K$ to some $x$.
+
+  Suppose we had chosen different $y_i$s, getting a different sequence $(x_i')_{i=1}^\infty$. Then $x_i' \to x' \in \O_K$.
+
+  Then let $(x_i'')_{i=1}^\infty = \begin{cases} x_i & i \text{ even}\\ x_i' & i \text{ odd}\end{cases}$. Then $(x_i'')$ is also Cauchy, and has convergent subesquences to $x$ and $x'$, so $x=  x'$, and our choice of $y_i$ didn't matter.
+
+  We then define $[a] = x$.
+
+  $x \equiv a \mod \pi$, so the first condition is satisfied.
+
+  For the second condition, let $b \in k$, and we choose $u_i \in \O_K$ a lift of $b^{1/p^i}$; let $z_i \coloneqq u_i^{p^i}$. Then $\lim_{i\to \infty} z_i =[b]$.
+
+  Now $u_iy_i$ is a lift of $(ab)^{1/p^i}$, hence $[ab] = \lim\limits_{i\to\infty} x_i z_i = \lim\limits_{i\to\infty} x_i\lim\limits_{i\to\infty}z_i = [a][b]$.
+
+  If $\charr \O_K = p$, then $y_i + u_i$ is a lift of $a^{1/p^i} + b^{1/p^i} = (a+b)^{1/p^i}$ (raise both sides to $p^i$ and use perfectness $\implies$ bijectivity of $\Frob$). Then we have:
+  \begin{align*}
+    [a+b] &= \lim_{i\to\infty} (y_i + u_i)^{p^i}\\
+    &= \lim_{i\to\infty} y_i^{p^i} + u_i^{p^i}\\
+    &= \lim_{i\to\infty} x_i + z_i\\
+    &= [a]+[b]
+  \end{align*}
+  It is easy to check that $[0]=0, [1]=1$, and so $[\cdot]$ is a ring homomorphism.
+
+  For uniqueness, let $\phi : k \to \O_K$ be another such map. Then for $a \in k, \phi(a^{1/p^i})$ is a lift $a^{1/p^i}$. It follows that:
+  \[[a] = \lim_{i \to \infty} \phi(a^{1/p^i})^{p^i}=\lim_{i\to\infty} \phi(a) = \phi(a)\]
+\end{proof}
+\underline{Example:} $K = \Q_p$, then $[\cdot]:\F_p \to \Z_p$. For $a \in \F_p^\times, [a]^{p-1} = [a^{p-1}] = [1] = 1$, and so $[a]$ is a $(p-1)\th$ root of unity. More generally:
+\stepcounter{theorem}
+\begin{lemma}
+  Let $(K, |\cdot|)$ be a complete discretely valued field. If $k \coloneqq \O_K/m \subseteq \F_p$, then $[a] \in \O_K^\times$ is a root of unity.
+\end{lemma}
+\begin{proof}
+  $a \in k \implies a \in \F_{p^n}$ for some $n$, so $[a]^{p^n-1} = [1] = 1$.
+\end{proof}
+\begin{theorem}
+  Let $(K, |\cdot|)$ be a complete discretely valued field with $\charr K = p > 0$. Then $K \cong k((t))$.
+\end{theorem}
+\begin{proof}
+  Since $K = \Frac(\O_K)$, it suffices to show that $\O_K \cong k[[t]]$. Fix $\pi \in \O_K$ a uniformizer, and let $[\cdot]:k \to \O_K$ be the Teichm\"uller map, and define:
+  \begin{align*}
+    \varphi: k[[t]] &\to \O_K\\
+    \sum_{i=0}^\infty a_i t^i &= \sum_{i=0}^\infty [a_i]\pi^i
+  \end{align*}
+  Then $\varphi$ is a ring homomorphism since $[\cdot]$ is, and it is a bijection by \textbf{3.5}.
+\end{proof}
 \end{document}

@@ -5,3 +5,4 @@
 \contentsline {subsection}{\numberline {3.1}Brief Digression on Inverse Limits}{8}%
 \contentsline {section}{\numberline {4}Complete Valued Fields}{10}%
 \contentsline {subsection}{\numberline {4.1}Hensel's Lemma}{10}%
+\contentsline {section}{\numberline {5}Teichm\"uller Lifts}{12}%

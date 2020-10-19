@@ -60,6 +60,10 @@
 \newcommand{\dbangle}[1]{\angle{\angle{#1}}}
 \newcommand{\wrt}{\text{ w.r.t. }}
 
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+      \node[shape=circle,draw,inner sep=2pt] (char) {#1};}
+}
+
 \DeclareMathOperator{\ex}{ex}
 \DeclareMathOperator{\id}{id}
 \DeclareMathOperator{\upper}{Upper}
@@ -77,6 +81,7 @@
 \DeclareMathOperator{\Span}{Span}
 \DeclareMathOperator{\Gal}{Gal}
 \DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Frob}{Frob}
 \let\div\relax
 \DeclareMathOperator{\div}{div}
 \DeclareMathOperator{\Div}{Div}
