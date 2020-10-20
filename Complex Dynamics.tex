@@ -258,7 +258,7 @@ These sets are maximal for these behaviours, i.e. $\{f^n\}$ is a normal family o
 
 \section{A More Useful Criterion for Normality}
 \textbf{Definition.} A family $\mathcal{F}$ of continuous functions $S \to T$ is \emph{equicontinuous} if, for all $\epsilon > 0$ there is $\delta >0$ such that, for all $f \in \mathcal{F}$ and all $s, t \in S$:
-\[d_s(s,t) < \delta \implies d_T(f(s), f(t)) < \epsilon\]
+\[d_S(s,t) < \delta \implies d_T(f(s), f(t)) < \epsilon\]
 
 \begin{theorem}[Arzel\`a-Ascoli in $\hat\C$]
   A family $\mathcal{F}: S \to T$ of continuous maps of domains $S, T \subset \hat\C$ has the property that all sequences have a locally uniformly convergent subsequence if and only if the following are both satisfied:
@@ -367,7 +367,7 @@ We will take both of these theorems for granted - they follow immediately from t
 \end{definition}
 Intuitively, $F(f)$ is the stable locus of $f$, and $J(f)$ is the chaotic or unstable locus of $f$.
 
-For example, take $f(z) = \lambda z$ for $\lambda = e^{2\pi\im\theta}$ for some $\theta \in \R\setminus \Q$. Then $\{f^n(z)\}$ forms a normal family on any disc centered at $0$, because $\{f^n|_{\text{disc}}\}$ is a family of self-maps of hyperbolic domains, so we can use Mantel's theorem. Note that $f^n(z)$ doesn't converge to any point, but it does have convergent subsequences.
+For example, take $f(z) = \lambda z$ for $\lambda = e^{2\pi\im\theta}$ for some $\theta \in \R\setminus \Q$. Then $\{f^n(z)\}$ forms a normal family on any disc centered at $0$, because $\{f^n|_{\text{disc}}\}$ is a family of self-maps of hyperbolic domains, so we can use Montel's theorem. Note that $f^n(z)$ doesn't converge to any point, but it does have convergent subsequences.
 
 \begin{figure}[H]
   \centering
@@ -412,7 +412,7 @@ The proofs of these are exercises on example sheet 1.
 \subsection{Conjugation and Dynamics}
 In general, if $\mu$ is a M\"obius map, and $f$ is rational, with $g \coloneqq \mu\circ f\circ\mu^{-1}$, then \mbox{$g^n = \mu\circ f^n \circ \mu^{-1}$.}
 
-As an example, let $f$ be a rational map of degree 2 with two fixed critical points. If $\infty$ is fixed, and $\infty$ maps to itself with degree 2, then we know $\infty$ has no other preimages, and we have a polynomial of degree 2. Let's conjugate by $\mu$, a M\"obius map taking one of the fixed critical points to $\infty$, and the other to.\footnote{Notice that being fixed and critical are conjugation invariant}.
+As an example, let $f$ be a rational map of degree 2 with two fixed critical points. If $\infty$ is fixed, and $\infty$ maps to itself with degree 2, then we know $\infty$ has no other preimages, and we have a polynomial of degree 2. Let's conjugate by $\mu$, a M\"obius map taking one of the fixed critical points to $\infty$, and the other to 0.\footnote{Notice that being fixed and critical are conjugation invariant}
 
 So we are conjugate to a degree 2 polynomial with 0 fixed and critical, i.e. $f(z) = az^2$. Conjugating again by $\mu(z) = az$, which doesn't change 0 or $\infty$, we have a map conjugate to $g(z) = z^2$. This has the unit circle as its Julia set.
 
@@ -422,7 +422,7 @@ Therefore $f$'s Julia set is a M\"obius image of the unit circle, i.e. a circle.
   Let $z \in J(f)$ and $U$ be an open neighbourhood of $z$. Then the union $V \coloneqq \bigcup f^n(U)$ of forward images of $U$ contains all but at most two points of the Riemann sphere, both of which are critical points in the Fatou set.
 \end{theorem}
 \begin{proof}
-  If $\{f^n|_U\}$ omit at least 3 points of $\hat\C$, then Mantel's theorem tells us we have a normal family on $U$, and so $U \subseteq F(f)$. But $U \cap J(f)\neq \emptyset \contr$.
+  If $\{f^n|_U\}$ omit at least 3 points of $\hat\C$, then Montel's theorem tells us we have a normal family on $U$, and so $U \subseteq F(f)$. But $U \cap J(f)\neq \emptyset \contr$.
 
   If $\bigcup f^n(U)$ misses any points, then we want to show they are Fatou and critical. Without loss of generality, assume these points are in $\{0, \infty\}$. Since $f(V) \subseteq V$, no preimage of $0$ or $\infty$ lies in $V$.
 
