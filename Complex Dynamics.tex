@@ -9,6 +9,8 @@
 
 \title{Complex Dynamics}
 \begin{document}
+\tableofcontents
+\newpage
 \section{Introduction}
 \subsection{Classical Motivation: Newton's Method}
 Newton's method (also called Newton-Raphson) is an algorithm for finding roots of a polynomial. If $p(z)$ is a polynomial, then we construct the auxiliary function $f(z) = z - \frac{p(z)}{p'(z)}$. We then pick some value $z_0$ and we iterate, so that $z_{i+1} = f(z_i)$. Sometimes, depending on $p$ and $z_0$, this sequence converges to some $z$, so that $z = z-\frac{p(z)}{p'(z)}$, i.e. $p(z) = 0$. We can view this graphically for real values of $z$ as follows:
@@ -356,4 +358,98 @@ We will take both of these theorems for granted - they follow immediately from t
   If $U, V$ have $\chi(U) = \chi(V) = 0$, (e.g. annuli, punctured discs), then any proper holomorphic $f:U \to V$ is unramified.
 \end{corollary}
 
+\section{Julia Sets}
+\begin{definition}[Fatou Set, Julia Set]
+  Let $f$ be a nonconstant rational map. The \emph{Fatou set} of $f$ is:
+  \[F(f) \coloneqq \{x \in \hat\C : \exists \text{ a neighbourhood } U \ni z\text{ on which }\{f^n|_U(z)\}\text{ form a normal family}\}\]
+
+  The \emph{Julia set} of $f$ is $J(f) \coloneqq \hat\C\setminus F(f)$.
+\end{definition}
+Intuitively, $F(f)$ is the stable locus of $f$, and $J(f)$ is the chaotic or unstable locus of $f$.
+
+For example, take $f(z) = \lambda z$ for $\lambda = e^{2\pi\im\theta}$ for some $\theta \in \R\setminus \Q$. Then $\{f^n(z)\}$ forms a normal family on any disc centered at $0$, because $\{f^n|_{\text{disc}}\}$ is a family of self-maps of hyperbolic domains, so we can use Mantel's theorem. Note that $f^n(z)$ doesn't converge to any point, but it does have convergent subsequences.
+
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}
+    \draw (2,0)--(2,4);
+    \draw (0,2)--(4,2);
+    \draw[blue] (2,2) circle (1);
+    \node[circle, draw, fill, minimum size=1pt, inner sep=0pt, label={[shift={(0.1,-0.1)}]$\im$}] at (2,3) {};
+    \node[circle, draw, fill, minimum size=1pt, inner sep=0pt, label={[shift={(0.2,-0.5)}]$-\im$}] at (2,1) {};
+    \node[circle, draw, fill, minimum size=1pt, inner sep=0pt, label={[shift={(0.1,-0.1)}]$1$}] at (3,2) {};
+    \node[circle, draw, fill, minimum size=1pt, inner sep=0pt, label={[shift={(-0.3,-0.1)}]$-1$}] at (1,2) {};
+    \node[circle, draw, burgundy, fill, minimum size=1pt, inner sep=0pt, label={[shift={(0.1,-0.1)}]\color{burgundy}$z$}] at (2.8,2.6) {};
+    \draw[dashed, burgundy] (2.8,2.6) circle (0.3) node[burgundy, label={[shift={(0.5,-0.3)}]\color{burgundy}$U$}] {};
+  \end{tikzpicture}
+\end{figure}
+From now on in the course, we will usually only consider rational maps of degree at least 2. In the case of M\"obius transformations, the Fatou and Julia sets can be explicitly calculated - see example sheet 1.
+
+\subsection{Basic Properties of $J(F)$}
+It immediately follows from the definition that $F(f)$ is open, and so $J(F)$ is closed and compact in $\hat{\C}$.
+
+\begin{lemma}
+  The Fatou and Julia sets of $f$ are totally invariant under $f$. That is, $f(J(f)) = J(f) = f^{-1}(J(f))$, and similarly for $F(f)$.
+\end{lemma}
+\begin{proof}
+  It suffices to show that $f^{-1}(F(f)) = F(f)$, and so to prove that, for any open $U \subseteq \hat\C$, a sequence of iterates $f^{n_k}(z)$ converges uniformly on compact subsets of $U$ if and only if $f^{n_k+1}(z)$ converges uniformly on compact subsets of $f^{-1}(U)$.
+
+  We have:
+  \[\sup_{z \in K}d(f^{n_j+1}(z), f^{n_k+1}(z)) = \sup_{w\in f(K)}d(f^{n_j}(w), f^{n_k}(w))\]
+
+  Since $f$ is proper and continuous, preimages and images of compact sets are compact, and so we have the desired equivalence.
+\end{proof}
+This tells us why we get self similarity in Julia sets: if $z \in J(f)$ and $f'(z)\neq 0$, then there is a neighbourhood $N$ of $z$ such that $f:N \to f(N)$ is a conformal equivalence. Since $N \cap J(f) \xmapsto{f} f(N)\cap J(f)$, we have self-similarity.
+
+\begin{lemma}
+  $J(f) = J(f^n)$ for any iterate $f^n$ of $f$, and similarly for the Fatou set.
+\end{lemma}
+\begin{lemma}
+  Let $f$ be a rational map and $\mu$ a M\"obius transformation, we define $g \coloneqq \mu \circ f \circ \mu^{-1}$. Then $\mu(J(f)) = J(g)$.
+\end{lemma}
+The proofs of these are exercises on example sheet 1.
+
+\subsection{Conjugation and Dynamics}
+In general, if $\mu$ is a M\"obius map, and $f$ is rational, with $g \coloneqq \mu\circ f\circ\mu^{-1}$, then \mbox{$g^n = \mu\circ f^n \circ \mu^{-1}$.}
+
+As an example, let $f$ be a rational map of degree 2 with two fixed critical points. If $\infty$ is fixed, and $\infty$ maps to itself with degree 2, then we know $\infty$ has no other preimages, and we have a polynomial of degree 2. Let's conjugate by $\mu$, a M\"obius map taking one of the fixed critical points to $\infty$, and the other to.\footnote{Notice that being fixed and critical are conjugation invariant}.
+
+So we are conjugate to a degree 2 polynomial with 0 fixed and critical, i.e. $f(z) = az^2$. Conjugating again by $\mu(z) = az$, which doesn't change 0 or $\infty$, we have a map conjugate to $g(z) = z^2$. This has the unit circle as its Julia set.
+
+Therefore $f$'s Julia set is a M\"obius image of the unit circle, i.e. a circle.
+
+\begin{theorem}
+  Let $z \in J(f)$ and $U$ be an open neighbourhood of $z$. Then the union $V \coloneqq \bigcup f^n(U)$ of forward images of $U$ contains all but at most two points of the Riemann sphere, both of which are critical points in the Fatou set.
+\end{theorem}
+\begin{proof}
+  If $\{f^n|_U\}$ omit at least 3 points of $\hat\C$, then Mantel's theorem tells us we have a normal family on $U$, and so $U \subseteq F(f)$. But $U \cap J(f)\neq \emptyset \contr$.
+
+  If $\bigcup f^n(U)$ misses any points, then we want to show they are Fatou and critical. Without loss of generality, assume these points are in $\{0, \infty\}$. Since $f(V) \subseteq V$, no preimage of $0$ or $\infty$ lies in $V$.
+
+  So the only possible behaviours are:
+  \begin{enumerate}
+    \item $0\mapsto 0, \infty \mapsto \infty$, both with degree $d = \deg f \geq 2$
+    \item $0\mapsto \infty, \infty \mapsto 0$, both with degree $d$
+    \item $\infty \mapsto \infty$ with degree $d$
+    \item No points in this set.
+  \end{enumerate}
+  Hence all points in the set are critical, as they are images of ramification degree $d > 1$.
+
+  In case 1, $f(z) = az^d$, conjugate to $z^d$, with 0, $\infty$ Fatou.
+
+  In case 2, $f(z) = \frac{a}{z^d}$, conjugate to $z^{-d}$, with Julia set a circle again, so 0, $\infty$ Fatou.
+
+  In case 3, $f(z)$ is a polynomial map, and so $\infty$ is Fatou.
+\end{proof}
+\begin{corollary}
+  If the Julia set contains an interior point, then $J(f) = \hat\C$.
+\end{corollary}
+\begin{proof}
+  By the previous theorem and forward invariance of the Julia set, if $U$ is open and contained in $J(f)$, then $\bigcup f^n(U) \subseteq J(f)$ contains all but at most two points of $\hat\C$. But $J(f)$ is closed, hence $J(f) = \hat\C$.
+\end{proof}
+The Julia set is the smallest closed totally invariant set in $\hat\C$ containing at least 3 points.
+
+Note that $J(f) = \hat\C$ can happen, but not with polynomial maps. For instance, take $f(z) = \frac{1}{1-2z^2}$ - by the end of the course we'll be able to prove this function is chaotic everywhere.
+
+On the other hand, we will show soon that $J(f) \neq \emptyset$.
 \end{document}
