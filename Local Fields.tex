@@ -12,105 +12,105 @@ Instead, we study congruences of the form $f(x_1, \ldots, x_r) \equiv 0 \mod p^n
 
 \subsection{Absolute Values}
 \begin{definition}
-Let $K$ be a field. An \emph{absolute value} on $K$ is a function $|\cdot|:K \to \R_{\geq 0}$ such that:
+Let $K$ be a field. An \emph{absolute value} on $K$ is a function $\abs{\cdot}:K \to \R_{\geq 0}$ such that:
 \begin{enumerate}
-  \item $|x| = 0 \iff x = 0$
-  \item $|xy| = |x||y|\forall x, y \in K$
-  \item $|x+y| \leq |x|+|y|\forall x, y \in K$
+  \item $\abs{x} = 0 \iff x = 0$
+  \item $\abs{xy} = \abs{x}\abs{y}\forall x, y \in K$
+  \item $\abs{x+y} \leq \abs{x}+\abs{y}\forall x, y \in K$
 \end{enumerate}
-We say that $(K, |\cdot|)$ is a valued field.
+We say that $(K, \abs{\cdot})$ is a valued field.
 \end{definition}
 \underline{Examples: }
 \begin{enumerate}
-  \item $K = \R$ or $\C$ with $|\cdot|$ the usual absolute value. We write $|\cdot|_\infty$ for this absolute value.
+  \item $K = \R$ or $\C$ with $\abs{\cdot}$ the usual absolute value. We write $\abs{\cdot}_\infty$ for this absolute value.
   \item $K$ is any field. The \emph{trivial absolute value} on $K$ is defined by:
   \begin{align}
-    |x| = \begin{cases} 0 & x = 0 \\ 1 & x \neq 0 \end{cases}
+    \abs{x} = \begin{cases} 0 & x = 0 \\ 1 & x \neq 0 \end{cases}
   \end{align}
   We will ignore this absolute value in this course.
   \item $K = \Q$, $p$ a prime. For $0 \neq x \in \Q$, we can write $x = p^n \frac{a}{b}$, where $a, b \in \Z, (a, p) = 1$, and $(b, p) = 1$. The \emph{p-adic absolute value} is defined to be:
   \begin{align*}
-    |x|_p = \begin{cases} 0 & x = 0 \\ p^{-n} & x = p^n\frac{a}{b} \end{cases}
+    \abs{x}_p = \begin{cases} 0 & x = 0 \\ p^{-n} & x = p^n\frac{a}{b} \end{cases}
   \end{align*}
   We check the axioms.
   \begin{enumerate}[label=\textit{\arabic*.}]
     \item Clear from the definition.
-    \item $|xy|_p = |p^{m+n}\frac{ac}{bd}|_p = p^{-m-n} = |x|_p|y|_p$
-    \item \textsc{Wlog}, $m\geq n$. $|x+y|_p = \left|p^n\left(\frac{ad+p^{m-n}bc}{bd}\right)\right|_p \leq p^{-n} = \max(|x|_p, |y|_p)$
+    \item $\abs{xy}_p = \abs{p^{m+n}\frac{ac}{bd}}_p = p^{-m-n} = \abs{x}_p\abs{y}_p$
+    \item \textsc{Wlog}, $m\geq n$. $\abs{x+y}_p = \left|p^n\left(\frac{ad+p^{m-n}bc}{bd}\right)\right|_p \leq p^{-n} = \max(\abs{x}_p, \abs{y}_p)$
   \end{enumerate}
 \end{enumerate}
-An absolute value on $K$ induces a metric $d(x,y) = |x-y|$ on $K$, and hence induces a topology on $K$. As an exercise, check that $+, \cdot$ are continuous.
+An absolute value on $K$ induces a metric $d(x,y) = \abs{x-y}$ on $K$, and hence induces a topology on $K$. As an exercise, check that $+, \cdot$ are continuous.
 
 \begin{definition}
-  Let $|\cdot|, |\cdot|'$ be absolute values on a field $K$. We say that $|\cdot|, |\cdot|'$ are \emph{equivalent} if they induce the same topology on $K$. An equivalence class of absolute values is called a \emph{place}.
+  Let $\abs{\cdot}, \abs{\cdot}'$ be absolute values on a field $K$. We say that $\abs{\cdot}, \abs{\cdot}'$ are \emph{equivalent} if they induce the same topology on $K$. An equivalence class of absolute values is called a \emph{place}.
 \end{definition}
 
 \begin{proposition}
-  Let $|\cdot|, |\cdot|'$ be non-trivial absolute values on $K$. The following are equivalent:
+  Let $\abs{\cdot}, \abs{\cdot}'$ be non-trivial absolute values on $K$. The following are equivalent:
   \begin{enumerate}
-    \item $|\cdot|, |\cdot|'$ are equivalent.
-    \item $|x| < 1 \iff |x|' < 1 \forall x\in K$.
-    \item $\exists c \in \R_{>0} \st |x|^c = |x|' \forall x \in K$
+    \item $\abs{\cdot}, \abs{\cdot}'$ are equivalent.
+    \item $\abs{x} < 1 \iff \abs{x}' < 1 \forall x\in K$.
+    \item $\exists c \in \R_{>0} \st \abs{x}^c = \abs{x}' \forall x \in K$
   \end{enumerate}
 \end{proposition}
 \begin{proof}\hspace*{0cm}\\
   \imp{1}{2}
   \begin{align}
-    |x|<1 &\iff x^n \to 0 \wrt |\cdot|\\
-    &\iff x^n \to 0 \wrt |\cdot|'\\
-    &\iff |x|' < 1
+    \abs{x}<1 &\iff x^n \to 0 \wrt \abs{\cdot}\\
+    &\iff x^n \to 0 \wrt \abs{\cdot}'\\
+    &\iff \abs{x}' < 1
   \end{align}
 
-  \imp{2}{3} Let $a \in K^{\times} \st |a| < 1$, which exists since $|\cdot|$ is non-trivial. We need to show that, for all $x \in K^\times$, we have:
+  \imp{2}{3} Let $a \in K^{\times} \st \abs{a} < 1$, which exists since $\abs{\cdot}$ is non-trivial. We need to show that, for all $x \in K^\times$, we have:
   \begin{align*}
-    \frac{\log|x|}{\log|a|} = \frac{\log|x|'}{\log|a|'}
+    \frac{\log\abs{x}}{\log\abs{a}} = \frac{\log\abs{x}'}{\log\abs{a}'}
   \end{align*}
-  Assume $\frac{\log|x|}{\log|a|} < \frac{\log|x|'}{\log|a|'}$. Then choose $m,n \in \Z$ so that $\frac{\log|x|}{\log|a|} < \frac{m}{n} < \frac{\log|x|'}{\log|a|'}$. Then we have:
+  Assume $\frac{\log\abs{x}}{\log\abs{a}} < \frac{\log\abs{x}'}{\log\abs{a}'}$. Then choose $m,n \in \Z$ so that $\frac{\log\abs{x}}{\log\abs{a}} < \frac{m}{n} < \frac{\log\abs{x}'}{\log\abs{a}'}$. Then we have:
   \begin{align*}
-    n \log |x| &< m \log |a|\\
-    n \log |x|' &> m \log |a|'
+    n \log \abs{x} &< m \log \abs{a}\\
+    n \log \abs{x}' &> m \log \abs{a}'
   \end{align*}
-  and hence $|\frac{x^n}{a^m}| < 1, |\frac{x^n}{a^m}|' > 1, \contr.$
+  and hence $\abs{\frac{x^n}{a^m}} < 1, \abs{\frac{x^n}{a^m}}' > 1, \contr.$
 
   \imp{3}{1} This is clear, as open balls in one topology will also be open balls in the other, hence the topologies will be the same.
 \end{proof}
 
 In this course, we will be mainly interested in the following types of absolute values:
 \begin{definition}
-  An absolute value $|\cdot|$ on $K$ is said to be \emph{non-archimedean} if it satisfies the ultrametric inequality $|x+y| \leq \max(|x|, |y|)$
+  An absolute value $\abs{\cdot}$ on $K$ is said to be \emph{non-archimedean} if it satisfies the ultrametric inequality $\abs{x+y} \leq \max(\abs{x}, \abs{y})$
 \end{definition}
-If $|\cdot|$ is not non-archimedean, then it is archimedean.\\
+If $\abs{\cdot}$ is not non-archimedean, then it is archimedean.\\
 \underline{Examples: }
 \begin{enumerate}
-  \item $|\cdot|_\infty$ on $\R$ is archimedean.
-  \item $|\cdot|_p$ is a non-archimedean absolute value on $\Q$.
+  \item $\abs{\cdot}_\infty$ on $\R$ is archimedean.
+  \item $\abs{\cdot}_p$ is a non-archimedean absolute value on $\Q$.
 \end{enumerate}
 \begin{lemma}[All triangles are isosceles]
-    Let $(K, |\cdot|)$ be a non-archimedean valued field, and $x, y \in K$. If $|x|<|y|$, then $|x-y| = |y|$.
+    Let $(K, \abs{\cdot})$ be a non-archimedean valued field, and $x, y \in K$. If $\abs{x}<\abs{y}$, then $\abs{x-y} = \abs{y}$.
 \end{lemma}
 \begin{proof}
-  Observe that $|1| = |1\cdot 1| = |1|\cdot |1|$, and so $|1| = 1$ or $0$. But $1 \neq 0$, so $|1| = 1$. Similarly, $|-1| = 1$, and so $|-y| = |y|$ for all $y \in K$.
+  Observe that $\abs{1} = \abs{1\cdot 1} = \abs{1}\cdot \abs{1}$, and so $\abs{1} = 1$ or $0$. But $1 \neq 0$, so $\abs{1} = 1$. Similarly, $\abs{-1} = 1$, and so $\abs{-y} = \abs{y}$ for all $y \in K$.
 
-  Then if $|x| < |y|$,  $|x-y| \leq \max(|x|, |y|) = |y|$.
+  Then if $\abs{x} < \abs{y}$,  $\abs{x-y} \leq \max(\abs{x}, \abs{y}) = \abs{y}$.
 
-  At the same time $|y| \leq \max(|x|, |x-y|) \implies |y| \leq |x-y|$.
+  At the same time $\abs{y} \leq \max(\abs{x}, \abs{x-y}) \implies \abs{y} \leq \abs{x-y}$.
 
-  Hence $|y| = |x-y|$.
+  Hence $\abs{y} = \abs{x-y}$.
 \end{proof}
 
 \begin{proposition}
-  Let $(K, |\cdot|)$ be non-archimedean, and $(x_n)_{n=1}^\infty$ be a sequence in $K$.
+  Let $(K, \abs{\cdot})$ be non-archimedean, and $(x_n)_{n=1}^\infty$ be a sequence in $K$.
 
-  If $|x_n-x_{n+1}| \to 0$, then $(x_n)_{n=1}^\infty$ is Cauchy.
+  If $\abs{x_n-x_{n+1}} \to 0$, then $(x_n)_{n=1}^\infty$ is Cauchy.
 
   In particular, if $K$ is in addition complete, then $(x_n)_{n=1}^\infty$ converges.
 \end{proposition}
 \begin{proof}
-  For $\epsilon > 0$, choose $N$ such that $|x_n - x_{n+1}| < \epsilon\forall n>N$.
+  For $\epsilon > 0$, choose $N$ such that $\abs{x_n - x_{n+1}} < \epsilon\forall n>N$.
 
   Then for $N < n < m$, we have:
   \begin{align*}
-    |x_n-x_m| &= |(x_n-x_{n+1}) + (x_{n+1}-x_{n+1}) +\ldots + (x_{m-1} - x_m)| < \epsilon
+    \abs{x_n-x_m} &= \abs{(x_n-x_{n+1}) + (x_{n+1}-x_{n+1}) +\ldots + (x_{m-1} - x_m)} < \epsilon
   \end{align*}
   And so the sequence is Cauchy.
 \end{proof}
@@ -126,22 +126,22 @@ Take $x_1 = 2$. Suppose we have constructed $x_n$. Let $x_n^2 + 1 = a5^n$, and s
 
 We choose $b$ such that $a+2bx_n \equiv 0 \mod 5$, i.e. $b \equiv -\frac{a}{2x_n} \mod 5$, and then we have $x_{n+1}^2 +1 \equiv 0 \mod 5^{n+1}$ as desired.
 
-The second property implies that $|x_{n+1} - x_n|_5 < 5^{-n} \to 0$, and so the sequence is Cauchy. Now suppose that $x_n \to L \in \Q$. Then $x_n^2 \to L^2$. But the first property then gives us that $x_n^2 \to -1 \implies L^2 = -1 \contr.$ So $(\Q, |\cdot|_5)$ is not complete.
+The second property implies that $\abs{x_{n+1} - x_n}_5 < 5^{-n} \to 0$, and so the sequence is Cauchy. Now suppose that $x_n \to L \in \Q$. Then $x_n^2 \to L^2$. But the first property then gives us that $x_n^2 \to -1 \implies L^2 = -1 \contr.$ So $(\Q, \abs{\cdot}_5)$ is not complete.
 
 \begin{definition}
-  The $p$-adic numbers $\Q_p$ is the completion of $\Q$ with respect to $|\cdot|_p$.
+  The $p$-adic numbers $\Q_p$ is the completion of $\Q$ with respect to $\abs{\cdot}_p$.
 \end{definition}
-We have an analogy with $\R$, in that $\R$ is the completion of $\Q$ with respect to $|\cdot|_\infty$.
+We have an analogy with $\R$, in that $\R$ is the completion of $\Q$ with respect to $\abs{\cdot}_\infty$.
 
-If $(K, |\cdot|)$ is a valued field, for $x \in K, r \in \R_{>0}$, we define:
+If $(K, \abs{\cdot})$ is a valued field, for $x \in K, r \in \R_{>0}$, we define:
 \begin{align*}
-  B(x, r) &= \{y \in K : |x-y| < r \}\\
-  \overline{B}(x, r) &= \{y \in K : |x-y| \leq r\}
+  B(x, r) &= \{y \in K : \abs{x-y} < r \}\\
+  \overline{B}(x, r) &= \{y \in K : \abs{x-y} \leq r\}
 \end{align*}
 and call these the \emph{open} and \emph{closed balls} of radius $r$ centred at $x$, respectively.
 
 \begin{lemma}
-  Let $(K, |\cdot|)$ be non-archimedean. Then:
+  Let $(K, \abs{\cdot})$ be non-archimedean. Then:
   \begin{enumerate}
     \item If $z \in B(x, r)$, then $B(z, r) = B(x, r)$.
     \item If $z \in \overline{B}(x, r)$, then $\overline{B}(z, r) = \overline{B}(x, r)$.
@@ -151,7 +151,7 @@ and call these the \emph{open} and \emph{closed balls} of radius $r$ centred at 
 \end{lemma}
 \begin{proof}\hspace*{0cm}
   \begin{enumerate}[label=\textit{\arabic*.}]
-    \item Let $y \in B(x, r)$. Then $|x-y| < r \implies |z-y| = |(z-x) + (x-y)| \leq \max(|z-x|, |x-y|) < r$.
+    \item Let $y \in B(x, r)$. Then $\abs{x-y} < r \implies \abs{z-y} = \abs{(z-x) + (x-y)} \leq \max(\abs{z-x}, \abs{x-y}) < r$.
     \item Same as in \textit{1.}, but with $\leq$ instead of $<$.
     \item Let $y \notin B(x, r)$. We need to show there is an open neighbourhood of $y$ not intersecting $B(x, r)$. If $z \in B(x, r) \cap B(y, r)$, then $B(x, r) = B(z, r) = B(y, r)$. But then $y \in B(x, r) \contr.$ So $B(x, r)$ and $B(y, r)$ are disjoint, and so $B(x, r)$ is closed.
     \item If $z \in \overline{B}(x, r)$, then we need to show there is an open neighbourhood of $z$ contained in $\overline{B}(x, r)$. But $B(z, r) \subseteq \overline{B}(z, r) = \overline{B}(x, r)$, and so $\overline{B}(x, r)$ is open.
@@ -166,7 +166,7 @@ and call these the \emph{open} and \emph{closed balls} of radius $r$ centred at 
     \item $v(x+y) \geq \min\{v(x), v(y)\}$
   \end{enumerate}
 \end{definition}
-Fix $0 <\alpha<1$. If $v$ is a valuation on $K$, then $|x| = \begin{cases} \alpha^{v(x)} & x \neq 0 \\ 0 & x = 0\end{cases}\;$ determines a non-archimedean absolute value. Conversely, a non-archimedean absolute value determines a valuation $v(x) = \log_\alpha |x|$.
+Fix $0 <\alpha<1$. If $v$ is a valuation on $K$, then $\abs{x} = \begin{cases} \alpha^{v(x)} & x \neq 0 \\ 0 & x = 0\end{cases}\;$ determines a non-archimedean absolute value. Conversely, a non-archimedean absolute value determines a valuation $v(x) = \log_\alpha \abs{x}$.
 
 We will ignore the trivial valuation $v(x) \equiv 0$, which corresponds to the trivial absolute value.
 
@@ -174,33 +174,33 @@ We say $v_1, v_2$ are \emph{equivalent} if $\exists c \in \R_{>0}$ such that $v_
 
 \underline{Examples:}
 \begin{itemize}
-  \item $K = \Q, v_p(x) = -\log_p |x|_p$ is the $p$-adic valuation.
+  \item $K = \Q, v_p(x) = -\log_p \abs{x}_p$ is the $p$-adic valuation.
   \item $k$ any field, $K = k(t) = \Frac(k[t])$, the rational function field. $v\left(t^n \frac{f(t)}{g(t)}\right) =n$ where $f, g \in k[t], f(0), g(0) \neq 0$. This is the $t$-adic valuation.
   \item $K = k((t)) = \Frac(k[[t]])$, the field of \emph{formal Laurent series over k}. Then we have $v\left(\sum_i a_i t^i\right) = \min \{i : a_i \neq 0\}$ is the $t$-adic valuation on $K$.
 \end{itemize}
 
 \begin{definition}
-  Let $(K, |\cdot|)$ be a non-archimedean valued field. The \emph{valuation ring} of $K$ is defined to be:
+  Let $(K, \abs{\cdot})$ be a non-archimedean valued field. The \emph{valuation ring} of $K$ is defined to be:
   \begin{align*}
-    \O_K &= \{ x \in K : |x| \leq 1\}\;\;\; (= \bar{B}(0, 1))\\
+    \O_K &= \{ x \in K : \abs{x} \leq 1\}\;\;\; (= \bar{B}(0, 1))\\
     &= \{x \in K^\times : v(x) \geq 0\}\cup\{0\}
   \end{align*}
 \end{definition}
 \begin{proposition}\hspace*{0cm}
   \begin{enumerate}
     \item $\O_K$ is an open subring of $K$.
-    \item The subsets $\{x \in K : |x| \leq r\}$ and $\{x \in K : |x| < r\}$ for $r \leq 1$ are open ideals in $\O_K$.
-    \item $\O_K^\times = \{x\in K : |x| = 1\}$.
+    \item The subsets $\{x \in K : \abs{x} \leq r\}$ and $\{x \in K : \abs{x} < r\}$ for $r \leq 1$ are open ideals in $\O_K$.
+    \item $\O_K^\times = \{x\in K : \abs{x} = 1\}$.
   \end{enumerate}
 \end{proposition}
 \begin{proof}\hspace*{0cm}
   \begin{enumerate}[label = \textit{\arabic*}.]
-    \item $|1| = 1, |0| = 0$, so $1, 0 \in \O_K$. $|-x| = |x|$, so $x \in \O_K \implies -x \in \O_K$. If $x, y \in \O_K$, then $|x+y| \leq \max(|x|, |y|) \leq 1$, and so $x+y \in \O_K$, and $|xy| = |x||y| \leq 1$, so $xy \in \O_K$. Since $\O_K = \bar{B}(0, 1)$, it is open.
+    \item $\abs{1} = 1, \abs{0} = 0$, so $1, 0 \in \O_K$. $\abs{-x} = \abs{x}$, so $x \in \O_K \implies -x \in \O_K$. If $x, y \in \O_K$, then $\abs{x+y} \leq \max(\abs{x}, \abs{y}) \leq 1$, and so $x+y \in \O_K$, and $\abs{xy} = \abs{x}\abs{y} \leq 1$, so $xy \in \O_K$. Since $\O_K = \bar{B}(0, 1)$, it is open.
     \item The proof of this is the same as \textit{1.}
-    \item Note that $|x||x^{-1}| = |xx^{-1}| = 1$. So $|x| = 1 \iff |x^{-1}| = 1$. This can happen if and only if $x, x^{-1} \in \O_K$, i.e. $x \in \O_K^\times$.
+    \item Note that $\abs{x}\abs{x^{-1}} = \abs{xx^{-1}} = 1$. So $\abs{x} = 1 \iff \abs{x^{-1}} = 1$. This can happen if and only if $x, x^{-1} \in \O_K$, i.e. $x \in \O_K^\times$.
   \end{enumerate}
 \end{proof}
-As a point of notation, we will define $m \coloneqq \{x \in \O_K : |x|<1\}$, a maximal ideal of $\O_K$, and $k \coloneqq \O_K/m$ to be the \emph{residue field}.
+As a point of notation, we will define $m \coloneqq \{x \in \O_K : \abs{x}<1\}$, a maximal ideal of $\O_K$, and $k \coloneqq \O_K/m$ to be the \emph{residue field}.
 
 We say a ring $R$ is \emph{local} if it has a unique maximal ideal. As an exercise, prove that $R$ is local if and only if $R\setminus R^\times$ is an ideal of $R$. We can use this to prove the following:
 
@@ -208,13 +208,13 @@ We say a ring $R$ is \emph{local} if it has a unique maximal ideal. As an exerci
   $\O_K$ is a local ring with a unique maximal ideal $m$.
 \end{corollary}
 \begin{proof}
-  Suppose $x \in \O_K \setminus m$. Then $|x| = 1$, so $x^{-1} \in \O_K$, and so any ideal containing $x$ contains $x^{-1}x = 1$, i.e. is all of $\O_K$, and hence $m$ is the unique maximal ideal in $\O_K$.
+  Suppose $x \in \O_K \setminus m$. Then $\abs{x} = 1$, so $x^{-1} \in \O_K$, and so any ideal containing $x$ contains $x^{-1}x = 1$, i.e. is all of $\O_K$, and hence $m$ is the unique maximal ideal in $\O_K$.
 \end{proof}
 
 \underline{Examples:}
 \begin{itemize}
   \item $K = k((t)), \O_K = k[[t]], m = (t)$, and the residue field is $k$.
-  \item $K = \Q$ with $|\cdot|_p$. $\O_K = \Z_{(p)}, m = p\Z_{(p)}, k = \F_p$.
+  \item $K = \Q$ with $\abs{\cdot}_p$. $\O_K = \Z_{(p)}, m = p\Z_{(p)}, k = \F_p$.
 \end{itemize}
 
 \begin{definition}
@@ -266,26 +266,26 @@ We say a ring $R$ is \emph{local} if it has a unique maximal ideal. As an exerci
 
 \underline{Examples:}
 \begin{itemize}
-  \item $\Z_{(p)}$ is a DVR, the valuation ring of $|\cdot|_p$ on $\Q$.
+  \item $\Z_{(p)}$ is a DVR, the valuation ring of $\abs{\cdot}_p$ on $\Q$.
   \item $k[[t]]$ is a DVR, the valuation ring of the $t$-adic valuation on $k((t))$.
   \item $K = k(t), K' = K\left(t^{\frac12}, t^{\frac14}, t^{\frac18}, \ldots\right)$. The $t$-adic valuation extends to $K'$, but we must have $v(t^{\frac{1}{2^n}}) = \frac{1}{2^n}$, which is not discrete.
 \end{itemize}
 
 \section{The p-adic Numbers}
-Recall that $\Q_p$ is defined to be the completion of $\Q$ with respect to the metric induced by $|\cdot|_p$. On example sheet 1, we prove that $\Q_p$ is a field. $|\cdot|_p$ extends from $\Q$ to $\Q_p$, and the associated valuation is discrete, so $\Q_p$ is a discretely valued field.
+Recall that $\Q_p$ is defined to be the completion of $\Q$ with respect to the metric induced by $\abs{\cdot}_p$. On example sheet 1, we prove that $\Q_p$ is a field. $\abs{\cdot}_p$ extends from $\Q$ to $\Q_p$, and the associated valuation is discrete, so $\Q_p$ is a discretely valued field.
 
 \begin{definition}
-  The \emph{ring of p-adic integers}, $\Z_p$, is the valuation ring $\{x \in \Q_p : |x|_p \leq 1\}$.
+  The \emph{ring of p-adic integers}, $\Z_p$, is the valuation ring $\{x \in \Q_p : \abs{x}_p \leq 1\}$.
 \end{definition}
 $\Z_p$ is a discrete valuation ring with maximal ideal $p\Z_p$, and all non-zero ideals in $\Z_p$ are of the form $p^n \Z_p$ for $n \in \N$.
 
 \begin{proposition}
-  $\Z_p$ is the closure of $\Z$ inside $\Q_p$. In particular, $\Z_p$ is the completion of $\Z$ with respect to $|\cdot|_p$.
+  $\Z_p$ is the closure of $\Z$ inside $\Q_p$. In particular, $\Z_p$ is the completion of $\Z$ with respect to $\abs{\cdot}_p$.
 \end{proposition}
 \begin{proof}
   We need to show that $\Z$ is dense in $\Z_p$. We know that $\Q$ is dense in $\Q_p$. Since $\Z_p \subseteq \Q_p$ is a closed ball and hence open, $\Z_p \cap \Q$ is dense in $\Z_p$.
   \begin{align*}
-    \Z_p \cap \Q &= \{x \in \Q : |x|_p \leq 1\}\\
+    \Z_p \cap \Q &= \{x \in \Q : \abs{x}_p \leq 1\}\\
     &= \left\{\frac{a}{b} \in \Q : p \nmid b\right\}\\
     &= \Z_{(p)}
   \end{align*}
@@ -329,7 +329,7 @@ Note that there is a natural map $i:R \to \hat{R}$ by the universal property. We
 
 As a fact, $\ker(i: R \to \hat{R}) = \bigcap_{n=1}^\infty I^n$.
 
-Let $(K, |\cdot|)$ be a non-archimedean valued field, and $\pi \in \O_K$ such that $|\pi| < 1$.
+Let $(K, \abs{\cdot})$ be a non-archimedean valued field, and $\pi \in \O_K$ such that $\abs{\pi} < 1$.
 \begin{proposition}
   Assume that $K$ is complete. Then:
   \begin{enumerate}
@@ -363,7 +363,7 @@ Let $(K, |\cdot|)$ be a non-archimedean valued field, and $\pi \in \O_K$ such th
   \end{enumerate}
 \end{proof}
 
-Warning: if $(K, |\cdot|)$ is not discretely valued, then $\O_K$ is not necessarily $m$-adically complete.
+Warning: if $(K, \abs{\cdot})$ is not discretely valued, then $\O_K$ is not necessarily $m$-adically complete.
 
 \begin{corollary}
   If $K$ is as in \textit{2} of \textbf{3.5}, then every $x \in K$ can be written uniquely as a series of the form $\sum_{i=n}^\infty a_i \pi^i, a_i \in A$. Conversely, any such expression defines an element of $K$.
@@ -382,7 +382,7 @@ Warning: if $(K, |\cdot|)$ is not discretely valued, then $\O_K$ is not necessar
   \begin{enumerate}[label=\textit{\arabic*.}]
     \item By \textbf{3.5} it is sufficient to show that $\Z_p/p^n\Z_p \cong \Z/p^n\Z$. Note that there is a natural map $f_n : \Z \to \Z_p/p^n\Z_p$, since $\Z \subseteq \Z_p$.
 
-    We have that $\ker f_n = \{x \in \Z : |x|_p \leq p^{-n}\} = p^n \Z$.
+    We have that $\ker f_n = \{x \in \Z : \abs{x}_p \leq p^{-n}\} = p^n \Z$.
 
     Hence, $\Z/p^n\Z \to \Z_p/p^n\Z_p$ is injective.
 
@@ -404,9 +404,9 @@ For complete valued fields, there is a nice way to produce solutions in $\O_K$ t
 Given $f \in R[x]$ for some ring $R$, we will denote by $f'$ the \emph{formal derivative} of $f$, which is the image of $f$ under the linear map taking $x^n \mapsto nx^{n-1}$.
 
 \begin{theorem}[Hensel's Lemma, version 1]
-  Let $(K, |\cdot|)$ be a complete discretely valued field. Let $f(x) \in \O_K[x]$, and assume there exists $a \in \O_K$ such that $|f(a)| < |f'(a)|^2$.
+  Let $(K, \abs{\cdot})$ be a complete discretely valued field. Let $f(x) \in \O_K[x]$, and assume there exists $a \in \O_K$ such that $\abs{f(a)} < \abs{f'(a)}^2$.
 
-  Then there exists a unique $x \in \mathcal{O}_K$ such that $f(x) = 0$ and $|x-a| < |f'(a)|$.
+  Then there exists a unique $x \in \mathcal{O}_K$ such that $f(x) = 0$ and $\abs{x-a} < \abs{f'(a)}$.
 \end{theorem}
 
 \begin{proof}
@@ -431,28 +431,28 @@ Given $f \in R[x]$ for some ring $R$, we will denote by $f'$ the \emph{formal de
   \begin{align*}
     a &= x_1 \equiv x_n \mod \pi^{r+1} \forall n\\
     \implies a &\equiv x \mod \pi^{r+1}\\
-    \implies |x-a| &< |f'(a)|
+    \implies \abs{x-a} &< \abs{f'(a)}
   \end{align*}
   This proves existence.
 
-  For uniqueness, suppose $x'$ also satisfies $f(x') = 0, |x' - a| < |f'(a)|$. Let $\delta = |x'-x| \gneq 0$.
+  For uniqueness, suppose $x'$ also satisfies $f(x') = 0, \abs{x'-a} < \abs{f'(a)}$. Let $\delta = \abs{x'-x} \gneq 0$.
 
-  Then $|x'-a| < |f'(a)|, |x-a| < |f'(a)|$, and the ultrametric inequality implies:
-  \[|\delta| = |x-x'| < |f'(a)| = |f'(x)|\]
-  But $0 = f(x') = f(x+\delta) = f(x) + f'(x)+\delta + \ldots$, where absolute value of the higher order terms is $\leq |\delta|^2$.
+  Then $\abs{x'-a} < \abs{f'(a)}, \abs{x-a} < \abs{f'(a)}$, and the ultrametric inequality implies:
+  \[\abs{\delta} = \abs{x-x'} < \abs{f'(a)} = \abs{f'(x)}\]
+  But $0 = f(x') = f(x+\delta) = f(x) + f'(x)+\delta + \ldots$, where absolute value of the higher order terms is $\leq \abs{\delta}^2$.
 
-  Hence $|f'(x)\delta| \leq |\delta|^2 \implies |f'(x)| \leq |\delta| \contr$.
+  Hence $\abs{f'(x)\delta} \leq \abs{\delta}^2 \implies \abs{f'(x)} \leq \abs{\delta} \contr$.
 \end{proof}
 
 The following corollary is a slightly weaker result, but will often turn out to be more useful for what we want to do.
 
 \begin{corollary}
-  Let $(K, |\cdot|)$ be a complete discretely valued field. Let $f(x)\in \O_K[x]$, and $\bar{c}\in k\coloneqq \O_K/m$ a simple root of $\bar{f}(x) \coloneqq f(x) \mod m \in k[x]$ (i.e. not a root of $\bar{f}'(x)$).
+  Let $(K, \abs{\cdot})$ be a complete discretely valued field. Let $f(x)\in \O_K[x]$, and $\bar{c}\in k\coloneqq \O_K/m$ a simple root of $\bar{f}(x) \coloneqq f(x) \mod m \in k[x]$ (i.e. not a root of $\bar{f}'(x)$).
 
   Then there is a unique $x \in \O_K$ such that $f(x) = 0$ and $x \equiv \bar{c} \mod m$.
 \end{corollary}
 \begin{proof}
-  Apply \textbf{4.1} to a lift $c \in \O_K$ of $\bar{c}$. Then $|f(c)| < |f'(c)|^2 = 1$, since $\bar{c}$ is a simple root.
+  Apply \textbf{4.1} to a lift $c \in \O_K$ of $\bar{c}$. Then $\abs{f(c)} < \abs{f'(c)}^2 = 1$, since $\bar{c}$ is a simple root.
 \end{proof}
 
 \underline{Example:} $f(x) = x^2-2$ has a simple root mod 7. Thus $\sqrt{2} \in \Z_7 \subseteq \Q_7$.
@@ -472,7 +472,7 @@ The following corollary is a slightly weaker result, but will often turn out to 
 
     \item[\underline{$p=2$:}] Let $b \in \Z_2^\times$. Consider $f(x) = x^2-b$. Then $f'(x) = 2x \equiv 0 \mod 2$, so we can't use \textbf{4.1}.
 
-    Let $b \equiv 1 \mod 8$. Then $|f(1)|_2 \leq 2^{-3} < |f'(1)|_2^2 = 2^{-2}$. So by Hensel's lemma, $f(x)$ has a root in $\Z_2$.
+    Let $b \equiv 1 \mod 8$. Then $\abs{f(1)}_2 \leq 2^{-3} < \abs{f'(1)}_2^2 = 2^{-2}$. So by Hensel's lemma, $f(x)$ has a root in $\Z_2$.
 
     Hence $b \in (\Z_p^\times)^2 \iff b \equiv 1 \mod 8$. So $\Z_2^\times/(\Z_2^\times)^2 \equiv (\Z/8\Z)^\times \equiv (\Z/2\Z)^2$. Again, using $\Q_2^\times \cong \Z_2^\times \times \Z$, we find that $\Q_2^\times/(\Q_2^\times)^2 \cong (\Z/2\Z)^3$.
   \end{itemize}
@@ -482,7 +482,7 @@ The proof of Hensel's lemma uses the iteration $x_{n+1} = x_n - \frac{f(x_n)}{f'
 
 For later applications, we will need the following version of Hensel's lemma:
 \begin{theorem}[Hensel's Lemma, version 2]
-  Let $(K, |\cdot|)$ be a complete discretely valued field, and $f(x) \in \O_K[x]$, and suppose that $\bar{f}(x) \coloneqq f(x) \mod m \in k[x]$ factorises as:
+  Let $(K, \abs{\cdot})$ be a complete discretely valued field, and $f(x) \in \O_K[x]$, and suppose that $\bar{f}(x) \coloneqq f(x) \mod m \in k[x]$ factorises as:
   \begin{align*}
     \bar{f}(x) = \bar{g}(x)\bar{h}(x)
   \end{align*}
@@ -494,10 +494,10 @@ For later applications, we will need the following version of Hensel's lemma:
   Example sheet 1.
 \end{proof}
 \begin{corollary}
-  Let $f(x) = a_nx^n + \ldots + a_0 \in K[x]$ with $a_0, a_n \neq 0$. If $f(x)$ is irreducible, then $|a_i|\leq \max\{|a_0|, |a_n|\}$ for all $i$.
+  Let $f(x) = a_nx^n + \ldots + a_0 \in K[x]$ with $a_0, a_n \neq 0$. If $f(x)$ is irreducible, then $\abs{a_i}\leq \max\{\abs{a_0}, \abs{a_n}\}$ for all $i$.
 \end{corollary}
 \begin{proof}
-  Upon scaling, we may assume $f(x) \in \O_K[x]$ with $\max_i\{|a_i|\} = 1$. Thus we need to show that $\max\{|a_0|, |a_1|\} = 1$. If not, let $r$ be minimal such that $|a_r|=1$, then $0 < r < n$. Thus we have $\bar{f}(x) = x^r(a_r + \ldots a_nx^{n-r}) \mod m$.
+  Upon scaling, we may assume $f(x) \in \O_K[x]$ with $\max_i\{\abs{a_i}\} = 1$. Thus we need to show that $\max\{\abs{a_0}, \abs{a_1}\} = 1$. If not, let $r$ be minimal such that $\abs{a_r}=1$, then $0 < r < n$. Thus we have $\bar{f}(x) = x^r(a_r + \ldots a_nx^{n-r}) \mod m$.
 
   Then \textbf{4.5} tells us this factorisation lifts to a factorisation in $\O_K[x]$, which is a contradiction.
 \end{proof}
@@ -523,7 +523,7 @@ Note that since $\charr R = p, (x+y)^p = x^p + y^p$, so the Frobenius map is a r
 Fact: a field $k$ is perfect if and only if any finite extension of $k$ is separable.
 
 \begin{theorem}
-  Let $(K, |\cdot|)$ be a complete discretely valued field such that $k \coloneqq \O_K/m$ is a perfect field of characteristic $p$. Then there is a unique map \[ [\cdot]:k \to \O_K\] such that:
+  Let $(K, \abs{\cdot})$ be a complete discretely valued field such that $k \coloneqq \O_K/m$ is a perfect field of characteristic $p$. Then there is a unique map \[ [\cdot]:k \to \O_K\] such that:
   \begin{enumerate}
     \item $a \equiv [a] \mod m$ for all $a \in k$.
     \item $[ab] \equiv [ab]$ for all $a, b \in k$.
@@ -542,7 +542,7 @@ Let $\beta' \in \O_k$ be another lift of $a^{1/p}$. Then $\beta = \beta' + \pi u
 The idea is then to repeat this process, getting a sequence of better and better lifts each time, which will converge to a ``canonical" lift. To do this rigorously we'll need the following lemma:
 
 \begin{lemma}
-  Let $(K, |\cdot|)$ be as in \textbf{5.3}, and fix $\pi \in\O_K$ a uniformizer. Let $x, y \in \O_K$ such that $x \equiv y \mod \pi^k$, for $k \geq 1$. Then $x^p \equiv y^p \mod \pi^{k+1}$.
+  Let $(K, \abs{\cdot})$ be as in \textbf{5.3}, and fix $\pi \in\O_K$ a uniformizer. Let $x, y \in \O_K$ such that $x \equiv y \mod \pi^k$, for $k \geq 1$. Then $x^p \equiv y^p \mod \pi^{k+1}$.
 \end{lemma}
 \begin{proof}
   Let $x = y+u\pi^k$. Then:
@@ -590,13 +590,13 @@ The idea is then to repeat this process, getting a sequence of better and better
 \underline{Example:} $K = \Q_p$, then $[\cdot]:\F_p \to \Z_p$. For $a \in \F_p^\times, [a]^{p-1} = [a^{p-1}] = [1] = 1$, and so $[a]$ is a $(p-1)\th$ root of unity. More generally:
 \stepcounter{theorem}
 \begin{lemma}
-  Let $(K, |\cdot|)$ be a complete discretely valued field. If $k \coloneqq \O_K/m \subseteq \F_p$, then $[a] \in \O_K^\times$ is a root of unity.
+  Let $(K, \abs{\cdot})$ be a complete discretely valued field. If $k \coloneqq \O_K/m \subseteq \F_p$, then $[a] \in \O_K^\times$ is a root of unity.
 \end{lemma}
 \begin{proof}
   $a \in k \implies a \in \F_{p^n}$ for some $n$, so $[a]^{p^n-1} = [1] = 1$.
 \end{proof}
 \begin{theorem}
-  Let $(K, |\cdot|)$ be a complete discretely valued field with $\charr K = p > 0$. Then $K \cong k((t))$.
+  Let $(K, \abs{\cdot})$ be a complete discretely valued field with $\charr K = p > 0$. Then $K \cong k((t))$.
 \end{theorem}
 \begin{proof}
   Since $K = \Frac(\O_K)$, it suffices to show that $\O_K \cong k[[t]]$. Fix $\pi \in \O_K$ a uniformizer, and let $[\cdot]:k \to \O_K$ be the Teichm\"uller map, and define:
@@ -605,5 +605,157 @@ The idea is then to repeat this process, getting a sequence of better and better
     \sum_{i=0}^\infty a_i t^i &= \sum_{i=0}^\infty [a_i]\pi^i
   \end{align*}
   Then $\varphi$ is a ring homomorphism since $[\cdot]$ is, and it is a bijection by \textbf{3.5}.
+\end{proof}
+
+\section{Extensions of Complete Valued Fields}
+\begin{theorem}
+  Let $(K, \abs{\cdot})$ be a complete non-archimedean discretely valued field, and $L/K$ a finite extension of degree $n$. Then:
+  \begin{enumerate}
+    \item $\abs{\cdot}$ extends uniquely to an absolute value $\abs{\cdot}_L$ on $L$, defined by
+    \[\abs{y}_L = \abs{N_{L/K}(y)}^{\frac{1}{n}}\forall y \in L\]
+    \item $L$ is complete with respect to $\abs{\cdot}_L$.
+  \end{enumerate}
+\end{theorem}
+
+Recall that if $L/K$ is finite then $N_{L/K}:L \to K$ is defined by $N_{L/K} = \Det_K(\text{mult}_y)$, where $\text{mult}_y$ is the $K$-linear map induced by multiplication by $y$.
+
+We have also that:
+\begin{itemize}
+  \item $N_{L/K}(xy) = N_{L/K}(x)N_{L/K}(y)$
+  \item If $x^n+a_{n-1}x^{n-1} + \ldots + a_0 \in K[x]$ is the minimal polynomial of $y \in L$, then $N_{L/K}(y) = a_0^m$ for some $m \geq 1$.
+\end{itemize}
+
+Note that the $n$\th root is not necessary for $\abs{\cdot}_L$ to be an absolute value, but is necessary for it to extend $\abs{\cdot}$, as for $x \in K, N_{L/K}(x) = \Det \diag(x, x, \ldots, x) = x^n$.
+
+We will spend this section proving \textbf{6.1}.
+
+\begin{definition}
+  Let $(K, \abs{\cdot})$ be a non-archimedean valued field, and $V$ a vector space over $K$. A norm on $V$ is a function $\norm\cdot : V \to \R_{\geq 0}$ satisfying:
+  \begin{enumerate}
+    \item $\norm{x} = 0 \iff x = 0$
+    \item $\norm{\lambda x} = \abs\lambda\norm{x}\forall \lambda \in K, x \in V$
+    \item $\norm{x+y}\leq \max(\norm x, \norm y)$
+  \end{enumerate}
+\end{definition}
+
+For example, if $V$ is finite dimensional and $e_1, \ldots, e_n$ is a basis of $V$. The $\sup$ norm on $V$ is defined by
+\[\norm{x}_{\sup} = \max_i |x_i|\]
+where $x = \sum_{i=1}^n x_i e_i$. As an exercise, show $\norm{\cdot}_{\sup}$ is a norm.
+
+\begin{definition}
+  Two norms $\norm\cdot_1, \norm\cdot_2$ are equivalent if there are $C, D > 0$ such that
+  \[C\norm{x}_1 \leq \norm{x}_2 \leq D \norm{x}_1 \forall x \in V\]
+\end{definition}
+A norm defines a metric on $V$, and hence a topology, and equivalent norms induce the same topology.
+\begin{proposition}
+  Let $(K,\abs\cdot)$ be complete and non-archimedean, and $V$ be a finite dimensional vector space over $K$. Then $V$ is complete with respect to $\norm{\cdot}_{\sup}$.
+\end{proposition}
+\begin{proof}
+  Let $(v_i)_{i=1}^\infty$ be a Cauchy sequence in $V$, and let $e_1, \ldots, e_n$ be a basis for $V$. Write $v_1 = \sum_{j=1}^n x_j^i e_j$; then $(x_j^i)_{i=1}^\infty$ is a Cauchy sequence in $K$.
+
+  Let $x_j^i \to x_j \in K$, then $v_i \to v=\sum_{i=1}^n x_j e_j$.
+\end{proof}
+\begin{theorem}
+  Let $(K,\abs\cdot)$ be complete and non-archimedean, and $V$ a finite dimensional vector space over $K$. Then any two norms on $V$ are equivalent. In particular, $V$ is complete with respect to any norm.
+\end{theorem}
+\begin{proof}
+  Since equivalence defines an equivalence relation on a set of norms, it suffices to show that any norm is equivalent to $\norm{\cdot}_{\sup}$.
+
+  Let $e_1, \ldots, e_n$ be a basis for $V$, and set $D \coloneqq \max_i \norm{e_i}$.
+
+  Then for $x = \sum_{i=1}^n x_i e_i$, we have
+  \begin{align*}
+    \norm{x} &\leq \max_i \norm{x_ie_i}\\
+    &= \max_i \abs{x_i}\norm{e_i}\\
+    & \leq D\max_i \abs{x_i}\\
+    &=D\norm{x}_{\sup}
+  \end{align*}
+
+  To find $C$ such that $C \norm{\cdot}_{\sup} \leq \norm\cdot$, we induct on $n =\dim V$.
+
+  If $n = 1$, then $\norm{x} = \norm{x_1 e_1} = \abs{x_1}\norm{e_1}$, so take $C = \norm{e_1}$.
+
+  Then for $n >1$, for each $i$, define $V_i \coloneqq \Span \angle{e_1, \ldots, e_{i-1}, e_{i+1}, \ldots, e_n}$.
+
+  By induction, $V_i$ is complete with respect to $\norm \cdot$ and hence closed. Then $e_i + V_i$ is also closed for all $i$, and hence $S \coloneqq \bigcup\limits_{i=1}^n e_i + V_i$ is a closed subset not containing 0.
+
+  Thus there is $C > 0$ such that $B(0, C)\cap S = \emptyset$.
+
+  Let $x = \sum_{i=1}^n x_i e_i$, and suppose $\abs{x_j} = \max_i \abs{x_i}$. Then $\norm{x}_{\sup} = \abs{x_j}$, and moreover, $\frac{1}{x_j}x \in S$.
+
+  So $\norm{\frac{1}{x_j}x}\geq C, so \norm{x}\geq C\abs{x_j} = C \norm{x}_{\sup}$.
+
+  The completeness of $V$ follows since $V$ is complete with respect to $\norm{\cdot}_{\sup}$.
+\end{proof}
+
+\begin{definition}
+  Let $R \subseteq S$ be rings. We say $s \in S$ is \emph{integral} over $R$ if there exists a monic polynomial $f(x) \in R[x]$ such that $f(s) = 0$. The \emph{integral closure} $R^{\intt(S)}$ of $R$ inside $S$ is defined to be
+  \[ R^{\intt(S)} = \{s \in S : s \text{ integral over }R\}\]
+
+  We say $R$ is integrally closed in $S$ if $R^{\intt(S)} = R$.
+\end{definition}
+\begin{proposition}
+  $R^{\intt(S)}$ is a subring of $S$. Moreover, $R^{\intt(S)}$ is integrally closed in $S$.
+\end{proposition}
+\begin{proof}
+  Example sheet 2.
+\end{proof}
+\begin{lemma}
+  Let $(K, \abs\cdot)$ be a non-archimedean valued field. Then $\O_K$ is integrally closed in $K$.
+\end{lemma}
+\begin{proof}
+  Let $x \in K$ be integral over $\O_K$, and without loss of generality $x \neq 0$.
+
+  Then let $f(x) = x^n+a_{n-1}x^{n-1} + \ldots + a_0 \in \O_K[x]$ such that $f(x) = 0$. Then:
+  \[ x = -a_{n-1} - a_{n-2} \frac{1}{x}-\ldots - a_0\frac{1}{x^{n-1}}\]
+
+  If $|x|>1$, we have $\abs{-a_{n-1}-\ldots-a_0\frac{1}{x^{n-1}}} \leq 1 \contr$.
+
+  But then $\abs{x} \leq 1$, so $x \in \O_K$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem 6.1.]
+  We show $\abs{\cdot}_L= \abs{N_{L/K}(\cdot)}$ satisfies the three axioms in the definition of absolute values.
+  \begin{enumerate}
+    \item
+    \begin{align*}
+      \abs{y}_L = 0 &\iff \abs{N_{L/K}(y)} = 0\\
+      &\iff N_{L/K}(y) = 0\\
+      &\iff y=0
+    \end{align*}
+    \item
+    \begin{align*}
+      \abs{y_1y_2}_L &= \abs{N_{L/K}(y_1y_2)}^{1/n}\\
+      &= \abs{N_{L/K}(y_1 y_2)}^{1/n}\\
+      &= \abs{N_{L/K}(y_1)N_{L/K}(y_2)}^{1/n}\\
+      &= \abs{N_{L/K}(y_1)}^{1/n}\abs{N_{L/K}(y_2)}^{1/n}\\
+      &= \abs{y_1}_L \abs{y_2}_L
+    \end{align*}
+    \item Set $\O_L = \{y \in L : \norm{y}_L \leq 1\}$.
+    We then claim that $\O_L$ is the integral closure of $\O_K$ inside $L$.
+
+    To see this let $0 \neq y \in \O_L$, we want to show that $y$ is integral over $\O_K$. Let $f(x) = x^n+a_{n-1} x^{n-1} + \ldots + a_0 \in K[x]$ be the minimal polynomial of $y$. Then there is $m \geq 1$ with $N_{L/K}(y) = a_0^m$.
+
+    By \textbf{4.5}, since $f$ is irreducible, the coefficient with the largest absolute value is either the first or the last in $f$. I.e.:
+    \[ \abs{a_i} \leq \max(\abs{N_{L/K}(y)^{1/m}}, 1) = \]
+
+    Now, since $\abs{N_{L/K}(y)} \leq 1$, we have $\abs{a_i} \leq 1$, i.e. $a_i \in \O_K$.
+
+    Hence $f \in \O_K[x]$, and $y$ is integral over $\O_K$.
+
+    Conversely, let $y \in L$ be integral over $\O_K$. Then $N_{L/K}(y) = \left(\prod_{\sigma:L\to \bar{K}} \sigma(y)\right)^d$ for some $d \geq 1$, where $\bar{K}$ is an algebraic closure of $K$ and $\sigma$ runs over all $K$-algebra homomorphisms.
+
+    For all such $\sigma:L \to \bar{K}$, $\sigam(y)$ satisfies the same monic polynomials as $y$, so is also integral over $\O_K$. Thus $N_{L/K}(y) \in K$ is integral over $\O_K$, and hence $N_{L/K}(y) \in \O_K$.
+
+    But then $\abs{N_{L/K}(y)}\leq 1$, and so $y \in \O_L$, so $\O_K^{\intt(L)} = \O_L$, and the claim is proved.
+
+    Now let $x, y \in L$. Without loss of generality, assume that $\abs{x}_L \leq \abs{y}_L$. Then $\abs{\frac{x}{y}}_L \leq 1$, and so $\frac{x}{y} \in \O_L$.
+
+    Since $1 \in \O_L$ and $\O_K^{\intt(L)}$, we have $1 + \frac{x}{y} \in \O_L$, and hence $\abs{1+\frac{x}{y}} \leq 1$, i.e., $\abs{x+y} \leq \abs{y} = \max(\abs{y}_L, \abs{x}_L)$ as required.
+  \end{enumerate}
+
+  For uniqueness, suppose $\abs{\cdot}'_L$ is another absolute value on $L$ extending $\abs{\cdot}$, then note that $\abs{\cdot}_L, \abs{\cdot}'_L$ are norms on $L$, hence induce the same topology on $L$, hence are equivalent, hence $\abs{\cdot}_L' = \abs{\cdot}_L^c$ for some $c>0$. Since they agree on $K$, $c = 1$.
+
+  For the completeness part, since $\abs{\cdot}_L$ defines a norm on $K$, \textbf{6.5} implies that $L$ is complete with respect to $\abs{\cdot}_L$.
 \end{proof}
 \end{document}
