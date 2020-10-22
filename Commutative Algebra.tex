@@ -1,5 +1,6 @@
 \documentclass[10pt,a4paper]{article}
 \input{./preamble.tex}
+\pgfplotsset{compat=1.16}
 
 \title{Commutative Algebra}
 \begin{document}
@@ -208,7 +209,7 @@ We will give a second proof, which uses
 
   So $\mathscr{S}$ has upper bounds to its chains, and so we may apply Zorn's lemma to get a maximal element of $\mathscr{S}$, say $I$, so that $I$ is not finitely generated but any ideal containing $I$ is finitely generated.
 
-  We now claim $I$ must be prime. Suppose $a \nin I, b \nin I$, but $ab \in I$. Then $I + (a) \supsetneq I$, so $I + (a)$ is finitely generated, say by $i_1 + r_1a, \ldots, i_n + r_na$. Define $J = \{s \in R : sa \in I\} \supseteq I+(b)\supsetneq I$. Again, $J$ is finitely generated.
+  We now claim $I$ must be prime. Suppose $a \notin I, b \notin I$, but $ab \in I$. Then $I + (a) \supsetneq I$, so $I + (a)$ is finitely generated, say by $i_1 + r_1a, \ldots, i_n + r_na$. Define $J = \{s \in R : sa \in I\} \supseteq I+(b)\supsetneq I$. Again, $J$ is finitely generated.
 
   Take $t \in I \subset I+(a)$, so $t = u_1(i_1+r_1a) + \ldots + u_n(i_n+r_n a)$ for some $u_i \in R$. So $t = u_1i_1 + \ldots +u_ni_n + (u_1r_1 + \ldots +u_nr_n)a \in (i_1) + (i_2) + \ldots + (i_n) + Ja$.
 
@@ -229,9 +230,9 @@ We will also use the following lemma:
 
   This is immediate - if $g \in P$, $g = a + $ higher order terms. Now $a \in (a_1, \ldots, a_n)$, so $g = \sum_i r_i a_i + xg'$ as required.
 
-  If $x \nin P$, then let $f_1, \ldots, f_n$ be power series with constant terms $a_1, \ldots, a_n$ respectively. Then $P = (f_1, \ldots, f_n)$.
+  If $x \notin P$, then let $f_1, \ldots, f_n$ be power series with constant terms $a_1, \ldots, a_n$ respectively. Then $P = (f_1, \ldots, f_n)$.
 
-  Take $g \in p$, say $g = b +$ higher terms, with $b$ the constant term. Then $b = \sum b_i a_i$, so $g - \sum b_i f_i = g_1 x$ for some $g_1$. Note that $g_1 x \in P$, $P$ is prime, and $x \nin P$, so $g_1 \in P$. Similarly, $g_1 = \sum c_i f_i + g_2 x$, and $g_2 \in P$. Continuing, we get $h_1, \ldots, h_n \in R[[x]]$, where $h_i = b_i + c_i x + \ldots$ with $g = h_1f_1 + \ldots + h_nf_n$.
+  Take $g \in p$, say $g = b +$ higher terms, with $b$ the constant term. Then $b = \sum b_i a_i$, so $g - \sum b_i f_i = g_1 x$ for some $g_1$. Note that $g_1 x \in P$, $P$ is prime, and $x \notin P$, so $g_1 \in P$. Similarly, $g_1 = \sum c_i f_i + g_2 x$, and $g_2 \in P$. Continuing, we get $h_1, \ldots, h_n \in R[[x]]$, where $h_i = b_i + c_i x + \ldots$ with $g = h_1f_1 + \ldots + h_nf_n$.
 \end{proof}
 
 We are now ready to give the second proof the $R$ noetherian implies $R[[x]]$ noetherian:
@@ -498,5 +499,68 @@ The primary decomposition is not necessarily unique, although in \S 4 of Atiyah-
   \item The $p_i$ occurring in the primary decomposition are unique, and are precisely $\Ass(M/N)$.
   \item If the $p_j$ are minimal among all occurring $p_i$s, then the corresponding $N_j$ are unique. If $p_j$ are not minimal (which we call \emph{embedded}), then the $N_j$ can vary.
 \end{itemize}
-In \textbf{1.33}, $q$ is minimal and $p$ is embedded. Hence the ideal $(x)$ is unique and $\mbox{\Ass(R/I) = \{p,q\}}$.
+In \textbf{1.33}, $q$ is minimal and $p$ is embedded. Hence the ideal $(x)$ is unique and \mbox{$\Ass(R/I) = \{p,q\}$}.
+
+\section{Localisation}
+As always, all rings are commutative with a 1.
+
+Let $S$ be a \emph{multiplicatively closed} subset of $R$ - i.e. $S$ is closed under multiplication and $1\in S$. Define a relation on $R \times S$ via
+\[(r_1, s_1) \equiv (r_2, s_2) \iff (r_1s_2 - r_2s_1)x = 0\text{ for some $x \in S$}\]
+
+This is reflexive, symmetric, and transitive. Reflexivity and symmetry are easy - for transitivity, if $(r_1,s_1)\equiv (r_2,s_2)\equiv (r_3, s_3)$, then we have $(r_1s_2-r_2s_1)x = 0 = (r_2s_3-r_3s_2)y$. Then multiplying the left hand side by $s_3y$ and subtracting the right hand side times $s_1x$ gives $(r_1s_3-r_3s_1)s_2xy = 0$, and $s_2xy\in S$ since $S$ is multiplicatively closed.
+
+Denote the equivalence class of $(r_1, s_1)$ as $\frac{r_1}{s_1}$, and denote the set of equivalence classes by $S^{-1}R$. Then $S^{-1}R$ is a ring, and there is a ring homomorphism $\theta : R \to S^{-1}R$ via $r \mapsto \frac{r}{1}$.
+
+We also have the following universal property:
+\begin{lemma}
+  Let $\varphi:R \to T$ be a ring homomorphism with $\varphi(s)$ a unit in $T$ for all $s \in S$. Then there is a unique ring homomorphism $\alpha : S^{-1}R \to T$ such that following diagram commutes:
+  \begin{center}
+    \begin{tikzcd}
+      R \arrow{rr}{\theta} \arrow[swap]{dr}{\varphi} & & S^{-1}R \arrow{dl}{\alpha} \\ & T &
+    \end{tikzcd}
+  \end{center}
+\end{lemma}
+\begin{proof}
+  For uniqueness, suppose that $\alpha$ exists, then $\alpha:S^{-1}R \to T$ such that $\alpha\theta = \varphi$.
+
+  Then
+  \begin{align*}
+    \alpha(r/1) &= \alpha(\theta(r)) = \varphi(r) \forall r\in R\\
+    \alpha(1/s) &= \alpha((s/1)^{-1}) = (\alpha(s/1))^{-1} = \varphi(s)^{-1} \forall s \in S
+  \end{align*}
+  Thus $\alpha(r/s) = \varphi(r)\varphi(s)^{-1}$, and $\alpha$ is uniquely determined.
+
+  For existence, let $\alpha(r/s) = \varphi(r)\varphi(s)^{-1}$. We need to show this is well defined.
+
+  Suppose $(r_1/s_1) = (r_2/s_2)$. Then there is $x \in S$ with $(r_1s_2-r_2s_1)x = 0$.
+
+  So $(\varphi(r_1)\varphi(s_2)-\varphi(r_2)\varphi(s_1))\varphi(x) = 0$.
+
+  Since $\varphi(x)$ is a unit, we must have $\varphi(r_1)\varphi(s_2) = \varphi(r_2)\varphi(s_1)$, and thus $\alpha(r_1/s_1) = \alpha(r_2/s_2)$.
+\end{proof}
+\underline{Examples:}
+\begin{itemize}
+  \item The field of fractions of an integral domain $R$. Put $S = R\setminus\{0\}$.
+  \item $S^{-1}R = (0) \iff 0 \in S$.
+  \item If $I \triangleleft R$, then take $S = 1+I$ is multiplicatively closed.
+  \item If $p$ is a prime ideal, then let $S = R\setminus p$, and this is multiplicatively closed since $p$ is prime. In this case, we write $R_p$ for $S^{-1}R$ in this case.
+\end{itemize}
+This process of passing from $R$ to $R_p$ is called \emph{localisation at p}. The elements $\frac{r}{s}$ with $r \in p$ form an ideal of $R_p$, and in fact is the unique maximal ideal in $R_p$ - if $\frac{r}{s}$ is such that $r \notin p$, then $r \in S$, and hence $\frac{s}{r}\in R_p$ is its inverse.
+
+\begin{definition}
+  A ring with a unique maximal ideal is called \emph{local}.\footnote{Some authors require local rings to be noetherian - we will be explicit here when we need this.}
+\end{definition}
+\underline{Examples:}
+\begin{itemize}
+  \item $\R=\Z, p = (p)$ for $p$ prime. Then $R_p = \{\frac{m}{n}:p\nmid n\}<\Q$, with unique maximal ideal $\{\frac{m}{n}:p|m, p\nmid n\}$
+
+  \item $R = k[x_1, \ldots, x_n], p = (x_1-\alpha_1, \ldots, x_n-\alpha_n)$. Then $R_p \leq k(x_1, \ldots, x_n)$, and is those functions that are defined at $(\alpha_1, \ldots, \alpha_n)\in k^n$. The unique maximal ideal consists of those rational functions which are zero at $(\alpha, \ldots, \alpha_n)$.
+\end{itemize}
+
+\subsection{Modules}
+Given a (left) $R$-module $M$, for a multiplicatively closed set $S \subseteq R$, define a relation on $M \times S$ by $(m_1, s_1) \equiv (m_2, s_2) \iff x(m_1s_2-m_2s_1) = 0$ for some $x \in S$. Again, this is an equivalence relation, with $\frac{m}{s}$ denoting an equivalence class, and we write for the set of equivalence classes $S^{-1}M$. Now $S^{-1}M$ is an $S^{-1}R$-module.
+
+Write $M_p$ in the case where $S = R\setminus p$ for some prime ideal $p$. If $\theta:M_1 \to M_2$ is an $R$-homomorphism, then $S^{-1}\theta: S^{-1}M_1 \to S^{-1}M_2$ is an $S^{-1}R$-homomorphism, defined by $S^{-1}\theta:\frac{m_1}{s}\mapsto\frac{\theta(m_1)}{s}$.
+
+If $\varphi:M_2 \to M_3$, then $S^{-1}(\varphi\circ\theta) = S^{-1}\varphi \circ S^{-1}\theta$.
 \end{document}

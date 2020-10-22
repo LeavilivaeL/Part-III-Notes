@@ -1,3 +1,6 @@
+\author{Harry Armitage}
+
+%\usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
 \usepackage{amsfonts}
@@ -21,6 +24,11 @@
 \usepackage{tikz-cd}
 \usepackage{hyperref}
 
+\usepackage{fontspec}
+\usepackage{newpxtext, newpxmath}
+%\usepackage{mathpazo}
+\usepackage{anyfontsize}
+
 \hypersetup{
     colorlinks,
     citecolor=black,
@@ -34,7 +42,7 @@
 \newcommand{\im}{\mathfrak{i}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\Q}{\mathbb{Q}}
-\newcommand{\C}{\mathbb{C}}
+\renewcommand{\C}{\mathbb{C}}
 \newcommand{\F}{\mathbb{F}}
 \newcommand{\K}{\mathbb{K}}
 \newcommand{\N}{\mathbb{N}}
@@ -44,7 +52,7 @@
 \renewcommand{\O}{\mathcal{O}}
 \newcommand{\A}{\mathbb{A}}
 \newcommand{\D}{\mathbb{D}}
-\newcommand{\nequiv}{\not\equiv}
+%\newcommand{\nequiv}{\not\equiv}
 \newcommand{\powset}{\mathcal{P}}
 \renewcommand{\th}[1][th]{\textsuperscript{#1}\xspace}
 \newcommand{\from}{\leftarrow}
@@ -70,7 +78,6 @@
 \newcommand{\wrt}{\text{ w.r.t. }}
 \newcommand{\abs}[1]{\lvert#1\rvert}
 \newcommand{\norm}[1]{\lVert#1\rVert}
-
 \newcommand*\circled[1]{\tikz[baseline=(char.base)]{
       \node[shape=circle,draw,inner sep=2pt] (char) {#1};}
 }

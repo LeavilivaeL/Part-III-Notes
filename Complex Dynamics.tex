@@ -72,7 +72,7 @@ Gravitational Lensing: Suppose we have $n$ point masses in a plane perpendicular
   \caption{The same galaxy appearing 3 times in an image captured by Hubble.}
 \end{figure}
 
-For example, if we have a point mass at the origin $n=1, z_1 = 0$. The lens equation gives us images of it at $z = \frac{\sigma_1}{\bar{z}}$, i.e. $|z|^2 = \sigma_1$. The solution is a circle, known as an \emph{Einstein ring}.
+For example, if we have a point mass at the origin $n=1, z_1 = 0$. The lens equation gives us images of it at $z = \frac{\sigma_1}{\bar{z}}$, i.e. $\abs{z}^2 = \sigma_1$. The solution is a circle, known as an \emph{Einstein ring}.
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.95\textwidth]{compdyn04.jpg}
@@ -205,7 +205,7 @@ Using the origin and automorphisms, one computes that the distance function is g
   \begin{align*}
     \sigma_1(z) = \frac{y-z}{1-\bar{y}z},\;\;\;\;\sigma_2(z) = \frac{f(y)-f(z)}{1-\overline{f(y)}f(z)}
   \end{align*}
-  Then $\sigma_2 \circ f \circ \sigma_1^{-1} : \D \to \D$ fixes 0. So by Schwarz's lemma, $|\sigma_2 \circ f \circ \sigma_1^{-1}(z)| \leq |z|$, i.e.
+  Then $\sigma_2 \circ f \circ \sigma_1^{-1} : \D \to \D$ fixes 0. So by Schwarz's lemma, $|\sigma_2 \circ f \circ \sigma_1^{-1}(z)| \leq \abs{z}$, i.e.
   \[
     \left|\frac{f(y)-f(x)}{1-\overline{f(y)}f(x)}\right| \leq \left|\frac{y-x}{1-\bar{y}x}\right|
   \]
@@ -216,9 +216,9 @@ Thus all maps of hyperbolic domains are (weakly) contracting with respect to the
 
 \section{What is a reasonable notion of stable/predictable behaviour under iteration?}
 
-For example, take $f(z) = z^2$, so that $f^n(z) = z^{2^n}$. If $|z| > 1$, then $|f^n(z)| = |z|^{2^n} \to \infty$. On the other hand, if we start with a point inside the unit disc, then $|f^n(z)| \to 0$. This is a stable property - if $z$ goes off to $\infty$ or $0$ under iteration of $f$, then $z+\epsilon$ for $|\epsilon|$ small also goes off towards $\infty$ or 0 respectively.
+For example, take $f(z) = z^2$, so that $f^n(z) = z^{2^n}$. If $\abs{z} > 1$, then $|f^n(z)| = \abs{z}^{2^n} \to \infty$. On the other hand, if we start with a point inside the unit disc, then $|f^n(z)| \to 0$. This is a stable property - if $z$ goes off to $\infty$ or $0$ under iteration of $f$, then $z+\epsilon$ for $|\epsilon|$ small also goes off towards $\infty$ or 0 respectively.
 
-In contrast, if $|z|=1$, then we do not have this stable behaviour.
+In contrast, if $\abs{z}=1$, then we do not have this stable behaviour.
 
 \begin{definition}
   Let $S, T$ be metric spaces and $f_n : S \to T$ a sequence of continuous maps. We say that $\{f_n\}$ \emph{converges locally uniformly} if for all compact $K \subset S$ and all $\epsilon >0$ there exists $N \in \N$ such that
@@ -230,7 +230,7 @@ In contrast, if $|z|=1$, then we do not have this stable behaviour.
   We say that $\{f_n\}$ \emph{diverges locally uniformly} if for all compact $K \subset S$ and compact $K' \subset T$, we have $N \in \N$ such that $f_n(K) \cap K' = \emptyset$ for all $n \geq N$.
 \end{definition}
 
-\underline{Example:} Let $p(z) = a_dz^d + \ldots + a_0 \in \C[z]$ a polynomial, with sequence of iterates $\{p^n(z) : n \in \N\}$. If $|z| \gg \max\{|a_d|, \ldots, |a_0|\}$, then $|p(z)| \approx |a_dz^d|$. So $|p^n(z)| \to \infty$ as $n \to \infty$. Considering $p:\hat{\C} \to \hat{\C}$, the sequence $\{p^n(z)\}$ converges locally uniformly on a neighbourhood of $\infty$.
+\underline{Example:} Let $p(z) = a_dz^d + \ldots + a_0 \in \C[z]$ a polynomial, with sequence of iterates $\{p^n(z) : n \in \N\}$. If $\abs{z} \gg \max\{|a_d|, \ldots, |a_0|\}$, then $|p(z)| \approx |a_dz^d|$. So $|p^n(z)| \to \infty$ as $n \to \infty$. Considering $p:\hat{\C} \to \hat{\C}$, the sequence $\{p^n(z)\}$ converges locally uniformly on a neighbourhood of $\infty$.
 
 Note that the definition of $S, T$ matter - if we consider $p:\C \to \C$ instead then the sequence of iterates $\{p^n(z)\}$ diverges locally uniformly on the complement of some large disc.
 
@@ -385,7 +385,7 @@ For example, take $f(z) = \lambda z$ for $\lambda = e^{2\pi\im\theta}$ for some 
 \end{figure}
 From now on in the course, we will usually only consider rational maps of degree at least 2. In the case of M\"obius transformations, the Fatou and Julia sets can be explicitly calculated - see example sheet 1.
 
-\subsection{Basic Properties of $J(F)$}
+\subsection{Basic Properties of J(F)}
 It immediately follows from the definition that $F(f)$ is open, and so $J(F)$ is closed and compact in $\hat{\C}$.
 
 \begin{lemma}
@@ -452,4 +452,146 @@ The Julia set is the smallest closed totally invariant set in $\hat\C$ containin
 Note that $J(f) = \hat\C$ can happen, but not with polynomial maps. For instance, take $f(z) = \frac{1}{1-2z^2}$ - by the end of the course we'll be able to prove this function is chaotic everywhere.
 
 On the other hand, we will show soon that $J(f) \neq \emptyset$.
+
+\section{Cycles and Multipliers}
+\begin{definition}
+  Let $z_0 \in \hat\C$. We say that $z_0$ is \emph{periodic} or in a \emph{periodic cycle} for $f$ if $f^m(z_0) = z_0$ for some $m \in \N$. The minimal such $m$ is the period of the cycle. If $z_0$ has period $m$, then the derivative
+  \[\lambda \coloneqq (f^m)'(z_0) = \prod_{i=0}^{m-1}f'(f^i(z_0))\]
+  is called the \emph{multiplier} of the cycle.
+\end{definition}
+\underline{Example:} Take $p(z) = a_dz^d + \ldots + a_0$ a polynomial, so that $p(\infty) = \infty.$ Then $\infty$ is in a cycle of period 1. By example sheet 1, $p'(\infty) = \lim\limits_{z\to\infty}\frac{1}{p'(z)} = 0$. Hence $\infty$ is a fixed point of multiplier zero for any polynomial.
+
+We classify periodic cycles according to their multiplier:
+\begin{definition}
+  Let $z_0$ be a point of period $m$ for $f$ with multiplier $\lambda$. Then we say $z_0$ is:
+  \begin{itemize}
+    \item \emph{superattracting} if $\lambda = 0$
+    \item \emph{attracting} if $\abs{\lambda} < 1$
+    \item \emph{indifferent} if $\abs{\lambda} = 1$
+    \item \emph{repelling} if $\abs{\lambda} > 1$
+  \end{itemize}
+\end{definition}
+Note that superattracting $\implies$ attracting.
+
+If $g = \mu \circ f \circ \mu^{-1}$ for $\mu$ a M\"obius map, and $z_0$ has period $m$ for $f$ with multiplier $\lambda$, then $\mu(z_0)$ has period $m$ for $g$, again with multiplier $\lambda$.
+
+\begin{definition}
+  Suppose $C \coloneqq \{z_0, \ldots, z_{m-1}\}$ is an attracting orbit of period $m$. Then the \emph{basin of attraction} for the cycle $C$ is the set:
+  \[\mathcal{A} \coloneqq \{z \in \hat\C:\lim_{n\to\infty}f^{nm}(z) \in C\}\]
+\end{definition}
+For example, take $f(z) = z^2, f'(z) = 2z$. Then if $z$ is a periodic point with period $m$, then $z = z^{2^m}$. These points are:
+\begin{itemize}
+  \item 0
+  \item $\infty$
+  \item Roots of unity of the form $z^{2^m-1} = 1$
+\end{itemize}
+These points respectively have multipliers:
+\begin{itemize}
+  \item $\lambda = 2\cdot 0=0$, and the basin of attraction is $\abs{z} < 1$.
+  \item $\lambda = \lim\limits_{z\to \infty} \frac{1}{2z} = 0$, and the basin of attraction is $\abs{z} > 1$.
+  \item $\abs{\lambda} = 2\abs{z} = 2$, so these are repelling.
+\end{itemize}
+\begin{theorem}
+  Every attracting basin is contained in the Fatou set. Any repelling periodic point is contained in the Julia set.
+\end{theorem}
+\begin{proof}
+  Since $J(f) = J(f^m)$ for $m \in \N$, we may assume that $z_0$ is a fixed point of $f$ with multiplier $\lambda$. Suppose that $\abs{\lambda} < 1$. Then locally, by Taylor's theorem, we have $\abs{f(z)-z_0} \leq c\abs{z-z_0}$ for any constant $\abs{\lambda}<c<1$. So we have uniform convergence of the iterates on compact subsets on a neighbourhood of $z_0$ to the constant function $z \mapsto z_0$. So $z_0 \in F(f)$ as claimed.
+
+  If $z \in J(f)$, with $\lim\limits_{n\to\infty} f^n(z) = z_1$ say, then $z_1 \in J(f)$. But by above, $z_1 \in F(f)\contr$. Hence the attracting basin of an attracting point is also Fatou.
+
+  Suppose $\abs{\lambda} > 1$. The derivative at $z_0$ of the iterates $f^k(z)$ is $\lambda^k \to \infty$ as $k \to \infty$. So there is no equicontinuity of $\{f^k\}$ on any neighbourhood of $z_0$, and so by Arzel\`a-Ascoli, $\{f^k\}$ is not normal on a neighbourhood of $z_0$. Hence $z_0 \in J(f)$.
+\end{proof}
+
+The derivative at fixed points is a local property, but it turns out there is still some global constraints on the multipliers of fixed points.
+\begin{definition}
+  Let $z_0$ be a fixed point of a rational map $f$ of degree $d$. The residue index of $f$ at $z_0$ is
+  \[ i_f(z_0) \coloneqq \frac{1}{2\pi\im}\int_\gamma \frac{dz}{z-f(z)}\]
+  where $\gamma$ is any small positively oriented loop around $z_0$.
+\end{definition}
+Note: a degree $d$ map has $d+1$ fixed points.
+\begin{lemma}
+  Let $\lambda$ be the multiplier of a fixed point $z_0$ of $f$. If $\lambda \neq 1$, then
+  \[i_f(z_0) = \frac{1}{1-\lambda}\]
+\end{lemma}
+\begin{proof}
+  Without loss of generality, assume that $z_0 = 0$ or $z_0 = \infty$, after noticing that both the residue and the multiplier are invariant under conjugation by a translation.
+
+  If $z_0 = 0$, then $f(z) = \lambda z + a_2z^2 + a_3z^3 + \ldots$ near $z_0=0$. Since $\lambda \neq 1$, we have
+  \begin{align*}
+    z-f(z) &= (1-\lambda)z(1+b_1z+b_2z^2+\ldots)\\
+    \implies \frac{1}{z-f(z)} &= \frac{1}{(1-\lambda)z}\frac{1}{1+b_1z+b_2z^2+\ldots}\\
+    &= \frac{1}{(1-\lambda)z}(1+c_1z+c_2z^2+\ldots)\\
+    &= \frac{1}{(1-\lambda)z} + g(z)
+  \end{align*}
+  where $g(z)$ is holomorphic. Integrating both sides causes the $g(z)$ to disappear, and so by the residue theorem we have the result.
+
+  If $z_0 = \infty$, a similar computation works.
+\end{proof}
+On example sheet 1, there is an exercise to show that the residue index is conjugation invariant by any M\"obius map. Note that this lemma deals with every case except for when $\lambda = 1$.
+
+\begin{theorem}[Holomorphic Lefschetz on the Riemann Sphere]
+  Let $f:\hat\C \to \hat\C$ be a rational map of degree at least $2$. Then
+  \[ \sum_{z=f(z)} i_f(z) = 1\]
+\end{theorem}
+\begin{proof}
+  Assume without loss of generality that $\infty$ is not a fixed point. Let $C_R$ denote the circle of radius $R$ about $0$, positively oriented, and suppose that it is large enough to strictly contain all the fixed points of $f$. Then with $w = \frac{1}{z}$:
+  \begin{align*}
+    \int_{C_R} \frac{dz}{z-f(z)} = \int_{-C_{1/R}}\frac{-dw}{w^2\left(\frac{1}{w}-f(\frac{1}{w})\right)} = \int_{C_{1/R}}\frac{dw}{w\left(1-wf(\frac{1}{w})\right)}
+  \end{align*}
+
+  The nonzero poles of the integral are reciprocals of the fixed points of $f$, which by construction lie outside $C_{1/R}$. So, by the residue theorem, :
+  \begin{align*}
+    \sum_{z=f(z)}i_f(z) = \frac{1}{2\pi\im}\int_{C_R}\frac{dz}{z-f(z)} = \substack{\text{Res}\\w=0}\left[\frac{1}{w\left(1-wf(\frac{1}{w})\right)}\right] = 1
+  \end{align*}
+\end{proof}
+\subsection{Structure of the Julia Set}
+We have shown already that $J(f)$ is compact, and has no interior points unless $J(f) = \hat\C$. In this section we will show some other structural properties, starting with the following corollary of \textbf{7.7}
+\begin{corollary}
+  A rational map $f$ of degree $d \geq 2$ has a nonempty Julia set.
+\end{corollary}
+\begin{proof}
+  Suppose that $J(f)=\emptyset$, and $f$ is of degree $d\geq 2$, so that $f$ has $d+1$ fixed points, counting with multiplicity.
+
+  Since any repelling fixed point lies in $J(f)$, we can assume that $|\lambda| \leq 1$ for all fixed points of $f$. Suppose first that no fixed point has multiplier 1. Then the derivative of $f(z)-z$ is $f'(z)-1$, so we have all of the $d+1$ fixed points of $f$ distinct, as $f'(z)\neq 1$. Then all multipliers lie in $\bar{\D}$, and the map $x \mapsto \frac{1}{1-x}$, so that $\lambda(z) \mapsto i_f(z)$, is a M\"obius transformation taking $\bar{\D}$ to $\{z : \Re(z) \geq \frac{1}{2}\}$. So the sum of the $i_f(z)$ has real part $\geq \frac{d+1}{2} > 1$, violating \textbf{7.7}.
+
+  Suppose now that $\lambda = 1$ for some fixed point $f(z_0) = z_0$ - \textsc{wlog}, move it to 0. Then locally, $f(z) = z + a_kz^k + \ldots$, $a_k \neq 0$, and so:
+  \[f^n(z) = z+na_k z^k + \ldots\]
+  Hence the $k\th$ derivative of $f^n$ at $z_0$ tends to $\infty$ as $n \to \infty$, and so we don't have normality on any neighbourhood of $z_0$, and so $z_0 \in J(f)$.
+\end{proof}
+
+In fact, we have proved something slightly stronger. We've proved that:
+\begin{enumerate}
+  \item Any periodic cycle with $\lambda^k = 1$ for some $k\in \N$ is contained in $J(f)$.
+
+  If $\lambda$ is a multiplier with $\lambda^k = 1$ for some $k \in \N$, $f^k$ has a periodic cycle with $\lambda = 1$, and so the cycle is contained in $J(f^k)$. Since $J(f) = J(f^k)$, any such cycle is contained in $J(f)$.
+  \item $J(f)$ is infinite.
+
+  We produced a fixed point $z_0$ with $\abs{\lambda} \geq 1$ and $z_0 \in J(f)$. Consider $S = \bigcup\limits_{n \in \N\cup\{0\}}f^{-n}(z_0)\subseteq J(f)$. If this is finite, then since all elements' preimages are still in the set, $f$ must act as a bijection on $S$. Since $f(z_0) = z_0$, $z_0$ is its only preimage, so $f'(z_0) = 0, \contr$.
+\end{enumerate}
+\underline{Example:} $f(z) = z^2+\frac{1}{4}$. Consider the fixed points: $f(\infty) = \infty, f(1/2) = 1/2$. $\infty$ has multiplier 0, and is mapped to itself with degree $2$. $\frac{1}{2}$ has multiplier 1, so lies in $J(f)$, as do its infinitely many iterated preimages.
+
+\begin{proposition}
+  If $\mathcal{A}\subset \hat\C$ is the attracting basin of a periodic orbit for $f$. Then the Julia set $J(f)$ is the topological boundary $\partial \mathcal{A}$ of $\mathcal{A}$.
+\end{proposition}
+\begin{proof}
+  Let $U$ be an open neighbourhood intersecting $J(f)$. Then we have already seen that $\bigcup_{n \in \N} f^{n}(U)$ contains all but at most 2 points of $\hat\C$, and so intersects $\mathcal{A}$, i.e., $f^n(U) \cap \mathcal{A} = \emptyset$ for some $n \in \N$.
+
+  $U$ was arbitrary, and hence $J(f) \subseteq \bar{\mathcal{A}}$. Then $J(f) \cap \mathcal{A} = \emptyset \implies J(f)\subseteq \partial\mathcal{A}$.
+
+  Now suppose that $z \in \partial \mathcal{A}$. If $U$ is a neighbourhood of $z$ on which the iterates form a normal family (i.e. $z \in F(f)$), then pick a convergent subsequence of $\{f^k\}$ converging to $g$, holomorphic on $U$. Then $g|_U$ on $U \cap \mathcal{A}$ takes one of a finite number of values, namely the elements of the cycle with $\mathcal{A}$ is attracting to. So $g$ must be constant as it is holomorphic. Hence $U \subseteq \mathcal{A}$, contradicting that $z \in \partial A$. Therefore $z \notin F(f)$, i.e. $z \in J(f)$. Hence $\partial \mathcal{A} \subseteq J(f)$.
+\end{proof}
+\underline{Example:} Consider again $f(z) = z^2$. Then, given $\alpha = \exp(2\pi\im \theta)\in J(f)$, the preimages of $\alpha$ are all the numbers which are a root of $z^{2^m} -\alpha = 0$ for some $m \in \N$, i.e. $\{\exp(2\pi\im \frac{\theta + k}{2^m}): m \in \N, 0\leq k<2^m\}$. These points provide a dense subset of $J(f)$, the unit circle.
+
+\begin{corollary}
+  For any rational map $f$ and $z_0 \in J(f)$, the set of preimages
+  \[ \left\{ z: f^m(z) = z_0 \text{ for some } n\geq 0\right\}\]
+  form a dense subset of $J(f)$.
+\end{corollary}
+\begin{proof}
+  If we fix $z_0, z_1 \in J(f)$, if $z_1$ is not approximated by preimages of $z_0$, then there is some neighbourhood $U$ of $z_1$ whose forward images don't contain $z_0$. But these forward images contain all but at most 2 Fatou points of $\hat\C$, and in particular contain the Julia set, and hence $z_0\contr$.
+\end{proof}
+\begin{definition}
+  A set is \emph{perfect} if it is closed with no isolated points, or equivalently is equal to its set of limit points.
+\end{definition}
+$J(f)$ is thus a perfect set: it is closed and infinite, so it contains at least one non-isolated point $z_0$. The preimages of $z_0$ form a dense non-isolated subset of the Julia set, so no point of $J(f)$ is isolated.
 \end{document}

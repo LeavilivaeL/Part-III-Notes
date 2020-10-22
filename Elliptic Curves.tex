@@ -312,7 +312,7 @@ If $D \in \Div(E)$ is defined over $K$ (i.e. fixed by the natural action of $\Ga
   Let $E, E'$ be elliptic curves over $K$ in Weierstrass form. Then $E \cong E'$ over $K$ if and only if the Weierstrass equations are related by a change of variables of the form
   \begin{align*}
     x &= u^2x' + r\\
-    y &= u^3yu' + u^2sx' + t
+    y &= u^3y' + u^2sx' + t
   \end{align*}
   for $u, r, s, t \in K, u \neq 0$.
 \end{proposition}
@@ -526,7 +526,7 @@ If there is no ambiguity (i.e. we are not also adding numbers at the same time),
 \underline{\textbf{Definition.}} The \emph{n-torsion} subgroup of $E$ is $E[n] = \ker([n]:E\to E)$.
 
 \begin{lemma}
-  If $\charr(K) \neq 2$, and $E : y^2 = (x-e_1)(x-e_2)(x_e_3)$.
+  If $\charr(K) \neq 2$, and $E : y^2 = (x-e_1)(x-e_2)(x-e_3)$.
 
   Then $E[2] = (0, (e_1, 0), (e_2, 0), (e_3 0)) \cong (\Z/2\Z)^2$.
 \end{lemma}
@@ -606,7 +606,7 @@ If $E_1 \xrightarrow{\phi} E_2 \xrightarrow{\psi} E_3$ are isogenies, then $\psi
     E_1 \arrow{r}{\phi} \arrow{d}{\psi_1} & E_2 \arrow{d}{\psi_2}\\
     \Pic^0(E_1) \arrow{r}{\phi_\ast} & \Pic^0(E_2)
   \end{tikzcd}
-  ,where $\psi_1:P \mapsto [(P) -(O_E_1)], \psi_2:Q \mapsto [(Q)-(O_E_2)]$.
+  ,where $\psi_1:P \mapsto [(P) -(O_{E_1})], \psi_2:Q \mapsto [(Q)-(O_{E_2})]$.
 
   Since $\phi_\ast$ is a group homomorphism, $\phi$ is also a group homomorphism.
 \end{proof}
