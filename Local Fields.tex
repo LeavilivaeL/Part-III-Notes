@@ -707,9 +707,9 @@ A norm defines a metric on $V$, and hence a topology, and equivalent norms induc
   Let $x \in K$ be integral over $\O_K$, and without loss of generality $x \neq 0$.
 
   Then let $f(x) = x^n+a_{n-1}x^{n-1} + \ldots + a_0 \in \O_K[x]$ such that $f(x) = 0$. Then:
-  \[ x = -a_{n-1} - a_{n-2} \frac{1}{x}-\ldots - a_0\frac{1}{x^{n-1}}\]
+  \[ 1 = -\frac{1}{x}a_{n-1} - a_{n-2} \frac{1}{x^2}-\ldots - a_0\frac{1}{x^n}\]
 
-  If $|x|>1$, we have $\abs{-a_{n-1}-\ldots-a_0\frac{1}{x^{n-1}}} \leq 1 \contr$.
+  If $|x|>1$, we have $1 = \abs{1} = \abs{-\frac{1}{x}a_{n-1}-\ldots-a_0\frac{1}{x^n}} < 1 \contr$.
 
   But then $\abs{x} \leq 1$, so $x \in \O_K$.
 \end{proof}
@@ -758,4 +758,107 @@ A norm defines a metric on $V$, and hence a topology, and equivalent norms induc
 
   For the completeness part, since $\abs{\cdot}_L$ defines a norm on $K$, \textbf{6.5} implies that $L$ is complete with respect to $\abs{\cdot}_L$.
 \end{proof}
+
+\begin{corollary}
+  Let $(K, \abs{\cdot})$ be a complete non-archimedean discretely valued field, and $L?K$ a finite extension. Then
+  \begin{enumerate}
+    \item $L$ is discretely valued with respect to $\abs{\cdot}_L$.
+    \item $\O_L$ is the integral closure of $\O_K$ in $L$.
+  \end{enumerate}
+\end{corollary}
+\begin{proof}\hspace*{0cm}
+  \begin{enumerate}[label=\textit{\arabic*.}]
+    \item Let $v$ be the valuation on $K$, $v_L$ the valuation on $L$ such that $v_L \extends v$, and let $n = [L:K]$.
+
+    Then for $y \in L^\times$, $\abs{y}_L = \abs{N_{L/K}(y)}^{1/n}$.
+
+    Hence $v_L(y) = \frac{1}{n}v(N_{L/K}(y))$, and so $v_L(L^\times) \subseteq \frac{1}{n}v(K^\times)$, hence $v_L$ is discrete.
+
+    \item Proved in the previous section.
+\end{enumerate}
+\end{proof}
+\begin{corollary}
+  Let $(K, \abs{\cdot})$ be a complete non-archimedean discretely valued field, and $\bar{K}/K$ an algebraic closure of $K$. Then $\abs{\cdot}$ extends to a unique absolute value $\abs{\cdot}_{\bar{K}}$ on $\bar{K}$.
+\end{corollary}
+\begin{proof}
+  Let $x \in \bar{K}$. Then $x$ is algebraic over $K$, so $x \in L$ for some $L/K$ finite. Define $\abs{x}_{\bar{K}} = \abs{x}_L$. This is well defined, i.e. is independent of $L$ by the uniqueness proven in $\textbf{6.1}$. The axioms for $\abs{\cdot}_\bar{K}$ to be an absolute value can be checked over finite extensions, as can uniqueness.
+\end{proof}
+\textsc{N.B.:} $\abs{\cdot}_{\bar{K}}$ is \textit{never} discrete. Take $x \in K, \abs{x} = 1$ (e.g. $p \in \Q_p$). Then for all $n \geq 0, v_{\bar{K}}(\sqrt[n]{x}) = \frac{1}{n}$, which can get arbitrarily close to zero as $x$ has all its roots in $\bar{K}$.
+
+\section{Local Fields}
+\begin{definition}
+  Let $(K, \abs{\cdot})$ be a valued field. Then we say $K$ is a \emph{local field} if it is complete and locally compact.
+\end{definition}
+For example, $\R$ and $\C$ are local fields.
+\begin{proposition}
+  Let $(K, \abs{\cdot})$ be a non-archimedean complete valued field. Then the following are equivalent:
+  \begin{enumerate}
+    \item $K$ is locally compact.
+    \item $\O_K$ is compact.
+    \item $v$ is discrete and $k \coloneqq \O_K/m$ is finite.
+  \end{enumerate}
+\end{proposition}
+\begin{proof}\hspace*{0cm}
+  \begin{itemize}
+    \item[\imp{1}{2}] Let $U \ni 0$ be a compact neighbourhood of $0$. Then $\exists x \in \O_K$ such that $x \O_K \subseteq U$. Since $x \O_K$ is closed, $x\O_K$ is compact, and hence $\O_K$ is compact, as there is a homeomorphism $x\O_K \xrightarrow{x^{-1}} \O_K$.
+
+    \item[\imp{2}{1}] $\O_K$ is compact, so $a+\O_K$ is compact for all $a \in K$, and hence $K$ is locally compact as every $a \in K$ has compact neighbourhood $a+\O_K$.
+
+    \item[\imp{2}{3}] Let $x \in m$, and $A_x \subseteq \O_K$ be a set of coset representatives for $\O_K/x\O_K$.
+
+    Then $\O_K = \bigcup_{y \in A_x} y+x\O_K$, which is a disjoint union of open subsets, and hence an irreducible open cover. So by compactness, $A_x$ is finite. So $\O_K/m$, which is a quotient of $\O_K/x\O_K$, is finite.
+
+    Now suppose that $v$ is not discrete. Let $x = x_1, x_2, x_3, \ldots$ be a sequence such that
+    \[ v(x_1)>v(x_2)>v(x_3)>\ldots>0\]
+    Then we have
+    \[ x\O_K \subsetneq x_2\O_K \subsetneq x_3\O_K \subsetneq\ldots \subsetneq \O_K\]
+
+    But $\O_K/x\O_K$ is finite, so can only have finitely many subgroups as an additive group $\contr$.
+
+    Hence $v$ must be discrete.
+
+    \item[\imp{3}{2}] Since $\O_K$ is a metric space, it suffices to show $\O_K$ is sequentially compact. Let $(x_n)_{n=1}^\infty$ be a sequence in $\O_K$ and fix $\pi \in \O_K$ a uniformizer.
+
+    Then since $\pi^i\O_K/\pi^{i+1}\O_K \cong k, \O_K/\pi^i\O_K$ is finite, as $\O_K \supseteq \pi\O_k \supseteq\ldots\supseteq \pi^i \O_K$, and each quotient is finite, hence the total quotient is finite.
+
+    Since $\O_K/\pi\O_K$ is finite, there is some $a \in \O_K/\pi\O_K$ and a subsequence $(x_{1,n})_{n=1}^\infty$ such that $x_{1,n} \equiv a \mod \pi$.
+
+    Define $y_1 = x_{1,1}$.
+
+    Since $\O_K/\pi^2 \O_K$ is finite, there is some $a_2 \in \O_K/\pi^2 \O_K$ and a subsequence $(x_{2,n})_{n=1}^\infty$ such that $x_{2,n}\equiv a_2 \mod \pi^2 \O_K$.
+
+    Define $y_2 = x_{2,2}$.
+
+    Continuing in this fashion, we get the sequences $(x_{i,n})_{n=1}^\infty$ for $i=1,2,\ldots$, such that $(x_{i+1, n})_{n=1}^\infty$ is a subsequence of $(x_{i,n})_{n=1}^\infty$, and, for any $i$, there is some $a_i \in \O_K/\pi^i\O_K$ with $x_{i,n} \equiv a_i \mod \pi^i$ for all $n$.
+
+    Then necessarily $a_i \equiv a_{i+1} \mod \pi^i$ for all $i$. With $y_i = x_{i,i}$, we have $y_i \equiv y_{i+1} \mod \pi^i$, and so $y_i$ is Cauchy, and hence converges by completeness, and hence $\O_K$ is sequentially compact.
+  \end{itemize}
+\end{proof}
+\underline{Examples:}
+\begin{enumerate}
+  \item $\Q_p$ is a local field.
+  \item $\F_p((t))$ is a local field.
+\end{enumerate}
+\subsection{More On Inverse Limits}
+Let $(A_n)_{n=1}^\infty$ be a sequence of sets/groups/rings and $\varphi_n :A_{n+1}\to A_n$ be homomorphisms.
+\begin{definition}
+  Assume $A_n$ is finite for all $n$. Then the \emph{profinite topology} on $A \coloneqq \lim\limits_{\xleftarrow[n]{}}A_n$ is the weakest topology on $A$ such that $A \to A_n$ is continuous for all $n$, where $A_n$ are equipped with the discrete topology.
+\end{definition}
+$A$ with the profinite topology is then compact, totally disconnected, and Hausdorff.
+
+\begin{proposition}
+  Let $(K, \abs{\cdot})$ be a local field. Under the isomorphism
+  \[ \O_K \cong \lim_{\xleftarrow[n]{}}\O_K/\pi^n\O_K\]
+  where $\pi$ is a uniformizer, the topology on $\O_K$ induced via $\abs{\cdot}$ coincides with the profinite topology.
+\end{proposition}
+\begin{proof}
+  Just need to check that, if
+  \[\mathcal{B}\coloneqq \{a+\pi^n \O_K : n \in \N_{\geq 1}, a \in A_{\pi^n}\}\]
+  where $A_{\pi^n}$ is a set of coset representatives for $\O_K/\pi^n\O_K$, then $\mathcal{B}$ is a basis of open sets in both topologies.
+
+  For $\abs{\cdot}$, this is immediate.
+
+  For the profinite topology, $\O_K \to \O_K/\pi^n \O_K$ is continuous if and only if $a+\pi^n \O_K$ is open for all $a \in A_{\pi^n}$. Then $\mathcal{B}$ is a basis for the profinite topology.
+\end{proof}
+This gives another proof that $\O_K$ is compact.
 \end{document}

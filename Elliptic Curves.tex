@@ -663,4 +663,118 @@ If $E_1 \xrightarrow{\phi} E_2 \xrightarrow{\psi} E_3$ are isogenies, then $\psi
 
   Hence $\deg [2] = \max(\deg x^4+\ldots, \deg 4f(x)) = \max(4, 3) = 4$.
 \end{proof}
+
+\textbf{Definition.} Let $A$ be an abelian group. We say that $q:A \to \Z$ is a \emph{quadratic form} if it satisfies
+\begin{enumerate}
+  \item $q(nx) = n^2q(x) \forall n \in \Z, x \in A$.
+  \item $(x,y) \to q(x+y)-q(x)-q(y)$ is $\Z$-bilinear.
+\end{enumerate}
+\begin{lemma}
+  $q:A \to \Z$ is a quadratic form if and only if it satisfies the parallelogram law:
+  \[q(x+y)+q(x-y) = 2q(x)+2q(y) \forall x,y \in A\]
+\end{lemma}
+\begin{proof}
+  For the forwards direction, let $\angle{x,y} = q(x+y)-q(x)-q(y)$.
+
+  Then $\angle{x,x} = q(2x)-2q(x) = 2q(x)$.
+
+  Then $\frac{1}{2}\angle{x+y,x+y} + \frac{1}{2}\angle{x-y,x-y} = \angle{x,x}+\angle{y,y}$ by bilinearity, and hence $q(x+y)+q(x-y) = 2q(x)+2q(y)$.
+
+  The reverse direction is left as an exercise on example sheet 2.
+\end{proof}
+\begin{theorem}
+  \[\deg : \Hom(E_1, E_2) \to \Z\]
+  is a quadratic form.
+\end{theorem}
+\begin{proof}
+For the proof, we will assume $\charr K \neq 2, 3$ for simplicity - the result still holds in those characteristics.
+
+We write $E_2: y^2=x^3+ax+b$.
+
+Let $P, Q \in E_2$ with $P, Q, P+Q, P-Q \neq 0$, and let $x_1, \ldots, x_4$ be the $x$-coordinates of these 4 points. Then we have:
+\begin{lemma}
+  There exists $w_0, w_1, w_2 \in \Z[a,b][x_1,x_2]$ of degree $\leq 2$ in $x_1$ and in $x_2$ such that $(1:x_3+x_4:x_3x_4) = (w_0:w_1:w_2)$.
+\end{lemma}
+\begin{proof}
+  We could prove this by direct calculation, leading to the formulae:
+  \begin{align*}
+    w_0 &= (x_1-x_2)^2\\
+    w_1 &= 2(x_1x_2+a)(x_1+x_2)+4b\\
+    w_2 &= x_1^2x_2^2-2ax_1x_2-4b(x_1+x_2)+a^2
+  \end{align*}
+
+  As an alternative proof, let $y=\lambda x +\nu$ be the line through $P$ and $Q$. Then
+  \[x^3+ax+b-(\lambda x+\nu)^2 = (x-x_1)(x-x_2)(x-x_3) = x^3-s_1x^2+s_2x-s_3\]
+  where $s_i$ is the $i\th$ symmetric polynomial in $(x_1, x_2, x_3)$.
+
+  Comparing coefficients:
+  \begin{align*}
+    \lambda^2 &= s_1\\
+    -2\lambda\nu+a &= s_2\\
+    \nu^2-b &=  s_3
+  \end{align*}
+  Eliminating $\lambda, \nu$, we have $F(x_1, x_2, x_3) \coloneqq (s_2-a)^2-4s_1(s_3+b)=0$. Then $F$ has degree at most 2 in each $x_i$.
+
+  $x_3$ is a root of the quadratic polynomial $W(t) = F(x_1, x_2, t)$, and repeating this for the line through $P$ and $-Q$ shows that $x_4$ is the other root. Hence
+  \[w_0(t-x_3)(t-x_4) = W(t) = w_0t^2-w_1t+w_2\]
+  And so $(1:x_3+x_4:x_3x_4) = (w_0:w_1:w_2)$.
+\end{proof}
+
+We then show that, if $\phi, \psi \in \Hom(E_1, E_2)$, then
+\[ \deg(\phi+\psi) +\deg(\phi-\psi) \leq 2\deg(\phi)+2\deg(\psi)\]
+We may assume $\phi, \psi, \phi+\psi, \phi-\psi != 0$, as otherwise the result is trivial.
+
+\begin{align*}
+  \phi&: (x, y) \mapsto (\xi_1(x), \ldots)\\
+  \psi&: (x, y) \mapsto (\xi_2(x), \ldots)\\
+  \phi+\psi&: (x, y) \mapsto (\xi_3(x), \ldots)\\
+  \phi-\psi&: (x, y) \mapsto (\xi_4(x), \ldots)
+\end{align*}
+Then \textbf{5.7} gives $(1:\xi_3+\xi_4:\xi_3\xi_4) = ((\xi_1-\xi_2)^2:\ldots:\ldots)$.
+
+Put $\xi_i = \frac{r_i}{s_i}}$ where $r_i, s_i \in K[x]$ are coprime:
+\[(s_3s_4:r_3s_4+r_4s_3:r_3r_4) = ((r_1s_2-r_2s_2)^2:\ldots:\ldots)\tag{\ast}\]
+
+So we have:
+\begin{align*}
+  \deg(\phi+\psi)+\deg(\phi-\psi) &= \max(\deg r_3, \deg s_3)+\max(\deg r_4, \deg s_4) \\
+  &= \max(\deg(s_3s_4), \deg(r_3s_4+r_4s_3), \deg(r_3r_4))
+\end{align*}
+Suppose $(s_3s_4, r_3s_4+r_4s_3, r_3r_4)$ are not coprime, so that $p$ irreducible divides all $3$. Then $p$ divides one of $r_3, r_4$, and one of $s_3, s_4$. $p$ can't divide both $s_i$ and $r_i$ as they are coprime, so \textsc{wlog} $p$ divides $r_3$ and $s_4$ and not $r_4$ nor $s_3$. Then $p$ doesn't divide $r_3s_4+r_4s_3 \contr$. Hence these polynomials are coprime.
+
+Hence the polynomials on \textsc{rhs} of $(\ast)$ must be multiples of polynomials on the \textsc{lhs} by some irreducible polynomial, and hence each have degree $\geq$ their corresponding polynomial on \textsc{lhs}, and thus, as $w_i$ are of degree $\leq 2$ in $r_1, s_1, r_2, s_2$,
+\begin{align*}
+  \deg(\phi+\psi)+\deg(\phi-\psi) &\leq \max(\deg(w_0), \deg(w_1), \deg(w_2))\\
+  &\leq 2\max(\deg r_1, \deg s_1) + 2\max(\deg r_2, \deg s_2)\\
+  &= 2 \deg \phi + 2 \deg \psi\tag{1}
+\end{align*}
+Now replace $\phi$ and $\psi$ by $\phi+\psi$ and $\phi-\psi$ to get
+\[\deg(2\phi)+\deg(2\psi) \leq 2\deg(\phi+\psi)+2\deg(\phi-\psi)\]
+Since $\deg[2] = 4$,
+\[2\deg(\phi)+2\deg(\psi) \leq \deg(\phi+\psi)+\deg(\phi-\psi)\tag{2}\]
+(1) and (2) together give
+\[ 2\deg(\phi)+2\deg(\psi) = \deg(\phi+\psi)+\deg(\phi-\psi)\]
+so $\deg$ satisfies the parallelogram law, and hence is a quadratic form.
+\end{proof}
+\begin{corollary}
+  \[deg(n\phi) = n^2\deg(\phi) \forall n\in \Z, \phi \in \Hom(E_1, E_2)\]
+  In particular, $\deg[n] = n^2$.
+\end{corollary}
+\stepcounter{theorem}
+\textbf{Example \thetheorem.} Let $E/K$ be an elliptic curve, suppose $\charr K \neq 2$, and let $O_E \neq T \in E(K)[2]$.
+
+Then we may take $E: y^2 = x(x^2+ax+b), a, b \in K, b(a^2-4b) \neq 0$, $T=(0, 0)$
+
+Then if $P=(x,y)$ and $P'=P+T = (x', y')$, then:
+\begin{align*}
+  x' &= (y/x)^2 - a - x = \frac{x^2+ax+b}{x}-x-a- = \frac{b}{x}\\
+  y' &= -(y/x)x' = \frac{-by}{x^2}
+\end{align*}
+Then let $\xi = x+x'+a = \frac{x^2+ax+b}{x} = \left(\frac{y}{x}\right)^2$, and $\eta = y+y' = \frac{y}{x}(x-\frac{b}{x})$
+
+Then $\eta^2=\left(\frac{y}{x}\right)^2\left[\left(x+\frac{b}{x}\right)^2-4b\right] = \xi\left((\xi-a)^2-4b\right) = \xi(\xi^2-2a\xi+a^2-4b)$
+
+Let $E': y^2=x(x^2+a'x+b')$ where $a' = -2a, b'=a^2-4b$. Then there is an isogeny $\phi:E \to E'$ given by $(x, y) \mapsto \left(\left(\frac{y}{x}\right)^2:\frac{y(x^2-b)}{x^2}:1\right); O_E \mapsto (0:1:0)$
+
+\textbf{5.3} tells us, as $x' = \left(\frac{y}{x}\right)^2 = \frac{x^2+ax+b}{x}$, that $\deg(\phi) = \max(2,1) = 2$, and we say $\phi$ is a 2-isogeny.
 \end{document}
