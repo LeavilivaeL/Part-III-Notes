@@ -565,4 +565,104 @@ Given a (left) $R$-module $M$, for a multiplicatively closed set $S \subseteq R$
 Write $M_p$ in the case where $S = R\setminus p$ for some prime ideal $p$. If $\theta:M_1 \to M_2$ is an $R$-homomorphism, then $S^{-1}\theta: S^{-1}M_1 \to S^{-1}M_2$ is an $S^{-1}R$-homomorphism, defined by $S^{-1}\theta:\frac{m_1}{s}\mapsto\frac{\theta(m_1)}{s}$.
 
 If $\varphi:M_2 \to M_3$, then $S^{-1}(\varphi\circ\theta) = S^{-1}\varphi \circ S^{-1}\theta$.
+
+A sequence of $R$-modules
+\[M_0 \to M_1 \to M_2 \to\ldots\xrightarrow{\theta}M_i\xrightarrow{\varphi}\ldots\to M_t\]
+is \emph{exact} at $M_i$ if $\Image \theta = \ker \varphi$. A \emph{short exact sequence} is one of the form
+\[ 0 \to M_1 \xrightarrow{\theta} M \xrightarrow{\varphi} M_2 \to 0\]
+with exactness at $M_1, M, M_2$. Then $\theta$ is injective, $\varphi$ is surjective, and $\Image\theta = \ker \varphi$.
+\begin{lemma}
+  If $M_1, M, M_2$ are $R$-modules and $M_1\xrightarrow{\theta}M\xrightarrow{\varphi}M_2$ is exact at $M$, then \[S^{-1}M_1 \xrightarrow{S^{-1}\theta} S^{-1}M\xrightarrow{S^{-1}\varphi}S^{-1}M_2\] is exact at $S^{-1}M$.
+\end{lemma}
+\begin{proof}
+  Since $\ker \varphi = \Image\theta$, we have $\varphi\circ\theta = 0$. So $(S^{-1}\varphi)\circ(S^{-1}\theta) = S^{-1}(\varphi\circ\theta) = S^{-1}(0) = 0$, and hence $\Image S^{-1}\theta \leq \ker S^{-1}\varphi$.
+
+  Now suppose that $\frac{m}{s} \in \ker S^{-1}\varphi \subseteq S^{-1}M$. Then $\frac{\varphi(m)}{s} = 0$ in $S^{-1}M_2$ and there is some $t\in S$ with $t\varphi(m) = 0$ in $M_2$. But $t\varphi(m)=\varphi(tm)$, since $\varphi$ is a $R$-module homomorphism. Thus $tm \in \ker\varphi = \Image\theta$, and so $tm =\theta(m_1)$ for some $m_1\in M_1$.
+
+  Hence in $S^{-1}M, \frac{m}{s} = \frac{\theta(m_1)}{ts} = (S^{-1}\theta)\left(\frac{m_1}{ts}\right) \in \Image S^{-1}\theta$, and so $\ker S^{-1}\varphi \leq \Image S^{-1}\theta$.
+
+  Thus $\ker S^{-1}\varphi = \Image S^{-1}\theta$, and the sequence is exact.
+\end{proof}
+\begin{lemma}
+  Let $N \trianglelefteq M$. Then $S^{-1}(M/N) \cong S^{-1}M/S^{-1}N$.
+\end{lemma}
+\begin{proof}
+  Apply \textbf{2.3} to the short exact sequence $0 \to N \stackrel{\iota}{\injection} M \stackrel{\epsilon}{\surjection} M/N \to 0$ to get that
+  \[0 \to S^{-1}N \stackrel{S^{-1}\iota}{\injection} S^{-1}M \stackrel{S^{-1}\epsilon}{\surjection} M/N \to 0\]
+  is a short exact sequence. Hence $S^{-1}(M/N) \cong S^{-1}M/S^{-1}N$.
+\end{proof}
+If $R$ is a ring with a multiplicatively closed subset $S$, and $I \trianglelefteq R$, then $S^{-1}I$ is an ideal of $S^{-1}R$. If $N \subset M$, then $S^{-1}N$ can be regarded as a submodule of $S^{-1}M$.
+\begin{lemma}\hspace*{0cm}
+  \begin{enumerate}
+    \item Every ideal in $S^{-1}R$ is of the form $S^{-1}I$ for some $I \trianglelefteq R$.
+    \item The prime ideals of $S^{-1}R$ are in one-to-one correspondence with the prime ideals of $R$ that don't intersect $S$.
+  \end{enumerate}
+\end{lemma}
+\begin{proof}\hspace*{0cm}
+  \begin{enumerate}[label=\textit{\arabic*.}]
+    \item Let $J\trianglelefteq S^{-1}R$, and $I = \{r \in R:\frac{r}{1}\in J\}\subseteq R$. Then if $\frac{r}{s} \in J$, we have $\frac{r}{1} \in J$, and hence $r \in I$, so $J \subseteq S^{-1}I$
+
+    Conversely, if $r \in I$ then $\frac{r}{1}\in J$, and so $\frac{r}{s}\in J$ for all $S$, so $S^{-1}I \subseteq J$.
+
+    \item Let $q$ be a prime ideal in $S^{-1}R$. Set $p \coloneqq \{r\in R : \frac{r}{1}\in q\}$.
+
+    $p$ is prime: if $xy \in p$, then $\frac{xy}{1}\in q$, and so either $\frac{x}{1}$ or $\frac{y}{1}$ is in $q$, so $x \in p$ or $y \in p$.
+
+    $p\cap S =\emptyset$: Suppose $r \in S \cap p$. Then $\frac{r}{1} \in q$ and $\frac{1}{r} \in q$, and so $\frac{1}{r}\cdot \frac{r}{1} = \frac{1}{1}\in q \contr$.
+
+    Conversely, if $\frac{r}{s}, \frac{x}{y} \in S^{-1}p$, then $\frac{rx}{sy} \in S^{-1}p$. So $z(rx)\in p$ for some $z\in S$. Hence $rx \in p$ since $p$ is prime and $z \notin p$. Thus $r \in p$ or $x \in p$, and so $\frac{r}{s} \in S^{-1}p$ or $\frac{x}{y} \in S^{-1}p$.
+  \end{enumerate}
+\end{proof}
+\begin{lemma}
+  If $R$ is noetherian, then so is $S^{-1}R$.
+\end{lemma}
+\begin{proof}
+  Any chain of ideals in $S^{-1}R$ is of the form $J_1 \leq J_2 \leq \ldots = S^{-1}I_1 \leq S^{-1}I_2 \leq \ldots$.
+
+  Note that, by the construction given in the proof above, if $S^{-1}I_1 \leq S^{-1}I_2$, then we must have $I_1 \leq I_2$, as $r \in I_1\implies\frac{r}{1} \in S^{-1}I_1 \implies \frac{r}{1} \in S^{-1}I_2 \implies r \in I_2$.
+
+  Then we have a chain of ideals in $R$ given by $I_1 \leq I_2 \leq \ldots$, which must terminate as $R$ is noetherian. Then $I_t = I_{t+k}$ for some $t$ and all $k \in \N$, and thus $J_t = J_{t+k}$ for some $t$ and all $k \in \N$, and so our original sequence terminated.
+\end{proof}
+
+\begin{definition}
+  A property $\mathscr{P}$ of a ring $R$ (or $R$-module $M$) is \emph{local} if $R$ (or $M$) has $\mathscr{P}$ if and only if $R_p$ (or $M_p$) has $\mathscr{P}$ for every prime ideal $p \subseteq R$.
+\end{definition}
+We have just shown that ``being noetherian" is a local property. We will now go on to prove that another property is local:
+\begin{lemma}
+  The following are all equivalent:
+  \begin{enumerate}
+    \item $M=0$
+    \item $M_p = 0$ for all prime $p$
+    \item $M_q = 0$ for all maximal $q$
+  \end{enumerate}
+\end{lemma}
+\begin{proof}
+  \textit{1.} $\implies$ \textit{2.} $\implies$ \textit{3.} is immediate. Now we show \textit{3.} $\implies$ \textit{1.}
+
+  Suppose $M_q = 0$ for all maximal $q$, but $M \neq =$. Then take $0 \neq m \in M$. The annihilator of $m$ is a proper ideal of $R$, and so it is contained in a maximal ideal $q$ by Zorn. Consider $\frac{m}{1} \in M_q$. By assumption, $M_q =0$, and hence $\frac{m}{1} = 0$. So $sm =0$ for some $s \in S\coloneqq R\setminus q$. But we already had $q$ containing the annihilator of $m$, and so we have a contradiction.
+\end{proof}
+So ``being 0" is a local property!
+\begin{lemma}
+  Let $\varphi:M \to N$ be a $R$-module homomorphism. Then the following are equivalent:
+  \begin{enumerate}
+    \item $\varphi$ is injective.
+    \item $\varphi_p:M_p \to N_p$ is injective for all primes $p$ of $R$.
+    \item $\varphi_q:M_q \to N_q$ is injective for all maximal $q$ of $R$.
+  \end{enumerate}
+\end{lemma}
+\begin{proof}
+  \textit{1.}$\implies$\textit{2.} by exactness of localisation, and $\textit{2.}\implies\textit{3.}$ is clear.
+
+  For $\textit{3.}\implies\textit{1.}$, let $M_1 = \ker \varphi$. Then $0 \to M_1 \to M \xrightarrow{\varphi} N \to 0$ is exact at $M_1$ and $M$. So \textbf{2.3} gives us $0 \to (M_1)_q \to M_q \xrightarrow{\varphi_q} N_q \to 0$ is exact at $(M_1)_q$ and $M_q$ for maximal $q$, and hence $(M_1)_q = \ker \varphi_q = 0$, and so $(M_1)_q =0$. Hence $M_1 = 0$ by \textbf{2.8}.
+\end{proof}
+
+\begin{lemma}
+  Let $p$ be a prime of $R$ and $S$ be a multiplicatively closed subset of $R$, with $S\cap p = 0$. By \textbf{2.5}, we know $S^{-1}p$ is a prime of $S^{-1}R$. In fact, we have:
+  \[(S^{-1}R)_{S^{-1}p} \cong R_p\]
+  In particular, if $q$ is prime with $p \leq q$, then $(R_q)_{p_q} \cong R_p$, by taking $S = R\setminus q$.
+\end{lemma}
+\begin{proof}
+  On example sheet 2.
+\end{proof}
+
 \end{document}
