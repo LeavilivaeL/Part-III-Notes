@@ -768,7 +768,7 @@ A norm defines a metric on $V$, and hence a topology, and equivalent norms induc
 \end{corollary}
 \begin{proof}\hspace*{0cm}
   \begin{enumerate}[label=\textit{\arabic*.}]
-    \item Let $v$ be the valuation on $K$, $v_L$ the valuation on $L$ such that $v_L \extends v$, and let $n = [L:K]$.
+    \item Let $v$ be the valuation on $K$, $v_L$ the valuation on $L$ such that $v_L$ extends $v$, and let $n = [L:K]$.
 
     Then for $y \in L^\times$, $\abs{y}_L = \abs{N_{L/K}(y)}^{1/n}$.
 
@@ -781,7 +781,7 @@ A norm defines a metric on $V$, and hence a topology, and equivalent norms induc
   Let $(K, \abs{\cdot})$ be a complete non-archimedean discretely valued field, and $\bar{K}/K$ an algebraic closure of $K$. Then $\abs{\cdot}$ extends to a unique absolute value $\abs{\cdot}_{\bar{K}}$ on $\bar{K}$.
 \end{corollary}
 \begin{proof}
-  Let $x \in \bar{K}$. Then $x$ is algebraic over $K$, so $x \in L$ for some $L/K$ finite. Define $\abs{x}_{\bar{K}} = \abs{x}_L$. This is well defined, i.e. is independent of $L$ by the uniqueness proven in $\textbf{6.1}$. The axioms for $\abs{\cdot}_\bar{K}$ to be an absolute value can be checked over finite extensions, as can uniqueness.
+  Let $x \in \bar{K}$. Then $x$ is algebraic over $K$, so $x \in L$ for some $L/K$ finite. Define $\abs{x}_{\bar{K}} = \abs{x}_L$. This is well defined, i.e. is independent of $L$ by the uniqueness proven in $\textbf{6.1}$. The axioms for $\abs{\cdot}_{\bar{K}}$ to be an absolute value can be checked over finite extensions, as can uniqueness.
 \end{proof}
 \textsc{N.B.:} $\abs{\cdot}_{\bar{K}}$ is \textit{never} discrete. Take $x \in K, \abs{x} = 1$ (e.g. $p \in \Q_p$). Then for all $n \geq 0, v_{\bar{K}}(\sqrt[n]{x}) = \frac{1}{n}$, which can get arbitrarily close to zero as $x$ has all its roots in $\bar{K}$.
 
@@ -861,4 +861,138 @@ $A$ with the profinite topology is then compact, totally disconnected, and Hausd
   For the profinite topology, $\O_K \to \O_K/\pi^n \O_K$ is continuous if and only if $a+\pi^n \O_K$ is open for all $a \in A_{\pi^n}$. Then $\mathcal{B}$ is a basis for the profinite topology.
 \end{proof}
 This gives another proof that $\O_K$ is compact.
+
+\section{Local Fields II}
+\begin{lemma}
+  Let $K$ be a non-archimedean local field and $L/K$ a finite extension. Then $L$ is a local field.
+\end{lemma}
+\begin{proof}
+  \textbf{6.1} tells us that $L$ is complete and discretely valued, so it suffices to show that $k_L \coloneqq \O_L/m_L$ is finite.
+
+  Let $\alpha_1, \ldots, \alpha_n$ be a basis for $L$ as a $K$-vector space. Then the supremum norm is equivalent to $\abs{\cdot}_L$, and so there is some $r>0$ such that
+  \[ \O_L \subseteq \{x \in L : \norm{x}_{\sup}\leq r\}\]
+  Take $a \in K$ such that $\abs{a}\geq r$, then:
+  \[ \O_L\subseteq \bigoplus_{i=1}^n a\alpha_i \O_K\]
+  and so $\O_L$ is finitely generated as an $\O_K$-module, hence the residue field $k_L$ is finitely generated over $k$. Since it is a finite extension of a finite field, $k_L$ is finite, and so $L$ is local.
+\end{proof}
+
+\begin{theorem}[Classification of Local Fields]
+  Let $K$ be a local field. Then either:
+  \begin{enumerate}
+    \item $K \cong \R$ or $K \cong \C$
+    \item $K$ is a finite extension of $\Q_p$
+    \item $K \cong \F_{p^n}((t))$ for $p$ prime, $n\geq1$.
+  \end{enumerate}
+\end{theorem}
+We will aim to prove this over the following few pages.
+\begin{definition}
+  We say a discretely valued field $(K, \abs{\cdot})$ has \emph{equal characteristic} if $\charr (K) = \charr (k)$. Otherwise we say it has \emph{mixed characteristic}.
+\end{definition}
+
+For example, $\charr \Q_p = 0, \charr \F_p = p$, so $\Q_p$ has mixed characteristic. Note that, if $K$ is a local field, $\charr k = p > 0$, and hence $K$ has equal characteristic (respectively mixed) if $\charr K = p$ (respectively $\charr K = 0)$.
+\begin{theorem}
+  Let $K$ be a local field of equal characteristic $p>0$. Then
+  \[K \cong \F_{p^n}((t))\]
+  for some $\charr K > 0$.
+\end{theorem}
+\begin{proof}
+  $K$ is complete and discretely valued, with positive characteristic. Moreover, $k \cong \F_{p^n}$ is finite, hence perfect. By \textbf{5.7}, $K \cong \F_{p^n}((t))$.
+\end{proof}
+
+\subsection{Witt Vectors}
+This section is non-examinable.
+
+Consider the ring $\Z_p$. Let $x = \sum_{i=0}^\infty [x_i]_{p^i}, y = \sum_{i=0}^\infty [y_i]p^i$ where $x_i, y_i \in \F_p, x,y \in \Z_p$.
+
+Then, if $x+y = s = \sum_{i=0}^\infty [s_i]p^i$, we might ask if we can write $s_i$ in terms of the $x_j, y_j$.
+
+Reducing mod $p$, we obtain that $x_0+y_0 = s_0 \in \F_p$, so $s_0$ is determined by $x_0, y_0$. What about $s_1$?
+
+Reducing mod $p^2$, $[x_0] + [y_0] + p[x_1] + p[y_1] \equiv [s_0]+ p[s_1] \mod p^2$.
+
+Hence $p[s_1] \equiv ([x_0]+[y_0]-[s_0]) +p[x_1]+p[y_1] \mod p^2$.
+
+So we need to compute $[x_0]+[y_0]-[s_0] \mod p^2$. Note that $[x_0^{1/p}] + [y_0^{1/p}] \equiv [s_0^{1/p}] \mod p$.
+
+By lemma 5.4:
+\begin{align*}
+  [s_0] &\equiv ([x_0^{1/p}]+[y_0^{1/p}])^p \mod p^2\\
+  &\equiv [x_0]+[y_0] + \sum_{d=1}^{p-1}\binom{p}{d}[x_0^{d/p}][y_0^{(p-d)/p}] \mod p^2
+\end{align*}
+Hence $s_1$ is determined by $x_0, y_0, x_1, y_1$. This can be continued in a similar pattern for $s_2, s_3, \ldots$. Witt noticed the general pattern:
+\begin{definition}
+  The $n\th$ \emph{Witt polynomial} $w_n$ is defined by:
+  \[w_n(x_0, x_2, \ldots, x_n) = \sum_{i=0}^n p^i x^{p^{n-i}} \in \Z[x_0, x_1, \ldots, x_n]\]
+\end{definition}
+Define $S_n \in \Q[x_0, y_0, \ldots, x_n, y_n]$ inductively by
+\[w_n(S_0, \ldots, S_n) = w_n(x_0, \ldots, x_n) + w_n(y_0, \ldots, y_n)\]
+Witt showed that $S_n \in \Z[x_0, y_0, \ldots, x_n, y_n]$.
+E.g.
+\begin{itemize}
+  \item $S_0 = x_0+y_0$
+  \item $S_1 = x_1+y_1 + \sum_{d=1}^{p-1}\frac{1}{p}\binom{p}{d}x_0^d y_0^{p-d}$
+\end{itemize}
+\begin{theorem}
+  Suppose that
+  \[ \sum_{i=0}^\infty [x_i]p^i + \sum_{i=0}^\infty [y_i]p^i = \sum_{i=0}^\infty [s_i]p^i \in \Z_p\]
+  Then we have $s_n = S_n(x_0^{1/p^n}, y_0^{1/p^n}, x_1^{1/p^{n-1}}, y_1^{1/p^{n-1}}, \ldots, x_n, y_n)$.
+\end{theorem}
+\begin{proof}
+  Example sheet 2. Hint: Use lemma \textbf{5.4}.
+\end{proof}
+Similarly, define $Z_n \in \Q[x_0, y_0, \ldots, x_n, y_n]$ by
+\[w_n(Z_0, \ldots, Z_n) = w_n(x_0, \ldots, x_n)w_n(y_0, \ldots, y_n)\]
+Then again Witt showed $Z_n \in \Z[x_0,\ldots, x_n]$, and that
+\[\sum_{i=0}^\infty [x_i]p^i \sum_{i=0}^\infty [y_i]p^i = \sum_{i=0}^\infty [z_i]p^i\]
+where $z_n = Z_n(x_0^{1/p^n}, y_0^{1/p^n}, \ldots, x_n, y_n)$.
+
+Conclusion: the ring structure on $\Z_p$ can be reconstructed from the arithmetic of $\F_p$.
+
+\begin{definition}
+  A ring $A$ is a strict $p$-ring if it is $p$-adically complete, $p$ is not a zero divisor in $A$, and $A/pA$ is a perfect ring of characteristic $p$.
+\end{definition}
+\begin{theorem}[Existence of Witt vectors]
+  Let $R$ be a perfect ring of characteristic $p$.
+  \begin{enumerate}
+    \item There exists a strict $p$-ring $W(R)$ called the \emph{Witt vectors} of $R$ such that $W(R)/pW(R) \cong R$, which is unique up to isomorphism.
+    \item If $R'$ is another perfect ring and $f:R\to R'$ is a ring homomorphism, then there is a unique homomorphism $F:W(R)\to W(R')$ such that following diagram commutes
+    \begin{center}
+      \begin{tikzcd}
+        W(R) \arrow{r}{F} \arrow{d} & W(R')\arrow{d} \\ R \arrow{r}{f} & R'
+      \end{tikzcd}
+    \end{center}
+  \end{enumerate}
+\end{theorem}
+$W(R)$ is sort of a mixed-characteristic analogue of $R[[t]]$, where $p$ plays the role of $t$. (E.g. note that $R[[t]]/(t) \cong R$.)
+\begin{proof}[Sketch proof.]
+  For a detailed proof, see Rabinoff: The Theory of Witt Vectors.
+
+  \begin{enumerate}[label=\textit{\arabic*.}]
+    \item Define $W(R) = \{ (a_i)_{i=0}^\infty : a_i \in R\}$, and define addition and multiplication by:
+    \begin{align*}
+      (a_n)_{n=0}^\infty + (b_n)_{n=0}^\infty &= (s_n)_{n=0}^\infty\\
+      (a_n)_{n=0}^\infty (b_n)_{n=0}^\infty &= (z_n)_{n=0}^\infty
+    \end{align*}
+    where $s_n = S_n(a_0, \ldots, b_n), z_n = Z_n(a_0, \ldots, b_n)$ are as above.
+
+    Check that this defines a ring structure. For $a = (a_0, a_1, \ldots) \in W(R)$, then $pa = (0, a_0^p, a_1^p, \ldots)$, and so $p$ is not a zero divisor.
+
+    Moreover, $W(R)/p^iW(R) = \{(a_n)_{n=0}^{i}:a_n \in R\}$, the sequences of length $i$. We then compute explicitly $W(R) \cong \lim\limits_{\xleftarrow[i]{}}W(R)/p^iW(R)$.
+
+    \item For $f: R\to R'$, define $F:W(R)\to W(R')$ by $F[a_0, a_1, \ldots] = (f(a_0), f(a_1), \ldots) \in W(R')$, and check this works.
+  \end{enumerate}
+\end{proof}
+
+If $R = \F_p$, then $W(\F_p) \cong \Z_p$, and the isomorphism is given by
+\[(a_0, a_1, \ldots) \mapsto \sum_{i=0}^\infty \left[a_i^{1/p^i}\right]p^i\]
+
+\subsection*{Mixed characteristic}
+Examinable content resumes.
+
+\begin{proposition}
+  Let $(K, \abs{\cdot})$ be a complete discretely valued field such that $p \in \O_K$ is a uniformizer and $k \coloneqq \O_K/m$ is perfect. Then $\O_K \cong W(k)$.
+\end{proposition}
+\begin{proof}
+  By uniqueness of $W(k)$, it suffices to prove that $\O_K$ is a strict $p$-ring. This is clear from properties of $\O_K$.
+\end{proof}
 \end{document}
