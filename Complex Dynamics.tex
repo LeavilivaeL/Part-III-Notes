@@ -594,4 +594,95 @@ In fact, we have proved something slightly stronger. We've proved that:
   A set is \emph{perfect} if it is closed with no isolated points, or equivalently is equal to its set of limit points.
 \end{definition}
 $J(f)$ is thus a perfect set: it is closed and infinite, so it contains at least one non-isolated point $z_0$. The preimages of $z_0$ form a dense non-isolated subset of the Julia set, so no point of $J(f)$ is isolated.
+
+\section{Local Dynamics of Attractors}
+Shr\"oder's equation: when is there a conformal change of variable $\phi$ so that $\phi(f(z)) = \lambda(\phi(z))$ on a neighbourhood of a fixed point $p$ for $f$, where $\lambda$ is the multiplier of that fixed point?
+
+\begin{theorem}[Koenig's Linearization Theorem]
+  Let $p$ be a fixed point of $f$ with multiplier $\lambda$ satisfying $|\lambda|\neq 0, 1$. Then there exists a local holomorphic change of coordinates $w = \phi(z)$ so that $\phi(p) = 0$ and $\phi\circ f\circ \phi^{-1}(w) = \lambda w$ for all $w$ in some neighbourhood $U$ of $p$, so that the diagram
+  \begin{center}
+    \begin{tikzcd}
+      U \arrow{r}{f} \arrow{d}{\phi} & f(U) \arrow{d}{\phi}\\ \C \arrow{r}{\lambda}& \C
+    \end{tikzcd}
+  \end{center}
+  commutes. This change of coordinates is unique up to multiplication by a constant.
+\end{theorem}
+\begin{proof}
+  The idea is to prove that $\lim\limits_{n\to\infty} \frac{f^n(z)}{\lambda^n}$ exists as a holomorphic function on a neighbourhood of $p$, and then we're almost done.
+
+  Conjugate to assume that $p=0$. Now suppose $|\lambda|<1$. Then there is a constant $c$ such that $c^2<|\lambda|<c<1$. By Taylor's theorem, there is $r >0$ such that, on $D(0, r)$, we have $|f(z)|\leq c|z|$. So for $z \in D(0,r)$ we have geometric convergence $|f^n(z)| \leq rc^n$. Again by Taylor, we have some constant $B$ such that $|f(z)-\lambda z| \leq B|z|^2$ on $D(0,r)$ (shrinking $r$ if necessarily). Hence for $z \in D(0,r)$:
+  \[|f^{n+1}(z)-\lambda f^n(z)| \leq B|f^n(z)|^2 \leq B r^2c^{2n}\]
+  \[\implies \left|\frac{f^{n+1}(z)}{\lambda^{n+1}} - \frac{f^n(z)}{\lambda^n}\right| \leq B\left(\frac{r^2}{|\lambda|}\right)\left(\frac{c^2}{|\lambda|}\right)^n \to 0 \text{ as } n \to \infty\]
+
+  So $\frac{f^n(z)}{\lambda^n}$ converge uniformly on compact subsets of $D(0,r)$, to a holomorphic limit
+  \[\phi(z) \coloneqq \lim_{n\to\infty} \frac{f^n(z)}{\lambda^n}\]
+  We have $\phi(f(z)) = \lambda \phi(z)$, and $\phi'(0) = 1$ as $z \mapsto \frac{f^n(z)}{\lambda^n}$ has derivative 1 at $0$ for all $n$.
+
+  So $\phi$ is conformal on a neighbourhood of $0$.
+
+  To show that this is unique, suppose $\psi$ is another such. Then we have a commutative diagram:
+  \begin{center}
+    \begin{tikzcd}[
+        row sep=4ex,
+      ]
+      V \arrow{r}{\lambda} \arrow{d}{\psi^{-1}} & \lambda \cdot V \arrow{d}{\psi^{-1}}\\
+      U \arrow{r}{f} \arrow{d}{\phi} & f(U) \arrow{d}{\phi}\\
+      \C \arrow{r}{\lambda} & \C
+    \end{tikzcd}\hspace{2cm}
+    \begin{tikzcd}[%
+        row sep = 4ex,
+      ]
+      \makebox[\widthof{$\phi(\psi^{-1}(w))$}][r]{$w$} \arrow[mapsto]{r} \arrow[mapsto, shift left=7.5]{d} & \makebox[\widthof{$\lambda\phi(\psi^{-1}(w)) = \phi(\psi^{-1}(\lambda w))$}][l]{$\lambda w$} \arrow[mapsto, shift right=20]{d}\\
+      \makebox[\widthof{$\phi(\psi^{-1}(w))$}][r]{$\psi^{-1}(w)$} \arrow[mapsto]{r} \arrow[mapsto, shift left=7.5]{d} & \makebox[\widthof{$\lambda\phi(\psi^{-1}(w)) = \phi(\psi^{-1}(\lambda w))$}][l]{$\psi^{-1}(\lambda w) = f(\psi^{-1}(w))$} \arrow[mapsto, shift right=20]{d}\\
+      \phi(\psi^{-1}(w)) \arrow[mapsto]{r} & \lambda\phi(\psi^{-1}(w)) = \phi(\psi^{-1}(\lambda w))
+    \end{tikzcd}
+  \end{center}
+  Hence $\lambda\phi(\psi^{-1}(w)) = \phi(\psi^{-1}(\lambda w))$. So $\phi\circ \psi^{-1}$ is conformal, on a neighbourhood of $0$, fixes 0, and commutes with $\lambda$. Taking a Taylor series,
+  \begin{align*}
+    \phi\circ \psi^{-1}: w &\mapsto a_1 w+ a_2w^2 + \ldots\\
+    \lambda w &\mapsto a_1(\lambda w) + a_2(\lambda^2 w^2) +\ldots = \lambda(a_1 w + a_2 w^2 + \ldots)
+  \end{align*}
+  By uniqueness of Taylor series, $\lambda a_k = \lambda^k a_k$ for all $k \in \N$, and so, since $|\lambda| \neq 0,1$, $a_k = 0$ for $k \geq 2$. So $\phi\circ \psi^{-1}(w) = a_1 w$. Apply for $f^{-1}$ for the repelling case.
+\end{proof}
+\begin{corollary}
+  Suppose $p$ is an attracting fixed point of $f$ with multiplier $\lambda \neq 0$ and basin of attraction $\mathcal{A}$. Then there is a holomorphic (not necessarily conformal) map $\phi:\mathcal{A}\to \C$ so that the following diagram commutes:
+  \begin{center}
+    \begin{tikzcd}
+      \mathcal{A} \arrow{r}{f} \arrow{d}{\phi} &\mathcal{A} \arrow{d}{\phi}\\
+      \C \arrow{r}{\lambda}& \C
+    \end{tikzcd}
+  \end{center}
+  which is biholomorphic on a neighbourhood of $p$ and unique up to multiplication by a constant.
+\end{corollary}
+\begin{proof}
+  Define by the previous theorem $\phi$ on a neighbourhood of $p$, $\phi(p) = 0, \phi(f(z))=\lambda \phi(z)$. Then for all $z \in \mathcal{A}$, there is by definition some $n \in \N$ such that $f^{n}(z) \in \dom \phi$. Thus:
+  \[\phi(z) \coloneqq \lim_{n\to\infty} \frac{\phi(f^n(z))}{\lambda^n}\]
+  satisfies the corollary.
+\end{proof}
+\begin{definition}
+  A fixed point $p$ of $f$ is \emph{topologically attracting} if there is a neighbourhood $U$ of $p$ such that $\{f^n\}$ converges locally uniformly to the constant map $z \maptso p$ on $U$.
+\end{definition}
+If $p$ is topologically attracting, then $p \notin J(f)$.
+
+\begin{lemma}
+  A fixed point $p$ is topologically attracting if and only if it is attracting, that is, if and only $|f'(p)|=|\lambda| < 1$.
+\end{lemma}
+\begin{proof}
+  We've shown that attracting implies topologically attracting via Taylor's theorem. If $p$ is topologically attracting, then there is a disc $D(p,r)$ for $r>0$ and some iterate $f^n$ such that $f^n(D(0,r))\subsetneq D(0,r)$.
+
+  Then Schwarz's lemma implies that $|(f^n)'(p)|=|\lambda|^n < 1$, so $|\lambda|<1$.
+\end{proof}
+\subsection{Generalizing to Period >1}
+If $\{z_0, \ldots, z_{n-1}\}$ is an attracting cycle, so that $z_i$ is an attracting fixed point of $f^n$, each with attracting basing $\mathcal{A}_i$ (under $f^n$).
+
+The $\mathcal{A}_i$ are permuted by $f$, so that $f(\mathcal{A}_i) = \mathcal{A}_{i+1}$ - this is an exercise on ES1.
+
+Then we generalise to the commutative diagram
+\begin{center}
+  \begin{tikzcd}
+    \mathcal{A}_0 \arrow{r}{f} \arrow{d}{\phi_0} & \mathcal{A}_1 \arrow{r}{f} \arrow{d}{\phi_1} & \ldots \arrow{r}{f} & \mathcal{A}_{n-1} \arrow{r}{f} \arrow{d}{\phi_{n-1}} & \mathcal{A}_0 \arrow{d}{\phi_0}\\
+    \C \arrow{r}{\lambda_0} & \C \arrow{r}{\lambda_1} & \ldots \arrow{r}{\lambda_{n-2}} & \C \arrow{r}{\lambda_{n-1}} & \C
+  \end{tikzcd}
+\end{center}
+where $\lambda_k = f'(z_k)$.
 \end{document}
