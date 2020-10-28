@@ -898,6 +898,7 @@ For example, $\charr \Q_p = 0, \charr \F_p = p$, so $\Q_p$ has mixed characteris
 \begin{proof}
   $K$ is complete and discretely valued, with positive characteristic. Moreover, $k \cong \F_{p^n}$ is finite, hence perfect. By \textbf{5.7}, $K \cong \F_{p^n}((t))$.
 \end{proof}
+\hrule
 
 \subsection{Witt Vectors}
 This section is non-examinable.
@@ -986,13 +987,136 @@ $W(R)$ is sort of a mixed-characteristic analogue of $R[[t]]$, where $p$ plays t
 If $R = \F_p$, then $W(\F_p) \cong \Z_p$, and the isomorphism is given by
 \[(a_0, a_1, \ldots) \mapsto \sum_{i=0}^\infty \left[a_i^{1/p^i}\right]p^i\]
 
-\subsection*{Mixed characteristic}
-Examinable content resumes.
-
 \begin{proposition}
   Let $(K, \abs{\cdot})$ be a complete discretely valued field such that $p \in \O_K$ is a uniformizer and $k \coloneqq \O_K/m$ is perfect. Then $\O_K \cong W(k)$.
 \end{proposition}
 \begin{proof}
   By uniqueness of $W(k)$, it suffices to prove that $\O_K$ is a strict $p$-ring. This is clear from properties of $\O_K$.
+\end{proof}
+
+If $k$ is a perfect field, $K = \Frac(W(k))$, then $K$ is a complete discretely valued field with $\O_K \cong W(K)$ and $p \in \O_K$ is a uniformizer, so in fact the converse of the above proposition holds.
+
+\begin{proposition}
+  Let $(K, \abs{\cdot})$ be a complete discretely valued field with $k \coloneqq \O_K/m$ perfect, then $\O_K$ is finite over $W(k)$.
+\end{proposition}
+\begin{proof}
+  Consider the subset $R \subseteq \O_K$ defined by $R = \{\sum_{i=0}^\infty [a_i]p^i : a_i \in k\}$. Calculating as in the example of $\Z_p$ shows that $R \cong W(k)$. Let $\pi$ be a uniformizer in $\O_K$ and let $e \in \N$ such that $ev(\pi) = v(p)$.
+
+  Let $M = \bigoplus\limits_{i=0}^\infty \pi^i R \subseteq \O_K$, an $R$-submodule.
+
+  Since $\sum_{n=0}^\infty [x_n]\pi^n \equiv \sum_{n=0}^{e-1}[x_n]\pi^n \mod p\O_K$, and so $M$ generates $\O_K$ modulo $p\O_K$ as an $R$-module.
+
+  Hence $\O_K = M+p\O_K$.
+
+  Iterating, $\O_K = M+pM+p^2M + \ldots + p^m\O_K = M+p^m \O_K$, and so $M \to \O_K/p^m\O_K$ is surjective for all $m$.
+
+  Using the fact that $M \cong \lim\limits_{\xleftarrow[n]{}} M/p^nM$, we can show that $M \to \O_K$ is surjective, and so $M = \O_K$.
+\end{proof}
+
+\begin{theorem}
+  Let $K$ be a non-archimedean local field of mixed characteristic. Then $K$ is a finite extension of $\Q_p$.
+\end{theorem}
+\begin{proof}
+  Let $k = \F_{p^n}$ for some primes $p$. Then by $\textbf{8.10}$, $K$ is a finite extension of $\Frac(W(\F_{p^n}))$. It suffices to show that $W(\F_{p^n})$ is finite over $\Z_p$.
+
+  Let $e_1, \ldots, e_n \in \F_{p^n}$ be a basis of $\F_{p^n}$ as an $\F_p$ vector space, and we write
+  \[M \coloneqq \bigoplus_{i=1}^n W(\F_p)[e_i] \subseteq W(\F_{p^n})\]
+  which is a $W(\F_p)$ submodule.
+
+  For $x = \sum_{i=0}^\infty [x_i]p^i \in W(\F_{p^n})$, let $x_0 = \sum_{i=1}^\infty \lambda_i e_i$ for $\lambda \in \F_p$.
+
+  Then $x - \sum_{i=1}^\infty [\lambda_i][e_i] \in pW(\F_{p^n})$, and so $W(\F_{p^n}) = M+pW(\F_{p^n})$.
+
+  Arguing as in the previous proposition shows that $M = W(\F_{p^n})$.
+\end{proof}
+End of non-examinable content.\\
+\hrule
+\section{Archimedean Local Fields}
+\begin{lemma}
+  An absolute value $\abs{\cdot}$ on a field is non-archimedean if and only if $|n|$ is bounded for all $n \in \Z$.
+\end{lemma}
+\begin{proof}
+  For the forwards direction, since $\abs{-1} = 1, \abs{-n}=\abs{n}$, it suffices to show that $\abs{n}$ is bounded for $n \geq 1$. By the ultrametric inequality, $\abs{n} = \abs{1+1+\ldots+1} \leq 1$.
+
+  For the other direction, suppose $\abs{n} \leq B$ for all $n \in \Z$. The let $x, y \in K$ with $\abs{x}\leq \abs{y}$. Then $\abs{x+y}^m = \abs{\sum_{i=0}^m \binom{m}{i}x^i y^{m-i}} \leq \sum_{i=0}^m \abs{\binom{m}{i}x^iy^{m-i}}\leq B(m+1)\abs{y}^m$.
+
+  Taking $m\th$ roots, $\abs{x+y} \leq \abs{y}[B(m+1)]^{1/m} \to \abs{y} = \max(\abs{x}, \abs{y})$ as $m \to \infty$.
+\end{proof}
+\begin{corollary}
+  If $(K,\abs{\cdot})$ is a valued field of positive characteristic, then $K$ is non-archimedean.
+\end{corollary}
+\begin{proof}
+  Given the homomorphism $\phi:\Z \to K; 1 \mapsto 1$, we have $\phi(\charr K) = 0$, and hence $\{\phi(n): n \in \Z\}$ is finite, so $\abs{n}$ bounded for $n \in \Z$. Then apply \textbf{9.1}.
+\end{proof}
+\begin{theorem}[Ostrowski's Theorem]
+    Any non-trivial absolute value on $\Q$ is equivalent to either $\abs{\cdot}_\infty$ or $\abs{\cdot}_p$ for some prime $p$.
+\end{theorem}
+\begin{proof}
+  We split the proof into the archimedean and non-archimedean cases.
+
+  \begin{itemize}
+    \item \underline{Archimedean}
+
+    We fix $b > 1$ an integer such that $\abs{b} > 1$, which exists by \textbf{9.1}. Let $a > 1$ be an integer and write $b^n$ in base $a$:
+    \[ b^n = c_ma^m + c_{m-1}a^{m-1} + \ldots + c_0\]
+    where $0 \leq c_i < a$. Now let $B = \max_{0\leq c<a}(|c|)$, then we have
+    \begin{align*}
+      \abs{b^n} &\leq (m+1)B\max(\abs{a}^m ,1)\\
+      \abs{b} &\leq [(n(\log_a b)+1)B]^{1/n} \max(\abs{a}^{\log_a b}, 1)\\
+      \abs{b} &\leq \max(\abs{a}^{\log_a b}, 1)
+    \end{align*}
+    Then $\abs{a} > 1$, and $\abs{b} \leq \abs{a}^{\log_a b}$. Switching the roles of $a$ and $b$, we get $\abs{a} \leq \abs{b}^{\log_b a}$.
+
+    Hence $\frac{\log \abs{a}}{a} = \frac{\log \abs{b}}{b} = \lambda > 0$ say, and $\abs{a} = a^\lambda$ for all $a \in \Z$. But then $\abs{x} = \abs{x}_\infty^\lambda$ for any $x \in \Q$, and so $\abs{\cdot}$ is equivalent to $\abs{\cdot}_\infty$.
+
+    \item \underline{Non-archimedean}
+
+    As in \textbf{9.3}, we have $\abs{n}\leq 1$ for all $n \in \Z$. Since $\abs{\cdot}$ is non-trivial, there is some $n \in \Z_{>1}$ such that $\abs{n} < 1$.
+
+    Write $n = p_1^{e_1}\ldots p_r^{e_r}$ as a decomposition into prime factors. Then $\abs{p} <1$ for some $p \in \{p_1, \ldots, p_r\}$.
+
+    Suppose that $\abs{q} < 1$ for some prime $q \neq p$.
+
+    Then $q = rp+sq$ for $r, s \in \Z$, and $1 = \abs{1} = \abs{rp+sq} \leq \max{\abs{rp}, \abs{sq}} < 1$. So $p$ is the only prime with absolute value less than $1$, and has absolute value $\alpha < 1$. But then using multiplicativity and unique prime factorisation, $\abs{\cdot}$ is equivalent to $\abs{\cdot}_p$.
+  \end{itemize}
+\end{proof}
+\begin{theorem}
+  Let $(K, \abs{\cdot})$ be an archimedean local field. Then $K = \R$ or $\C$ and $\abs{\cdot}$ is equivalent to $\abs{\cdot}_\infty$.
+\end{theorem}
+\begin{proof}
+  If $\charr K > 0$, then $K$ is non-archimedean by \textbf{9.2}, so we only need to deal with characteristic 0. So $\Q \subseteq K$.
+
+  Since $\abs{\cdot}$ is archimedean, the restriction of $\abs{\cdot}$ to $\Q$ must be equivalent to $\abs{\cdot}_\infty$ by Ostrowski. Since $K$ is complete, $\R \subseteq K$.
+
+  We first consider the case when $\C \subseteq K$. By uniqueness of extensions of absolute values, $\abs{\cdot}$ when restricted to $\C$ is equivalent to $\abs{\cdot}_\infty$.
+
+  Suppose that $\alpha \in K \setminus \C$. Then $f(x)=\abs{x-\alpha}$ is a continuous function on $\C$ and hence attains a lower bound at $b \in \C$.
+
+  Set $\beta = \alpha - b \neq 0$, and we let $c \in \C$ such that $0<\abs{c}<\abs{\beta}$.
+
+  Then $\abs{\beta-a} \geq \abs{\beta}$ for any $a \in \C$. Then
+  \begin{align*}
+    \frac{\abs{\beta-c}}{\abs{\beta}} \leq \frac{\abs{\beta-c}}{\abs{\beta}} \prod_{\substack{\zeta^n = 1\\\zeta\neq 1}} \frac{\abs{\beta-\zeta c}}{\abs{\beta}} \\
+    &= \frac{\abs{\beta^n-c^n}}{\abs{\beta}^n}\\
+    &=\abs{1-\left(\frac{c}{\beta}\right)^n}\\
+    &\to 1 \text{ as } n \to \infty
+  \end{align*}
+  So $\abs{\beta-c}\leq \abs{\beta}$, and hence $\abs{\beta-c} = \abs{\beta}$.
+
+  Replace $\beta$ by $\beta-c$ and iterating, we obtain $\abs{\beta-mc} = \abs{\beta}$ for all $m \in \N$.
+
+  But then $\abs{m}\abs{c} = \abs{mc} \leq \abs{\beta-mc}+\abs{beta} = 2\abs{\beta}$, and so $\abs{\cdot}$ must be non-archimedean by \textbf{9.1} $\contr$, and hence $K = \C$.
+
+  Now suppose that $\C \nsubseteq K$. Define $L = K(\im)$ where $\im^2 = -1$. We can extend $\abs{\cdot}$ to an absolute value $\abs{\cdot}_L$ on $L$ given by $\abs{a+\im b}_L = \sqrt{\abs{a}^2 + \abs{b}^2}$ for $a, b \in K$.
+
+  Applying the above argument gives $K(\im) = L = \C$, and hence $K = \R$.
+\end{proof}
+We are now ready to finish the classification of local fields.
+\begin{proof}[Proof of \textbf{Theorem 8.2}.]\hspace*{0cm}\\
+  If $\abs{\cdot}$ is archimedean, use \textbf{9.4}.
+
+  If $\abs{\cdot}$ is non-archimedean with characteristic 0, use \textbf{8.11}.
+
+  If $\abs{\cdot}$ is non-archimedean with positive characteristic, use \textbf{8.4}.
 \end{proof}
 \end{document}
