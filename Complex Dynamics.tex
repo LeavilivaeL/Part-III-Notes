@@ -661,7 +661,7 @@ Shr\"oder's equation: when is there a conformal change of variable $\phi$ so tha
   satisfies the corollary.
 \end{proof}
 \begin{definition}
-  A fixed point $p$ of $f$ is \emph{topologically attracting} if there is a neighbourhood $U$ of $p$ such that $\{f^n\}$ converges locally uniformly to the constant map $z \maptso p$ on $U$.
+  A fixed point $p$ of $f$ is \emph{topologically attracting} if there is a neighbourhood $U$ of $p$ such that $\{f^n\}$ converges locally uniformly to the constant map $z \mapsto p$ on $U$.
 \end{definition}
 If $p$ is topologically attracting, then $p \notin J(f)$.
 
@@ -686,4 +686,72 @@ Then we generalise to the commutative diagram
   \end{tikzcd}
 \end{center}
 where $\lambda_k = f'(z_k)$.
+
+\begin{definition}
+  The \emph{immediate basin} of an attracting cycle is the union of connected components of the Fatou set containing all cycle elements.
+\end{definition}
+Note that this is not iteration invariant. E.g. if we have a 3-cycle between Fatou components, then the immediate basin of a cycle $z_0\to z_1 \to z_2 \to z_0$ under $f$ will not be the same as the immediate basin of $z_0$ under $f^3$.
+
+\begin{theorem}
+  Suppose $f: \hat{\C}\to \hat{\C}$ has degree $d\geq 2$. Then every attracting fixed point of $f$ has a critical point in its immediate basin. Consequently, $f$ has at most $2d-2$ attracting cycles.
+\end{theorem}
+\begin{proof}
+  A fixed attractor has connected immediate basin, so call it $U$. $U$ is hyperbolic since $J(f)$ is infinite, so we have
+  \begin{center}
+    \begin{tikzcd}
+      \D \arrow{r}{F} \arrow{d}{\pi} & \D \arrow{d}{\pi}\\
+      U \arrow{r}{f} & U
+    \end{tikzcd}
+  \end{center}
+  If $U$ has no critical point, $f\circ \pi$ doesn't either, so is a covering map itself. So by universality there is $G:\D \to \D$ so that
+  \begin{center}
+    \begin{tikzcd}
+      \D \arrow{d}{\pi} & \D \arrow{l}{G} \arrow{d}{\pi}\\
+      U \arrow{r}{f} & U
+    \end{tikzcd}
+  \end{center}
+  commutes, as $\D$ is the universal cover of $U$. Choosing the fixed point of $U$ to lift to 0, choose lifts $F, G$ to each fix 0. Then $G$ is an inverse to $F$, so $F$ is a disc automorphism, contradicting 0 being attracting.
+\end{proof}
+
+If $z_0 \mapsto z_1 \mapsto \ldots \mapsto z_{n-1} \mapsto z_0$ is an attracting cycle of period $n$ for $f$, then let $A_i$ be the immediate basin of $f^n$ for $z_i$. If $\bigcup_i A_i$ contains no critical point of $f$, since $f(A_i) = A_{i+1 \mod n}$ and $(f^n)'(z) = \prod_{i=0}^{n-1}f'(f^i(z_0))$, we see that there can be no critical points of $f^n$ in $A_i$ for any $i$, contradicting what we just proved.
+
+So the immediate basin of every attracting cycle contains a critical point of $f$. $f$ has at most $2d-2$ critical points, and so we can only have $2d-2$ attracting cycles.
+
+\begin{theorem}
+  Suppose $f(0)=0$ is attracting for $f$, with multiplier $\lambda \neq 0$, immediate basin $\mathcal{A}_0$, and linearizing coordinate $\phi$ with local inverse $\psi : \D(0, \epsilon) \to \mathcal{A}_0$. Then $\psi$ extends by analytic continuation to a maximal open disc $\D(0, r)$, extends homeomorphically over the boundary circle $\partial \D(0, r)$, and the image $\psi(\partial \D(0, r)) \subset \mathcal{A}_0$ contains a critical point.
+\end{theorem}
+\underline{Example:} Take $f_c(z) = z^2+c$ for $c \in \C$.
+
+We know that $f_c$ has a critical point at $\infty$ of multiplicity $2$. Since $2\cdot 2-2=2$, we have exactly one other critical point, which is at 0. By \textbf{8.6}, there is at most one attracting cycle other \mbox{than $\infty$.}
+
+Suppose we have fixed point attractor: then $z_0$ fixed implies that $c = z_0 - z_0^2$, and $z_0$ attracting, since $\lambda =  f'(z_0) = 2z_0$, happens if and only if $|z_0| <\frac{1}{2}$. So the set of parameters $c$ with an attracting fixed point is the image of $\D(0, \frac{1}{2})$ under $z_0 \mapsto z_0-z_0^2$, i.e. the image of $\D$ under $\lambda \mapsto \frac{\lambda}{2} - \left(\frac{\lambda}{2}\right)^2$, a cardioid.
+
+Suppose we have a period 2 attractor: then $(z_0^2+c)^2 +c = z_0$, and $z_0$ not fixed.
+\[z_0^4+2cz_0^2-z_0 + c^2 + c = 0 \iff (z_0^2-z_0 + c)(z_0^2+z_0+c+1) = 0\]
+The roots of the first factor are fixed, so we want the roots of $z_0^2+z_0+c+1$. So $c+1 = -z^2-z_0$. The multiplier for a period 2 point $z_0$ is \mbox{$\lambda = 4z_0(z_0^2+c)=4z_0(z_0^2-z_0^2-z_0-1) = 4z_0(-z_0-1) = 4(c+1)$.} Hence the parameters with a period 2 attractor is the image of $\D$ under $\lambda \mapsto \frac{\lambda}{4}-1$, i.e.  $\D(-1, \frac{1}{4})$.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\textwidth]{compdyn06.png}
+  \caption{Figure showing the locus of $c$ leading to attracting period $n$ points in $f_c$. Source: wikimedia commons}
+\end{figure}
+
+As a point of caution, note that attracting basins need not be connected. In fact, disconnected Julia sets have many components.
+
+\begin{theorem}
+  If a rational map $f$ has disconnected Julia set, then $J(f)$ has uncountably many connected components.
+\end{theorem}
+\begin{proof}
+  Suppose $J(f)$ is not connected, so that $J(f) = J_0 \cup J_1$, two non-empty disjoint compact infinite subsets of $J(f)$. Given $z \in J(f)$, we assign a sequence of values $\{\beta_n(z)\}$ of 0s and 1s, with $\beta_n(z) = 0$ if $f^n(z) \in J_0$, and 1 otherwise. 2 points in the same connected components have the same sequence since $f$ is continuous. So $\beta: z\to \{(\beta_n)\}$ is a map from the connected components of $J(f)$ to $\{0,1\}^\N$.
+
+  Let $(\beta_0(z), \ldots, \beta_k(z))$. be some finite piece of the sequence for fixed $z \in J(f)$. If we can show that there is $z' \in J(f)$ such that $\beta_i(z') = \beta_i(z)$ for all $0\leq i\leq k$, but there is $n > k$ such that $\beta_n(z') \neq \beta_n(z)$, then $\beta$ will have an uncountable image, and we will be done.
+
+  Define $U_{z,k} \coloneqq \{w \in \hat\C: f^i(w) \notin J_{1-\beta_i(z)} \forall 0 \leq i \leq k\}$. Note that $U_{z,k}$ is open and contains the Fatou set for all $z, k$.
+
+  Choose a constant subsequence $(\beta_{n_j}(z))$, say always taking the value $\beta_0(z)$. If $z' \in J(f)$ with $\beta_i(z') = \beta_i(z)$ for all $0 \leq i\leq k$, then $z' \in U_{z, k}$, and if $z' \in F(f), z' \in U_{z,k}$. If, for any $z'$ with $\beta_i(z) = \beta_i(z')$ for all $0\leq i\leq k$, then $\beta_n(z)=\beta_n(z')$ for all $n$, then $\beta_{n_j}(z) = \beta_{n_j}(z')$ for all $j$.
+
+  I.e. $f^{n_j}(z') \in U_{z, n_j} = U_{z, 0}$. So $f^{n_j}|_{U_{z,k}} : U_{z,k} \to U_{z,0}$. Since $J_0, J_1$ are infinite, $U_{z,0}$ is hyperbolic, and so by Montel's theorem, we have a normal family, and $U_{z, k} \subseteq F(f) \contr.$
+
+  Hence the image of $\beta$ is uncountable.
+\end{proof}
 \end{document}

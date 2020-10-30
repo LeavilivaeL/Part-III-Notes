@@ -1119,4 +1119,145 @@ We are now ready to finish the classification of local fields.
 
   If $\abs{\cdot}$ is non-archimedean with positive characteristic, use \textbf{8.4}.
 \end{proof}
+\section{Global Fields}
+\begin{definition}
+  A \emph{global field} is a field which is either:
+  \begin{itemize}
+    \item An algebraic number field - a finite extension of $\Q$.
+    \item A global function field - the rational function field of an algebraic curve over a finite field. Equivalently, they are finite extensions of $\F_p(t)$.
+  \end{itemize}
+\end{definition}
+In this course, we will mainly focus on the number field case.
+
+We will show that local fields are completions of global fields.
+\begin{lemma}
+  Let $(K, \abs{\cdot})$ be a complete discretely valued field, $L/K$ a Galois extension, and $\abs{\cdot}_L$ the unique extension of $\abs{\cdot}$ to $L$.
+
+  Then for $x \in L, \sigma \in \Gal(L/K)$, we have $\abs{\sigma(x)}_L = \abs{x}_L$.
+\end{lemma}
+\begin{proof}
+  Since $x \mapsto \abs{\sigma(x)}_L$ is another absolute value on $L$ extending $\abs{\cdot}$ on $K$. Hence by uniqueness, $\abs{x}_L = \abs{\sigma(x)}_L$.
+\end{proof}
+\begin{lemma}[Krasner's Lemma]
+  Let $(K, \abs{\cdot})$ be a complete discretely valued field. Let $f(x) \in K[x]$ be a separable irreducible polynomial with roots $\alpha_1, \ldots, \alpha_n$ in $\bar{K}$, a separable algebraic closure of $K$.
+
+  Suppose $\beta \in \bar{K}$ with
+  \[\abs{\beta-\alpha_1} <\abs{\beta-\alpha_i}\text{ for } i=2,\ldots, n\]
+  Then $\alpha_1 \in K(\beta)$.
+\end{lemma}
+\begin{proof}
+  Let $L = K(\beta), L'=L(\alpha_1, \ldots, \alpha_n)$. Since $L'$ is the splitting field of a separable polynomial, $L'/L$ is Galois. Let $\sigma \in \Gal(L'/L)$. Then, since $\sigma(\beta)=\beta$, $\abs{\beta-\sigma(\alpha_1)} = \abs{\sigma(\beta-\alpha_1)} = \abs{\beta-\alpha_1}$.
+
+  So $\sigma(\alpha_1)=\alpha_1$ for all $\sigma \in \Gal(L'/L)$. But then $\alpha \in L = K(\beta)$.
+\end{proof}
+\begin{proposition}[Nearby polynomials define the same extension]
+  Let $(K, \abs{\cdot})$ be a complete discretely valued field, and $f(x) = \sum_{i=0}^n a_i x^i \in \O_K[x]$ be a separable irreducible monic polynomial.
+
+  Let $\alpha \in \bar{K}$ be a root of $f$. Then there is some $\epsilon > 0$ such that, for any $g(x) = \sum_{i=0}^n b_ix^i \in \O_K[x]$ monic, with $\abs{a_i-b_i} < \epsilon$, there exists a root $\beta$ of $g(x)$ such that $K(\alpha)=K(\beta)$.
+\end{proposition}
+\begin{proof}
+  Let $\alpha = \alpha_1, \ldots, \alpha_n \in \bar{K}$ be the roots of $f$ which are necessarily distinct. Then $f'(\alpha) \neq 0$.
+
+  Choose $\epsilon$ sufficiently small so that
+  \begin{align*}
+    \abs{g(\alpha_1)} &< \abs{f'(\alpha_1)}^2\\
+    \abs{f'(\alpha_1)-g'(\alpha_1)} &< \abs{f'(\alpha_1)}
+  \end{align*}
+  Then we have $\abs{g(\alpha_1)} < \abs{f'(\alpha_1)}^2 = \abs{g'(\alpha_1)}^2$.
+
+  By Hensel's lemma applied to the field $K(\alpha_1)$, there is some $\beta \in K(\alpha_1)$ with $g(\beta) = 0$ and $\abs{\beta-\alpha_1} < \abs{g'(\alpha)}$.
+
+  Since $\abs{g'(\alpha)} = \abs{f'(\alpha)} = \prod_{i=2}^n \abs{\alpha_1-\alpha_i} \leq \abs{\alpha_1-\alpha_i}$ for $i=2, \ldots, n$, since $\abs{\alpha_1-\alpha_i} \leq 1$, as all roots lie in $\O_\bar{K}$.
+
+  Since $\abs{\beta-\alpha_1} < \abs{g'(\alpha_1)} = \abs{f'(\alpha_1)} \leq \abs{\alpha_1-\alpha_i} = \abs{\beta-\alpha_i}$, and by Krasner's lemma we have $K(\alpha) = K(\beta)$.
+\end{proof}
+\begin{theorem}
+  Let $K$ be a local field. Then $K$ is the completion of a global field.
+\end{theorem}
+\begin{proof}
+  We split into cases:
+  \begin{enumerate}
+    \item \underline{$\abs{\cdot}$ is archimedean}
+
+    Then $\R$ is the completion of $\Q$ with respect to $\abs{\cdot}_\infty$, and $\C$ is the completion of $\Q(i)$ with respect to $\abs{\cdot}_\infty$.
+
+    \item \underline{$K$ non-archimedean and has equal characteristic}
+
+    Then $K \cong \F_q((t))$, and $K$ is the completion of $F_q(t)$ with respect to the $t$-adic absolute value.
+
+    \item \underline{$K$ non-archimedean and has mixed characteristic}
+
+    Then $K \cong \Q_p(\alpha)$ for $\alpha$ a root of monic irreducible polynomial over $\Z_p$.
+
+    Since $\Z$ is dense in $\Z_p$, we can choose $g(x) \in \Z[x]$ as in \textbf{10.4}. Then $K = \Q_p(\beta)$ where $\beta$ is a root of $g$. Since $\beta \in \bar{\Q}$, we have $\Q(\beta) \subseteq \Q_p(\beta) = K$. So $K$ is the completion of $\Q(\beta)$.
+  \end{enumerate}
+\end{proof}
+\subsection{Dedekind Domains}
+The global analogue of a discrete valuation ring is a Dedekind domain.
+\begin{definition}
+  A \emph{Dedekind domain} is a ring $R$ such that:
+  \begin{enumerate}
+    \item $R$ is a Noetherian integral domain.
+    \item $R$ is integrally closed in $\Frac(R)$.
+    \item Every non-zero prime ideal is maximal.
+  \end{enumerate}
+\end{definition}
+\underline{Examples:}
+\begin{itemize}
+  \item The ring of integers in a number field is a Dedekind domain.
+  \item Any PID (hence DVR) is a Dedekind domain.
+\end{itemize}
+\begin{theorem}
+  A ring $R$ is a DVR if and only if $R$ is a Dedekind domain with exactly one non-zero prime ideal.
+\end{theorem}
+\begin{lemma}
+  Let $R$ be a Noetherian ring and $I \subseteq R$ a non-zero ideal. Then there exists non-zero prime ideals $p_1, \ldots, p_r \subseteq R$ such that $p_1p_2\ldots p_r \subseteq I$.
+\end{lemma}
+\begin{proof}
+  Suppose not. Since $R$ is Noetherian, we can choose $I$ maximal with this property. Then $I$ is not prime, so there exists $x, y \in R\setminus I$ such that $xy \in I$.
+
+  Let $I_1 = I+(x), I_2 = I+(y)$. Then by maximality of $I$, there are $p_1, \ldots, p_r, q_1, \ldots, q_s$ prime ideals such that $p_1\ldots p_r \subseteq I_1; q_1\ldots q_s \subseteq I_2$.
+
+  But then $p_1\ldots p_rq_1\ldots q_s \subseteq I_1I_2 = I \contr$.
+\end{proof}
+
+\begin{lemma}
+  Let $R$ be an integral domain which is integrally closed in $K = \Frac(R)$. Let $I \subseteq R$ be a non-zero finitely generated ideal and $x \in K$. Then if $xI \subseteq I$, we have $x \in R$.
+\end{lemma}
+\begin{proof}
+  Let $I = (c_1, \ldots, c_n)$. We write $xc_i = \sum_{i=1}^n a_{ij}c_i$ for some $a_{ij} \in R$. Let $A$ be the matrix $A = (a_{ij})_{1\leq i,j\leq n}$, and $B = x\text{Id}_n - A \in M_{n\times n}(K)$.
+
+  Let $\text{Adj}(B)$ be the adjugate matrix for $B$.
+
+  Then $B \begin{pmatrix}c_1\\\vdots\\c_n\end{pmatrix} = 0$ in $K^n$. Multiplying both sides by $\text{Adj}(B)$, we get:
+  \[(\det B)\text{Id}_n\begin{pmatrix} c_1\\\vdots\\ c_n\end{pmatrix} = 0\]
+  and so $\det B = 0$. But $\det B$ is a monic polynomial in $x$ with coefficients in $R$. So $x$ is integral over $R$, and hence $x \in R$.
+\end{proof}
+\begin{proof}[Proof of \textbf{10.7}]
+  The forwards direction is immediate.
+
+  For the reverse direction, we need to show that $R$ is a $PID$. The assumption implies that $R$ is a local ring with unique maximal ideal $m$.
+
+  \underline{Step 1: $m$ is principal.}
+
+  Let $0 \neq x \in m$. By \textbf{10.7}, $(x) \supseteq m^n$ for some $n \geq 1$. Let $n$ be minimal such, then we may choose $y \in m^{n-1}\setminus (x)$.
+
+  Set $\pi \coloneqq \frac{x}{y}$. Then $ym \subseteq m^n \subseteq (x)$, and so $\pi^{-1}m \subseteq R$.
+
+  If $\pi^{-1}m \subseteq m$, then $\pi^{-1} \in R$ by \textbf{10.8}, and so $y \in (x)\contr$.
+
+  Hence $\pi^{-1}m =R$, since $m$ is the unique maximal ideal and so any elements not in $m$ are units.
+
+  So $m = \pi R$ is principal.
+
+  \underline{Step 2: $R$ is a PID.}
+
+  Let $I \subseteq R$ be a non-zero ideal. Consider the sequence of ideals
+  \[ I \subseteq \pi^{-1}I \subseteq \pi^{-2} I \subseteq \ldots \text{ in $K$}\]
+  Then $\pi^{-k}I \neq \pi^{-(k+1)}I$ for all $k$, by \textbf{10.9}, and so the inclusions are strict. Since $R$ is Noetherian, we may choose a maximal $n$ such that $\pi^{-n}I \subseteq R$.
+
+  If $\pi^{-n}I \subseteq m = (\pi)$, then $\pi^{-(n+1)} I \subseteq R\contr$.
+
+  Thus $\pi^{-n}I = R$, and hence $I = (\pi^n)$.
+\end{proof}
 \end{document}

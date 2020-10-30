@@ -760,4 +760,68 @@ It's also worth noting that we can do the same with trilinear maps $L\times M\ti
 Conversely, given a linear map $\theta: M \to \Hom(N,L)$, we get a bilinear map $M \times N \to L, (m,n)\mapsto \theta(m)(n)$. Hence we have a 1-1 correspondence
 \[\{\text{bilinear maps }M\times N \to L\} \leftrightarrow \{\text{linear maps } M \to \Hom(N,L)\}\]
 But the LHS corresponds to the linear maps $M \otimes N \to L$.
+
+\subsection{Restriction and Extension of Scalars}
+\begin{definition}\hspace*{0cm}\\
+  \emph{Restriction:} If $\varphi:R \to T$ is a ring homomorphism, and $N$ is a $T$-module, then $N$ may be regarded as an $R$-module via $r\cdot m = \varphi(r)m$. In particular, $T$ itself is an $R$-module.
+
+  \emph{Extension:} If $M$ is an $R$-module, we can form another $R$-module $T \otimes_R M$. This can also be viewed as a $T$-module via $t_1(t_2\otimes m) = (t_1t_2)\otimes m$.
+\end{definition}
+\underline{Example:} Localisation is an extension of scalars $R \to S^{-1}R$. Given an $R$-module $M$ and the multiplicatively closed set $S$, there is a unique isomorphism $f:S^{-1}R \otimes_R M \to S^{-1}M$, via $\frac{r}{s}\otimes m \mapsto \frac{rm}{s}$.
+
+The map $S^{-1}R \times M \to S^{-1}M; (\frac{r}{s}, m)\mapsto \frac{rm}{s}$, so by the universal property there is some $f:S^{-1}R\otimes M \to S^{-1}M$. Then $f$ is clearly surjective - is it injective?
+
+A general element of the LHS is of the form $\sum_{i=1}^n \left(\frac{r_i}{s_i}\right)\otimes m_i$. Then set $s = s_1\ldots s_n$, $t_i = \prod_{j \neq i} s_j$. Then $\sum \left(\frac{r_i}{s_i}\right) \otimes m_i = \frac{1}{s}\otimes m$ for some $m \in M$.
+
+Now if $f(\frac{1}{s}\otimes m) = 0$, then $\frac{m}{s}$ is zero in $S^{-1}M$, and so $xm = 0$ for some $x \in S$. But then $\frac{1}{s}\otimes m = \frac{x}{xs}\otimes m = \frac{1}{sx}\otimes xm = \frac{1}{sx}\otimes 0 = 0$, and $f$ is indeed injective.
+
+\subsection{Tensor Products of Maps}
+\begin{definition}
+  Given $R$-module maps $\theta:M_1 \to M_2; \varphi:N_1\to N_2$, the \emph{tensor product} of $\theta$ and $\varphi$ is the $R$-module map
+  \begin{align*}
+    \theta \otimes \varphi: M_1 \otimes N_1 &\to M_2 \otimes N_2\\
+    m_1 \otimes n_1 &\mapsto \theta(m_1)\otimes \varphi(n_1)
+  \end{align*}
+\end{definition}
+Note that $\theta \otimes \varphi$ is bilinear, and so universality tells us it is well-defined.
+
+\subsection{Tensor Product of Algebras}
+\begin{definition}
+  Given $\varphi_1:R \to T_1$ a ring homomorphism (so that $T_1$ is an $R$-module), then we say that $T_1$ together with the map $\varphi_1$ is an \emph{R-algebra}. Given another ring homomorphism $\varphi_2 : R \to T_2$, we can take the tensor product of the $R$-modules $T_1, T_2$, to give $T_1 \otimes_R T_2$. We then define a product on $T_1 \otimes T_2$ by
+  \begin{align*}
+    (T_1\otimes T_2) \times (\T_1 \otimes T_2) &\to T_1\otimes T_2\\
+    ((t_1\otimes t_2), (t_1'\otimes t_2'))&\mapsto (t_1t_1')\otimes (t_2t_2')
+  \end{align*}
+\end{definition}
+To check this multiplication is actually well-defined, note that multiplication $T_i \times T_i \to T_i; (t_i, t_i') \mapsto t_it_i'$ is bilinear, and hence there is a corresponding $R$-module map $T_i \otimes T_i \to T_i$.
+
+The composition $(T_1\otimes T_1)\times (T_2 \otimes T_2) \to T_1\otimes T_2 \to T_2\otimes T_2$ is bilinear, and so we have a corresponding $R$-module map
+\begin{align*}
+  (T_1 \otimes T_1) \otimes (T_2\otimes T_2) &\to T_1\otimes T_2\\
+  (t_1\otimes t_1') \otimes (t_2\otimes t_2') &\mapsto t_1t_1'\otimes t_2t_2'
+\end{align*}
+Then by \textbf{3.4} there are isomorphisms:
+\begin{align*}
+  (T_1\otimes T_2)\otimes (T_1\otimes T_2) & \to T_1 \otimes (T_2 \otimes (T_1\otimes T_2))\\
+  &\to T_1 \otimes ((T_2\otimes T_1)\otimes T_2)\\
+  &\to T_1 \otimes ((T_1 \otimes T_2)\otimes T_2)\\
+  &\to T_1\otimes (T_1\otimes (T_2\otimes T_2))\\
+  &\to (T_1\otimes T_1)\otimes (T_2 \otimes T_2)
+\end{align*}
+with $(t_1\otimes t_1')\otimes (t_2\otimes t_2') \mapsto (t_1\otimes t_1')\otimes (t_2\otimes t_2')$.
+
+Composing gives our product as a well defined map. $1\otimes 1$ is the multiplicative identity. $T_1 \otimes T_2$ is a ring with $R \to T_1\otimes T_2; r\mapsto \varphi_1(r)\otimes 1 = 1 \otimes \varphi_2(r)$ a ring homomorphism. Hence $T_1 \otimes T_2$ is an $R$-algebra.
+
+\underline{Examples:}
+\begin{enumerate}
+  \item If $k$ is a field, then $k[x]$ is a $k$-algebra. Note that $k[x_1]\otimes_k k[x_2] \cong k[x_1,x_2]$.
+  \item $\Q[x]/(x^2+1) \otimes_\Q \C \cong \C[x]/(x^1+1)$.
+  \item $k[x_1]/(f(x_1))) \otimes_k k[x_2]/(g(x_2)) \cong k[x_1,x_2]/((f(x_1), g(x_2)))$.
+\end{enumerate}
+
+\begin{definition}
+  If $R$ is a $k$-algebra, $M, N$ are $R$-modules, we regard $M \otimes_R N$ as an $R$-module via the \emph{diagonal action}
+  \[r(m\otimes n) = rm\otimes rn\]
+  Note that if $M, N$ are finitely generated, so is $M\otimes N$.
+\end{definition}
 \end{document}
