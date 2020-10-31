@@ -946,4 +946,105 @@ We have that $\zeta_K(s) = F(q^{-s})$ for $F \in Q[[T]]$, where
   \implies F(T) &= \exp\left(\sum_{n=1}^\infty \frac{\#C(\F_{q^n})}{n}T^n\right) \eqqcolon Z_C(T)
 \end{align*}
 
+We define the \emph{trace map} $\tr: \End(E) \to \Z$; $\psi \mapsto \angle{\psi, 1}$.
+
+\begin{lemma}
+  If $\psi \in \End(E)$ then $\psi^2 - [\tr\psi]\psi + [\deg \psi] = 0$, where $[n]$ means the multiplication by $n$ endomorphism.
+\end{lemma}
+\begin{proof}
+  Example sheet 2.
+\end{proof}
+\textbf{Definition.} The \emph{zeta function of a variety} $V/\F_q$ is
+\[Z_v(T) = \exp\left(\sum_{n=1}^\infty \frac{\#V(\F_{q^n})}{n}T^n\right)\]
+\begin{lemma}
+  Let $E/\F_q$ be an elliptic curve, with $#E(\F_q) = q+1-a$. Then
+  \[Z_E(T) = \frac{1+aT+qT^2}{(1-T)(1-qT)}\]
+\end{lemma}
+\begin{proof}
+  Let $\phi: E \to E$ be the $q$-power Frobenius map. By the proof of Hasse's theorem,
+  \[\#E(\F_q) = \deg(1-\phi) = q+1-\tr(\phi)\]
+  Then $\tr(\phi) = a, \deg(\phi) = q$.
+
+  Then lemma \textbf{7.3} gives $\phi^2 - a\phi+q = 0$. Composing with $\phi^n$ for $n\geq 0$ gives
+  \begin{align*}
+    \phi^{n+2} - a \phi^{n+1}+q\phi^n &= 0\\
+    \tr(\phi^{n+2}) - a \tr(\phi^{n+1}) + q \tr(\phi^n) &= 0
+  \end{align*}
+  This second-order difference equation with initial conditions $\tr(\phi^0) = \tr(1) = 2, \tr(\phi^1) = a$ has solutions
+  \[\tr(\phi^n) = \alpha^n + \beta^n\]
+  where $\alpha, \beta$ are the roots of $x^2-ax+q=0$.
+
+  Hence $\#E(\F_{q^n}) = \deg(1-\phi^n) = 1+ \deg(\phi^n) - \tr(\phi^n) = 1+q^n-\alpha^n-\beta^n$.
+
+  Substituting, we have:
+  \begin{align*}
+    Z_E(T) &= \exp\left(\sum_{n=1}^\infty \frac{T^n}{n} + \frac{(qT)^n}{n} - \frac{(\alpha T)^n}{n} - \frac{(\beta T)^n}{n}\right)
+  \end{align*}
+  Since $-\log(1-x) =  \sum_{n=1}^\infty \frac{x^n}{n}$, this can be simplified to:
+  \begin{align*}
+    Z_E(T) &= \frac{(1-\alpha T)(1-\beta T)}{(1-T)(1-qT)}\\
+    &= \frac{1-aT+qT^2}{(1-T)(1-qT)}
+  \end{align*}
+\end{proof}
+Note that Hasse's theorem gives us $|a| \leq 2\sqrt{q}$, and so the discriminant of $x^2-aT+q$ is negative, and so $\alpha = \bar{\beta}, |\alpha|=|\beta| = \sqrt{q}$.
+
+Let $K = \F_q(E)$. Then $\zeta_K(s) = 0 \implies Z_E(q^{-s}) = 0 \implies q^2 = \alpha$ or $\beta$, and hence $\Re(s) = \frac{1}{2}$.
+
+\section{Formal Groups}
+Here, $R$ will be a ring with $I \subset R$ an ideal. The \emph{I-adic topology} on $R$ is the topology with basis $\{r+I^n: r\in R, n\geq 1\}$.
+
+A sequence $(x_n)$ in $R$ is \emph{Cauchy} if, for all $k$ there is some $N$ with $x_m-x_n \in I^k$ for all $m, n \geq k$.
+
+$R$ is \emph{complete} if
+\begin{enumerate}
+  \item $\bigcap_{n\geq 0} I^n = \{0\}$ and
+  \item every Cauchy sequence converges.
+\end{enumerate}
+Note that, if $x \in I$ then $\frac{1}{1-x} = 1+x+x^2+\ldots$, and the sequence of partial sums is Cauchy, and hence converges. So $1-x \in R^\times$.
+
+For example, we could have:
+\begin{itemize}
+  \item $R = \Z_p, I = p\Z_p$
+  \item $R = \Z[[t]], I = (t)$.
+\end{itemize}
+\begin{lemma}[Hensel's Lemma]
+  Let $R$ be an integral domain, complete with respect to $I$. Let $F \in R[x], s \geq 1$. Suppose $a \in R$ satisfies $F(a) \equiv 0 \mod I^s$, and $F'(a) \in R^\times$.
+
+  Then there is a unique $b \in R$ with $F(b) = 0$ and $b \equiv a \mod I^s$.
+\end{lemma}
+\begin{proof}
+  Let $u \in R^\times$ with $F'(a) \equiv u \mod I$, e.g. $u = f'(a)$.
+
+  Replacing $F(x)$ by $\frac{F(x+a)}{u}$, we may assume $a = 0$ and $F'(0) \equiv 1 \mod I$.
+
+  We put $x_0 = 0, x_{n+1} = x_n-F(x_n)$.
+
+  By induction, $x_n \in I_s$ for all $n$.
+
+  $F(x)-F(y) = (x-y)(F'(0)+xG(x,y) +yH(x,y))$ for some polynomials $G, H \in R[x,y]$.
+
+  Now we claim $x_{n+1} \equiv x_n \mod I^{n+s}$ for all $n \geq 0$.
+
+  This can be proven by induction on $n$: in the case where $n=0$, and $x_1 \in I^s$.
+
+  Suppose $x_{n}\equiv x_{n-1} \mod I^{n+s-1}$. Then
+  \[F(x_n)-F(x_{n-1})=(x_n-x_{n-1})(1+c)\]
+  for some $c \in I$, and hence
+  \[F(x_n) - F(x_{n-1}) \equiv x_n-x_{n-1} \mod I^{n+s}\]
+  Rearranging, we have $x_{n+1} \equiv x_n \mod I^{n+s}$, which proves the claim.
+
+  Hence $(x_n)$ is Cauchy, and by completeness converges to some $b \in R$. Taking the limit as $n \to \infty$, we have $b = b-F(b)$, and so $F(b)=0$, with $b \in I^s$.
+
+  For uniqueness, we can use the expression for $F(x)-F(y)$ and the assumption that $R$ is an integral domain.
+\end{proof}
+For example, take $E: Y^2Z + a_1XYZ+a_3YZ^2 = X^3+a_2X^2Z + a_4 XZ^2 + a_6Z^3$
+
+We pass to the affine piece $Y \neq 0, t = X/Y, w = -Z/Y$: Then
+\[E : w = t^3+a_1tw + a_2t^2w + a_3w^2+a_4tw^2+a_6w^3 = f(t,w)\]
+We can apply Hensel's lemma with $R = \Z[a_1, \ldots, a_6][[t]]$, $I = (t)$, and $F(x) = x-f(t,x)\in R[x]$. Taking $s = 3, a = 0$, we have:
+\[F(0) = -f(t, 0) = -t^3 \equiv 0 \mod I^3\;\;\;\;\;\;\;\;
+F'(0) = 1-a_t-a_2t^2  \in R^\times\]
+So there is a unique root of $F$, $w(t) \in \Z[a_1, \ldots, a_6][[t]]$ such that $w(t) = f(t,w(t))$ and $w(t) \equiv 0 \mod t^3$.
+
+Following the proof of Hensel's lemma with $u = 1$ gives $w(t) = \lim_{n\to \infty} w_n(t)$ where $w_0(t) = 0, w_{n+1}(t)=f(t, w_n(t))$.
 \end{document}
