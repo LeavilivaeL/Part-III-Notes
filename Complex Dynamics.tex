@@ -754,4 +754,100 @@ As a point of caution, note that attracting basins need not be connected. In fac
 
   Hence the image of $\beta$ is uncountable.
 \end{proof}
+
+\begin{theorem}[B\"ottcher 1904]
+  Suppose $f(0) = 0$ is holomorphic, with local expansion
+  \[f(z) = a_mz^m + a_{m+1}z^{m+1}+\ldots, m \geq 2\]
+  Then there is a holomorphic local change of coordinate $\phi$ with $\phi(0) = 0$ so that $\phi(f(z)) = \phi(z)^m$. $\phi$ is unique up to multiplication by an $(m-1)\th[st]$ root of unity.
+\end{theorem}
+\begin{proof}
+  This proof is similar to the proof of Koenig's theorem.
+
+  Assume by conjugating with an $(m-1)\th[st]$ root $a_m$, say $\alpha$, that $a_m = 1$. So we write
+  \[ f(z) = z^m(1+h(z))\]
+  where $h$ is holomorphic on a neighbourhood of $0$, and $h(0) = 0$.
+
+  We have a holomorphic logarithm $k(z)$ of $1+h(z)$ on a small neighbourhood of $0$, so $1+h(z) = e^{k(z)}$. By induction, we see that
+  \[f^n(Z) = z^{m^n}e^{k_n(z)},\;\;k_n(z)\text{ holomorphic}\]
+  We have a branch of $(f^n)^{1/m^n}$ on this neighbourhood of $0$, so choose the one with
+  \[\phi_n(z) \coloneqq f^n(z)^{1/m^n} = z(1+\mathcal{O}(z))\]
+  Then it can be checked that $\lim_{n \to \infty} \phi_n(z)$ converges uniformly on compact subsets of the neighbourhood, and satisfies the functional equation $\phi(f(z)) = \phi(z)^m, \phi(0)=0$, and $\phi$ is conformal.
+
+  Uniqueness follows from the uniqueness of Taylor expansions, as in the case of the Koenig linearization.
+\end{proof}
+Note that there is no real hope of a global extension to the entire immediate basin like we do with non-superattracting points. What we can do though is:
+\begin{corollary}
+  Let $f(0) = 0$ be a superattracting fixed point for $f$ with basin of attraction $\mathcal{A}$, and let $\phi$ be a B\"ottcher coordinate on a neighbourhood of $0$. Then $z \mapsto |\phi(z)|$ extends uniquely to a continuous map $|\phi|:\mathcal{A} \to [0,1)$ satisfying $|\phi(f(z))| = |\phi(z)|^m$ for all $z \in \mathcal{A}$.
+\end{corollary}
+\begin{proof}
+  Given $z \in \mathcal{A}$, find $n \gg 1$, so that $f^n(z)$ lies in the domain of the B\"ottcher coordinate. Set
+  \[|\phi(z)| \coloneqq |\phi(f^n(z))|^{1/m^n}\]
+  The rest follows: $|\phi|$ is continuous, satisfies the identity required, and is unique.
+\end{proof}
+\underline{Remark:} B\"ottcher for polynomials. Polynomials have superattracting fixed points at $\infty$. We will often call $\frac{1}{\phi(z)}$ the/a B\"ottcher coordinate at $\infty$, where
+
+\underline{Example:} Consider Newton's method: $f(z) = z - \frac{p(z)}{p'(z)}$. The roots of $p(z)$ are the fixed points of $f$.
+
+$f'(z) = \frac{p(z)p''(z)}{p'(z)^2}$, so the roots of $p$ are also critical for $f$, and hence are superattracting fixed points.
+
+If $\deg(p) = d = \deg(f)$, then we have $d+1$ fixed points. $d$ of them are these superattracting fixed points, so by the holomorphic fixed point formula, the other one, $\infty$, has multiplier $\frac{d}{d-1}$, so is repelling.
+
+For example, the family $p_c(z) = (z-1)(z-c+0.5)(z+c+0.5)$, has Newton maps $f_c(z) = z-\frac{(z-1)(z-c+0.5)(z+c+0.5)}{3z^3-c^2-0.75}$. There is one ``free" critical point at 0, which suggests a colouring of $\C$: colour $c$ green, red, or blue, depending on if $0$ is attracted to 1, $-c-\frac12, c-\frac12$ respectively, which I'll add to these notes once I find a picture of it.
+%add picture
+\subsection{Polynomial Maps}
+\begin{definition}
+  Let $f(z) = a_d z^d + a_{d-1}z^{d-1} +\ldots + a_0$ be a polynomial of degree $d \geq 2$. The \emph{filled Julia set} of $f$ is
+  \[K(f) \coloneqq \{z \in \C : f^n(z) \centernot\to \infty \text{ as } n\to \infty\}\]
+\end{definition}
+
+\begin{corollary}
+  Let $f(z)$ be a polynomial of degree $d \geq 2$. Then $\partial K(f) = J(f)$.
+\end{corollary}
+\begin{proof}
+  $f$ is a polynomial, so $\infty$ is a superattracting fixed point. Hence if $B(\infty)$ is the attracting basin for $\infty$, then $K(f) = \hat{\C}\setminus B(\infty)$. So $\partial K(f) = \partial B(\infty) = J(f)$.
+\end{proof}
+We also have another notion of the rate of divergence to $\infty$:
+\begin{definition}
+  Let $f(z)$ be a polynomial of degree $d \geq 2$. Then the \emph{Green's function} associated to $f$ is
+  \[ G_f(z) \coloneqq \lim_{n\to\infty} \frac{\log^+|f^n(z)|}{d^n}\]
+  where $\log^+ x = \max\{0, \log x\}$ for any $x \geq 0$.
+\end{definition}
+In fact, this carries the same information as $|\phi|$:
+\begin{lemma}
+  $G_f$ for a polynomial $f$ satisfies:
+  \begin{enumerate}
+    \item $G_f$ is continuous everywhere and harmonic on $\hat{\C}\setminus K(f)$.
+    \item $G_f(z) = \log|z| + \mathcal{O}(1)$ as $|z|\to \infty$.
+    \item $G(Z) \to 0$ as $z\to K(f)$.
+    \item $G_f(f(z)) = dG_f(z)$
+  \end{enumerate}
+  And moreover, $G_f(z)$ is uniquely characterised by properties 1, 2, and 4. Additionally, for $z \notin K(f)$:
+  \[G_f(z) = \log |\phi_f(z)|\]
+  where $|\phi_f|$ is the extended B\"ottcher coordinate on the basin of infinity.
+\end{lemma}
+\begin{proof}
+  Consider the function $\log^+ |f(z)| - d\log^+ |z|: \hat\C \to \R \cup \{\infty\}$ is continuous, and in fact bounded, by some constant $C$, since $f$ is a polynomial of degree $d$. So
+  \[\left| \frac{\log^+|f^n(z)|}{d^n}-\frac{\log^+|f^{n-1}(z)|}{d^{n-1}}\right| \leq \frac{C}{d^n}\]
+  Hence, if $m < n$:
+  \begin{align*}
+    \left| \frac{\log^+|f^n(z)|}{d^n}-\frac{\log^+|f^{m}(z)|}{d^{m}}\right| &\leq \sum_{k=m}^{n-1}\left| \frac{\log^+|f^{k+1}(z)|}{d^{k+1}}-\frac{\log^+|f^{k}(z)|}{d^{k}}\right|\\
+    &\leq \sum_{n=m}^{n-1} \frac{C}{d^{k+1}}\\
+    &\leq \frac{C}{d^m(d-1)}
+  \end{align*}
+  So the limit in the definition of $G_f$ was uniform, and hence $G_f$ is a uniform limit of continuous functions, hence continuous.
+
+  For property 2, take $m=0$, so $\left|\frac{\log^+|f^n(z)|}{d^n} - \log^+|z|\right| \leq \frac{C}{d-1}$. As $|z| \to \infty$, $\log^+|z| = \log |z|$, and so we have 2 by uniform convergence.
+
+  For property 3, since $|f^n(z)|$ is bounded (independently of $n$) for $z \in K(f)$, $G_f(z) = 0$.
+
+  Property 4 is immediate from the definition.
+
+  For $z \notin K(f)$, we can choose a small disc $U \ni z$ with compact closure in the basin of $\infty$. So there is $m \gg 1$ such that $|f^n(U)|\geq 1$ for all $n \geq m$. So we can define a holomorphic logarithm of $f^n|_U$ for $n\geq m$, so that $\frac{\log^+ |f^n(z)|}{d^n}$ is harmonic on $U$. So $G_f$ is a uniform limit of harmonic functions on $U$, and is harmonic on $U$.
+
+  For uniqueness, if $H(z)$ satisfies 1, 2, and 4, consider $G(z)\coloneqq G_f(z) - H(z)$. $G$ is continuous on $\hat{C}$, is bounded (by 2), and satisfies $G(f^n(z)) = d^n G(z)$. So as $n \to \infty$, $d^n G(z)$ is bounded, and so $G(z) = 0$, and hence $H = G_f$.
+
+  The final part follows as $\log|\phi_f(z)|$ satisfies 1, 2, 4.
+\end{proof}
+
+
 \end{document}
