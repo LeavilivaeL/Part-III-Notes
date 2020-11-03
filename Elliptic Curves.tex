@@ -1106,5 +1106,48 @@ This then motivates the following definition:
   \item $F(x, y) = x + y + x y = (1 + x)(1 + y) - 1$
   \item $F$ as above.
 \end{enumerate}
+We label these formal groups by $\hat{\G}_a, \hat{\G}_m$, and $\hat{E}$ respectively.
+
+\textbf{Definition.} Let $\mathcal{F}$, $\mathcal{G}$ be formal groups over $R$ given by power series $F, G$ respectively. Then:
+\begin{enumerate}
+  \item A \emph{morphism} $f: \mathcal{F} \to \mathcal{G}$ is a power series $f \in R[[t]]$ such that $f(0)=0$ satisfying $f(F(x, y)) = G(f(x), f(y))$.
+  \item $\mathcal{F} \cong \mathcal{G}$ if there is some morphism $f : \mathcal{F} \to \mathcal{G}$, and $g: \mathcal{G} \to \mathcal{F}$ with $f(g(x))=g(f(x)) = x$.
+\end{enumerate}
+\begin{theorem}
+  If $\charr(R) = 0$, then any formal group $\mathcal{F}$ over $R$ is isomorphic to $\hat{\G}_a$ over $R \otimes \Q$.
+
+  More precisely:
+  \begin{enumerate}
+    \item There is a unique power series $\log: T\mapsto T+\frac{a_2}{2}T^2+\frac{a_3}{3}T^3+\ldots$ with $a_i \in R$, such that \[\log(F(x,y)) = \log(x)+\log(y)\tag{\ast}\]
+    \item There is a unique power series $\exp: T \mapsto T + \frac{b_2}{2!}T^2 + \frac{b_3}{3!}T^3+\ldots$ with $b_i \in R$ such that \[\exp(\log(T)) = \log(\exp(T)) = T\]
+  \end{enumerate}
+\end{theorem}
+\begin{proof}\hspace*{0cm}
+  \begin{enumerate}
+    \item Notation: $F_1(x, y) = \frac{\partial F}{\partial x}(x, y)$ (via formal differentiation).
+
+    For uniqueness, let $p(T) = \frac{d}{dT} \log(T) = 1 + a_2T + a_3T^2 + \ldots$.
+
+    Differentiating ($\ast$) with respect to $x$, we get: $p(F(x, y))F_1(x, y) = p(x)+0$
+    Setting $x = 0$, we get $p(y)F_1(0, y) = 1$, and hence $p(y) = F_1(0, y)^{-1}$, and hence $p$ is uniquely determined, so $a_2, a_3, \ldots$ are uniquely determined. But then $\log$ is uniquely determined.
+
+    For existence, let $p(T) = F_1(0, T)^{-1} = 1 + a_2T + a_3 T^2 + \ldots$, where $a_i \in R$.
+
+    Integrating up, we let $\log(T) = T + \frac{a_2}{2}T^2+\frac{a_3}{3}T^3+\ldots$. We now check it satisfied ($\ast$).
+    \begin{align*}
+      F(F(x, y), z) &= F(x, F(y, z))\\
+      \frac{\partial}{\partial x} F(F(x,y), z) &= \frac{\partial}{\partial x} F(x, F(y, z))\\
+      F_1(F(x, y), z) F_1(x,y) &= F_1(x, F(y, z))\\
+      F_1(F(0, y), z) F_1(0,y) &= F_1(0, F(y, z))\\
+      F_1(y, z) F_1(0, y) &= F_1(0, F(y, z))\\
+      F_1(y,z) p(y)^{-1} &= p(F(y, z))^{-1}\\
+      F_1(y, z) p(F(y,z)) &= p(y)\\
+      \log(F(y, z)) &= \log(y) + h(z)
+    \end{align*}
+    By symmetry between $y, z$ we see that the constant of integration $h(z)$ must be $\log (z)$.
+  \end{enumerate}
+
+\end{proof}
+
 
 \end{document}
