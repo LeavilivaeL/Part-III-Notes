@@ -1047,4 +1047,64 @@ F'(0) = 1-a_t-a_2t^2  \in R^\times\]
 So there is a unique root of $F$, $w(t) \in \Z[a_1, \ldots, a_6][[t]]$ such that $w(t) = f(t,w(t))$ and $w(t) \equiv 0 \mod t^3$.
 
 Following the proof of Hensel's lemma with $u = 1$ gives $w(t) = \lim_{n\to \infty} w_n(t)$ where $w_0(t) = 0, w_{n+1}(t)=f(t, w_n(t))$.
+
+In fact, we may write \mbox{$w(t) = \sum_{n=2}^\infty A_{n-2}t^{n-1}$ with $A_1 = a_1, A_2 = a_1^2+a_2, A_3 = a_1^3+2a_1a_2+a_3, \ldots$}
+
+\begin{lemma}
+  Let $R$ be an integral domain, complete with respect to $I \trianglelefteq R$, and let $a_1, \ldots, a_6 \in R, K = \Frac(R)$.
+
+  Then $\hat{E}(I) = \{(t,w) \in E(K): t, w \in I\} = \{(t, w(t))\in E(K): t \in I\}$ is a subgroup of $E(K)$.
+\end{lemma}
+\begin{proof}
+  The two descriptions of $\hat{E}(I)$ agree, since given $t \in I$ we can solve for a unique $w \in I$ such that the pair $(t,w)\in E(K)$.
+
+  Taking $(t, w) = (0, 0)$ shows that $O_E \in \hat{E}(I)$. So it suffices to show that, if $P_1, P_2 \in \hat{E}(I)$, then $-P_1-P_2 \in \hat{E}(I)$.
+
+  If $P_1 = (t_1,w_1), P_2 = (t_2,w_2)$ lie on the straight line $\lambda t + \nu$, then $-P_1-P_2$ is the third point of intersection of this line with $E$.
+
+  Then $\lambda = \frac{w(t_2)-w(t_1)}{t_2-t_1}$ if $t_1 \neq t_2$, and $w'(t_1)$ if $t_1=t_2$.
+
+  $P_1, P_2 \in \hat{E}(I) \implies t_1, t_2 \in I$.
+
+  Thus $\lambda = \sum_{n=2}^\infty A_{n-2}(t_1^n + t_1^{n-1}t_2 + \ldots + t_2^n) \in I$, and $\nu = w_1-\lambda t_1 \in I$.
+
+  Substituting $w = \lambda t + \nu$ into $w = f(t,w)$ gives $\lambda t+\nu = t^3 + a_1t(\lambda t+ \nu) + a_2t^2(\lambda t+\nu) + a_3(\lambda t+ \nu)^2 + a_4 t(\lambda t + \nu)^3 + a_6(\lambda t+\nu)^3$.
+
+  Let $A$ be the coefficient of $t^3$, so $A = 1+a_2\lamdba+a_4 \lambda^2 + a_6\lambda^3$.
+
+  Let $B$ be the coefficient of $t^2$, so $B = a_1\lambda + a_2\nu + a_3\lambda^2+2a_4\lambda\nu+3a_6\lambda^2\nu$.
+
+  Then $A \in R^\times, B \in I$, and $t_3 = -B/A -t_2 -t_2 \in I$, and $w_3 = \lambda t_3 + \nu \in I$.
+
+  Hence $-P_1-P_2 \in \hat{E}(I)$, and so $\hat{E}(I)$ is a subgroup.
+\end{proof}
+Taking $R = \Z[a_1, \ldots, a_6][[t]]$, and $I = (t)$, then the previous lemma tells us there is some power series $\iota \in \Z[a_1,\ldots, a_6][[t]]$ with $\iota(0) = 0$ such that $[-1](t, w(t)) = (\iota(t), w(\iota(t)))$
+
+Taking $R = \Z[a_1, \ldots, a_6][[t]]$, and $I=(t_1, t_2)$, then we get that there is some power series $F \in I$ such that $(t_1,w(t_1))+(t_2,w(t_2)) = (F(t_1,t_2),w(F(t_1,t_2))$.
+
+In fact, we can compute
+\begin{align*}
+  \iota(x) &= -x-a_1x^2-a_2x^3-(a_1^3+a_3)x^4+\ldots\\
+  F(x, y) &= x+y-a_1xy-a_2(x^2y+xy^2)+\ldots
+\end{align*}
+By properties of the group law, we can deduce:
+\begin{enumerate}
+  \item $F(x, y) = F(y, x)$
+  \item $F(x, 0) = x, F(0, y) = y$
+  \item $F(x, F(y, z)) = F(F(x, y), z)$
+  \item $F(x, \iota(x)) = 0$
+\end{enumerate}
+This then motivates the following definition:
+
+\textbf{Definition.} Let $R$ be a ring. A \emph{formal group} over $R$ is a power series $F(x, y) \in R[[x, y]]$ satisfying the properties 1, 2, and 3 above.
+
+\textbf{Exercise.} Show that, for any formal group, there is a unique $\iota(x) \in R[[x]]$ such that \mbox{$F(x,\iota(x)) = 0$}.
+
+\underline{Examples:}
+\begin{enumerate}
+  \item $F(x, y) = x + y$
+  \item $F(x, y) = x + y + x y = (1 + x)(1 + y) - 1$
+  \item $F$ as above.
+\end{enumerate}
+
 \end{document}
