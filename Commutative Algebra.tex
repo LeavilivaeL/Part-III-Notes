@@ -824,4 +824,51 @@ Composing gives our product as a well defined map. $1\otimes 1$ is the multiplic
   \[r(m\otimes n) = rm\otimes rn\]
   Note that if $M, N$ are finitely generated, so is $M\otimes N$.
 \end{definition}
+\begin{lemma}
+  If $M_1 \xrightarrow{\theta} M \xrightarrow{\varphi} M_2 \to 0$ is a sequence of $R$-modules, then it is exact if and only if, for all $R$-modules $N$,
+  \[0 \to \Hom(M_2, N) \xrightarrow{\alpha} \Hom(M, N) \xrightarrow{\beta} \Hom{M_1, N}\]
+  is exact.
+\end{lemma}
+\begin{proof}
+  ($\implies$) Let $N$ be an $R$-module. If $f \in \Hom(M_2, N)$, then $f \circ \varphi \in \Hom(M, N)$. This gives an injective map $\alpha: \Hom(M_2, N) \to \Hom(M,N)$, since if $f \neq 0$, there is some $m_2 \in M_2$ with $f(m_2) \neq 0$. But $m_2 = \varphi(m)$ for some $m$ since $\varphi$ is surjective, and hence $f \varphi(m) \neq 0$, and we have exactness at $\Hom(M_2, N)$.
+
+  If $g \in \Hom(M,N)$, then $g \circ \theta \in \Hom(M_1, N)$. Suppose $g \circ \theta \equiv 0$. Then $\theta(M_1) \subseteq \ker g$. By exactness, $\theta(M_1) = \ker \varphi$, and hence $\ker \varphi \subseteq \ker g$. So there is $f \in \Hom(M_2, N)$ with $f\varphi = g$, and we have exactness at $\Hom(M,N)$.
+
+  ($\impliedby$) $\alpha$ is injective for all $N$, and hence $\varphi$ is surjective. Also $\beta \alpha \equiv 0$, and so $f \circ \varphi \circ \theta \equiv 0$ for any $f : M_2 \to N$. Take $N$ to be $M_2$ and $f$ to be $\id_{M_2}$. Then $\varphi \circ \theta = 0$, and so $\im \theta \subseteq \ker \varphi$. Now take $N = M/\im \theta$ and let $p: M\to N$ be projection. Then $p \in \ker \beta$, and hence there is some $g:M_2 \to N$ with $p = g \circ \varphi$. Thus $\im \theta = \ker p \supseteq \ker \varphi$.
+\end{proof}
+Note that it is not true in general that a short exact sequence yields another one by applying $\Hom(\cdot, N)$ - this is the start of cohomology theory. However, the analogous statement that $0 \to M_1 \to M \to M_2$ is exact if and only if $0 \to \Hom(N, M_1) \to \Hom(N, M) \to \Hom(N, M_2)$ is exact for all $N$ (note that the 0 is at the other end, and the $N$ is in the other position in the $\Hom$).
+
+\begin{lemma}
+  If $M_1 \xrightarrow{\theta} M \xrightarrow{\varphi} M_2 \to 0$ is an exact sequence and $N$ is an $R$-module, then:
+  \begin{align*}
+    M_1 \otimes N \xrightarrow{\theta \otimes \id} M\otimes N \xrightarrow{\varphi \otimes \id} M_2 \otimes N \to &0\\
+    N \otimes M_1 \xrightarrow{\id \otimes \theta} N\otimes M \xrightarrow{\id \otimes \varphi} N \otimes M_2 \to &0
+  \end{align*}
+  are exact. The second statement follows from the first by commutativity of tensor products.
+\end{lemma}
+\begin{proof}
+  Let $N'$ be any $R$-module. Since $\otimes$ is exact:
+  \[ 0 \to \Hom(M_2, \Hom(N, N')) \to \Hom(M, \Hom(N, N')) \to \Hom(M_1, \Hom(N, N'))\]
+  is exact by \textbf{3.9}. By the example after \textbf{3.4}, we have $\Hom(M, \Hom(N, N')) \cong \Hom(M \otimes N, N')$. So:
+  \[ 0 \to \Hom(M_2 \otimes, N') \to \Hom(M \otimes N', N') \to \Hom(M \otimes N, N')\]
+  is exact. Then use the converse part of \textbf{3.9} to get the result.
+\end{proof}
+These are \textit{not} short exact sequences: given a short exact sequence, applying $\cdot \otimes N$ does not necessarily preserve injectivity of the left hand map. For example:
+\[ 0 \to \Z \xrightarrow{\times 2} \Z \xrightarrow{\pi} \to \Z/(2) \to 0\]
+Take $N = \Z/(2)$. Then $\Z \otimes N \cong \Z/(2)$, so we get $\Z/(2) \xrightarrow{0} \Z/(2) \to \Z/(2) \to 0$. The left hand map here is not injective.
+
+\begin{definition}
+  We say an $R$-module $N$ is \emph{flat} if, given any short exact sequence
+  \[0 \to M_1 \to M \to M_2 \to 0\]
+  the sequence
+  \[0 \to M_1 \otimes N \to M \otimes N \to M_2 \otimes N \to 0\]
+  is exact.
+\end{definition}
+For example:
+\begin{itemize}
+  \item $R$ itself is a flat $R$-module.
+  \item $R^n$ is a flat $R$-module, the free $R$-module on $n$ generators.
+  \item If $R = \Z$, then $\Q$ is a flat $\Z$-module. In fact, any torsion-free abelian group is a flat $\Z$-module.
+\end{itemize}
+The subject of homology deals with measuring the failure of modules to be flat.
 \end{document}

@@ -1146,8 +1146,95 @@ We label these formal groups by $\hat{\G}_a, \hat{\G}_m$, and $\hat{E}$ respecti
     \end{align*}
     By symmetry between $y, z$ we see that the constant of integration $h(z)$ must be $\log (z)$.
   \end{enumerate}
+  For the second part, we will need the following lemma, which is a generalisation of the statement:
+  \begin{lemma}
+    Let $f(T) = aT + \ldots \in R[[T]]$ with $a \in R^\times$. Then there is a unique $g(T) = a^{-1}T+  \ldots \in R[[t]]$ such that $f(g(T)) = g(f(T)) = T$.
+  \end{lemma}
+  \begin{proof}
+    We construct polynomials $g_n(T) \in R[T]$ such that $f(g_n(T)) \equiv T \mod T^{n+1}$ and $g_{n+1}(T) \equiv g_n(T) \mod T^{n+1}$. Then we will set $g(T) = \lim_{n\to\infty} g_n(T)$, satisfying $f(g(T)) = T$.
 
+    This is done inductively. To start with, $g_1(T) = a^{-1}T$. Then $f(g_1(T)) = T+T^2(\ldots) \equiv T \mod T^2$.
+
+    Now suppose $n\geq 1$ and $g_{n-1}(T)$ exists.
+
+    Then $f(g_{n-1}(T)) \equiv T + bT^n \mod T^{n+1}$. Let $g_n(T) = g_{n-1}(T) + \lambda T^n$, where $\lambda \in R$ to be chosen later.
+
+    Then $f(g_n(T)) = f(g_{n-1}(T)+\lambda T^n) \equiv f(g_{n-1}(T)) + \lambda aT^{n} \mod T^{n+1} \equiv T + (b+\lambda a)T^{n} \mod T^{n+1}$.
+
+    So pick $\lambda = -ba^{-1}$.
+
+    This gives $g(T)$ with $f(g(T)) = T$.
+
+    Applying the same argument, we get $h(T)$ such that $g(h(T)) = T$.
+
+    Then $f(T) = f(g(h(T))) = h(T)$, and so $g$ is as required.
+  \end{proof}
+  \begin{enumerate}
+    \item[2.] We now only have to show that the $b_n \in R$ (not just in $R \otimes \Q$). See example sheet 2 for this.
+  \end{enumerate}
 \end{proof}
+Let $\mathscr{F}$ be a formal group (e.g. $\hat{\G}_a, \hat{\G}_m, \hat{E}$), given by a power series $F \in R[x,y]$, and suppose that $R$ is $I$-adically complete. Then for $x, y \in I$, put $x \oplus_{}\mathscr{F}} y = F(x,y) \in I$. Then $\mathscr{F} = (I, \oplus_{\mathscr{F}})$ is an abelian group.
 
+For example, $\hat{\G}_a(I) = (I, +), \hat{\G}_m(I) = (1+I, \times)$, and in \textbf{8.2}, we saw $\hat{E}(I) \leq E(K)$.
 
+\begin{corollary}
+  Let $\mathscr{F}$ be a formal group over $R$, and $n \in \Z$. Suppose $n \in R^\times$. Then:
+  \begin{enumerate}
+    \item $[n]:\mathscr{F} \to \mathscr{F}$ is an isomorphism.
+    \item If $R$ is complete with respect to $I$, then $\mathscr{F}(I) \xrightarrow{\times n} \mathscr{F}(I)$ is an isomorphism.
+  \end{enumerate}
+  In particular, $\mathscr{F}(I)$ has no $n$-torsion.
+\end{corollary}
+\begin{proof}
+  We have $[1](T) = T, [n](T) = F([n-1]T, T)$ for $n \geq 2$. For $n < 0$, use $[-1](T) = \iota(T)$.
+
+  Induction gives us $[n](T) = nT + \ldots$, and so by \textbf{8.4}, $[n]$ is an isomorphism.
+\end{proof}
+\section{Elliptic Curves over Local Fields}
+Let $K$ be a field, complete with respect to the discrete valuation $v: K^\times \to \Z$. Then we define the valuation ring, or ring of integers, the set:
+\[\O_K = \{x \in K^\times : v(x) \geq 0 \} \cup\{0\}\]
+Then $\O_K^\times = \{x \in K^\times : v(x) = 0\}$. There is a unique maximal ideal $\pi \O_K$, where $v(\pi) = 1$, and we define the residue field to be $k = \O_K/\pi\O_K$.
+
+We assume $\charr K = 0, \charr k = p$.
+
+For example, if $K = \Q_p, \O_K = \Z_p, \pi = p, k = \F_p$.
+
+Let $E/K$ be an elliptic curve. Then a Weierstrass equation for $E$ with coefficients $a_1, \ldots, a_6 \in K$ is \emph{integral} if $a_i \in \O_K$, and minimal if $v(\Delta)$ is minimal among all integral Weierstrass equations for $E$.
+
+Putting $x = u^2x', y = u^3y'$ give $a_i = u^i a_i'$. So we can clear denominators, and hence every elliptic curve has an integral Weierstrass equation. Moreover, since $a_i \in \O_K, \Delta \in \O_K$, and so $v(\Delta) \geq 0$, and hence we can pick a minimal Weierstrass equation.
+
+If $\charr k \neq 2, 3$ then there is a minimal Weierstrass equation of the form $y^2 = x^3+ax+b$.
+
+\begin{lemma}
+  Let $E/K$ have integral Weierstrass equation
+  \[y^2+a_1xy+a_3y = x^3+a_2x^2+a_4x+a_6\]
+  Let $0 \neq P = (x,y) \in E(K)$. Then either $x, y \in \O_K$ or $v(x) = -2s, v(y) = -3s$ for some $s \geq 1$.
+\end{lemma}
+Compare this to example sheet 1, question 5.
+\begin{proof}
+  If $v(x) \geq 0$, then consider $y$.
+
+  If $v(y) < 0$, then $v(LHS) < 0$, but $v(RHS) \geq 0 \contr$, and hence $x, y \in \O_K$.
+
+  Now if $v(x)<0$, then $v(LHS) \geq \min(2v(y), v(x)+v(y), v(y))$\\
+  $v(RHS) = v(x^3) = 3v(x)$.
+
+  Hence $v(y) < v(x)$. But then $v(LHS) = 2v(y)$, and hence $3v(x) = 2v(y)$.
+\end{proof}
+If $K$ is complete, then $\O_K$ is complete with respect to the ideal $\pi^r \O_K$ for any $r \geq 1$.
+
+Fix a minimal Weierstrass equation for $E/K$, and hence a formal group $\hat{E}$ over $\O_K$.
+
+Take $I = \pi^r \O_K$ in \textbf{8.2}, we have
+\begin{align*}
+  \hat{E}(\pi^r\O_K) &= \left\{(x,y) \in E(K) : -\frac{x}{y}, -\frac{1}{y} \in \pi^r \O_K\right\} \cup \{0\}\\
+  &= \left\{(x,y) \in E(K) : v\left(\frac{x}{y}\right)\geq r \& v\left(\frac{1}{y}\right) \geq r\right\}\cup\{0\}\\
+  &= \left\{(x,y) \in E(K) : v(x) = -2s, v(y)=-3s, s \geq r\right\}\cup\{0\}\\
+  &= \left\{(x,y) \in E(K) : v(x) \leq -2r, v(y)\leq -3r\right\}\cup\{0\}
+\end{align*}
+By \textbf{8.2}, this is a subgroup of $E(K)$, say $E_r(K)$. We have a chain
+\[\ldots \subset E_3(K) \subset E_2(K) \subset E_1(K)\]
+More generally, for $\mathscr{F}$ a formal group over $\O_K$, we get
+\[\ldots \subset \mathscr{F}(\pi^3\O_K) \subset \mathscr{F}(\pi^2\O_K) \subset \mathscr{F}(\pi\O_K)\]
+We will show that $\mathscr{F}(\pi^r \O_K) \cong (\O_K, +)$ for $r$ sufficiently large, and $\mathscr{F}(\pi^r \O_K)/\mathscr{F}(\pi^{r+1}\O_K) \cong (k, +)$.
 \end{document}

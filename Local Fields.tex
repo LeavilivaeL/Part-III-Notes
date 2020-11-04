@@ -1167,7 +1167,7 @@ We will show that local fields are completions of global fields.
 
   By Hensel's lemma applied to the field $K(\alpha_1)$, there is some $\beta \in K(\alpha_1)$ with $g(\beta) = 0$ and $\abs{\beta-\alpha_1} < \abs{g'(\alpha)}$.
 
-  Since $\abs{g'(\alpha)} = \abs{f'(\alpha)} = \prod_{i=2}^n \abs{\alpha_1-\alpha_i} \leq \abs{\alpha_1-\alpha_i}$ for $i=2, \ldots, n$, since $\abs{\alpha_1-\alpha_i} \leq 1$, as all roots lie in $\O_\bar{K}$.
+  Since $\abs{g'(\alpha)} = \abs{f'(\alpha)} = \prod_{i=2}^n \abs{\alpha_1-\alpha_i} \leq \abs{\alpha_1-\alpha_i}$ for $i=2, \ldots, n$, since $\abs{\alpha_1-\alpha_i} \leq 1$, as all roots lie in $\O_{\bar{K}}$.
 
   Since $\abs{\beta-\alpha_1} < \abs{g'(\alpha_1)} = \abs{f'(\alpha_1)} \leq \abs{\alpha_1-\alpha_i} = \abs{\beta-\alpha_i}$, and by Krasner's lemma we have $K(\alpha) = K(\beta)$.
 \end{proof}
@@ -1364,9 +1364,136 @@ Note that \textbf{11.5} in fact holds without the assumption that $L/K$ is separ
 \begin{corollary}
   The ring of integers inside a number field is a Dedekind domain.
 \end{corollary}
-Convention: if $\O_K$ is the ring of integers of a number field, $p \subseteq \O_K$ a non-zero prime ideal, then we normalise $\abs{\cdot}_p$ so that
-\[\abs{x}_p = N_p^{-v_p(x)}, \text{ where } N_p = \#\O_K/p\]
+Convention: if $\O_K$ is the ring of integers of a number field, $\f{p} \subseteq \O_K$ a non-zero prime ideal, then we normalise $\abs{\cdot}_\f{p}$ so that
+\[\abs{x}_\f{p} = N_\f{p}^{-v_\f{p}(x)}, \text{ where } N_\f{p} = \#\O_K/\f{p}\]
 
+\section{Dedekind Domains \& Extensions}
+Let $\O_K$ be a Dedekind domain.
+\begin{lemma}
+  Let $0 \neq x \in \O_K$. Then:
+  \[(x) = \prod_{\f{p}\neq 0}\f{p}^{v_\f{p}(x)}\]
+  Note that this product is finite.
+\end{lemma}
+\begin{proof}
+  $x \O_{K, (\f{p})} = (\f{p}\O_{K, (\f{p})})^{v_\f{p}(x)}$ by definition of $v_\f{p}(x)$.
 
+  The lemma then follows from properties of localisation:
 
+  $I = S \iff I \O_{K, (\f{p})} = J \O_{K, (\f{p})}$ for all prime ideals $\f{p}$.
+\end{proof}
+Notation: for $\O_K$ a Dedekind domain, $L/K$ a finite separable extension, $\mathcal{P} \subseteq \O_L$, $\p \subseteq \O_K$ nonzero prime ideals, we write $\mathcal{P} | \p$ if when we write
+\[\p\O_L = \mathcal{P}_1^{e_1}\ldots \mathcal{P}_r^{e_r}, \;\;\;\; e_i >0\]
+$\mathcal{P}$ is one of the $\mathcal{P}_i$.
+
+\begin{theorem}
+  Let $\O_K$ be a Dedekind domain and $L$ a finite separable extension of $K = \Frac(\O_K)$.
+
+  For $\p$ a nonzero prime ideal of $\O_K$, we write $\p\O_L = \mathcal{P}_1^{e_1} \ldots \mathcal{P}_r^{e_r}$, where $e_i >0$. Then the absolute values on $L$ extending $\abs{\cdot}_\p$ up to equivalence are precisely $\abs{\cdot}_{\mathcal{P}_1}, \ldots, \abs{\cdot}_{\mathcal{P}_r}$.
+\end{theorem}
+\begin{proof}
+  By \textbf{12.1}, for any $x \in \O_K$ and $i = 1, \ldots, r$, we have $v_{\mathcal{P}_i}(x) = e_i v_\p(x)$.
+
+  Hence, up to equivalence, $\abs{\cdot}_{\mathcal{P}_i}$ extend to $\abs{\cdot}_\p$.
+
+  Now suppose that $\abs{\cdot}$ is an absolute value on $L$ extending $\abs{\cdot}_\p$. Then $\abs{\cdot}$ is bounded on $\Z$, and hence by $\abs{\cdot}$ is non-archimedean.
+
+  Now let $R = \{x \in L: \abs{x} \leq 1\} \subseteq L$ be the valuation ring for $L$ with respect to $\abs{\cdot}$. Then $\O_K \subseteq R$, and since $R$ is integrally closed in $L$ (see section 6), we have $\O_L \subseteq R$.
+
+  Set $\mathcal{P}\coloneqq \{x \in \O_L: \abs{x} < 1\}$. It is easy to check that $\mathcal{P}$ is a non-zero prime ideal.
+
+  E.g.: given $x, y \in \mathcal{P}$, then $x+y \in \mathcal{P}$. So if $r \in \O_L, x \in \mathcal{P}$, then $rx \in \mathcal{P}$, and that if $x, y \in \O_L, xy \in \mathcal{P}$ then $x \in \mathcal{P}$ or $y \in \mathcal{P}$, just using properties of non-archimedean absolute values.
+
+  Then $\O_{L, (\mathcal{P})} \subseteq R$, since $s \in \O_L\setminus \mathcal{P}$ gives $\abs{s} = 1$. But $\O_{L, (\mathcal{P})}$ is a DVR and hence a maximal subring of $L$, and so $R = \O_{L, (\mathcal{P})}$. But then $\abs{\cdot}$ is equivalent to $\abs{\cdot}_{\mathcal{P}}$.
+
+  Since $\abs{\cdot}$ extends $\abs{\cdot}_{\p}$, we have $\mathcal{P}\cap \O_K = \p$, and so $\mathcal{P} = \mathcal{P}_i$ for some $i$.
+\end{proof}
+Let $K$ be a number field. If $\sigma: K \to \R, \C$ is a real or complex embedding, then $x \mapsto \abs{\sigma(x)}_\infty$ defines an absolute value on $K$ - see example sheet 2. This absolute value is denoted $\abs{\cdot}_\sigma$.
+\begin{corollary}
+  Let $K$ be a number field, with ring of integers $\O_K$, then any absolute value on $K$ is either:
+  \begin{enumerate}
+    \item $\abs{\cdot}_\p$ for some non-zero prime ideal $\p$.
+    \item $\abs{\cdot}_\sigma$ for some $\sigma : K \to \R, \C$.
+  \end{enumerate}
+\end{corollary}
+\begin{proof}
+  If $\abs{\cdot}$ is non-archimedean. Then $\abs{\cdot}_\Q$ is non-archimedean, so is equivalent to $\abs{\cdot}_p$ for some prime $p$ by Ostrowski. Then \textbf{12.2} implies that $\abs{\cdot}$ is $\abs{\cdot}_\p$ for some $\p$ a prime of $\O_K$ dividing $(p)$.
+
+  The archimedean case is left as an exercise to example sheet 2.
+\end{proof}
+\subsection{Completions}
+Now let $L/K$ be an extension of number fields with rings of integers $\O_K, \O_L$ respectively. Let $\p \subseteq \O_K$ and $\mathcal{P} \subseteq \O_L$ be non-zero prime ideals such that $\mathcal{P}$ divides $\p$. We write $K_\p$ and $L_\mathcal{P}$ for the completions of $K$ and $L$ with respect to $\abs{\cdot}_\p$ and $\abs{\cdot}_{\mathcal{P}}$ respectively.
+
+\begin{lemma}\hspace*{0cm}
+  \begin{enumerate}
+    \item The natural map $L \otimes_K K_\p \to L_{\mathcal{P}}$ is surjective.
+    \item $[L_{\mathcal{P}}:K_\p] \leq [L:K]$
+  \end{enumerate}
+\end{lemma}
+\begin{proof}
+  Let $M = LK_\p \subseteq L_\mathcal{P}$. Then $M$ is a finite extension of $K_\p$ and $[M:K\p] \leq [L:K]$, and moreover $M$ is complete and, since $L \subseteq M \subseteq L_\mathcal{P}$, we have $L_\mathcal{P} = M$.
+\end{proof}
+\begin{lemma}[Chinese Remainder Theorem]
+  Let $R$ be a ring, $I_1, \ldots, I_n \subseteq R$ be ideals such that $I_i + I_j = R$ for all $i \neq j$ (we say the $I_i$ are pairwise coprime). Then:
+  \begin{enumerate}
+    \item $\bigcap_{i=1}^n I_i = \prod_{i=1}^n I_i = I$
+    \item $R/I \cong \prod_{i=1}^n R/I_i$
+  \end{enumerate}
+\end{lemma}
+\begin{proof}
+  Example sheet 2.
+\end{proof}
+\begin{theorem}
+  $L \otimes_K K_\p \cong \prod_{\mathcal{P}|\p} L_\mathcal{P}$
+\end{theorem}
+\begin{proof}
+  Write $L = K(\alpha)$ by separability, and let $f(x) \in K[x]$ be the minimal polynomial of $\alpha$.
+
+  Let $f(x) = f_1(x)\ldots f_r(x)$ in $K_\p[x]$ where $f_i(x) \in K_p[x]$ are distinct irreducibles.
+
+  Then $L \cong K[x]/f(x)$, and so by the Chinese remainder theorem:
+  \begin{align*}
+    L \otimes_K K_\p &\cong K_\p[x]/f(x)\\
+    &= \prod_{i=1}^r K_\p[x]/f_i(x)
+  \end{align*}
+  Set $L_i \coloneqq K_p[x]/f_i(x)$. Since $f_i$ are irreducible, this is field, and hence a finite extension of $K_\p$.
+
+  Then $L_i$ contains both $L$ and $K_\p$, since $K[x]/f(x) \to K_\p[x]/f_i(X)$ is injective, being a non-zero map of fields. Moreover, $L$ is dense in $L_i$, since $K$ is dense in $K_\p$, we can approximate coefficients of an element of $K_\p[x]/f_i(x)$ with an element of $K[x]/f(x)$.
+
+  Then the theorem follows from the following three claims:
+  \begin{enumerate}
+    \item $L_i \cong L_\mathcal{P}$ for some prime $\mathcal{P}$ of $\O_L$ dividing $\p$.
+    \item Each $\mathcal{P}$ appears at most once.
+    \item Each $\mathcal{P}$ appears at least once.
+  \end{enumerate}
+  Proof:
+  \begin{enumerate}
+    \item Since $[L_i : K_\p] < \infty$, there is a unique absolute value $\abs{\cdot}$ on $L_i$ extending $\abs{\cdot}_\p$. By \textbf{12.2}, restricting this to $L$, it is equivalent to $\abs{\cdot}_\mathcal{P}$ for some $\mathcal{P}|\p$. Since $L$ is dense in $L_i$ and $L_i$ is complete, we have $L_i \cong L_{\mathcal{P}}$.
+
+    \item Suppose $\varphi: L_i \to L_j$ is an isomorphism, preserving $L$ and $K_\p$, then $\varphi$ is given by:
+    \begin{align*}
+      \varphi: K_\p[x]/f_i(x) &\to K_\p[x]/f_j(x)\\
+      x &\mapsto x
+    \end{align*}
+    But then $f_i(x) = f_j(x)$ and so $i = j$.
+
+    \item By \textbf{12.4}, the natural map $\pi_\mathcal{P}: L \otimes_K K_\p \to L_\mathcal{P}$ is surjective for any $\mathcal{P}|\p$.
+
+    Since $L_{\mathcal{P}}$ is a field, $\pi_\mathcal{P}$ factors through $L_i$ for some $i$, and hence $L_i \cong L_{\mathcal{P}}$ by surjectivity of $\pi_{\mathcal{P}}$.
+  \end{enumerate}
+\end{proof}
+For example, if $K = \Q, L= \Q(\im), f(x) = x^2+1$. Then Hensel tells us $\sqrt{-1} \in \Q_5$, so in $\Q_5$ $f(x)$ factorises. Hence $(5)$ splits in $\Q(i)$, i.e. $5 \O_L = \p_1\p_2$.
+\begin{corollary}
+  For $x \in L$, we have
+  \[N_{L/K}(x) = \prod_{\mathcal{P}|\p} N_{L_{\mathcal{P}}/K_\p}(x)\]
+\end{corollary}
+\begin{proof}
+  Let $\p\O_L = \mathcal{P}_1^{e_1} \ldots \mathcal{P}_r^{e_r}$. Let $\mathcal{B}_1, \ldots, \mathcal{B}_r$ be bases for the completions $L_{\mathcal{P}_1}, \ldots, L_{\mathcal{P}_r}$ as $K_\p$-vector spaces.
+
+  Then $\mathcal{B} = \bigcup_{i=1}^r \mathcal{B}_i$ is a basis for $L \otimes_K K_\p$.
+
+  Let $[\text{mult}(x)]_\mathcal{B}$ (respectively $[\text{mult}]_{\mathcal{B}_i}$) denote the matrix for the map $\text{mult}(x):L\otimes_K K_\p \to L\otimes_K K_\mathcal{P}$ (respectively $\text{mult}(x):L_{\mathcal{P}_i} \to L_{\mathcal{P}_i})$ with respect to the basis $\mathcal{B}$ (respectively $\mathcal{B}_i$). Then
+  \[[\text{mult}(x)]_\mathcal{B} = \text{Diag}([\text{mult}(x)]_{\mathcal{B_1}}, \ldots, [\text{mult}(x)]_{\mathcal{B}_r})\]
+  And hence
+  \[N_{L/K}(x) = \Det([\text{mult}(x)]_\mathcal{B}) = \prod_{i=1}^r \Det([\text{mult}(x)]_{\mathcal{B}_i}) = \prod_{i=1}^r N_{L_{\mathcal{P}_i}/K_\p}(x)\]
+\end{proof}
 \end{document}
