@@ -848,6 +848,57 @@ In fact, this carries the same information as $|\phi|$:
 
   The final part follows as $\log|\phi_f(z)|$ satisfies 1, 2, 4.
 \end{proof}
+\underline{Remarks:} $G_f$ is also known as the \emph{potential function} associated to $K(f)$, and one can use potential theory to show that $K(f)$ uniquely determines $G_f$.
 
+From number theory, if $f(x) \in \Q[x]$ and $z \in \Q$, then all iterates of $z$ are rational, and $\Q$ comes equipped with a $p$-adic metric/norm, for primes $p$. On could (and some do) consider $G_{f, p}(z) = \lim\limits_{n\to\infty} \frac{\log^+ \abs{f^n(z)}_p}{d^n}$.
 
+\underline{Example:} If $f(z) = z^d, d\geq 2$, then $f^n(z) = z^{d^n}$, and so
+\[G_f(z) = \lim_{n\to \infty}\frac{\log^+|f^n(z)|}{d^n} = \log^+|z|\]
+
+\begin{theorem}
+  Suppose $f(0) = 0$ is a superattracting fixed point with B\"ottcher coordinate $\phi$ for $f$ at $0$. There exists a unique open disc $\D_r$ of maximal radius $0 < r \leq 1$ so that the inverse $\psi$ of $\phi$ extends holomorphically to $\psi:\D(0, r) \to \mathcal{A}_0$, where $\mathcal{A}_0$ is the immediate basin of the superattractor. If $r = 1$, then $\psi$ maps the unit disk isomorphically onto $\mathcal{A}_0$, and $0$ is the only critical point in the immediate basin. If $r<1$, then there is at least one other critical point in $\mathcal{A}_0$, lying on the boundary of $\psi(\D(0, r))$.
+\end{theorem}
+\begin{corollary}
+  Let $f_c(z) = z^2+c$, with $c \notin M$. Then $c$ is the basin of $\infty$, and the B\"ottcher coordinate extends to a neighbourhood of $c$.
+\end{corollary}
+\begin{proof}
+  Let $M = \{c \in \C : |f_c^n(0)|\centernot\to \infty \text{ as } n \to \infty\}$, and so $c \in M \implies 0 \in B(\infty)$. So $c = f_c(0) = 0^2 + c \in B(\infty)$, and $\abs{\phi}(c) = \abs{\phi}(f_c(0)) = \abs{\phi}(0)^2$, where $\abs{\phi}$ is the extension of the B\"ottcher modulus. In particular, $\abs{\phi}(c) > \abs{\phi}(0)$, since everything is mapped by $\abs{\phi}$ outside $\bar{\D}$, and so $c$ is in the B\"ottcher domain.
+\end{proof}
+\section{Connectedness of the Julia set}
+\begin{proposition}
+  A closed subset of the sphere is connected if and only if every component of its complement is simply connected.
+\end{proposition}
+\begin{proof}
+  Suppose $S$ is closed in $\hat{\C}$, and $S$ is disconnected, with $U \coprod V$ an open disjoint cover of $S$. Define $S_1 = S \cap U^c, S_2 = S \cap V^c$. These are disjoint, closed (hence compact) subsets of $\hat{\C}$, and so are a positive distance $\delta > 0$ apart. Take the boundary of a net of $\delta/3$ diameter squares which cover any component of $S_1$, and smooth at the corners to obtain a Jordan curve $\gamma \subseteq \hat{\C}\setminus S$ so that $\hat{\C}\setminus \gamma$ has a component intersecting $S_1$, and another component intersecting $S_2$. So $\gamma$ is not contractible, and hence $S^c$ is not simply connected.
+
+  If $\hat\C \setminus S$ is not simply connected with a nontrivial loop $\gamma$, then $\hat\C\setminus \gamma$ has two components both intersecting $S$, and these disconnect $S$.
+\end{proof}
+
+\begin{proposition}
+  Let $f$ be a polynomial of degree $d \geq 2$. If all the finite critical points of $f$ are contained in $K(f)$, then both $K(f)$ and $J(f)$ are connected. If at least one critical point belongs to the basin of infinity, then both $K(f)$ and $J(f)$ are disconnected.
+\end{proposition}
+\begin{proof}
+  If no finite critical points are in $B(\infty)$, then by the preceding theorem, the B\"ottcher coordinate extends to a conformal isomorphism $\phi: \hat{\C}\setminus K(f) \to \hat{\C}\setminus \bar{\D}$, and so $\hat{\C}\setminus K(f)$ is conformally a disc, and so simply connected. So by the preceding proposition, $K(f)$ is connected.
+
+  To show $J(f)$ is connected, consider any bounded Fatou component of $f$ - call it $U$ - and a simple closed curve $\gamma$ in $U$. The bounded component $V$ of $\hat{\C}\setminus\gamma$ consists of points which do not go to infinity under iteration by the maximum modulus principle, since $B(\infty) \cap U = \phi$.
+
+  Since $J(f) = \partial B(\infty), J(f)\cap V = \phi$. So $V \subseteq F(f)$, and hence $V \subseteq U$. Hence $\gamma$ is contractible in $U$, and so $U$ is simply connected, and $J(f)$ is connected.
+
+  Suppose now that $J(f)$ is connected, so $K(f)$ is too. Then $B(\infty) = \hat\C \setminus K(f)$ is simply connected, and hence a hyperbolic simply connected domain, so by uniformization, conformally a disc. So this basin has Euler characteristic 1, and by Riemann-Hurwitz on $f|_{B(\infty)} : B(\infty) \to B(\infty)$, we have
+  \[\chi(B(\infty)) = (\deg f|_{B(\infty)})\chi(B(\infty)) - \sum_{p\in B(\infty)} (e_p - 1)\]
+  Substituting, this gives
+  \[\sum_{p \in B(\infty)} (e_p-1) = d-1\]
+  At $p = \infty$, we have $e_p = \deg f = d$, and so there are no other critical points, and $e_p = 1$ for all $p \in B(\infty)\setminus \{\infty\}$.
+\end{proof}
+\begin{corollary}
+  A parameter $c \in M$ if and only if the corresponding Julia set $J(f_c)$ is connected.
+\end{corollary}
+\begin{proof}
+  \begin{align*}
+    c \in M &\iff 0 \notin B(\infty) \text{ for }f_c\\
+    &\iff 0 \in K(f_c)\\
+    &\iff \text{ all finite critical points of $f_c$ are in $K(f_c)$}\\
+    &\iff K(f_c), J(f_c) \text{ are connected}
+  \end{align*}
+\end{proof}
 \end{document}

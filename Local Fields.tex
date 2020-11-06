@@ -1496,4 +1496,141 @@ For example, if $K = \Q, L= \Q(\im), f(x) = x^2+1$. Then Hensel tells us $\sqrt{
   And hence
   \[N_{L/K}(x) = \Det([\text{mult}(x)]_\mathcal{B}) = \prod_{i=1}^r \Det([\text{mult}(x)]_{\mathcal{B}_i}) = \prod_{i=1}^r N_{L_{\mathcal{P}_i}/K_\p}(x)\]
 \end{proof}
+\section{Decomposition Groups}
+Let $\O_K$ a Dedekind domain, and $L$ a finite separable extension of $K = \Frac(\O_K)$, and $\O_L$ the integral closure of $\O_K$ in $L$.
+
+We've seen that if $0 \neq \p \subseteq \O_K$ is a prime ideal then we may write
+\[\p\O_L = \mathcal{P}_1^{e_1}\ldots \mathcal{P}_r^{e_r}\]
+where the $\mathcal{P}_i$ are distinct prime ideals of $\O_L$. Note that, for any $i$, $\p \subseteq \O_K \cap \mathcal{P}_i \subsetneq \O_K$, and hence $\p = \O_K \cap \mathcal{P}_i$.
+
+\begin{definition}\hspace*{0cm}
+  \begin{enumerate}
+    \item $e_i$ is the \emph{ramification index} of $\mathcal{P}_i$ over $\p$
+    \item $\p$ \emph{ramifies} in $L$ if some $e_i > 1$.
+  \end{enumerate}
+\end{definition}
+For example, if $\O_K = \C[t], \O_L = \C[T]$, with $\O_K \injection \O_L; t\mapsto T^n$.
+
+We have $t\O_L = T^n\O_L$, and so the ramification index of $(T)$ over $(t)$ is $n$. This corresponds geometrically to the degree $n$ covering of Riemann surfaces $\C\to \C; x \mapsto x^n$ having a ramification point at 0, with ramification index $n$.
+
+\begin{definition}
+  $f_i \coloneqq [\O_L/\mathcal{P}_i : \O_K/\p]$ is the \emph{residue class degree} of $\mathcal{P}_i$ over $\p$.
+\end{definition}
+\begin{theorem}
+  \[\sum_{i=1}^n e_if_i = [L:K]\]
+\end{theorem}
+\begin{proof}
+  Let $S = \O_K \setminus \p$. We have the following facts, whose proofs are left as exercises:
+  \begin{itemize}
+    \item $S^{-1}\O_L$ is the integral closure of $S^{-1}\O_K$ in $L$.
+    \item $S^{-1}\p S^{-1}\O_L \cong S^{-1}\mathcal{P}_1^{e_1}\ldots \mathcal{P}_r^{e_r}$.
+    \item $S^{-1}\O_L/S^{-1}\mathcal{P}_i \cong \O_L/\mathcal{P}_i$, and $S^{-1}\O_K/S^{-1}\p \cong \O_K/\p$.
+  \end{itemize}
+  The second and third conditions imply that $e_i, f_i$ don't change when we localise $\O_K, \O_L$ at $\p$.
+
+  Thus we may assume that $\O_K$ is a DVR, and hence a PID.
+
+  By the Chinese remainder theorem, we have
+  \[\O_L/\p\O_L \cong \prod_{i=1}^r \O_L/\mathcal{P}_i^{e_i}\]
+  Note that $\O_L/\p\O_L$ is a $k \coloneqq \O_K/\p$-vector space (as $k$ a field), and so we can count dimensions of both sides.
+
+  For each $i$, we have a decreasing sequence of $k$-subspaces:
+  \[0 \subseteq \mathcal{P}_i^{e_i-1}}/\mathcal{P}_i^{e_i} \subseteq \mathcal{P}_i^{e_i-2}/\mathcal{P}_i^{e_i} \subseteq \ldots \subseteq \mathcal{P}_i/\mathcal{P}_i^{e_i} \subseteq \O_L/\mathcal{P}_i^{e_i}\]
+  So $\dim_k \O_L/\mathcal{P}_i^{e_i} = \sum_{j=0}^{e_i-1}\dim_k\left(\mathcal{P}_i^j/\mathcal{P}_i^{j+1}\right)$. Note that this quotient $\mathcal{P}_i^j/\mathcal{P}_i^{j+1}$ is an $\O_L/\mathcal{P}_i$-module and $x \in \mathcal{P}_i^j/\mathcal{P}_i^{j+1}$ (for example, we can prove this after localising at $\mathcal{P}_i$).
+  Then $\dim_k \mathcal{P}_i^j/\mathcal{P}_i^{j+1} = f_i$, and we have that
+  \[\dim_k \prod_{i=1}^r \O_L/\mathcal{P}_i^{e_i} = \sum_{i=1}^r \dim_k \O_L/\mathcal{P}_i^{e_i} = \sum_{i=1}^r e_if_i\]
+
+  Now recall that $\O_K$ a DVR, and so the structure theorem for modules over PIDs gives $\O_L$ is a free module over $\O_K$ of rank $n = [L:K]$.
+
+  So $\O_L/\p\O_L \cong \left(\O_K/\p\right)^n$ as $\O_K$-modules, and hence $\dim_k \O_L/\p\O_L = n$.
+\end{proof}
+This theorem is the algebraic analogue of the fact that, for a degree $n$ covering $X \to Y$ of compact Riemann surfaces and $x \in X$, we have
+\[n = \sum_{x \in f^{-1}(y)} e_x\]
+where $e_x$ is the ramification index of $x$.
+
+Now assume that $L/K$ is Galois. Then, for any $\sigma \in \Gal(L/K)$, $\sigma(\mathcal{P}_i) \cap \O_K = \p$, and hence $\sigma(\mathcal{P}_i) \in \{\mathcal{P}_1, \ldots, \mathcal{P}_r\}$, and so $\Gal(L/K)$ acts on the set $\{\mathcal{P}_1, \ldots, \mathcal{P}_r\}$.
+
+\begin{proposition}
+  The action of $\Gal(L/K)$ on $\{\P_1, \ldots, \P_r\}$ is transitive.
+\end{proposition}
+\begin{proof}
+  Suppose the action is not transitive, so that there exists some $i \neq j$ with $\sigma(\mathcal{P}_i)$ is never $\mathcal{P}_j$ for any $\sigma \in \Gal(L/K)$.
+
+  Then the Chinese remainder theorem tells us we may pick $x \in \O_L$ with $x \equiv 0 \mod \mathcal{P}_i$, and $x \equiv 1 \mod \sigma(\mathcal{P}_j)$ for all $\sigma \in \Gal(L/K)$.
+
+  But then $N_{L/K}(x) = \prod_{\sigma \in \Gal(L/K)} \sigma(x) \in \O_K \cap \mathcal{P}_i =\p \subseteq \mathcal{P}_j$.
+
+  Since $\mathcal{P}_j$ is prime, there is some $\tau \in \Gal(L/K)$ with $\tau(x) \in \mathcal{P}_j$, i.e. $x \in\tau^{-1}(\mathcal{P}_j)$, i.e. $x \equiv 0 \mod \tau^{-1}(\mathcal{P}_j) \contr.$
+\end{proof}
+\begin{corollary}
+  Suppose $L/K$ is Galois. Then $e_1 = e_2 = \ldots = e_r \eqqcolon e; f_1 = \ldots = f_r \eqqcolon f$, and $n = efr$.
+\end{corollary}
+\begin{proof}
+  For any $\sigma \in \Gal(L/K)$, we have
+  \begin{enumerate}
+    \item $\p = \sigma(p) = \sigma(\mathcal{P}_1})^{e_1}\ldots \sigma(\mathcal{P}_r)^{e_r}$. By unique factorisation and transitivity, $e_1 = \ldots = e_r$.
+    \item $\O_L/\mathcal{P}_i \cong \O_L/\sigma(\mathcal{P}_i)$, and so $f_1 = \ldots = f_r$.
+  \end{enumerate}
+\end{proof}
+Let $L/K$ be complete discretely valued fields with normalised valuations $v_L, v_K$, uniformisers $\pi_L, \pi_K$. Then the only prime ideals are $\pi_L, \pi_K$.
+
+The ramification index is $e \coloneqq e_{L/K} = v_L(\pi_K)$, i.e. $\pi_L^e \O_L = \pi_K \O_L$.
+
+The residue class degree is $f \coloneqq f_{L/K} = [k_L:k]$.
+
+\begin{corollary}
+  Suppose either
+  \begin{enumerate}
+    \item $L/K$ is finite and separable
+    \item $f$ is finite
+  \end{enumerate}
+  Then $[L:K] = ef$.
+\end{corollary}
+\begin{proof}\hspace*{0cm}
+  \begin{enumerate}
+    \item \textbf{13.3}
+    \item Can apply the same proof as in \textbf{13.3} if we know $\O_L$ is finitely generated as an $\O_K$-module.
+
+    As before, $\dim_k \O_L/\pi_K\O_L = ef < \infty$, and so we can pick $x_1, \ldots, x_m \in \O_L$, generating $\O_L/\pi_K \O_L$ over $k$.
+
+    Then for $y \in \O_L$, we can write
+    \[y = \sum_{i=0}^\infty \left(\sum_{j=1}^m a_{ij}x_j\right)\pi_K^i = \sum_{j=1}^m \left(\sum_{i=0}^\infty a_{ij}\pi_K^i\right)x_j\]
+    where $a_{ij} \in \O_K$. But the infinite sum in the middle of the RHS term is in $\O_K$ by completeness, and so the $x_j$ generate $\O_L$ over $\O_K$, and so we can in fact use the proof as in \textbf{13.3}.
+  \end{enumerate}
+\end{proof}
+\begin{definition}
+  Let $L/K$ be a finite Galois extension. Then the \emph{decomposition group} at a prime $\mathcal{P}$ of $\O_L$ is the subgroup of $\Gal(L/K)$ defined by
+  \[G_\mathcal{P} = \{\sigma \in \Gal(L/K) : \sigma(\mathcal{P}) = \mathcal{P}\}\]
+\end{definition}
+\textbf{13.4} shows that, for any $\mathcal{P}, \mathcal{P}'$ dividing $\p$, $G_\mathcal{P}$ and $G_{\mathcal{P}'}$ are conjugate, and moreover $G_\mathcal{P}$ has size $ef$, via the orbit-stabilizer theorem.
+
+Recall we write $L_{\mathcal{P}}$ and $K_\p$ for the completions of $L$ and $K$ with respect to $\abs{\cdot}_\mathcal{P}, \abs{\cdot}_\p$ respectively.
+
+\begin{proposition}
+  Suppose that $L/K$ is finite and Galois, and $\mathcal{P}$ is a prime ideal of $L$ dividing $\p$.
+
+  Then:
+  \begin{enumerate}
+    \item $L_\mathcal{P} / K_\p$ is also Galois.
+    \item There is a natural map
+    \[ \text{res}:\Gal(L_{\mathcal{P}}/L_\p) \to \Gal(L/K)\]
+    which is injective, and has image $G_\mathcal{P}$. Here, res is short for ``restriction".
+  \end{enumerate}
+\end{proposition}
+\begin{proof}\hspace*{0cm}
+  \begin{enumerate}
+    \item $L/K$ Galois implies that $L$ is the splitting field of a separable polynomial $f(x) \in K[x]$, and so $L_\mathcal{P}$ is the splitting field of $f$ considered as an element of $K_\p[x]$.
+
+    Hence $L_\mathcal{P}/K_\p$ is Galois.
+    \item Let $\sigma \in \Gal(L_{\mathcal{P}}/K_\p)$. Then $\sigma(L) = L$ since $L/K$ is normal, and hence we have a map $\text{res}:\Gal(L_{\mathcal{P}}/K_p) \to \Gal(L/K)$. Since $L$ is dense in $L_\mathcal{P}$, $\text{res}$ is injective.
+
+    By \textbf{10.2}, $|\sigma(x)|_\mathcal{P} = |x|_\mathcal{P}$ for $x \in L_\mathcal{P}$, and so $\sigma(\mathcal{P}) = \mathcal{P}$ for all $\sigma \in \Gal(L_\mathcal{P}/K_\p)$.
+
+    So $\text{res}(\sigma) \in G_\mathcal{P}$.
+
+    To show surjectivity, it suffices to show that $[L_\mathcal{P} : K_\p] = ef=|G_\mathcal{P}|$.
+
+    We have already seen $|G_\mathcal{P}| = ef$, and we can apply \textbf{13.6} to $L_\mathcal{P}/K_\p$, noting that $e, f$ don't change when we take completions.
+  \end{enumerate}
+\end{proof}
 \end{document}
