@@ -1237,4 +1237,83 @@ By \textbf{8.2}, this is a subgroup of $E(K)$, say $E_r(K)$. We have a chain
 More generally, for $\mathscr{F}$ a formal group over $\O_K$, we get
 \[\ldots \subset \mathscr{F}(\pi^3\O_K) \subset \mathscr{F}(\pi^2\O_K) \subset \mathscr{F}(\pi\O_K)\]
 We will show that $\mathscr{F}(\pi^r \O_K) \cong (\O_K, +)$ for $r$ sufficiently large, and $\mathscr{F}(\pi^r \O_K)/\mathscr{F}(\pi^{r+1}\O_K) \cong (k, +)$.
+
+\begin{theorem}
+  Let $\mathscr{F}$ be a formal group over $\O_K$, and let $e = v(p)$. If $r > \frac{e}{p-1}$, then:
+  \[\mathscr{F}(\pi^r\O_K) \cong \hat{\G}_a(\pi^r\O_K)\]
+  via the $\log$ map, with inverse given by $\exp$.
+\end{theorem}
+Note that $\hat{\G}_a(\pi^r \O_K) = (\pi^r \O_K, +) \cong (\O_k, +)$.
+\begin{proof}
+  For $x \in \pi^r \O_K$, we must check that the power series $\exp, \log$ converge.
+
+  Recall $\exp(T) = T+\frac{b_2}{2!}T^2 + \frac{b_3}{3!}T^3 + \ldots$, where $b_i \in \O_K$.
+
+  Claim: $v_p(n!) \leq \frac{n-1}{p-1}$.
+
+  To see this: $v_p(n!) = \sum_{r=1}^{\infty} \floor{\frac{n}{p^r}} < \sum_{r=1}^\infty \frac{n}{p^r} = \frac{n}{p-1}$.
+
+  So $(p-1)v_p(n!) < n$, and as both are integers, $(p-1)v_p(n!) \leq n-1$.
+
+  Now $v(\frac{b_nx^n}{n!})\geq nr - e\frac{n-1}{p-1} = (n-1)\left(r-\frac{e}{p-1}\right) + r$
+
+  This is always $\geq r$ as $r > \frac{e}{p-1}$, and goes to infinity as $n \to \infty$.
+
+  Hence $\exp(x)$ converges, and belongs to $\pi^r \O_K$. A similar argument applies for $\log$.
+\end{proof}
+\begin{lemma}
+  We have $\frac{\mathscr{F}(\pi^r\O_K)}{\mathscr{F}(\pi^{r+1}\O_K)} \cong (k, +)$ for all $r \geq 1$.
+\end{lemma}
+\begin{proof}
+  By definition of a formal group, $F(x, y) = x + y + xy(\ldots)$. So if $x, y \in \O_K$, then:
+  \[F(\pi^r x, \pi^r y) = \pi^r(x+y) + \pi^{2r}(xy)(\ldots) \equiv \pi^r(x+y) \mod \pi^{r+1}\]
+  So $\mathscr{F}(\pi^r\O_K) \to (k, +); (\pi^r x) \mapsto (x \mod \pi)$ is a surjective group homomorphism, with kernel $\mathscr{F}(\pi^{r+1}\O_K)$, and so apply the first isomorphism theorem.
+\end{proof}
+So we have a filtration:
+\[(\O_K, +) \cong \mathscr{F}(\pi^r\O_K) \supseteq \ldots \supseteq \mathscr{F}(\pi^2\O_K) \supseteq \mathscr{F}(\pi \O_K)\]
+where we have equality on the left is $r >\frac{e}{p-1}$, and each quotient is $(k, +)$.
+
+\textbf{Corollary.} If $|k| < \infty$, then $\mathscr{F}(\pi \O_K)$ has a subgroup of finite index isomorphic to $\O_K$ under addition.
+
+As a point of notation, when we have the map $\O_K \to \O_K/\pi\O_K$, we write $x \mapsto \tilde{x}$, and call this reduction mod $\pi$.
+\begin{proposition}
+  Let $E/K$ be an elliptic curve. The reduction mod $\pi$ off any two minimal Weierstrass equations for $E$ define isomorphic curves over $k$.
+\end{proposition}
+\begin{proof}
+  Say the Weierstrass equations are related by $[u; r,s,t]; u \in K^\times; r,s,t \in K$.
+
+  Then $\Delta_1 = u^{12}\Delta_2$. Both equations are minimal, so $v(\Delta_1) = v(\Delta_2)$, and hence $v(u) = 0, u \in \O_K^\times$.
+
+  Transformation formulae for $a_i$ and $b_i$, together with the fact that the valuation ring is integrally closed, give that $r, s, t \in \O_K$. The Weierstrass equations for the reduction mod $\pi$ are related by $[\tilde{u}; \tilde{r}, \tilde{s}, \tilde{t}]$.
+\end{proof}
+\textbf{Definition.} The reduction $\tilde{E}/k$ of $E/K$ is defined by the reduction of a minimal Weierstrass equation, and hence is well-defined up to isomorphism by the previous proposition.
+
+We say $E$ has \emph{good reduction} if $\tilde{E}$ is non-singular, i.e. is an elliptic curve. Otherwise, it is $\emph{bad}$.
+
+For an integral Weierstrass equation, $v(\Delta) = 0 \implies$ good reduction.
+
+If $0 <v(\Delta) < 12$, then we must have a minimal Weierstrass equation, and we get bad reduction.
+
+If $v(\Delta) \geq 12$, beware that the equation might not be minimal.
+
+There is a well defined map from $\P^2(K) \to \P^2(k); (x:y:z)\mapsto (\tilde{x}:\tilde{y}:\tilde{z})$, when we choose representatives of $(x:y:z)$ with $\min(v(x),v(y),v(z)) = 0$.
+
+We restrict this map to give a map $E(K) \to \tilde{E}(k); P \to \tilde{P}$. If $P=(x,y) \in E(K)$, then by \textbf{9.1}, either $x,y \in \O_K$ or $v(x) = -2s, v(y) = -3s$. In the first case $\tilde{P} = (\tilde{x}, \tilde{y})$. In the second, we write $P = (\pi^{3s}x:\pi^{3s}y :\pi^{3s})$, so $\tilde{P} = (0:1:0)$.
+
+Therefore $E_1(K) = \hat{E}(\pi\O_K) = \{P \in E(K) : \tilde{P} = 0\}$, and we call it the \emph{kernel of reduction}.
+
+Let $\tilde{E}_{ns} = \begin{cases} \tilde{E} &\text{ if $E$ has good reduction} \\ \tilde{E}\setminus\{p\} & \text{ if $\tilde{E}$ has a singular point $p$}\end{cases}$.
+
+The chord and tangent process still defines a group law on $\tilde{E}_{ns}$. In cases of bad reduction, we get $\tilde{E}_{ns} \cong \G_a$ or $\G_m$ over $k$, or possibly only over a quadratic extension of $k$. We call these cases additive and multiplicative reduction.
+
+For simplicity, suppose $\charr(k) \neq 2$. Then $\tilde{E}: y^2 = f(x)$ for $f$ monic cubic. Then $\tilde{E}$ singular $\iff$ $f$ has a repeated root. The cases of double root, triple root correspond to multiplicative, additive reduction respectively.
+
+For multiplicative case, see example sheet 3. Here, we'll illustrate the additive case. We have a triple root, so take $y^2 = x^3$. Then we have an isomorphism
+\begin{align*}
+  \tilde{E}_{ns} & \to \G_a\\
+  (x, y) &\mapsto \frac{x}{y}\\
+  (t^{-2}, t^{-3}) &\mapsfrom t\\
+  \infty &\mapsfrom 0
+\end{align*}
+Let $P_1, P_2, P_3$ lie on the line $ax+by=1$. Write $P_i = (x_i, y_i), t_i = \frac{x_i}{y_i}$. Then $x_i^3 = y_i^2 = y_i^2(ax_i+by_i)$, and so $t_1, t_2, t_3$ are the roots of $X^3-aX-b = 0$. Looking at the coefficient of $X^2$, we have $t_1+t_2+t_3 = 0$.
 \end{document}
