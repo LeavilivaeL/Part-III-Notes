@@ -946,6 +946,8 @@ We have that $\zeta_K(s) = F(q^{-s})$ for $F \in Q[[T]]$, where
   \implies F(T) &= \exp\left(\sum_{n=1}^\infty \frac{\#C(\F_{q^n})}{n}T^n\right) \eqqcolon Z_C(T)
 \end{align*}
 
+For $\phi, \psi \in \Hom(E_1, E_2)$, we put:
+\[\angle{\phi, \psi} = \deg(\phi+\psi) - \deg(\phi) - \deg(\psi)\]
 We define the \emph{trace map} $\tr: \End(E) \to \Z$; $\psi \mapsto \angle{\psi, 1}$.
 
 \begin{lemma}
@@ -957,7 +959,7 @@ We define the \emph{trace map} $\tr: \End(E) \to \Z$; $\psi \mapsto \angle{\psi,
 \textbf{Definition.} The \emph{zeta function of a variety} $V/\F_q$ is
 \[Z_v(T) = \exp\left(\sum_{n=1}^\infty \frac{\#V(\F_{q^n})}{n}T^n\right)\]
 \begin{lemma}
-  Let $E/\F_q$ be an elliptic curve, with $#E(\F_q) = q+1-a$. Then
+  Let $E/\F_q$ be an elliptic curve, with $\#E(\F_q) = q+1-a$. Then
   \[Z_E(T) = \frac{1+aT+qT^2}{(1-T)(1-qT)}\]
 \end{lemma}
 \begin{proof}
@@ -1070,7 +1072,7 @@ In fact, we may write \mbox{$w(t) = \sum_{n=2}^\infty A_{n-2}t^{n-1}$ with $A_1 
 
   Substituting $w = \lambda t + \nu$ into $w = f(t,w)$ gives $\lambda t+\nu = t^3 + a_1t(\lambda t+ \nu) + a_2t^2(\lambda t+\nu) + a_3(\lambda t+ \nu)^2 + a_4 t(\lambda t + \nu)^3 + a_6(\lambda t+\nu)^3$.
 
-  Let $A$ be the coefficient of $t^3$, so $A = 1+a_2\lamdba+a_4 \lambda^2 + a_6\lambda^3$.
+  Let $A$ be the coefficient of $t^3$, so $A = 1+a_2\lambda+a_4 \lambda^2 + a_6\lambda^3$.
 
   Let $B$ be the coefficient of $t^2$, so $B = a_1\lambda + a_2\nu + a_3\lambda^2+2a_4\lambda\nu+3a_6\lambda^2\nu$.
 
@@ -1118,7 +1120,7 @@ We label these formal groups by $\hat{\G}_a, \hat{\G}_m$, and $\hat{E}$ respecti
 
   More precisely:
   \begin{enumerate}
-    \item There is a unique power series $\log: T\mapsto T+\frac{a_2}{2}T^2+\frac{a_3}{3}T^3+\ldots$ with $a_i \in R$, such that \[\log(F(x,y)) = \log(x)+\log(y)\tag{\ast}\]
+    \item There is a unique power series $\log: T\mapsto T+\frac{a_2}{2}T^2+\frac{a_3}{3}T^3+\ldots$ with $a_i \in R$, such that \[\log(F(x,y)) = \log(x)+\log(y)\tag{$\ast$}\]
     \item There is a unique power series $\exp: T \mapsto T + \frac{b_2}{2!}T^2 + \frac{b_3}{3!}T^3+\ldots$ with $b_i \in R$ such that \[\exp(\log(T)) = \log(\exp(T)) = T\]
   \end{enumerate}
 \end{theorem}
@@ -1173,7 +1175,7 @@ We label these formal groups by $\hat{\G}_a, \hat{\G}_m$, and $\hat{E}$ respecti
     \item[2.] We now only have to show that the $b_n \in R$ (not just in $R \otimes \Q$). See example sheet 2 for this.
   \end{enumerate}
 \end{proof}
-Let $\mathscr{F}$ be a formal group (e.g. $\hat{\G}_a, \hat{\G}_m, \hat{E}$), given by a power series $F \in R[x,y]$, and suppose that $R$ is $I$-adically complete. Then for $x, y \in I$, put $x \oplus_{}\mathscr{F}} y = F(x,y) \in I$. Then $\mathscr{F} = (I, \oplus_{\mathscr{F}})$ is an abelian group.
+Let $\mathscr{F}$ be a formal group (e.g. $\hat{\G}_a, \hat{\G}_m, \hat{E}$), given by a power series $F \in R[x,y]$, and suppose that $R$ is $I$-adically complete. Then for $x, y \in I$, put $x \oplus_{\mathscr{F}} y = F(x,y) \in I$. Then $\mathscr{F} = (I, \oplus_{\mathscr{F}})$ is an abelian group.
 
 For example, $\hat{\G}_a(I) = (I, +), \hat{\G}_m(I) = (1+I, \times)$, and in \textbf{8.2}, we saw $\hat{E}(I) \leq E(K)$.
 
@@ -1302,7 +1304,7 @@ We restrict this map to give a map $E(K) \to \tilde{E}(k); P \to \tilde{P}$. If 
 
 Therefore $E_1(K) = \hat{E}(\pi\O_K) = \{P \in E(K) : \tilde{P} = 0\}$, and we call it the \emph{kernel of reduction}.
 
-Let $\tilde{E}_{ns} = \begin{cases} \tilde{E} &\text{ if $E$ has good reduction} \\ \tilde{E}\setminus\{p\} & \text{ if $\tilde{E}$ has a singular point $p$}\end{cases}$.
+Let $\tilde{E}_{ns} = \begin{cases} \tilde{E} &\text{ if $E$ has good reduction} \\ \tilde{E}\setminus\{p\} & \text{ if $\tilde{E}$ has a singular point $p$}\end{cases}$
 
 The chord and tangent process still defines a group law on $\tilde{E}_{ns}$. In cases of bad reduction, we get $\tilde{E}_{ns} \cong \G_a$ or $\G_m$ over $k$, or possibly only over a quadratic extension of $k$. We call these cases additive and multiplicative reduction.
 
@@ -1316,4 +1318,110 @@ For multiplicative case, see example sheet 3. Here, we'll illustrate the additiv
   \infty &\mapsfrom 0
 \end{align*}
 Let $P_1, P_2, P_3$ lie on the line $ax+by=1$. Write $P_i = (x_i, y_i), t_i = \frac{x_i}{y_i}$. Then $x_i^3 = y_i^2 = y_i^2(ax_i+by_i)$, and so $t_1, t_2, t_3$ are the roots of $X^3-aX-b = 0$. Looking at the coefficient of $X^2$, we have $t_1+t_2+t_3 = 0$.
+
+\textbf{Definition.} $E_0(K) \coloneqq \{P \in E(K) : \tilde{P} \in \tilde{E}_{ns}(k)\}$.
+
+\begin{proposition}
+  $E_0(K)$ is a subgroup of $E(K)$, and reduction mod $\pi$ is a surjective group homomorphism from $E_0(k) \to \tilde{E}_{ns}(k)$.
+\end{proposition}
+\begin{proof}
+  For the group homomorphism part, a line $\ell$ in $\P^2$ defined over $K$ has equation
+  \[\ell: aX+bY+cZ = 0\hspace{2cm} a,b,c \in K\]
+  We may assume $\min(v(a), v(b), v(c)) = 0$. Reduction mod $\pi$ gives the line $\tilde{\ell}$ with equation
+  \[\tilde{\ell}: \tilde{a}X+\tilde{b}Y+\tilde{c}Z = 0\]
+  If $P_1, P_2, P_3 \in E(K)$ with $P_1+P_2+P_3 = 0$, then these points lie on a line $\ell$, and then $\tilde{P}_1, \tilde{P}_2, \tilde{P}_3 \in \tilde{E}(k)$ lie on the line $\tilde{\ell}$.
+
+  If $\tilde{P}_1, \tilde{P}_2 \in \tilde{E}_{ns}(k)$, then $\tilde{P}_3 \in \tilde{E}_{ns}(k)$, and if $P_1, P_2 \in E_0(k)$, then $P_3 \in E_0(k)$, and $\tilde{P}_1+\tilde{P}_2+\tilde{P}_3=0$.
+
+  As an exercise, check this still works if the points are not all distinct.
+
+  For surjectivity, let $f(x, y) = y^2+a_1xy+a_3y-(x^3+\ldots)$. Let $\tilde{P} \in \tilde{E}_{ns}(k) \setminus \{0\}$, say $(\tilde{x}_0, \tilde{y}_0)$ for some $x_0, y_0$ in $\O_K$.
+
+  Since $\tilde{P}$ is non-singular, either
+  \begin{align*}
+    \text{(i)}&\;\;\; \frac{\partial f}{\partial x}(x_0, y_0) \nequiv 0 \mod \pi\\
+    \text{(ii)}&\;\;\; \frac{\partial f}{\partial y}(x_0, y_0) \nequiv 0 \mod \pi
+  \end{align*}
+  If $(i)$, we put $g(t) = f(t, y_0)\in \O_K[t]$. Then $g(x_0) \equiv 0 \mod \pi, g'(x_0)\in \O_K^\times$. Then Hensel's lemma tells us there is some $b \in \O_K$ with $g(b) = 0, b \equiv x_0 \mod \pi$.
+
+  Then $P = (b, y_0) \in E(K)$ has reduction $\tilde{P}$.
+
+  Case $(ii)$ is similar.
+\end{proof}
+Recall for $r \geq 1$, we have $E_r(K) = \{(x,y) \in E(K): v(x) \leq -2r, v(y) \leq -3r\}\cup\{0\}$. Then:
+\[\O_K \cong E_{\ceil{e/(p-1)}}(K) \supset \ldots \supset E_2(K) \supset E_1(K) \cong \hat{E}(\pi\O_K) \subset E_0(K) \subset E(K)\]
+We know the quotients $E_i(K)/E_{i+1}(K) \cong (k, +)$ for $i \geq 1$. The above gives $E_0(K)/E_1(K) \cong \tilde{E}_{ns}(k)$. The only quotient left to understand is $E(K)/E_0(K)$.
+\begin{lemma}
+  If $|k|<\infty$, then $E_0(K) \subset E(K)$ has finite index.
+\end{lemma}
+\begin{proof}
+  A compactness argument - see below.
+\end{proof}
+\begin{theorem}
+  If $[K:\Q_p]<\infty$, then $E(K)$ contains a subgroup of finite index, isomorphic as a group to $(\O_K, +)$.
+\end{theorem}
+\begin{proof}
+  $|k|<\infty$, so this follows from the above.
+\end{proof}
+\begin{lemma}
+  If $|k|<\infty$, then $\P^n(K)$ is compact with respect to the $\pi$-adic topology.
+\end{lemma}
+\begin{proof}
+  $|k|<\infty$, so $\O_K/\pi^r\O_K$ is also finite for $r \geq 1$. Hence
+  \[\O_K \cong \lim_{\xleftarrow[r]{}}\O_K/\pi^r\O_K\]
+  is compact.
+
+  $\P^n(K)$ is the union of compact sets of the form
+  \[\{(a_0:a_1:\ldots:a_{i-1}:1:a_{i+1}:\ldots:a_n):a_j \in \O_K\}\]
+  and hence is compact.
+\end{proof}
+\begin{proof}[Proof of \textbf{9.6}.]
+  $E(K)\subset \P^2(K)$ is a closed subset, so $(E(K), +)$ is a compact topological group.
+
+  If $\tilde{E}$ has a singular point $(\tilde{x}_0, \tilde{y}_0)$ then $E(K)\setminus E_0(K) = \{(x,y) \in E(K):v(x-x_0)\geq 1, v(y-y_0) \geq 1\}$, is a closed subset of $E(K)$, and so $E_0(K)$ is an open subgroup of $E(K)$, so any coset is also open.
+
+  The cosets of $E_0(K)$ form an open cover of $E(K)$, hence have a finite subcover, and so there are only finitely many cosets.
+
+  Hence $[E(K):E_0(K)] < \infty$.
+\end{proof}
+We call this index $c_K(E)$, the \emph{Tamagawa number}.
+
+\textbf{Remarks.}
+\begin{enumerate}
+  \item Good reduction $\implies$ $c_K(E) = 1$, but the converse is false.
+  \item It can be shown that either $c_K(E) = v(\Delta)$ or $c_K(E) \leq 4$, as long as we work with a minimal Weierstrass equation.
+\end{enumerate}
+Let $[K:\Q_p]$ be finite, and $L/K$ finite, with residue fields $k', k$ (corresponding to $L, K$ respectively), with $f = [k':k]$ and ramification index $e$. From local fields, we know $[L:K] = ef$.
+
+If $L/K$ is Galois then there is a natural group homomorphism $\Gal(L/K) \to \Gal(k'/k)$, and this map is surjective, with kernel of order $e$. We say the extension is \emph{unramified} if $e=1$, so if these Galois groups are isomorphic.
+
+For each $m \geq 1$, $k$ has a unique extension of degree $m$, called $k_m$ (not standard notation). $K$ has a unique unramified extension of degree $m$, called $K_m$. Note that then the residue field of $K_m$ is $k_m$. These extensions are Galois with cyclic Galois group.
+
+We then define $K^{nr} = \bigcup_{m\geq 1} K_m$ inside $\bar{K}$, the maximal unramified extension.
+
+\begin{theorem}
+  Suppose $[K:\Q_p] < \infty$, and $E/K$ has good reduction and $p\nmid n$. If $P \in E(K)$ then $K([n]^{-1}P)/K$ is unramified.
+\end{theorem}
+Notation: $[n]^{-1}P = \{Q \in E(\bar{K}) : nQ = P\}$, and $K(P_1, \ldots, P_r) = K(x_1, \ldots, x_r, y_1, \ldots, y_r)$, $P_i = (x_i, y_i)$.
+
+\begin{proof}
+  For each $m \geq 1$, there is a short exact sequence $0\to K_1(K_m) \to E(K_m) \to \tilde{E}(k_m) \to 0$.
+
+  Taking union over all $m$ gives a commutative diagram:
+  \begin{center}
+    \begin{tikzcd}
+      0 \arrow{r} & E_1(K^{nr}) \arrow{r} \arrow{d}{\times n} & E(K^{nr}) \arrow{r} \arrow{d}{\times n} & \tilde{E}(\bar{k}) \arrow{d}{\times n} \arrow{r} & 0\\
+      0 \arrow{r} & E_1(K^{nr}) \arrow{r} & E(K^{nr}) \arrow{r} & \tilde{E}(\bar{k}) \arrow{r} & 0
+    \end{tikzcd}
+  \end{center}
+  The first vertical arrow is an isomorphism by \textbf{8.5}, as $n \in \O_K^\times$.
+
+  The last vertical arrow is surjective by \textbf{2.8}, with kernel $(\Z/n\Z)^2$ by \textbf{6.5}, as $p \nmid n$.
+
+  The snake lemma tells us $E(K^{nr})[n]\cong (\Z/n\Z)^2, E(K^{nr})/nE(K^{nr}) = 0$.
+
+  So if $P \in E(K)$, then multiplication by $n$ is surjective, and there is $Q$ in $E(K^{nr})$ with $nQ = P$, and $[n]^{-1}P = \{Q+T:T\in E[n]\} \subset E(K^{nr})$.
+
+  So $K([n]^{-1}P) \subset K^{nr}$, and $K([n]^{-1}P)/K$ is unramified.
+\end{proof}
 \end{document}
