@@ -901,4 +901,70 @@ From number theory, if $f(x) \in \Q[x]$ and $z \in \Q$, then all iterates of $z$
     &\iff K(f_c), J(f_c) \text{ are connected}
   \end{align*}
 \end{proof}
+To summarize, we have two definitions of the Mandelbrot set $M$:
+\[M = \{c \in \C : J(f_c) \text{ connected}\} = \{c \in \C: |f_c^n(0)|\centernot\to \infty \text{ as }n\to\infty\}\]
+\begin{theorem}
+  The Mandelbrot set $M$ is connected.
+\end{theorem}
+\begin{proof}
+  Claim: Let $c \in \C\setminus M$. Then the B\"ottcher coordinate at $\infty$ takes the form $\phi_c(z) = z\prod_{n\geq 0}\left(1+\frac{c}{f_c^n(z)^2}\right)^{1/2^{n+1}}$, and is conformal on a neighbourhood of $c$.
+
+  To see this, we need to check that $\phi_c(\infty) = \infty$ and $\phi_c(z)^2 = \phi_c(f_c(z))$ on a neighbourhood of $c$, and well defined.
+
+  $\phi_c(\infty) = \infty$ is clear.
+
+  $\phi_c(z)^2 = z^2\prod_{n\geq 0}\left(1+\frac{c}{f_c^n(z)^2}\right)^{1/2^n} = z^2\left(1+\frac{c}{z^2}\right)\prod_{n\geq 0}\left(1+\frac{c}{f_c^{n+1}(z)^2}\right)^{1/2^{n+1}}$.
+
+  $\phi_c(f_c(z)) = f_c(z)\prod_{n\geq 0}\left(1+\frac{c}{f_c^{n+1}(z)^2}\right)^{1/2^{n+1}}$.
+
+  Since $f_c(z) = z^2+c$, these two expressions agree.
+
+  For convergence on a neighbourhood of $c$, recall that $c \notin M \implies$ there is a neighbourhood $U_c$ such that the domain of conformality for $\phi_c$ contains $c$. Notice that $\phi_c$ converges on a neighbourhood of $c$ if $\log \phi_c$ is holomorphic on a neighbourhood of $c$, i.e. if $\log z +\sum_{n\geq 0}\frac{1}{2^{n+1}}\log\left(1+\frac{c}{f_c^n(z)^2}\right)$ is holomorphic on a neighbourhood of $c$.
+
+  Since $c \notin M$, $c \notin K_{f_c}$, and there is a fixed iterate $N$ such that, for all $n > N, |f_c^n(z)| > |f_c^{n-1}(z)|$ for all $z$ on a small neighbourhood of $c$. This holds because
+  \[\left|G_{f_c}(z) - \log|z|\right| \leq \frac{C}{d-1} \leq \log\left|1+\frac{c}{z^2}\right| \approx 0 \text{ if } |z| \gg 1\]
+  In fact, we see that this $N$ provides the same uniformity for all $c'$ close to $c$. In particular
+  \[\phi_c(c) = c\prod_{n\geq 0}\left(1+\frac{c}{f_c^n(c)^2}\right)^{1/2^{n+1}}\]
+  converges uniformly on compact subsets of $\C\setminus M$.
+
+  We give this a name: define $\Phi:\C\setminus M \to \C\setminus\bar\D$ by $\Phi(c) \coloneqq \phi_c(c)$. We've shown that $\Phi$ is holomorphic.
+  \[\frac{\Phi(c)}{c} = \prod_{n\geq 0}\left(1+\frac{c}{f_c^n(c)^2}\right)^{1/2^{n+1}} \to 1 \text{ as } |c|\to\infty\]
+  So $\Phi$ has a removable singularity at $\infty$, and $\Phi(\infty)= \infty$.
+
+  Claim: $\Phi : \hat{\C}\setminus M \xrightarrow{\thicksim} \hat{\C}\setminus \D$.
+
+  \begin{enumerate}
+    \item $\Phi$ is proper: if not, then there is a compact $K \subseteq \hat\C\setminus\bar\D$ such that $\Phi^{-1}(K)$ is not compact in $\hat{\C}\setminus M$, i.e. has a subsequence approaching $\partial M$ - call it $\{c_n\}$ converging to $c_0 \in \partial M$. Then $|\phi_{c_n}(c_n)|\geq 1+\epsilon$ for some $\epsilon >0$, by compactness.
+
+    Since $c_0 \in \partial M$, $G_{f_{c_0}}(c_0)=0$, and for any $\epsilon > 0$ and $N \in \N$ there is some $\delta >0$ with
+    \[|c-c_0|<\delta \implies |f_c^N(c)-f_{c_0}^N(c_0)|<\epsilon\]
+    If $B \gg 1$, sufficiently large that near $c_0$,
+    \[\left|G_{f_c}(z)-\log|z|\right| \leq \log \left|1+\frac{c}{z^2}\right|\]
+    is very small for $|z|\geq B$, then we can find, for $c \notin M$ some $N$ with:
+    \[|\phi_c(c)|^{d^{N-1}} \leq B < |\phi_c(c)|^{d^N}\]
+    This choice of $N$ is constant on a small neighbourhood of such $c$.
+
+    But, for any fixed $N$, we cannot have $|f_c^N(c)|\geq B$ on the neighbourhood of radius $\delta$ about $c_0$, so this value of $N \to \infty$ as $c \to c_0$, i.e. $\log|\phi_c(c)|\to 0$ as $c \to c_0$, contradicting $|\phi_c(c)|\geq 1+\epsilon$. Thus the map is proper and has well-defined degree.
+
+    \item Since $\Phi^{-1}(\infty) = \{\infty\}$ with degree $1$ since $\Phi(c)/c \to 1$ as $|c| \to \infty$, we have a conformal isomorphism.
+  \end{enumerate}
+  So $\hat{\C}\setminus M \cong \hat{\C}\setminus\bar\D \cong \D$, so $\hat\C\setminus M$ is simply connected, and thus $M$ is connected.
+\end{proof}
+Note that in the proof of Koenig's linearization theorem, we only needed $|\lambda|\neq 0,1$. We've only used these linearizations for attracting fixed points, but this gives Koenig maps for repelling cycles.
+
+If $z_0$ is fixed $f$ and $f'(z_0) = \lambda$ of modulus $|\lambda|>1$, then if $z$ is in the neighbourhood where linearization holds, and $z \in J(f)$ - such a $z$ exists because $z_0 \in J(f)$ and there are no isolated points in $J(f)$ - then $\phi^{-1}(\{\lambda^n \phi(z):n \in \N\})\subseteq J(f)$. If $\lambda \notin \R$, then $\lambda^{-n}\phi(z)$ limits to a spiral at $0$. This explains to a certain extent why we often get Julia sets that look like spirals.
+
+\begin{corollary}
+  Suppose $z_0$ is a repelling fixed point for the rational map $f$. Then there is a holomorphic map $\psi:\C\to \hat\C$ with $\psi(0) = z_0$, so that the diagram
+  \begin{center}
+    \begin{tikzcd}
+      S \arrow{r}{f} & S\\
+      \C \arrow{u}{\psi}\arrow{r}{\cdot\lambda} & \C\arrow{u}{\phi}
+    \end{tikzcd}
+  \end{center}
+  commutes, with $\psi$ holomorphic on a neighbourhood of $0$. $\psi$ is unique up to precomposition with a scaling, that is $w\mapsto \psi(cw)$ for $c \neq 0$.
+\end{corollary}
+\begin{proof}
+  We know by Koenig that $\psi$ exists on a neighbourhood of $0$ - call it $U$. Given $w \in \C$, there is $n \gg 1$ such that $\frac{w}{\lambda^n} \in U$. Define $\psi(w) \coloneqq f^n(\psi(w/\lambda^n))$, and check the rest.
+\end{proof}
 \end{document}
