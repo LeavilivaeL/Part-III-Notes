@@ -1535,7 +1535,7 @@ We have $t\O_L = T^n\O_L$, and so the ramification index of $(T)$ over $(t)$ is 
   Note that $\O_L/\p\O_L$ is a $k \coloneqq \O_K/\p$-vector space (as $k$ a field), and so we can count dimensions of both sides.
 
   For each $i$, we have a decreasing sequence of $k$-subspaces:
-  \[0 \subseteq \mathcal{P}_i^{e_i-1}}/\mathcal{P}_i^{e_i} \subseteq \mathcal{P}_i^{e_i-2}/\mathcal{P}_i^{e_i} \subseteq \ldots \subseteq \mathcal{P}_i/\mathcal{P}_i^{e_i} \subseteq \O_L/\mathcal{P}_i^{e_i}\]
+  \[0 \subseteq \mathcal{P}_i^{e_i-1}/\mathcal{P}_i^{e_i} \subseteq \mathcal{P}_i^{e_i-2}/\mathcal{P}_i^{e_i} \subseteq \ldots \subseteq \mathcal{P}_i/\mathcal{P}_i^{e_i} \subseteq \O_L/\mathcal{P}_i^{e_i}\]
   So $\dim_k \O_L/\mathcal{P}_i^{e_i} = \sum_{j=0}^{e_i-1}\dim_k\left(\mathcal{P}_i^j/\mathcal{P}_i^{j+1}\right)$. Note that this quotient $\mathcal{P}_i^j/\mathcal{P}_i^{j+1}$ is an $\O_L/\mathcal{P}_i$-module and $x \in \mathcal{P}_i^j/\mathcal{P}_i^{j+1}$ (for example, we can prove this after localising at $\mathcal{P}_i$).
   Then $\dim_k \mathcal{P}_i^j/\mathcal{P}_i^{j+1} = f_i$, and we have that
   \[\dim_k \prod_{i=1}^r \O_L/\mathcal{P}_i^{e_i} = \sum_{i=1}^r \dim_k \O_L/\mathcal{P}_i^{e_i} = \sum_{i=1}^r e_if_i\]
@@ -1568,7 +1568,7 @@ Now assume that $L/K$ is Galois. Then, for any $\sigma \in \Gal(L/K)$, $\sigma(\
 \begin{proof}
   For any $\sigma \in \Gal(L/K)$, we have
   \begin{enumerate}
-    \item $\p = \sigma(p) = \sigma(\mathcal{P}_1})^{e_1}\ldots \sigma(\mathcal{P}_r)^{e_r}$. By unique factorisation and transitivity, $e_1 = \ldots = e_r$.
+    \item $\p = \sigma(p) = \sigma(\mathcal{P}_1)^{e_1}\ldots \sigma(\mathcal{P}_r)^{e_r}$. By unique factorisation and transitivity, $e_1 = \ldots = e_r$.
     \item $\O_L/\mathcal{P}_i \cong \O_L/\sigma(\mathcal{P}_i)$, and so $f_1 = \ldots = f_r$.
   \end{enumerate}
 \end{proof}
@@ -1751,6 +1751,129 @@ Fact: Eisenstein polynomials are irreducible.
 
     But $n = [L:K] \geq e \implies n = e$, and $L$ is totally ramified.
   \end{enumerate}
+\end{proof}
+\section{Structure of Units}
+Let $[K:\Q_p]<\infty$, with normalised valuation $v_K$ and uniformiser $\pi$, and write $e \coloneqq e_{K/\Q_p}$, the absolute ramification index.
 
+\begin{proposition}
+  If $r > \frac{e}{p-1}$, then the series
+  \[\exp(x) = \sum_{n=0}^\infty \frac{x^n}{n!}\]
+  converges on $\pi^r\O_K$, and $\exp$ determines an isomorphism between
+  \[(\pi^r\O_K, +) \isomarrow (1+\pi^r\O_K, \times)\]
+\end{proposition}
+\begin{proof}
+  $v_K(n!) = ev_p(n!) = e\frac{n-s_p(n)}{p-1} \leq e\frac{n-1}{p-1}$ - see example sheet 1.
+
+  For $x \in \pi^r\O_K$, we have for $n \geq 1$:
+  \[v_K(x^n/n!) \geq nr - e \frac{n-1}{p-1} = r+(n-1)\left(r-\frac{e}{p-1}\right)\]
+
+  Hence $v_K(x^n/n!) \to \infty$ as $n \to \infty$, and hence $\exp(x)$ converges.
+
+  Since $v_K\left(\frac{x^n}{n!}\right) \geq r$ for $n\geq 1$, $\exp(x) \in 1+\pi^r \O_K$.
+
+  Similarly, consider $\log:1+\pi^r \O_K \to \pi^r\O_K$ given by
+  \[\log(1+x) = \sum_{n=1}^\infty \frac{(-1)^{n-1}}{n}x^n\]
+  We can check convergence as before.
+
+  Recall properties of power series:
+  \begin{itemize}
+    \item $\exp(x+y) = \exp(x)\exp(y)$
+    \item $\log(xy) = \log(x)+\log(y)$
+    \item $\exp(\log(x)) = x = \log(\exp(x))$
+  \end{itemize}
+  Thus $\exp:(\pi^r \O_K, +) \to (1+\pi^r\O_K, \times)$ is an isomorphism of groups.
+\end{proof}
+Now let $K$ be a non-archimedean local field. We define a filtration on $\O_K^\times$. Write $U_K = \O_K^\times$, the unit group of $\O_K$.
+\begin{definition}
+  For $s \in \Z_{\geq 1}$, the $s\th$ unit group $U_K^{(s)}$ is defined to be
+  \[U_K^{(s)} = (1+\pi^s\O_K, \times)\]
+  We set $U_K^{(0)} = U_K$. Then we have
+  \[\ldots \subseteq U_K^{(s)} \subseteq U_K^{(s-1)} \subseteq \ldots \subseteq U_K^{(0)} = U_K\]
+\end{definition}
+\begin{proposition}
+  We have:
+  \begin{enumerate}
+    \item $U_K^{(0)}/U_K^{(1)} \cong (k^\times, \times)$
+    \item $U_K^{(s)}/U_K^{(s+1)} \cong (k, +)$
+  \end{enumerate}
+\end{proposition}
+\begin{proof}\hspace*{0cm}
+  \begin{enumerate}
+    \item Reduction mod $\pi$ gives a natural; surjection $\O_K^\times \to k^\times$. The kernel is then $1+\pi\O_K = U_K^{(1)}$.
+
+    \item Define $f:U_K^{(s)} \to k$ given by $1+\pi^s x \mapsto x \mod \pi$.
+
+    Then $(1+\pi^sx)(1+\pi^sy) = 1+\pi^s(x+y+\pi^sxy)$. Since $x+y+\pi^sxy \equiv x+y \mod \pi$, $f$ is a group homomorphism. It is easy to see that $f$ is surjective, and that $\ker f = U_K^{(s+1)}$.
+  \end{enumerate}
+\end{proof}
+\begin{corollary}
+  Let $[K:\Q_p]<\infty$. Then $\O_K^\times$ has a subgroup of finite index isomorphic to $(\O_K, +)$.
+\end{corollary}
+\begin{proof}
+  Let $r >\frac{e}{p-1}$. Then $(\O_K, +) \cong U_K^{(r)}$. So $U_K^{(r)}\subseteq U_K$ is of finite index by \textbf{15.3}.
+\end{proof}
+For example, in the case of $\Z_p$, if $p>2, e=1$, we can take $r = 1$. Then:
+\begin{align*}
+  \Z_p^\times &\isomarrow (\Z/p\Z)^\times \times (1+p\Z_p) \cong \Z/(p-1)\Z \times \Z_p\\
+  x&\mapsto \left(x \mod p, \frac{x}{[x \mod p]}\right)
+\end{align*}
+If $p=2$, then we need $r=2$. Then we get:
+\[\Z_2^\times \isomarrow (\Z/4\Z)^\times \times(1+4\Z_2)\cong \Z/2\Z \times \Z_2\]
+This gives us another proof of the fact that
+\[\Z_p^\times/(\Z_p^\times)^2 \cong \begin{cases}\Z/2\Z & p >2 \\ (\Z/2\Z)^2 & p=2\end{cases}\]
+\section{Higher Ramification Groups}
+Let $L/K$ be a finite Galois extension of local fields. We define an analogous filtration of $\Gal(L/K)$:
+\begin{definition}
+  Let $v_L$ be the normalised valuation on $L$. For $s \in \R_{\geq -1}$, we define the $s\th$ ramification group
+  \[G_s(L/K) = \{\sigma \in \Gal(L/K) : v_L(\sigma(x)-x)\geq s+1 \forall x \in \O_L\}\]
+\end{definition}
+$G_{-1}(L/K) = \Gal(L/K)$.
+
+\mbox{$G_0(L/K) = \{\sigma\in\Gal(L/K):\sigma(x)\equiv x \mod \pi_L \forall x \in \O_L\} = \ker(\Gal(L/K)\surjection \Gal(k_L/k)) = I_{L/K}$}
+
+In general, for $s \in \Z_{\geq 0}$, $G_s(L/K)$ is the kernel of the map $\Gal(L/K) \to \Aut(\O_L/\pi_L^{s+1}\O_L))$, and hence $G_s(L/K)$ is normal in $G$.
+
+We have a filtration for $s \in \Z_{\geq 1}$:
+\[\ldots \subseteq G_s \subseteq G_{s-1}\subseteq \ldots \subseteq G_{-1} = \Gal(L/K)\]
+We have defined $G_s$ for $s$ real, but in fact $G_s$ only changes at the integers. We'll use this definition in terms of real numbers later though.
+
+\begin{theorem}\hspace*{0cm}
+  \begin{enumerate}
+    \item Let $\pi_L \in \O_L$ be a uniformizer.
+    For $s \geq 1, G_s = \{\sigma \in G_0:v_L(\sigma(\pi_L)-\pi_L)\geq s+1\}$.
+    \item $\bigcap_{n=0}^\infty G_n = \{1\}$.
+    \item Let $s \in \Z_{\geq 0}$. There is an injective group homomorphism
+    \[G_s/G_{s+1} \injection U_L^{(s)}/U_L^{(s+1)}\]
+    induced by the map $\sigma\mapsto \sigma(\pi_L)/\pi_L$. This map is independent of the choice of $\pi_L$.
+  \end{enumerate}
+\end{theorem}
+\begin{proof}
+  Let $K_0 \subseteq L$ be the maximal unramified extension of $K$ contained in $L$. Upon replacing $K$ by $K_0$, we may assume $L/K$ is totally ramified.
+  \begin{enumerate}
+    \item By \textbf{14.8}, $\O_L = \O_K[\pi_L]$. Suppose $v_L(\sigma(\pi_L)-\pi_L) \geq s+1$. Now let $x \in \O_L$, then $x = f(\pi_L)$ for $t \in \O_K[t]$.
+
+    Then $\sigma(x)-x = \sigma(f(\pi_L))-f(\pi_L) = f(\sigma(\pi_L)) - f(\pi_L) = (\sigma(\pi_L) - \pi_L)g(\pi_L)$ where $g \in \O_K[t]$, as $\sigma(\pi_L) = \pi_L$ is a root.
+
+    So $v_L(\sigma(x)-x) = v_L(\sigma(\pi_L)-\pi_L) + v_L(g(\pi_L)) \geq s+1$.
+
+    \item Suppose that $\sigma \in \Gal(L/K)$, $\sigma \neq 1$. Then $\sigma(\pi_L)\neq \pi_L$ because $L = K(\pi_L)$, and hence $v_L(\sigma(\pi_L)-\pi_L) < \infty$. Thus $\sigma \notin G_s$ for $s \gg 0$.
+
+    \item Note that, for $\sigma \in G_s, s \geq 0$, we have $\sigma(\pi_L) \in \pi_L + \pi_L^{s+1}\O_L$. So then
+    \[\sigma(\pi_L)/\pi_L \in 1+ \pi_L^s \O_L\]
+    We claim that $\varphi:G_s \to U_L^{(s)}/U_L^{(s+1)}$, $\sigma \mapsto \sigma(\pi_L)/\pi_L$ is a group homomorphism with kernel $G_{s+1}$.
+
+    For the homomorphism part, take $\sigma, \tau \in G_s$, and let $\tau(\pi_L) = u\pi_L, u \in \O_L^\times$. Then:
+    \begin{align*}
+      \frac{\sigma\tau(\pi_L)}{\pi_L} &= \frac{\sigma(\tau(\pi_L))}{\tau(\pi_L)}\cdot \frac{\tau(\pi_L)}{\pi_L}\\
+      &= \frac{\sigma(u)}{u}\cdot\frac{\sigma(\pi_L)}{\pi_L}\cdot\frac{\tau(\pi_L)}{\pi_L}
+    \end{align*}
+    But $\sigma(u)\in u+\pi_L^{s+1}\O_L$ since $\sigma \in G_s$, and thus $\frac{\sigma(u)}{u} \in U_L^{(s+1)}$, and hence
+    \[\frac{\sigma\tau(\pi_L)}{\pi_L} \equiv \frac{\sigma(\pi_L)}{\pi_L}\cdot \frac{\tau(\pi_L)}{\pi_L}\mod U_L^{(s+1)}\]
+    so $\varphi$ is a group homomorphism.
+
+    Moreover, $\ker \varphi = \{\sigma\in G_s : \sigma(\pi_L)\equiv \pi_L \mod \pi_L^{s+2}\} = G_{s+1}$.
+
+    If $\pi_L' = a\pi_L$ is another uniformizer, and $a \in U_L$, then $\sigma(\pi_L')/\pi_L' = \frac{\sigma(a)}{a}\frac{\sigma(\pi_L)}{\pi_L}\equiv \frac{\sigma(\pi_L)}{\pi_L} \mod U_L^{(s+1)}$.
+  \end{enumerate}
 \end{proof}
 \end{document}
