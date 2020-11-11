@@ -668,7 +668,7 @@ So ``being 0" is a local property!
 Let $R$ be a commutative ring with a 1, and $L,M,N,T$ all $R$-modules.
 
 \begin{definition}
-  A function $\varphi:M \times N \to L$ is \emphs{R-bilinear} if
+  A function $\varphi:M \times N \to L$ is \emph{R-bilinear} if
   \begin{itemize}
     \item $\varphi(r_1m_1+r_2m_2, n) = r_1\varphi(m_1, n)+r_2\varphi(m_2, n)$
     \item $\varphi(m, r_1n_1+r_2n_2) = r_1\varphi(m, n_1)+r_2\varphi(m, n_2)$
@@ -789,8 +789,8 @@ Note that $\theta \otimes \varphi$ is bilinear, and so universality tells us it 
 \begin{definition}
   Given $\varphi_1:R \to T_1$ a ring homomorphism (so that $T_1$ is an $R$-module), then we say that $T_1$ together with the map $\varphi_1$ is an \emph{R-algebra}. Given another ring homomorphism $\varphi_2 : R \to T_2$, we can take the tensor product of the $R$-modules $T_1, T_2$, to give $T_1 \otimes_R T_2$. We then define a product on $T_1 \otimes T_2$ by
   \begin{align*}
-    (T_1\otimes T_2) \times (\T_1 \otimes T_2) &\to T_1\otimes T_2\\
-    ((t_1\otimes t_2), (t_1'\otimes t_2'))&\mapsto (t_1t_1')\otimes (t_2t_2')
+    (T_1 \otimes T_2) \times (T_1 \otimes T_2) &\to T_1\otimes T_2\\
+    ((t_1 \otimes t_2), (t_1'\otimes t_2')) &\mapsto (t_1t_1')\otimes (t_2t_2')
   \end{align*}
 \end{definition}
 To check this multiplication is actually well-defined, note that multiplication $T_i \times T_i \to T_i; (t_i, t_i') \mapsto t_it_i'$ is bilinear, and hence there is a corresponding $R$-module map $T_i \otimes T_i \to T_i$.
@@ -871,4 +871,118 @@ For example:
   \item If $R = \Z$, then $\Q$ is a flat $\Z$-module. In fact, any torsion-free abelian group is a flat $\Z$-module.
 \end{itemize}
 The subject of homology deals with measuring the failure of modules to be flat.
+
+\section{Integrality and Dimension}
+In this section, $R$ is a commutative ring with a 1.
+\begin{definition}
+  The \emph{spectrum} of $R$, denoted $\Spec(R)$ is the set of prime ideals of $R$.
+\end{definition}
+\begin{definition}
+  The \emph{length} of  a chain of prime ideals
+  \[\p_0 \lneq \p_1 \lneq \p_2 \lneq \ldots \lneq \p_n\]
+  is $n$ - note the numbering starts at 0.
+\end{definition}
+\begin{definition}
+  The \emph{(Krull) dimension} of a $R$, denoted $\dim R$, or $\text{Kr} \dim R$, is:
+  \[\dim R = \begin{cases} \sup\{n: \exists \text{ a chain of prime ideals of length $n$}\}& \text{ if this exists, and}\\ \infty &\ow\end{cases}\]
+\end{definition}
+\begin{definition}
+  The \emph{height} of $\p\in\Spec(R)$, denoted $\height(\p)$ (or sometimes $\height_R(\p)$ to emphasise the ring), is
+  \[\height(\p) = \sup\{n : \exists \text{ a chain of prime ideals of length $n$ with } \p_n =\p\}\]
+\end{definition}
+Note that the 1-1 correspondence between primes that don't intersect $R \setminus \p$ and the primes of $R_\p$ shows that $\height(\p) = \dim R_\p$.
+
+\textbf{Examples.}
+\begin{itemize}
+  \item An artinian ring has dimension 0, as all prime ideals are maximal. Conversely, any noetherian ring of dimension 0 is artinian.
+  \item $\dim\Z = 1$. This holds for any PID, as primes are maximal, so any chain of prime ideals must be of the form $0 \lneq \p$. In particular if $k$ is a field, $\dim k[x]= 1$. In general, we call any integral domain of Krull dimension 1 a \emph{Dedekind domain} (so all PIDs are Dedekind domains).
+  \item $\dim k[x_1, \ldots, x_n] \geq n$ since we have a chain of ideals
+  \[0 \lneq (x_1) \lneq (x_1, x_2)\lneq \ldots \lneq (x_1, \ldots, x_n)\]
+  Actually, if $k$ is a field, then $\dim k[x_1, \ldots, x_n] = n$. To prove this, we will need some results about the relationship between chains of prime ideals in subrings and chains in the whole ring under some condition relating the subring to the larger ring.
+\end{itemize}
+\begin{lemma}
+  The height 1 primes of $k[x_1, \ldots, x_n]$ are precisely those of the form $(f)$ where $f$ is irreducible.
+\end{lemma}
+\begin{proof}
+  Certainly, such an ideal is prime in a UFD. Any nonzero $\p$ contains such an $(f)$, since if $g \in \p$ then one of its irreducible factors is, by primality of $\p$.
+
+  If $0 \lneq \p \lneq (f)$, then there is an irreducible $h$ with $(h)\lneq \p$ - take $h \in \p\setminus (f)$. This would imply that $f$ divides $h$. But $h$ is irreducible $\contr$. So $\p = (f)$, and $\height (f) = 1$.
+
+  For the converse, see example sheet 3.
+\end{proof}
+\begin{definition}
+  Let $R \leq S$ be rings. Then $x \in S$ is \emph{integral over R} if it satisfies some monic polynomial with coefficients in $R$, i.e. if there is $n \in \N$ and $r_i \in R$ such that
+  \[x^n = r_0 + r_1x^n + \ldots +r_{n-1}x^{n-1}\]
+\end{definition}
+For example, the elements of $\Q$ which are integral over $\Z$ are precisely $\Z$.
+\begin{lemma}
+  The following are equivalent:
+  \begin{enumerate}
+    \item $x\in S$ is integral over $R$.
+    \item $R[x]$ is a finitely generated $R$-module.
+    \item $R[x]$ is contained in $T$, a subring of $S$ that is also a finitely generated $R$-module.
+  \end{enumerate}
+\end{lemma}
+Some authors say \emph{S is finite over R} if $S$ is a finitely generated $R$-module, and $k$-algebra $R$ is \emph{of finite type} if it is finitely generated as a $k$-algebra.
+\begin{proof}\hspace*{0cm}
+  \begin{itemize}
+    \item[\imp{1}{2}] For $j\geq 0$, we have
+    \[x^{n+j} = r_0x^j + \ldots + r_{n-1}x^{n+j-1}\]
+    So by induction all positive powers of $x$ lie in $R+xR+\ldots+x^{n-1}R$. Clearly this is a submodule of $R[x]$, so we have equality, and $R[x]=R+xR+\ldots+x^{n-1}R$ is finitely generated.
+    \item[\imp{2}{3}] Take $T = R[x]$.
+    \item[\imp{3}{1}] Consider multiplication by $x$ in the ring $T = y_1R + \ldots + y_nR$, by finiteness.
+
+    Then $xy_i = \sum_{j}r_{ij}y_j$ for $r_{ij} \in R$, so we have
+    \[\sum_j \underbrace{(x\delta_{ij} - r_{ij})}_{A_{ij}}y_j = 0\]
+    where $\delta_{ij}$ is the Kronecker delta.
+
+    Multiplying on the left by $\adj A$ gives us $()\det A)y = 0$ for all $y$. Taking $y$ to be $1$, we get $\det A = 0$. But $\det A$ is also a monic polynomial in $x$, and hence $x$ is integral over $R$.
+  \end{itemize}
+\end{proof}
+The proof is reminiscent of the proof in Atiyah-Macdonald for Nakayama's lemma. Some authors say $S$ is \emph{of finite type} over $R$ is $S$ is generated as a ring by $R$ and some finite set.
+\begin{lemma}
+  If $x_1, \ldots, x_m \in S$ are integral over $R$, then $R[x_1, \ldots, x_m]$ is a finitely-generated $R$-module.
+\end{lemma}
+\begin{proof}
+  This is an easy induction on $m$. The case of $m=1$ is \textbf{4.7}. Now assume $m >1$.
+
+  Suppose that $R[x_1, \ldots, x_k]$ is finite over $R$, generated by $y_1, \ldots, y_\ell$ say. Now $x_{k+1}$ is integral over $R$, and hence over $R[x_1, \ldots, x_k]$. Thus $R[x_1, \ldots, x_{k+1}]$ is a finitely generated $R[x_1, \ldots, x_k]$-module, with generators $z_1, \ldots, z_t$. Then
+  \[\{z_iy_j: 12\leq i\leq t, 1 \leq j \leq \ell\}\]
+  generate $R[x_1, \ldots, x_{k+1}]$ as an $R$-module.
+\end{proof}
+\begin{lemma}
+  The set $T\subseteq S$ of elements integral over $R$ form a subring of $S$.
+\end{lemma}
+\begin{proof}
+  Every element of $R$ is integral over $R$. If $x, y \in T$, then by \textbf{4.8}, $R[x,y]$ is finitely generated $R$-module. So by \textbf{4.7.3} $x\pm y$ and $xy$ are integral over $R$.
+\end{proof}
+\begin{definition}\hspace*{0cm}
+  \begin{itemize}
+    \item $T$ in \textbf{4.9} is the \emph{integral closure} of $R$ in $S$.
+    \item If $T=R$ then $R$ is \emph{integrally closed} in $S$.
+    \item If $T=S$ then $S$ is \emph{integral} over $R$.
+    \item If $R$ is an integral domain then $R$ is \emph{integrally closed} if it is integrally closed in its field of fractions.
+  \end{itemize}
+\end{definition}
+\textbf{Examples.}
+\begin{itemize}
+  \item $\Z$ is integrally closed in $\Q$.
+  \item $k[x_1, \ldots, x_n]$ is integrally closed in $k(x_1, \ldots, x_n)$.
+  \item In an algebraic number field $K$ with $[K:\Q]<\infty$, the integral closure of $\Z$ in $K$ is the ring of integers in $K$, denoted $\O_K$.
+  \item Being integrally closed is a local property.
+\end{itemize}
+\begin{lemma}
+  Let $R\leq T\leq S$ be rings, with $T$ integral over $R$ and $S$ integral over $T$. Then $S$ is integral over $R$.
+\end{lemma}
+\begin{proof}
+  Take some $x \in S$. It satisfies $x^n + t_{n-1}x^{n-1} + \ldots +t_0 = 0$ for $t_i \in T$. The subring $R[t_0, \ldots, t_{n-1}]$ is a finitely generated $R$-module by \textbf{4.8}, and $x$ is integral over it, so $R[t_0, \ldots, t_{n-1}, x]$ is a finitely generated $R[t_0, \ldots, t_{n-1}]$-module.
+
+  So, as in \textbf{4.8} $R[t_0, \ldots, t_{n-1}, x]$ is a finitely generated $R$-module. Now apply \textbf{4.7.3}.
+\end{proof}
+\begin{lemma}
+  Let $R \leq T$ be rings, and $T$ integral over $R$.
+  \begin{enumerate}
+    \item If $J \triangleleft T$, then $T/J$ is integral over $R/(J\cap R)$, identifying $R/(J\cap R)$ with $(R+J)/J$ as a subring of $T/J$.
+  \end{enumerate}
+\end{lemma}
 \end{document}
