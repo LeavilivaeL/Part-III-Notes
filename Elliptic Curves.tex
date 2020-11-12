@@ -1424,4 +1424,113 @@ Notation: $[n]^{-1}P = \{Q \in E(\bar{K}) : nQ = P\}$, and $K(P_1, \ldots, P_r) 
 
   So $K([n]^{-1}P) \subset K^{nr}$, and $K([n]^{-1}P)/K$ is unramified.
 \end{proof}
+\begin{corollary}
+  Let $E/K$ be an elliptic curve with $[K:\Q_p]<\infty$ Then $E(K)_{\text{tors}}$ is finite.
+\end{corollary}
+\begin{proof}
+  In \textbf{9.7} we saw that $E(K)$ has a subgroup $E_r(K)$ of finite index isomorphic to $(\O_K, +)$. Since $E_r(K)$ is torsion free, $E(K)_{\text{tors}}\injection E(K)/E_r(K)$, an injection into a finite group.
+\end{proof}
+\section{Elliptic Curves over Number Fields}
+\subsection{The Torsion Subgroup}
+Let $[K:\Q]<\infty$ and $E/K$ an elliptic curve.
+
+Let $\p$ be a prime of $K$ (i.e. a prime ideal in $\O_K$). We write $K_\p$ for the $\p$-adic completion of $K$, and $k_\p$ for $\O_K/\p$. Note that, upon taking completions, the residue field doesn't change.
+
+\textbf{Definition.} $\p$ is a prime of good reduction for $E/K$ if $E/K_\p$ is has good reduction.
+
+\begin{lemma}
+  $E/K$ has only finitely many primes of bad reduction.
+\end{lemma}
+\begin{proof}
+  Take any Weierstrass equation for $E$, with coefficients in $\O_K$. $E$ is non-singular, so $0 \neq \Delta \in \O_K$. We can thus write $\Delta = \p_1^{\alpha_1}\ldots \p_r^{\alpha_r}$ as a unique factorisation into prime ideals, and let $S = \{\p_i\}$ in this factorisation.
+
+  If $\p \notin S$, then $v_\p(\Delta) = 0$, so $E/K_\p$ has good reduction.
+
+  Hence the set of bad primes for $E$ is a subset of $S$, which is finite.
+\end{proof}
+Note that we'd like to say that $S$ is the set of bad primes. If $K$ has class number 1, e.g. $K=\Q$, then we can always find Weierstrass equation for $E$ with the coefficients in $\O_K$ minimal at all primes $\p$, and then $S$ will be all the bad primes.
+
+\begin{lemma}
+  $E(K)_{\text{tors}}$ is finite.
+\end{lemma}
+\begin{proof}
+  Take any prime $\p$ and complete at $\p$. Then $K\subseteq K_\p$, so $E(K)_{\text{tors}} \subseteq E(K_\p)_{\text{tors}}$ is finite by \textbf{9.10}.
+\end{proof}
+\begin{lemma}
+  Let $\p$ be a prime of good reduction, with $\p\nmid n$. Then reduction mod $\p$ gives an injective group homomorphism
+  \[E(K)[n] \injection \tilde{E}(k_\p)[n]\]
+\end{lemma}
+\begin{proof}
+  \textbf{9.5} tells us that $E(K_\p) \to \tilde{E}(k_\p)$ is a group homomorphism. Hence it takes $n$-torsion points to $n$-torsion points, as needed. It has kernel $E_1(K_\p)$. Since $\p \nmid n$, \textbf{8.5} tells us $E_1(K_\p)$ has no $n$-torsion, and so the map is injective.
+\end{proof}
+\textbf{Examples.}
+\begin{enumerate}
+  \item $E/\Q : y^2+y=x^3-x^2, \Delta = -11$.
+  $E$ has good reduction at all primes $p \neq 11$.
+
+  \begin{tabular}{c|ccccccc}
+    $p$ & 2 & 3 & 5 & 7 & 11 & 13\\\hline
+    $\#\tilde{E}(\F_p)$ & 5 & 5 & 5 & 10 & - & 10
+  \end{tabular}
+
+  By \textbf{10.3} looking at $p=2$, $\#E(\Q)_{\text{tors}}|5\cdot 2^a$ for some $a \geq 0$.
+
+  Looking at $p=3$, $\#E(\Q)_{\text{tors}}|5\cdot 3^b$ for some $b \geq 0$.
+
+  Hence $\#E(\Q)_{\text{tors}}|5$, so is 1 or 5.
+
+  Let $T = (0,0) \in E(\Q)$. Calculation gives that $5T = O_E$, and so $\E(\Q)_{\text{tors}} \cong \Z/5\Z$.
+
+  \item $E/\Q : y^2+y = x^3+x^2, \Delta = -43$. $E$ has good reduction at all primes $p \neq 43$.
+
+  \begin{tabular}{c|ccccccc}
+    $p$ & 2 & 3 & 5 & 7 & 11 & 13\\\hline
+    $\#\tilde{E}(\F_p)$ & 5 & 6 & 10 & 8 & 9 & 19
+  \end{tabular}
+
+  So $\#E(\Q)_{\text{tors}}|5\cdot 2^a$, some $a\geq 0$, and $\#E(\Q)_{\text{tors}}|9\cdot 11^b$, some $b \geq 0$.
+
+  So $\#E(\Q)_{\text{tors}} = 1$, and $E(\Q)_{\text{tors}} = \{O_E\}$.
+
+  Now, since $P = (0,0)\in E(\Q)$, it has infinite order, and hence infinitely many rational points on $E(\Q)$. This is an example where $\rank E(\Q) \geq 1$.
+
+  \item $E_D : y^2=x^3-D^2x$ for $D \in \Z$ a squarefree integer. Then $\Delta = 2^6D^6$.
+
+  $E_D(\Q)_{\text{tors}} \supset \{0, (0,0), (\pm D, 0)\} \cong (\Z/2\Z)^2$.
+
+  Let $f(x) = x^3-D^2x$. Then if $p$ is prime not dividing $2D$, then it is a prime of good reduction.
+
+  $\#\tilde{E}(\F_p) =1+ \sum_{x\in\F_p}\left(\legendre{f(x)}{p}+1\right)$, where $\legendre{f(x)}{p}$ is the Legendre symbol.
+
+  If $p \equiv 3 \mod 4$, then since $f(x)$ is an odd function:
+  \[\legendre{f(-x)}{p} = \legendre{-f(x)}{p} = \legendre{-1}{p}\legendre{f(x)}{p} = -\legendre{f(x)}{p}\]
+  and so $\#\tilde{E}_D(\F_p) = p+1$.
+
+  Let $m = \#E(\Q)_{\text{tors}}$. We have $4|m|p+1$ for all sufficiently large primes $p$ congruent to $3$ mod $4$, and hence $m=4$, since otherwise this contradicts Dirichlet's theorem on primes in arithmetic progression.
+
+  Hence $E_D(\Q)_{\text{tors}} \cong (\Z/2\Z)^2$. So $\rank E_D(\Q) \geq 1$ if and only if there are $x, y \in \Q$ with $y \neq 0$ such that $y^2 = x^3-Dx$, which by the first lecture is equivalent to $D$ being a congruent number.
+\end{enumerate}
+\begin{lemma}
+  Let $E/\Q$ be given by a Weierstrass equation with coefficients in $\Z$. Then:
+  \begin{enumerate}
+    \item $4x, 8y \in \Z$.
+    \item If $2|a_1$ or $2T \neq O_E$, then $x, y \in \Z$.
+  \end{enumerate}
+\end{lemma}
+\begin{proof}
+  The Weierstrass equation defines a formal group $\hat{E}$ over $\Z$. For $r\geq 1$, we have $\hat{E}(p^r\Z_p) = \{(x,y) \in E(\Q_p) : v_p(x)\leq -2r, v_p(y)\leq -3r\}\cup \{0\}$.
+
+  \textbf{9.2} gives $\hat{E}(p^r\Z_p) \cong (\Z_p, +)$ if $r >\frac{1}{p-1}$, and hence $\hat{E}(4\Z_2)$ and $\hat{E}(p\Z_p)$ are torsion free.
+
+  Since $T$ is a nonzero torsion point, it follows that $v_p(x), v_p(y) \geq 0$ for all odd primes $p$, and $v_2(x) \geq -2, v_2(y) \geq -3$. This proves part 1.
+
+  For the second part, suppose that $T \in \hat{E}(2\Z_2)$, i.e. $v_2(x) = -2, v_2(y)=-3$.
+
+  Since $\frac{\hat{E}(2\Z_2)}{\hat{E}(4\Z_2)} \cong (\F_2, +)$ and $\hat{E}(4\Z_2)$ is torsion free, we get $2T = 0$. Also, $(x, y) = T = -T = (x, -y-a_1x-a_3)$, and hence $2y+a_1x+a_3 = 0, 8y+4xa_1+4a_3 = 0$.
+
+  $8y$ is odd, $4x$ is odd, $4a_3$ is even, and hence $a_1$ is odd.
+
+  So if $2T \neq 0$ or $a_1$ is even, then $T \notin \hat{E}(2\Z_2)$, so $x, y \in \Z$.
+\end{proof}
+For example, if $y^2+xy = x^3+4x+1$, then $(-\frac14, \frac18) \in E(\Q)[2]$.
 \end{document}

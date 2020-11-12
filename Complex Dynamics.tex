@@ -967,4 +967,46 @@ If $z_0$ is fixed $f$ and $f'(z_0) = \lambda$ of modulus $|\lambda|>1$, then if 
 \begin{proof}
   We know by Koenig that $\psi$ exists on a neighbourhood of $0$ - call it $U$. Given $w \in \C$, there is $n \gg 1$ such that $\frac{w}{\lambda^n} \in U$. Define $\psi(w) \coloneqq f^n(\psi(w/\lambda^n))$, and check the rest.
 \end{proof}
+\section{Parabolic Fixed Points}
+An indifferent periodic point of a rational map $f$ is said to be \emph{parabolic} if $\lambda$ is a root of unity.
+
+Recall that we have already shown that all parabolic points are in $J(f)$, so there is no linearization on a neighbourhood.
+
+For example, consider $z\mapsto z+z^2$ at $0$, and $z\mapsto z+1$ at $\infty$. Looking at the behaviour on the real axis, on one side we move in towards the fixed point, whilst on the other side we are repelled away.
+
+We will focus for now on the case $\lambda = 1$, with a fixed point at 0.
+
+We can write $f(z) = z+az^{n+1} + \ldots = z(1+az^n+\ldots)$.
+
+In this setting, let $v_0'$ be any complex number such that $nav_0'^n = 1$, and define the vector $v_0$ to be the vector $\vec{0 v_0'}$. For $k \in \{1, \ldots, 2n-1\}$, define $v_k \coloneqq e^{\pi\im k/n}v_0$.
+
+The \emph{repelling vectors} for the parabolic fixed point are $v_0, v_2, \ldots, v_{2n-2}$ and the \emph{attracting vectors} are $v_1, v_3, \ldots, v_{2n-1}$.
+
+We call $n$ the \emph{multiplicity} of the parabolic fixed point, and write $c \coloneqq -\frac{1}{na}$, and
+\[\Delta_j \coloneqq \left\{re^{\im\theta}v_j : r>0, |\theta|<\frac{\pi}{n}\right\}\]
+Then $\phi(z) \coloneqq \frac{c}{z^n}$ maps $\Delta_j$ biholomorphically onto $\C \setminus \R_{\geq 0}$ if $j$ is even, and $\C\setminus \R_{\leq 0}$ if $j$ is odd.
+
+We have for each $j$ an inverse $\psi_j : \C\setminus \R_{\pm} \Delta_j$ to $\phi$.
+
+Now write $F_j(z) = \phi\circ f\circ \psi_j$. We have
+\[f \circ \psi_j(w) = \left(\frac{a}{w}\right)^{1/n}\left(1+\frac{ac}{w}+o\left(\frac{1}{2}\right)\right) \text{ as } |w| \to \infty\]
+And so
+\[F_j(z) = w\left(1+\frac{ac}{w}+o\left(\frac{1}{w}\right)\right)^{-n} = w\left(1-\frac{nac}{w}+o\left(\frac{1}{w}\right)\right)\]
+Now, since $c=-\frac{1}{na}$, $F_j(w) = w+1+o(1)$ as $|w|\to\infty$.
+
+Choose $R > 0$ such that, for all $0 \leq j \leq 2n-1$ we have
+\[|F_j(w)-w-1|<\frac{1}{2}\]
+for $|w|>R$.
+
+Then $\Re(F_j(w)) > \Re(w) + \frac12$, so if $z = \psi_j(w)$ is sufficiently small, then
+\[\Re(\phi(f(z))) > \Re(\phi(z))+\frac12\]
+If $j$ is odd, so $\psi_j(\Delta_j) = \C\setminus\R_{\leq 0}$, the right half plane $\H_R \coloneqq \{w \in \C:\Re(w)>R\}$ maps to itself under $F_j$, so $f$ maps $\psi_j(\H_R)$ to itself, and the iterates $f^k|_{\psi_j(\H_R)}$ converge uniformly to 0. This image $\psi_j(\H_R)$ is known as an \emph{attracting petal} for $f$, and is Fatou.
+
+If $j$ is even, then we have $\psi_j(\{w:\Re(w) < R\})$ cannot map to itself, but describes a region on which dynamics behave like $w \mapsto w+1$ on a neighbourhood of $\R_{<0}$. $\psi_j(\{w : \Re(w) < R\})$ is a \emph{repelling petal} for $f$.
+
+Note that any point attracted to $0$ under iteration must come in along an attracting vector, because eventually its orbit must contain points close to $0$, not on a repelling vector. So we can use one of these $F_j$s to study the dynamics. We have for $|z|\ll 1$ that $\Re(\phi(f(z))) > \Re(\phi(z)) + \frac12$, so we do lie in an attracting petal associated to an attracting vector for a sufficiently large iterate $f^n$ of $z$. Write $w_k \coloneqq \phi(f^k(z))$ for this point $z$, then $\Re w_k \to \infty$ and $w_{k+1}-w_k \to 1$ as $k \to \infty$. So $\frac{w_k-w_0}{k} \to 1$, and hence $w_k \approx k$ as $k \to \infty$, i.e. $f^k(z)\approx v_j$ as $k \to \infty$, where $\psi_j(\H_R)$ is the petal for $v_j$.
+
+If $v$ is an attracting vector associated to a parabolic fixed point with multiplier 1, then the \emph{basin of attraction} associated to $v$ is the set of points attracted to the fixed point from the direction of $v$.
+
+The basin of attraction for the point is the union of these.
 \end{document}
