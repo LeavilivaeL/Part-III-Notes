@@ -1479,7 +1479,7 @@ Note that we'd like to say that $S$ is the set of bad primes. If $K$ has class n
 
   Hence $\#E(\Q)_{\text{tors}}|5$, so is 1 or 5.
 
-  Let $T = (0,0) \in E(\Q)$. Calculation gives that $5T = O_E$, and so $\E(\Q)_{\text{tors}} \cong \Z/5\Z$.
+  Let $T = (0,0) \in E(\Q)$. Calculation gives that $5T = O_E$, and so $E(\Q)_{\text{tors}} \cong \Z/5\Z$.
 
   \item $E/\Q : y^2+y = x^3+x^2, \Delta = -43$. $E$ has good reduction at all primes $p \neq 43$.
 
@@ -1533,4 +1533,91 @@ Note that we'd like to say that $S$ is the set of bad primes. If $K$ has class n
   So if $2T \neq 0$ or $a_1$ is even, then $T \notin \hat{E}(2\Z_2)$, so $x, y \in \Z$.
 \end{proof}
 For example, if $y^2+xy = x^3+4x+1$, then $(-\frac14, \frac18) \in E(\Q)[2]$.
+
+\begin{theorem}[Lutz-Nagell]
+  Let $E/\Q$ be given by $y^2 = x^3+ax+b$, for $a, b \in \Z$.
+
+  Suppose $0 \neq T = (x,y) \in E(\Q)_{\text{tors}}$. Then $x,y \in \Z$, and either $y=0$ or $y^2 |4a^3+27b^2$.
+\end{theorem}
+Note that this is not an if and only if - we still have to check the answers we get.
+\begin{proof}
+  \textbf{10.4} gave us $x,y \in \Z$. If $2T = 0$, then $y=0$.
+
+  Otherwise, $0 \neq 2T = (x_2, y_2) \in E(\Q)_{\text{tors}}$, and so \textbf{10.4} gives $x_2, y_2 \in \Z$.
+
+  But $x_2 = \left(\frac{f'(x)}{2y}\right)^2-2x$, and so $y|f'(x)$.
+
+  $E$ non-singular, so $f(x)$ and $f'(x)$ are coprime, and so $f(x)$ and $(f'(x))^2$ are coprime, hence $1 = g(x)f(x)+h(x)(f'(x))^2$ for some $g, h \in \Q[x]$.
+
+  Doing this calculation and clearing denominators, we get
+  \[(3x^2+4a)f'(x)^2-27(x^3+ax-b)f(x)=4a^3+27b^2\]
+  Since $y|f'(x), y^2=f(x)$, so $y^2$ divides LHS, hence $y^2|4a^3+27b^2$.
+\end{proof}
+Mazur showed that, if $E/\Q$ is an elliptic curve, then $E(\Q)_{\text{tors}} \cong \begin{cases} \Z/n\Z & 1\leq n \leq 12, n \neq 11\\ \Z/2\Z \times \Z/2n\Z & 1\leq n \leq 4\end{cases}$. Moreover, all 15 possibilities occur.
+\section{Kummer Theory}
+$K$ is a field, $\charr K \nmid n$, and $\mu_n \subset K$, where $\mu_n$ is the set of $n\th$ roots of unity.
+\begin{lemma}
+  Let $\Delta \subset K^\times/(K^\times)^n$ be a finite subgroup, and let $L = K(\sqrt[n]{\Delta})$. Then $L/K$ is Galois, and $\Gal(L/K) \cong \Hom(\Delta, \mu_n)$.
+\end{lemma}
+\begin{proof}
+  $L/K$ is Galois since $\mu_n \subset K$, and $\charr K \nmid n$.
+
+  Define the Kummer pairing
+  \begin{align*}
+    \angle{\cdot, \cdot} : \Gal(L/K)\times \Delta &\to \mu_n\\
+    (\sigma, x) &\mapsto \frac{\sigma(\sqrt[n]{x})}{\sqrt[n]{x}}
+  \end{align*}
+  It is well defined: suppose $\alpha, \beta \in L$ are two different choices of $\sqrt[n]{x}$. Then $(\alpha/\beta)^n = 1$, so $\alpha/\beta \in \mu_n \subset K$, so $\sigma(\alpha/\beta) = \alpha/\beta$. Hence $\sigma(\alpha)/\alpha = \sigma(\beta)/\beta)$.
+
+  It is bilinear: $\angle{\sigma\tau, x} = \frac{\sigma\tau\sqrt[n]{x}}{\tau\sqrt[n]{x}}\frac{\tau\sqrt[n]{x}}{\sqrt[n]{x}} = \angle{\sigma, x}\angle{\tau, x}$, as $\tau \sqrt[n]{x}$ is another choice of $\sqrt[n]{x}$, and\\
+  $\angle{\sigma, xy} = \frac{\sigma\sqrt[n]{xy}}{\sqrt[n]{xy}} = \frac{\sigma\sqrt[n]{x}}{\sqrt[n]{x}}\frac{\sigma\sqrt[n]{y}}{\sqrt[n]{y}} = \angle{\sigma, x}\angle{\sigma, y}$.
+
+  It is non-degenerate: Let $\sigma \in \Gal(L/K)$. If $\angle{\sigma, x} = 1$ for all $x \in \Delta$, then $\sigma(\sqrt[n]{x}) = \sqrt[n]{x}$ for all $x \in \Delta$, and so $\sigma$ fixes $L$ pointwise. Hence $\sigma = \id$. Now fix $x \in \Delta$, and suppose $\angle{\sigma, x} = 1$ for all $\sigma \in \Gal(L/K)$. Then $\sigma(\sqrt[n]{x}) = \sqrt[n]{x}$ for all $\sigma \in \Gal(L/K)$, and hence $\sqrt[n]{x} \in K$, and so $x \in (K^\times)^n$, i.e. $x (K^\times)^n$ is trivial in $\Delta$.
+
+  We thus get injective group homomorphisms $\Gal(L/K) \injection \Hom(\Delta, \mu_n)$, $\Delta \injection  \Hom(\Gal(L/K), \mu_n)$.
+
+  Hence $\Gal(L/K)$ is abelian of exponent dividing $n$.
+
+  If $G$ is a finite abelian group of exponent dividing $n$, then $\Hom(G, \mu_n) = G$ (non-canonically).
+
+  So $|\Gal(L/K)| \leq |\Delta|\leq |\Gal(L/K)$, and so $|\Delta| = |\Gal(L/K)|$, and hence the injective homomorphisms are surjective as well, so isomorphisms.
+\end{proof}
+For example $\Gal(\Q(\sqrt{2}, \sqrt{3}, \sqrt{5})/\Q) \cong (\Z/2\Z)^3$.
+\begin{theorem}
+  There is a bijection
+  \begin{align*}
+    \{\text{finite subgroups }\Delta \subseteq K^\times/(K^\times)^n\} &\leftrightarrow \{\text{finite abelian extensions }L/K\text{ or exponent dividing $n$}\}\\
+    \Delta &\mapsto K(\sqrt[n]{\Delta})\\
+    \frac{(L^\times)^n \cap K^\times}{(K^\times)^n} &\mapsfrom L
+  \end{align*}
+\end{theorem}
+\begin{proof}
+  Let $L/K$ be a finite abelian extension of exponent dividing $n$. Let $\Delta = \frac{(L^\times)^n \cap K^\times}{(K^\times)^n}$. Then $K(\sqrt[n]{\Delta}) \subset L$ and we aim to show equality.
+
+  Let $G = \Gal(L/K)$.
+
+  The Kummer pairing gives an injection $\Delta \injection \Hom(G, \mu_n)$. We claim this is a surjection.
+
+  Given the claim, we will then have $\Delta \cong \Hom(G, \mu_n)$, so $[K(\sqrt[n]{\Delta}):K] = |\Delta|$ by \textbf{11.1} $= |G| = [L:K]$, and hence we have the equality.
+
+  To prove the claim, let $\chi:G \to \mu_n$ be a member of $\Hom(G, \mu_n)$. Distinct automorphisms are linearly independent. Then
+  \[\exists a \in L \st \underbrace{\sum_{\tau \in G} \chi(\tau)^{-1} \tau(a)}_y \neq 0\]
+  Let $\sigma \in G$. Then
+  \begin{align*}
+    \sigma(y) &= \sum_{\tau \in G} \chi(\tau)^{-1}\sigma\tau(a)\\
+    &= \sum_{\tau\in G}\chi(\sigma^{-1}\tau)^{-1}\tau(a)\\
+    &= \chi(\sigma)y
+  \end{align*}
+  So $\sigma(y^n) = y^n$ for all $\sigma \in G$. Then if $x \coloneqq y^n$, we have $x \in K^\times$, and $x \in (L^\times)^n$.
+
+  So $x \in \Delta$, and $\chi(\sigma) = \frac{\sigma(\sqrt[n]{x})}{\sqrt[n]{x}}$, and so $\chi$ is the image of $x$ under the injection, and hence it is a surjection.
+
+  For the other direction, we start with $\Delta \subset K^\times/(K^\times)^n$ a finite subgroup. Let $L = K(\sqrt[n]{\Delta})$, and $\Delta' = \frac{(L^\times)^n\cap K^\times}{(K^\times)^n}$, and we must show that $\Delta' = \Delta$.
+
+  Clearly $\Delta \subseteq \Delta'$. We then compute sizes.
+
+  $L = K(\sqrt[n]{\Delta}) \subset K(\sqrt[n]{\Delta'}) \subset L$, and we have equality throughout. So $K(\sqrt[n]{\Delta}) = K(\sqrt[n]{\Delta'})$.
+
+  \textbf{11.1} gives $|\Delta| = |\Delta'|$, and so $\Delta = \Delta'$.
+\end{proof}
 \end{document}

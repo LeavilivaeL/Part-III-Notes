@@ -983,6 +983,62 @@ The proof is reminiscent of the proof in Atiyah-Macdonald for Nakayama's lemma. 
   Let $R \leq T$ be rings, and $T$ integral over $R$.
   \begin{enumerate}
     \item If $J \triangleleft T$, then $T/J$ is integral over $R/(J\cap R)$, identifying $R/(J\cap R)$ with $(R+J)/J$ as a subring of $T/J$.
+
+    \item If $S$ is a multiplicatively closed subset of $R$, then $S^{-1}T$ is integral over $S^{-1}R$.
   \end{enumerate}
 \end{lemma}
+\begin{proof}\hspace*{0cm}
+  \begin{enumerate}
+    \item If $x \in T$, then $x^n + r_{n-1}x^{n-1}+\ldots+r_0 = 0$ for some $r_i \in R$. Modulo $J$, putting bars on for images in $T/J$, we have the monic equation:
+    \[\bar{x}^n + \bar{r}_{n-1}\bar{x}^{n-1}+\ldots+\bar{r}_0=\bar{0}\]
+    in $T/J$ with $r_i \in (R+J)/J$.
+
+    \item Suppose $\frac{x}{s} \in S^{-1}T$. Then $x$ satisfies a monic polynomial equation as in \textit{1.}. So
+    \[\left(\frac{x}{s}\right)^n +\frac{r_{n-1}}{s}\left(\frac{x}{s}\right)^{n-1}+\ldots+\frac{r_0}{s^n} = 0\]
+    in $S^{-1}T$. Hence $\frac{x}{s}$ is integral over $S^{-1}R$.
+  \end{enumerate}
+\end{proof}
+\begin{lemma}
+  Let $R \leq T$ be both integral domains with $T$ integral over $R$. Then $T$ is a field if and only if $R$ is a field.
+\end{lemma}
+\begin{proof}
+  If $R$ is a field, let $t \in T$ be nonzero, and choose a monic equation of least degree of the form
+  \[t^n + r_{n-1}t^{n-1} + \ldots + r_0 = 0\]
+  with $r_i \in R$. Since $T$ is a domain, $r_0 \neq 0$, as otherwise this polynomial factors, contradicting minimality. Hence $t$ has an inverse, namely $-r_0^{-1}(t^{n-1}+\ldots+r_0)\in T$, and so $T$ is a field.
+
+  Conversely, suppose that $T$ is a field. Let $0 \neq x \in R$. Then $x$ has an inverse $x^{-1} \in T$. So $x^{-1}$ satisfies a monic equation $x^{-m} + r_m'x^{-m+1} + \ldots +  r_0^' = 0$. Rearrange for a formula for $x^{-1} = -(r_m' + r_{m-1}'x+\ldots+r_0'x^{m-1})\in R$. Thus $R$ is a field.
+\end{proof}
+\begin{lemma}
+  Let $R \leq T$ be rings, with $T$ integral over $R$. Let $\f{q}$ be a prime ideal in $T$ and set $\p = R \cap \f{q}$. Then $\f{q}$ is maximal if and only if $\f{p}$ is maximal.
+\end{lemma}
+\begin{proof}
+  By \textbf{4.2.1}, $T/\f{q}$ is integral over $R/\p$, and since $\p, \f{q}$ are prime, we have $T/\f{q}$ and $R/\p$ are domains.
+
+  So \textbf{4.13} gives $T/\f{q}$ a field if and only if $R/\p$ a field, i.e. $\f{q}$ maximal if and only if $\p$ maximal.
+\end{proof}
+\begin{theorem}[Incomparability Theorem]
+  Let $R \subset T$ be rings with $T$ integral over $R$. Let $\f{q} \subseteq \f{q}_1$ be prime ideals of $T$. Suppose $\f{q}\cap R = \p = \f{q}_1 \cap R$. Then $\f{q}=\f{q}_1$.
+\end{theorem}
+This theorem tells us that strict chains of primes in $T$ induce strict chains of primes in $R$, and in particular, that $\dim R \geq \dim T$.
+\begin{proof}
+  Apply \textbf{4.12.2} with $S = R \setminus \p$. Now $T_\p$ is integral over $R_\p$, (writing $T_\p = S^{-1}T$, even though $\p$ might not be prime in $T$). By chapter 2, there is a prime $S^{-1}\p$ in $R_\p$, the unique maximal ideal. Also, there is $S^{-1}\f{q}, S^{-1}\f{q}_1$ in $T_\p$ which are also prime. And $S^{-1}\f{q}\cap S^{-1}R = S^{-1}\p = S^{-1}\f{q}_1\cap S^{-1}R$, since $\f{q}\cap R =\p = \f{q}_1 \cap R$.
+
+  Now by \textbf{14.4}, $S^{-1}\f{q}$ and $S^{-1}\f{q}_1$ are maximal. But $S^{-1}\f{q} \leq S^{-1}\f{q}_1$, and hence $S^{-1}\f{q}= S^{-1}\f{q}_1$. Using the one-to-one correspondence between primes of $S^{-1}T$ and of $T$ not intersecting $S$, we must have $\f{q}=\f{q}_1$.
+\end{proof}
+\begin{theorem}[Lying over Theorem]
+  Let $R \leq T$ be rings, and $T$ integral over $R$. Let $\p$ be a prime ideal of $R$. Then there is a prime ideal $\f{q}$ of $T$ with $\f{q} \cap R =\p$ - we say $\f{q}$ ``lies over" $\p$.
+
+  In other words, the map $\Spec(T) \to \Spec(R)$ is surjective.
+\end{theorem}
+\begin{proof}
+  By \textbf{4.12}, $T_\p$ is integral over $R_\p$. Consider a maximal ideal of $T_\p$. It is of the form $S^{-1}\f{q}$ for some ideal $\f{q}$ of $T$ which is necessarily prime, as primality is preserved in the one-to-one correspondence.
+
+  Then $S^{-1}\f{q} \cap S^{-1}R$ is maximal by \textbf{4.14} and hence is the unique maximal ideal $S^{-1}\p$ of $S^{-1}R = R_\p$. So $S^{-1}\f{q}\cap S^{-1}R = S^{-1}\p$. Hence $\f{q}\cap R = \p$.
+\end{proof}
+Now we will have two theorems of Cohen and Seidelberg (1946) - the ``going up" and ``going down" theorems, that will allow us to move from chains of prime ideals in $R$ to such chains in $T$, where $R\leq T$ are rings and $T$ is integral over $R$. The second theorem will need stronger conditions:
+\begin{theorem}[``Going-up Theorem"]
+  Let $R \subset T$ be rings with $T$ integral over $R$. Let $\p_1 \leq \ldots \leq \p_n$ be a chain of prime ideals of $R$, and $\f{q}_1 \leq \ldots \leq \f{q}_m$ ($m<n$) a chain of prime ideals in $T$, with $\f{q}_i \cap R = \p_i$ for $1\leq i \leq m$.
+
+  Then we can extend the chain of $\f{q}$s to a chain of length $n$ with $\f{q}_i \cap R = \p_i$ for $1 \leq i \leq n$.
+\end{theorem}
 \end{document}

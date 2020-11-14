@@ -1822,7 +1822,7 @@ If $p=2$, then we need $r=2$. Then we get:
 This gives us another proof of the fact that
 \[\Z_p^\times/(\Z_p^\times)^2 \cong \begin{cases}\Z/2\Z & p >2 \\ (\Z/2\Z)^2 & p=2\end{cases}\]
 \section{Higher Ramification Groups}
-Let $L/K$ be a finite Galois extension of local fields. We define an analogous filtration of $\Gal(L/K)$:
+Let $L/K$ be a finite Galois extension of non-archimedean local fields. We define an analogous filtration of $\Gal(L/K)$:
 \begin{definition}
   Let $v_L$ be the normalised valuation on $L$. For $s \in \R_{\geq -1}$, we define the $s\th$ ramification group
   \[G_s(L/K) = \{\sigma \in \Gal(L/K) : v_L(\sigma(x)-x)\geq s+1 \forall x \in \O_L\}\]
@@ -1875,5 +1875,108 @@ We have defined $G_s$ for $s$ real, but in fact $G_s$ only changes at the intege
 
     If $\pi_L' = a\pi_L$ is another uniformizer, and $a \in U_L$, then $\sigma(\pi_L')/\pi_L' = \frac{\sigma(a)}{a}\frac{\sigma(\pi_L)}{\pi_L}\equiv \frac{\sigma(\pi_L)}{\pi_L} \mod U_L^{(s+1)}$.
   \end{enumerate}
+\end{proof}
+\begin{corollary}
+  $\Gal(L/K)$ is solvable.
+\end{corollary}
+\begin{proof}
+  By \textbf{15.2}, \textbf{16.2}, and \textbf{14.4}, for $s \in \Z_{\geq -1}$, $G_s/G_{s+1}\cong \text{ a subgroup of one of }\begin{cases} \Gal(k_L/k) & s = -1 \\ (k_L^\times, \times) & s = 0\\ (k_l, +) & s \geq 1\end{cases}$.
+
+  These are all cyclic groups, and hence $G_s/G_{s+1}$ is cyclic for $s \geq -1$.
+
+  We thus conclude via \textbf{16.2.2} that $\Gal(L/K)$ is solvable.
+\end{proof}
+Let $\charr K = p$. Then $|G_0/G_1|$ is coprime to $p$ and $|G_1| = p^n$ for some $n \geq 0$. Thus $G_1$ is the unique (since it is normal) Sylow-$p$ subgroup of $G_0 = I_{L/K}$.
+\begin{definition}
+  The group $G$ is called the \emph{wild inertia group} and $G_0/G_1$ is the \emph{tame quotient}.
+
+  We say $L/K$ (not necessarily Galois) is \emph{tamely ramified} if $\charr k = p \nmid e_{L/K}$, which, in the case when $L/K$ is Galois, is equivalent to $G_1 = \{1\}$. Otherwise it is \emph{wildly ramified}.
+\end{definition}
+We can thus break up $L/K$ into $L/K'/K_0/K$, where $L/K'$ is totally wildly ramified, $K'/K_0$ is totally tamely ramified, and $K_0/K$ is unramified.
+
+\textbf{Example.} $K = \Q_p$. Let $\zeta_{p^n}$ be a primitive $p^n\th$ root of unity. Let $L = \Q_p(\zeta_{p^n})$.
+
+Then the $p^n\th$ cyclotomic polynomial
+\[\Phi_{p^n}(x) = x^{p^{n-1}(p-1)}+x^{p^{n-1}(p-2)}+\ldots+1\]
+is the minimal polynomial of $\zeta_{p^n}$. The following 3 facts are exercises on sheet 3:
+\begin{itemize}
+  \item $\Phi_{p^n}(x)$ is irreducible.
+  \item $L/\Q_p$ is Galois and totally ramified of degree $p^{n-1}(p-1)$.
+  \item $\pi \coloneqq \zeta_{p^n}-1$ is a uniformizer of $\O_L$, and hence $\O_L = \Z_p[\zeta_{p^n}-1]$.
+\end{itemize}
+Now $\Gal(L/\Q_p) \cong (\Z/p^n\Z)^\times$ given by sending $(\sigma_m:\zeta_{p^n}\mapsto \zeta_{p^n}^m)\mapsfrom m$.
+
+Let $k$ be maximal such that $p^k | m-1$. Then $\zeta_{p^n}^{m-1}$ is a primitive $p^{n-k}\th$ root of unity, and so $\zeta_{p^n}^{m-1}-1$ is a uniformizer $\pi'$ in $L'\coloneqq \Q_p(\zeta_{p^n}^{m-1})$.
+
+So $v_L(\sigma(\pi)-\pi) = v_L(\pi') = e_{L/L'} = \frac{e_{L/\Q_p}}{e_{L'/\Q_p}} = \frac{[L:\Q_p]}{[L':\Q_p]} = \frac{p^{n-1}(p-1)}{p^{n-k-1}(p-1)} = p^k$
+
+By \textbf{16.2.1}, $\sigma \in G_i \iff p^k\geq i+1$. Thus:
+\[G_i \cong \begin{cases} (\Z/p^n\Z)^\times & i < 0 \\ (1+p^k\Z)/p^n\Z & p^{k-1}-1<i\leq p^{k}-1, 1\leq k\leq n-1\\ \{1\} & i > p^{n-1}-1\end{cases}\]
+These are reminiscent of $U_{\Q_p}^{(k)}$.
+
+\subsection{Upper Numbering of Ramification Groups}
+These ramification groups behave well with respect to taking subgroups:
+\begin{proposition}
+  Let $L/F/K$ be finite extensions of non-archimedean local fields, with $L/K$ Galois.
+
+  Then for $s \in \R_{\geq-1}$,
+  \[G_s(L/F) = G_s(L/K)\cap \Gal(L/F)\]
+\end{proposition}
+\begin{proof}
+  $G_s(L/F) = \{\sigma \in \Gal(L/F) : v_L(\sigma(x)-x) \geq s+1 \forall x \in \O_L\} = \Gal(L/F) \cap G_s(L/K)$
+\end{proof}
+However, $G_s$ behave badly with respect to taking quotients. We fix this by renumbering.
+
+Let $L/K$ be finite and Galois. Define a function $\phi \coloneqq \phi_{L/K}:\R_{\geq -1}\to \R$ by
+\[\phi(s) = \int_0^s \frac{1}{[G_0:G_t]}dt\]
+As a convention, we write, for $t\in [-1, 0]$, $\frac{1}{[G_0:G_t]} = [G_t:G_0]$.
+
+We have for $m \leq s < m+1$,
+\[\phi(s) = \begin{cases} s & m = -1\\\frac{1}{|G_0|}(|G_1|+\ldots+|G_m|+(s-m)|G_{m+1}|) & m \geq 0\end{cases}\]
+Thus $\phi$ is continuous, piecewise linear, and strictly increasing.
+
+Fix notation: $L/F/K$ are finite extensions of non-archimedean local fields with $L/K$ and $F/K$ Galois. Take $G \coloneqq \Gal(L/K)$ and $H \coloneqq \Gal(L/F)$, and so $G/H = \Gal(F/K)$.
+
+Then for $s \in \R_{\geq-1}$, we will write $G_s, H_s, (G/H)_s$ for the $s\th$ higher ramification groups for $G, H, (G/H)$ respectively.
+\begin{theorem}[Herbrand's Theorem]
+  Let $L/F/K$ be as above. Then for $s\in \R_{\geq -1}$, we have
+  \[\frac{G_sH}{H} = (G/H)_{\phi_{L/F}(s)}\]
+\end{theorem}
+\begin{proof}
+  Next lecture.
+\end{proof}
+As $\phi_{L/K}$ is continuous and strictly increasing, we may define $\psi_{L/K} \coloneqq \phi_{L/K}^{-1}$.
+\begin{definition}[Upper Numbering]
+  Let $L/K$ be a finite Galois extension of non-archimedean local fields. The higher ramification groups in upper numbering is defined by
+  \[G^s(L/K) \coloneqq G_{\psi_{L/K}(s)}(L/K)\]
+\end{definition}
+We can thus rephrase \textbf{16.6} as follows:
+\begin{lemma}Let $L/F/K$ be as above.
+  \begin{enumerate}
+    \item $\phi_{L/K}  = \phi_{F/K}\circ \phi_{L/F}$
+    \item $\psi_{L/K} = \psi_{L/F} \circ \psi_{F/K}$
+  \end{enumerate}
+\end{lemma}
+\begin{proof}
+  Since $\psi = \phi^{-1}$, it suffices to just prove \textit{1.}
+
+  $\phi_{L/K}$ and $\phi_{F/K}\circ \phi_{L/F}$ are piecewise linear and $\phi_{L/K}(0) = \phi_{F/K}\circ \phi_{L/F}(0) = 0$. Then it suffices to show that their derivatives are equal.
+
+  Let $r = \phi_{L/F}(s)$. Then
+  \begin{align*}
+    (\phi_{F/K}\circ \phi_{L/F})'(s) &= \phi'_{L/F}(s) \phi'_{F/K}(r)\\
+    &= \frac{|H_s|}{|H_0|}\frac{|(G/H)|_r}{|G/H|_0}\\
+    &= \frac{|H_s|}{e_{L/F}}\frac{|(G/H)_r|}{e_{F/K}}
+  \end{align*}
+  Now \textbf{16.6} implies that $(G/H)_r = \frac{G_sH}{H} = \frac{G_s}{G_s \cap H} = \fraf{G_s}{H_s}$ by \textbf{16.3}.
+
+  So $\phi'_{L/K}(s) = \frac{|G_s|}{|G_0|} = \frac{|H_s||(G/H)_R|}{e_{L/K}}$, and $e_{L/K} = e_{L/F}e_{F/K}$, so we are done.
+\end{proof}
+\begin{corollary}For $t \in [-1, \infty]$, we have
+  \[\frac{G^tH}{H} = (G/H)^t\]
+\end{corollary}
+\begin{proof}
+  Let $r =\psi_{F/K}(t)$. Then
+  \[(G/H)^t = (G/H)_r = G_{\psi_{L/K}(r)}H/H = G^tH/H\].
 \end{proof}
 \end{document}
