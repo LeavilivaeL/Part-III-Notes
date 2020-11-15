@@ -1041,4 +1041,62 @@ Now we will have two theorems of Cohen and Seidelberg (1946) - the ``going up" a
 
   Then we can extend the chain of $\f{q}$s to a chain of length $n$ with $\f{q}_i \cap R = \p_i$ for $1 \leq i \leq n$.
 \end{theorem}
+\begin{proof}
+  By induction, it's enough to consider the case $n = 2, m=1$. Write $\bar{R}$ for $R/\p_1$, $\bar{T}$ for $T/\f{q}_1$. Then $\bar{R} \injection \bar{T}$ with $\bar{T}$ integral over $\bar{R}$, using the fact that $\f{q}_1 \cap R = \p_1$ and \textbf{4.12.2}. By the lying over theorem, there is a prime $\f{q}_2$ of $\bar{T}$ such that $\bar{q}_2 \cap \bar{R} = \bar{\p}_2$. Lifting back gives a prime ideal $\f{q}_2$ of $T$ with $\f{q}_2 \geq \f{q}_1$, and $\f{q}_2 \cap R = \p_2$.
+\end{proof}
+\begin{theorem}[``Going-down Theorem"]
+  Let $R \subset T$ be integral domains, with $R$ integrally closed in $T$ and $T$ integral over $R$. Let $\p_1 \geq \ldots \geq \p_n$ be a chain of prime ideals of $R$, and $\f{q}_1 \geq \ldots \geq \f{q}_m$ ($m<n$) be a chain of prime ideals in $T$, with $\f{q}_i \cap R = \p_i$ for $1 \leq i \leq m$.
+
+  Then we can extend the chain of $\f{q}$s to a chain of length $n$ with $\f{q}_i \cap R = \p_i$ for $1 \leq i \leq n$.
+\end{theorem}
+Later we will apply these to finitely generated $k$-algebras $T$ and prove ``Noether normalisations" - if $T$ is a domain the $T$ is integral over a subalgebra isomorphic to a polynomial algebra.
+
+\begin{corollary}[of going up]
+  Let $R \leq T$, with $T$ integral over $R$. Then $\dim R = \dim T$.
+\end{corollary}
+\begin{proof}
+  Take a chain $\f{q}_0 \lneq \f{q}_1 \lneq \ldots \lneq \f{q}_n$ of primes in $T$. Intersecting with $R$ gives a strict chain $\p_0 \lneq \p_1 \lneq \ldots \lneq \p_n$ of primes in $R$, with $\f{q}_i \cap R = \p_i$. Thus $\dim R \geq \dim T$.
+
+  Conversely, suppose $\p_0 \lneq \ldots \lneq \p_n$ is a chain of primes in $R$. Then there is a prime $\f{q}_0$ lying over $\p_0$ by \textbf{4.16}, and the going-up theorem gives a strict chain $\f{q}_0 \lneq \ldots \lneq \f{q}_n$ with $\f{q}_i \cap R = \p_i$. So $\dim R \leq \dim T$.
+\end{proof}
+
+\begin{corollary}[of going down]
+  Let $R \leq T$, with $T$ an integral domain, $R$ integrally closed, and $T$ integral over $R$. Let $\f{q}$ be a prime of $T$. Then
+  \[\height(\f{q}\cap R) = \height{\f{q}}\]
+\end{corollary}
+\begin{proof}
+  Take the chain $\f{q}_0 \lneq \ldots \lneq \f{q}_n = \f{q}$ in $\Spec(T)$. As above, there is a chain $\p_0 \lneq \ldots \lneq \p_n = \f{q}\cap R$ with $\f{q}_i \cap R = \p_i$, so $\height(\f{q}\cap R) \geq \height(\f{q})$.
+
+  Conversely, if $\p_0 \lneq \ldots \lneq \p_n = \f{q}\cap R$, then the going-down theorem gives $\f{q}_0 \lneq \ldots \lneq \f{q}_n = \f{q}$ with $\f{q}_i \cap R = \p_i$. So $\height(\f{q}\cap R) \leq \height{q}$.
+\end{proof}
+To prove the going down theorem, we'll need two lemmas and a bit of Galois theory.
+\begin{definition}
+  If $I \triangleleft R$ and $R \leq T$, then $x \in T$ is \emph{integral over I} if $x$ satisfies a monic equation $x^n+r_{n-1}x^{n-1} + \ldots +r_0 = 0$ with $r_i \in I$. The \emph{integral closure} of $I$ in $T$ is the set of such $x$.
+\end{definition}
+\begin{lemma}
+  Let $R \leq T$ be rings with $T$ integral over $R$. Let $I \triangleleft R$. Then the integral closure of $I$ in $T$ is the radical $\sqrt{TI}$ (note that $TI \triangleleft I$), and this is closed under addition and multiplication. In particular, if $R = T$, then the integral closure of $I$ in $R$ is $\sqrt{I}$.
+\end{lemma}
+\begin{proof}
+  If $x$ is integral over $I$, then \textbf{4.21} implies $x^n \in TI$, and hence $x \in \sqrt{TI}$.
+
+  Conversely, if $x \in \sqrt{TI}$, then $x^n = \sum_{i} t_i r_i$ say, for some $n \in \N, r_i \in I, t_i \in T$.
+
+  But each $t_i$ is integral over $R$, so \textbf{4.8} implies that $M = R[t_1, \ldots, t_n]$ is a finitely generated $R$-module. Also, $x^n R[t_1, \ldots, t_n] \subseteq IM$. Let $y_1, \ldots, y_s$ be a generating set for $M$. Then $x^n_y_j = \sum_\ell r_{j\ell} y_\ell$ for some $r_{j\ell} \in I$. As in the proof of \textbf{4.7}, we then get
+  \[\sum_\ell (x^n\delta_{j\ell} - r_{j\ell})y_\ell = 0\]
+  and we thus deduce that $x^n$ satisfies an equation of the form $(x^n)^s + \ldots +r_0'=0$. Note that the coefficients are $I$. Thus $x^n$, and so $x$, is integral over $I$.
+\end{proof}
+\begin{lemma}
+  Let $R \subseteq T$ be integral domains, with $R$ integrally closed, and let $x \in T$ be integral over an ideal $I$ of $R$. Then $x$ is algebraic over $K$, the field of fractions $R$, and the minimal polynomial over $K$, say $m_x(t) = t^n + r_{n-1}t^{n-1} + \ldots+ r_0$ has its coefficients in $\sqrt{I}$.
+\end{lemma}
+\begin{proof}
+  Certainly $x$ is algebraic over $K$ as it is integral over $I$. We claim the coefficients $r_i$ of the minimal polynomial of $x$ over $K$ are all integral over $I$.
+
+  This will then imply that $r_i \in R$, as $R$ integrally closed, and by \textbf{4.22}, with $T=R$, we have $r_i \in \sqrt{I}$ since they lie in the integral closure of $I$ in $R$.
+
+  To see the claim, take an extension field $L$ of $K$ containing all of the conjugates $x_1, \ldots, x_n$ of $x$, for instance a splitting field of $m_x(t)$. If $y = x_i$ is a root of $m_x(t)$, the applying there is a $K$-automorphism of $L$ with $x \mapsto \alpha$.
+
+  Now $y$ is integral over $I$: if $x$ satisfies the monic equation $x^m + r_{m-1}'x^{m-1} + \ldots +r_0' = 0$ with $r_i' \in I$, then applying the automorphism gives $y^m + r_{m-1}'y^{m-1} + \ldots +r_0' = 0$, as $r_i'\in I \subseteq R \subseteq K$. So $y$ lies in the integral closure of $R$ in $L$.
+
+  The coefficients $m_x(t)$ are obtained from its roots in $L$ by taking sums and products, and hence these coefficients are integral over $I$.
+\end{proof}
 \end{document}
