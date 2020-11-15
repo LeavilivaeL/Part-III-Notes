@@ -936,7 +936,7 @@ Some authors say \emph{S is finite over R} if $S$ is a finitely generated $R$-mo
     \[\sum_j \underbrace{(x\delta_{ij} - r_{ij})}_{A_{ij}}y_j = 0\]
     where $\delta_{ij}$ is the Kronecker delta.
 
-    Multiplying on the left by $\adj A$ gives us $()\det A)y = 0$ for all $y$. Taking $y$ to be $1$, we get $\det A = 0$. But $\det A$ is also a monic polynomial in $x$, and hence $x$ is integral over $R$.
+    Multiplying on the left by $\text{adj}(A)$ gives us $(\det A)y = 0$ for all $y$. Taking $y$ to be $1$, we get $\det A = 0$. But $\det A$ is also a monic polynomial in $x$, and hence $x$ is integral over $R$.
   \end{itemize}
 \end{proof}
 The proof is reminiscent of the proof in Atiyah-Macdonald for Nakayama's lemma. Some authors say $S$ is \emph{of finite type} over $R$ is $S$ is generated as a ring by $R$ and some finite set.
@@ -1006,7 +1006,7 @@ The proof is reminiscent of the proof in Atiyah-Macdonald for Nakayama's lemma. 
   \[t^n + r_{n-1}t^{n-1} + \ldots + r_0 = 0\]
   with $r_i \in R$. Since $T$ is a domain, $r_0 \neq 0$, as otherwise this polynomial factors, contradicting minimality. Hence $t$ has an inverse, namely $-r_0^{-1}(t^{n-1}+\ldots+r_0)\in T$, and so $T$ is a field.
 
-  Conversely, suppose that $T$ is a field. Let $0 \neq x \in R$. Then $x$ has an inverse $x^{-1} \in T$. So $x^{-1}$ satisfies a monic equation $x^{-m} + r_m'x^{-m+1} + \ldots +  r_0^' = 0$. Rearrange for a formula for $x^{-1} = -(r_m' + r_{m-1}'x+\ldots+r_0'x^{m-1})\in R$. Thus $R$ is a field.
+  Conversely, suppose that $T$ is a field. Let $0 \neq x \in R$. Then $x$ has an inverse $x^{-1} \in T$. So $x^{-1}$ satisfies a monic equation $x^{-m} + r_m'x^{-m+1} + \ldots +  r_0' = 0$. Rearrange for a formula for $x^{-1} = -(r_m' + r_{m-1}'x+\ldots+r_0'x^{m-1})\in R$. Thus $R$ is a field.
 \end{proof}
 \begin{lemma}
   Let $R \leq T$ be rings, with $T$ integral over $R$. Let $\f{q}$ be a prime ideal in $T$ and set $\p = R \cap \f{q}$. Then $\f{q}$ is maximal if and only if $\f{p}$ is maximal.
@@ -1081,7 +1081,7 @@ To prove the going down theorem, we'll need two lemmas and a bit of Galois theor
 
   Conversely, if $x \in \sqrt{TI}$, then $x^n = \sum_{i} t_i r_i$ say, for some $n \in \N, r_i \in I, t_i \in T$.
 
-  But each $t_i$ is integral over $R$, so \textbf{4.8} implies that $M = R[t_1, \ldots, t_n]$ is a finitely generated $R$-module. Also, $x^n R[t_1, \ldots, t_n] \subseteq IM$. Let $y_1, \ldots, y_s$ be a generating set for $M$. Then $x^n_y_j = \sum_\ell r_{j\ell} y_\ell$ for some $r_{j\ell} \in I$. As in the proof of \textbf{4.7}, we then get
+  But each $t_i$ is integral over $R$, so \textbf{4.8} implies that $M = R[t_1, \ldots, t_n]$ is a finitely generated $R$-module. Also, $x^n R[t_1, \ldots, t_n] \subseteq IM$. Let $y_1, \ldots, y_s$ be a generating set for $M$. Then $x^ny_j = \sum_\ell r_{j\ell} y_\ell$ for some $r_{j\ell} \in I$. As in the proof of \textbf{4.7}, we then get
   \[\sum_\ell (x^n\delta_{j\ell} - r_{j\ell})y_\ell = 0\]
   and we thus deduce that $x^n$ satisfies an equation of the form $(x^n)^s + \ldots +r_0'=0$. Note that the coefficients are $I$. Thus $x^n$, and so $x$, is integral over $I$.
 \end{proof}
