@@ -1968,7 +1968,7 @@ We can thus rephrase \textbf{16.6} as follows:
     &= \frac{|H_s|}{|H_0|}\frac{|(G/H)|_r}{|G/H|_0}\\
     &= \frac{|H_s|}{e_{L/F}}\frac{|(G/H)_r|}{e_{F/K}}
   \end{align*}
-  Now \textbf{16.6} implies that $(G/H)_r = \frac{G_sH}{H} = \frac{G_s}{G_s \cap H} = \fraf{G_s}{H_s}$ by \textbf{16.3}.
+  Now \textbf{16.6} implies that $(G/H)_r = \frac{G_sH}{H} = \frac{G_s}{G_s \cap H} = \frac{G_s}{H_s}$ by \textbf{16.3}.
 
   So $\phi'_{L/K}(s) = \frac{|G_s|}{|G_0|} = \frac{|H_s||(G/H)_R|}{e_{L/K}}$, and $e_{L/K} = e_{L/F}e_{F/K}$, so we are done.
 \end{proof}
@@ -1978,5 +1978,134 @@ We can thus rephrase \textbf{16.6} as follows:
 \begin{proof}
   Let $r =\psi_{F/K}(t)$. Then
   \[(G/H)^t = (G/H)_r = G_{\psi_{L/K}(r)}H/H = G^tH/H\].
+\end{proof}
+
+\section{Proof of Herbrand's Theorem}
+Let $L/F/K$ be finite extensions of non-archimedean local fields, with $L/K, F/K$ Galois, with $G = \Gal(L/K), H = \Gal(L/F)$.
+
+Recall Herbrand's theorem:
+
+\textbf{Theorem 16.6} (Herbrand's Theorem).
+\[G_sH/H = (G/H)_{\phi_{F/L}(s)}\]
+We introduce an auxiliary function:
+\begin{definition}
+  Let $L/K$ be finite and Galois, with $\sigma \in \Gal(L/F)$. Then we define:
+  \begin{align*}
+    i_{L/K}: \Gal(L/K) & \to \Z\\
+    i_{L/K}(\sigma) &= \min_{x \in \O_L} v_L(\sigma(x)-x)\\
+    &= \max\{i \in \Z: \sigma \in G_{i-1}\}
+  \end{align*}
+  By convention, $i_{L/K}(1) = \infty$.
+\end{definition}
+Note that $G_s(L/K) = \{\sigma \in \Gal(L/K):i_{L/K}(\sigma) \geq s+1\}$.
+\begin{lemma}
+  Let $L/K$ be finite and Galois. Let $x \in \O_L$ such that $\O_K[x] = \O_L$. Then:
+  \begin{enumerate}
+    \item $i_{L/K}(\sigma) = v_L(\sigma(x)-x)$.
+    \item $G_s(L/K) = \{\sigma \in \Gal(L/K): v_L(\sigma(x)-x)\geq s+1\}$.
+  \end{enumerate}
+\end{lemma}
+\begin{proof}
+  Let $y \in \O_L$, then $y = f(x)$ for some polynomial $f \in \O_K[X]$. The same argument as in \textbf{15.6.1} shows that $\sigma(x)-x | \sigma(y)-y$ in $\O_L$.
+
+  Hence $v_L(\sigma(y)-y) \geq v_L(\sigma(x)-x)$, and we have both parts.
+\end{proof}
+\begin{proposition}
+  Let $L/F/K$ be as above, and let $\sigma \in G$. Then we have
+  \[i_{F/K}(\sigma H) = e_{L/F}^{-1}\sum_{\tau \in H}i_{L/K}(\sigma \tau)\]
+\end{proposition}
+\begin{proof}
+  When $\sigma = 1$, we interpret this as ``$\infty = \infty$".
+
+  When $\sigma \neq 1$, let $v_L$ and $v_F$ denote the normalised valuations on $L$ and $F$. Let $x \in \O_F, y \in O_L$, such that $\O_F = \O_K[x]$, and $\O_L = \O_K[y]$.
+
+  Define $a \coloneqq \sigma(x)-x \in \O_L$, and $b \coloneqq \prod_{\tau \in H} (\sigma\tau(y)-y) \in \O_L$.
+
+  Then $e_{L/F}i_{F/K}(\sigma H) = e_{L/F}v_F(\sigma(x)-x) = v_L(\sigma(x)-x) = v_L(a)$.
+
+  And $\sum_{\tau \in H} i_{L/K}(\sigma \tau) = \sum_{\tau \in H}v_L(\sigma\tau(y)-y) = v_L(\prod_{\tau \in H}(\sigma \tau(y)-y)) = v_L(b)$.
+
+  We need to show that $v_L(a) = v_L(b)$. We will show this by showing that $a|b$ and $b|a$ in $\O_L$.
+
+  For $a|b$, let $f \in \O_F[X]$ be the minimal polynomial for $y$ over $\O_F$. Then
+  \[f(x) = \prod_{\tau \in H} (X-\tau(y))\]
+  and $\sigma(f)(X) = \prod_{\tau \in H} (X -\sigma\tau(y))$.
+
+  Since $\O_F = \O_K[x]$, $a = \sigma(x)-x$ divides $\sigma(z)-z$ for all $z \in \O_F$.
+
+  Thus $a$ divides all coefficients of $\sigma(f)(X) - f(X)$, and so $a|\sigma(f)(y)-f(y) = \sigma(f)(y) = \pm b$.
+
+  For $b|a$, let $g \in \O_K[X]$ be such that $x = g(y)$. Then $g(X)-x \in \O_F[X]$ has $y$ as a root, and so $g(X)-x = f(X)h(X)$ for some $h \in \O_F[X]$.
+
+  Applying $\sigma$ and evaluating at $y$ gives:
+  \[\sigma(g)(y) - \sigma(x) = \sigma(f)(y)\sigma(h)(y) = b\sigma(g)(y)\]
+  But $\sigma(h)(y) \in O_L$, and $\sigma(g)(y) = g(y) = x$, and $b |a$.
+\end{proof}
+\begin{lemma}
+  Let $L/K$ be a finite Galois extension of non-archimedean local fields, and $\sigma \in G = \Gal(L/K)$. Then
+  \[\phi_{L/K}(s) = -1 + \frac{1}{|G_0|}\sum_{\sigma \in G} \min\{i_{L/K}(\sigma), s+1\}\]
+  for any $s \in \R_{\geq 1}$.
+\end{lemma}
+\begin{proof}
+  Since both sides are piecewise linear and continuous. Let $\theta(s) = \textsc{RHS}$. Then $\phi_{L/K}(-1) = -1 = \theta(-1)$.
+
+  Thus it suffices to show $\theta' = \phi_{L/K}'$.
+
+  $\theta'(u) = \frac{1}{|G_0|}\cdot \#\{\sigma \in G : i_{L/K}(\sigma) \geq s+1\} = \frac{|G_s|}{|G_0|} = \phi_{L/K}'$ by the fundamental theorem of calculus.
+\end{proof}
+\begin{proof}[Proof of Herbrand's Theorem]
+  Define a function $j:G/H \to \Z\cup \{\infty\}$ by
+  \[j(\sigma H) = \max_{\tau \in H}\{i_{L/K}(\sigma \tau)\}\]
+  for $\sigma \in G$.
+
+  Then we have $\sigma H \in G_sH/H \iff j(\sigma H)-1 \geq s \iff \phi_{L/F}(j(\sigma H) - 1) \geq \phi_{L/F}(s)$, as $\phi$ is strictly increasing.
+
+  On the other hand, we have $\sigma H \in (G/H)_{\phi_{L/F}(s)} \iff i_{F/K}(\sigma H) - 1 \geq \phi_{L/F}(s)$
+
+  Thus it suffices to show
+  \[\phi_{L/F}(j(\sigma H)-1) = i_{F/K}(\sigma H) - 1 \tag{\ast}\]
+  We can assume $\sigma \notin H$, as then this just say ``$\infty=\infty$". Upon replacing $\sigma$ by another element in $\sigma H$, we may assume
+  \[j(\sigma H) = i_{L/K}(\sigma) \eqqcolon m\]
+  i.e. $\sigma \in G_{m-1}\setminus G_m$.
+
+  Now if $\tau \in H_{m-1} = G_{m-1}\cap H$, then $\sigma \tau \in G_{m-1} \implies i_{L/K}(\sigma \tau) \geq m$, and so $i_{L/K}(\sigma \tau) = m$, by maximality of $m$.
+
+  On the other hand, if $\tau \notin H_{m-1}$, then $\sigma\tau \notin G_{m-1}$, and so $i_{L/K}(\sigma \tau) < m$, and $i_{L/K}(\sigma \tau) = i_{L/K}(\tau)$.
+
+  In either case, we have, for any $\tau \in H$, we have $i_{L/K}(\sigma \tau) = \min(i_{L/K}(\tau), m)$.
+
+  By \textbf{17.3}, we have
+  \[i_{F/K}(\sigma H) = e_{L/F}^{-1}\sum_{\tau \in H}\min(i_{L/K}(\tau), m)\]
+  But $i_{L/K}(\tau) = i_{L/F}(\tau)$ and $e_{L/F} = |H_0|$.
+
+  Thus \textbf{17.4} gives us that
+  \begin{align*}
+    i_{F/K}(\sigma H) &= \frac{1}{|H_0|}\sum_{\tau \in H} \min(i_{L/F}(\tau, m))\\
+    &= \phi_{L/F}(m-1)+1\\
+    &= \phi_{L/F}(j(\sigma H)-1)+1
+  \end{align*}
+  and so we have $(\ast)$.
+\end{proof}
+For example, take $K = \Q_p, L = \Q_p(\zeta_{p^n})$. Then $G \cong (\Z/p^n\Z)^\times$.
+
+Let $k \in \Z, 1 \leq k \leq n-1$. For $p^{k-1}-1 < s \leq p^{k}-1$, we have
+\[G_s \cong \{m \in (\Z/p^n\Z)^\times: m \equiv 1 \mod p^k\}\]
+Let's compute $\phi_{L/K}$. Since $G_s$ jumps at $p^{k-1}$, we have $\phi_{L/K}$ linear on $[p^{k-1}-1, p^k-1]$.
+
+It suffices to determine $\phi_{L/K}(p^k-1)$.
+
+We claim $\phi_{L/K}(p^k-1) = k$. This follows as $[G_0:G_k] = p^k(p-1)$.
+
+Thus $G^s \cong \begin{cases} (\Z/p^n\Z)^\times & s \leq 0 \\ (1+p^k \Z)/p^n\Z & k-1<s\leq k \\ \{1\} & s>n-1\end{cases}$.
+Note that $\phi(p^k-1)$ is an integer - this is a priori not clear.
+
+\begin{definition}
+  We say $i$ is a \emph{jump in a the filtration} $(G^s)_{s \in R_{\geq-1}}$ if $G^i \neq G^j$ for all $j > i$.
+\end{definition}
+\begin{theorem}[Hasse-Arf]
+  If $\Gal(L/K)$ is abelian, then the jumps of the filtration $(G^s)_{s \in \R_{\geq -1}}$ can be only be at integers.
+\end{theorem}
+\begin{proof}
+  Omitted. See Serre: Local Fields, chapter 4, section 7.
 \end{proof}
 \end{document}
