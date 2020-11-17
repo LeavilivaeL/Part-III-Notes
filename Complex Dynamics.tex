@@ -1009,4 +1009,50 @@ Note that any point attracted to $0$ under iteration must come in along an attra
 If $v$ is an attracting vector associated to a parabolic fixed point with multiplier 1, then the \emph{basin of attraction} associated to $v$ is the set of points attracted to the fixed point from the direction of $v$.
 
 The basin of attraction for the point is the union of these.
+
+\section{General Parabolics}
+\begin{definition}
+  Let $v$ be an attracting vector for a fixed point of multiplier 1. Then the \emph{parabolic basin of attraction associated to v} is the set of points converging to the parabolic point from direction $v$, and the \emph{immediate basin associated to v} the Fatou component containing $v$. If $\lambda^q = 1$, we use the same terminology, for $f^q$. The \emph{parabolic basin of attraction} is the union of all such vector-associated basins.
+\end{definition}
+\begin{lemma}
+  Let $\lambda = e^{2\pi\im p/q}$ be a primitive $q^\th$ root of unity, and $f(0) = 0$ with multiplier $\lambda$. Then the multiplicity of $0$ as a fixed point of $f^q$ is congruent to 1 mod $q$.
+\end{lemma}
+\begin{proof}
+  Let $n+1$ be the multiplicity of $0$ as a fixed point of $f^q$. If $z_0 \mapsto f^q(z_0) \mapsto f^{2q}(z_0)$ is attracted to 0 along vector $v$, then $f(z_0) \mapsto f^{q+1}(z_0) \mapsto f^{2q+1}(z_0)$ is attracting to 0 along vector $\lambda v$. In other words, multiplication by $\lambda$ permutes the $n$ attracting vectors, and so $n \equiv 0 \mod q$, and so $n+1 \equiv 1 \mod q$.
+\end{proof}
+\begin{theorem}
+  Suppose $\mathcal{P}$ is an attracting basin of $f$ for the parabolic fixed point $z_0$. Then there exists a conformal embedding $\alpha:\mathcal{P}\to \C$, unique up to composition with a translation, such that
+  \[\alpha(f(z)) = 1+\alpha(z)\]
+  for all $\alpha \in \mathcal{P}\cap f^{-1}(\mathcal{P})$. This map extends uniquely to a map $\mathcal{A} \to \C$ on the attracting basin for the parabolic point, which necessarily contains a critical point of $f$.
+\end{theorem}
+We won't prove this here, but we will prove that there is a critical point in the basin of attraction of a parabolic fixed point.
+\begin{proof}
+  Translate so that $0$ is the parabolic fixed point. Replace $f$ by an iterate to assume $f'(0) = 1$, noting the basin remains unchanged. Consider the sectors associated to attracting vectors $D_0$, with $f(D_0)\subseteq D_0$, with edges $E_+, E_-$ in the positive and negative direction from the attractor:
+  \begin{figure}[H]
+    \centering
+    \vspace*{-13pt}
+    \includegraphics[width=0.4\textwidth]{compdyn07.png}
+  \end{figure}
+  If there's no critical points of $f$ in the basin of attraction for  $0$, we can define a branch $f^{-n} : D_0 \to D_n$, with $D_0 \subseteq D_n$. By definition, each $D_n \subseteq$ basin of attraction of $0$, which is hyperbolic, so the collection $\{f^{-n}|_{D_0}\}$ form a normal family by Montel's theorem. So there is some subsequence $n_k$ with $f^{-n_k}$ converging to a holomorphic limit on $D_0$.
+
+  One can compute analytically that the only such possible limit is the constant function 0. For $k \gg 1, |f^{-n_k}(K)|\ll 0$ for compact $K \subseteq D_0$, contradicting $D_0 \subsetneq D_1 \subsetneq \ldots$
+
+  Hence there must be a critical point in the basin as claimed.
+\end{proof}
+\begin{corollary}
+  Let $f$ be a rational map of degree $d \geq 2$. Then $f$ has at most $4d-4$ non-repelling cycle.
+\end{corollary}
+\begin{proof}
+  Suppose $f$ has $\geq N$ indifferent cycles and $\geq M$ attracting cycles. Consider for $t \in \C$ the map $f_t(z) \coloneqq (1-t)f(z)+tz^d$. For an indifferent cycle of $f$ of period $k$ containing a point $\alpha$, we may analytically continue $t \mapsto \alpha(t)$ as a holomorphic function from a neighbourhood of 0 to a period $n$ point for $f_t$ by the implicit function theorem, so long as $\alpha$ is not a repeated root of $f^n(z)-z$. This occurs only if $\lambda = 1$, and in this case, replace $t = u^s$ for some $s$ to draw the same conclusion.
+
+  We then have a holomorphic multiplier map $t \mapsto \lambda(t)$, where $\lambda(t)$ is the multiplier of $\alpha(t)$ for $f_t$. If $\lambda$ is constant, it is either equal to $1$ constantly, or we can extend $\alpha, \lambda$ throughout $\C$. When $t = 1, f_t(z) = z^d$, which has no indifferent cycles, and so we have a contradiction if $\lambda(t)$ is constant but not 1.
+
+  Denote $N_1 = \{\text{indifferent cycles with } \lambda(t) = 1\}$, and $N_2$ the other indifferent cycles.
+
+  Then consider the set $\{\theta \in [0, 2\pi) : |\lambda(\epsilon e^{\im \theta})| < 1\}$. Since $\lambda$ is conformal for cycles in $N_2$, this set has measure $\frac12$. So for any cycle in $N_2$, a measure $\to\frac12$ set of perturbations of $t=0$ of size $\epsilon$ make the cycle attracting. Repeating this for all cycles in $N_2$, we may find a perturbation direction so that at least $|N_2|/2$ of the cycles in $N_2$ become attracting.
+
+  So we have $t \in \D^\times$ such that $f_t$ has $\geq |N_1|$ parabolic cycles, and $\geq \frac{|N_2|}{2}+M$ attracting cycles. So, since these all must attract some critical point, $|N_1|+\frac{|N_2|}{2}+M \leq 2d-2$, as $f_t$ is of degree $d$ also.
+
+  So $N+M \leq 4d-4$.
+\end{proof}
 \end{document}

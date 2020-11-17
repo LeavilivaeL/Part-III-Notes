@@ -1099,4 +1099,67 @@ To prove the going down theorem, we'll need two lemmas and a bit of Galois theor
 
   The coefficients $m_x(t)$ are obtained from its roots in $L$ by taking sums and products, and hence these coefficients are integral over $I$.
 \end{proof}
+Finally, we move on to a proof of the going-down theorem:
+\begin{proof}[Proof of Going-down.]
+  By induction, it's enough to consider the case $m=1, n=2$.
+
+  So $\p_1\gneq \p_2$, and $\f{q}_1$ is such that $\f{q}\cap R =\p_1$. We seek $\f{q}_2 \leq \f{q}_2$ with $\f{q}_2 \cap R = \p_2$.
+
+  Let $S_1 = T\setminus \f{q}_1, S_2 = R\setminus \p_2$, and set $S = S_1S_2 = \{rt : r \in S_1, t \in S_2\}$. Then $S$ is multiplicatively closed and contains both $S_1, S_2$.
+
+  Assume first that $T\p_2 \cap S = \emptyset$. Now $T \p_2$ is an ideal of $T$, so $S^{-1}(T\p_2) \triangleleftneq S^{-1}T$ and is proper by assumption.
+
+  Hence $S^{-1}T \p_2$ lies in a maximal ideal of $S^{-1}T$, which is necessarily of the form $S^{-1}\f{q}_2$ for some prime ideal $\f{q}_2$ of $T$ such that $\f{q}_2 \cap S =\emptyset$ and $T\p_2 \leq \f{q}_2$ (as $S^{-1}(T\p_2) \leq S^{-1}\f{q}_2$). Hence $\p_2 \leq T\p_2 \cap R \leq \f{q}_2 \cap R$.
+
+  Moreover, since $\f{q}_2 \cap S = \emptyset$ and $S_2 = R \setminus \p_2 \subset S$, we get that $\p_2 \geq \f{q}_2 \cap R$, and hence we have equality.
+
+  Similarly, $S_1 = T\setminus f{q}_1 \subseteq S$, and $\f{q}_2 \leq \f{q}_1$.
+
+  It remains to prove that assumption that $T\p_2 \cap S = \emptyset$.
+
+  Suppose not, and take some $0 \neq x \in T\p_2 \cap S$. By \textbf{4.22} with $I = \p_2$, $x$ lies in the integral closure of $\p_2$ in $T$. Hence, by \textbf{4.23} it must be algebraic over the field of fractions $K$ of $R$, and its minimal polynomial over $K$ has coefficients in $\p_2$ (as $\sqrt{\p_2} = \p_2$ by primality).
+
+  But $x \in S$, and hence is of the form $rt$ for some $r \in S_1, t\in S_2$. Now if $x$ has minimal polynomial $X^n+r_{n-1}X^{n-1} + \ldots + r_0$ over $K$, then $t = \frac{x}{r}$ has minimal polynomial
+  \[X^n + \frac{r_{n-1}}{r}x^{n-1} + \ldots + \frac{r_0}{r^n}\]
+  again over $K$, and these coefficients are in $R$ since $t_1 \in T$ is integral over $R$.
+
+  Calling these coefficients $r_i'$, we have $r_i \in \p_2$ and $r\notin \p_2$, so $r_i' \in \p_2$. By definition, $t$ is integral over $\p_2$, and so by \textbf{4.22} we see $t \in \sqrt{T\p_2}$. However $t \in S_1 = T\setminus \f{q}_1$, but $T\p_2 \leq \f{q}_1$, and hence we have a contradiction.
+\end{proof}
+Now we focus on \emph{affine k-algebras} where $k$ is a field, i.e. the $k$-algebras of finite type over $k$, i.e. the algebras generated as rings by $k$ and a finite set $x_1, \ldots, x_n$, and thus homomorphic images of the polynomial rings $k[x_1, \ldots, x_n]$. We will work away towards the following theorem:
+\begin{theorem}
+  Let $R$ be an affine algebra which is an integral domain with fraction field $K$. Then
+  \[\dim R = \tr \deg_k K\]
+  where $\tr \deg_k K$ is the \emph{transcendence degree} of $K$ over $k$.
+\end{theorem}
+\subsection{Transcendence Degree}
+We say that $x_1, \ldots, x_n$ are \emph{algebraically independent} over $k$ if the ring map $k[X_1, \ldots, X_n]\to k[x_1, \ldots, x_n], X_i \mapsto x_i$ is an isomorphism, and so $k[x_1, \ldots, x_n]$ may be regarded as a polynomial algebra. As in linear algebra, we consider maximal algebraically independent sets - they all have the same size. Such a set is a \emph{transcendence basis} over $k$, the \emph{transcendence degree} is the cardinality of the set. We have a translation from the terminology of linear algebra:
+\begin{center}
+\begin{tabular}{
+  p{0.4\textwidth}
+  p{0.05\textwidth}
+  p{0.4\textwidth}
+}
+  \raggedleft Linearly independent set & $\longleftrightarrow$ & Algebraically independent set\\
+  \raggedleft Span $\angle{S}$ & $\longleftrightarrow$ &  The algebraic closure of $S$: the maximal algebraic extension of $k[x_1, \ldots, x_n]$\\
+  \raggedleft Dimension & $\longleftrightarrow$ & Transcendence degree \\
+\end{tabular}
+\end{center}
+For example, let $L = k(X_1, \ldots, X_n)$ be the fraction field of $k[X_1, \ldots, X_n]$, and $f$ irreducible in $k[X_1, \ldots, X_n]$. Put $K = \Frac k[X_1, \ldots, X_n]/(f)$. Then:
+\begin{align*}
+  \tr \deg_k L &= n \text{ $X_1,\ldots,X_n$ is a maximal algebraically independent set}\\
+  \tr \deg_k K &= n-1 \text{ $K$ is an algebraic extension of $k(X_1, \ldots, \hat{X}_i, \ldots, X_n)$ where $X_i$ appears in $f$}
+\end{align*}
+The key result for proving \textbf{4.24} is:
+\begin{theorem}[Noether's Normalisation Lemma (AM p.69)]
+  Let $T$ be an affine algebra. Then $T$ is integral over a subalgebra of the form $R = k[x_1, \ldots, x_n]$ with the $x_i$ algebraically independent.
+\end{theorem}
+\begin{proof}
+  Let $T = k[a_1, \ldots, a_n]$. The proof will be by induction on $n$.
+
+  Let $r$ be the maximal number of algebraically independent elements. Without loss of generality, we take $r \geq 1$, otherwise $T$ is a finite dimensional vector space over $k$ and we can take $R = k$.
+
+  There is nothing to do if $a_1, \ldots, a_n$ are algebraically independent. So renumber the $a_i$ so that the first $r$ of them are algebraically independent, and $a_{r+1},\ldots, a_n$ are algebraically dependent on $a_1, \ldots, a_r$ over $k$.
+
+  Then take $0 \neq f \in k[x_1, \ldots, x_r, x_n]$ with $f(a_1, \ldots, a_r, a_n) = 0$. Then $f(x_1, \ldots, x_r, x_n)$ is a  sum of terms $\lambda_{\tilde{\ell}}x_1^{\ell_1}\ldots x_r^{\ell_r}x_n^{\ell_n}$, where the $(r+1)$-tuple $\tilde{\ell}$ is of the form $(\ell_1, \ldots, \ell_r, \ell_n)$ for $\ell_i \in \R_{\geq 0}$.
+\end{proof}
 \end{document}

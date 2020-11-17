@@ -86,6 +86,8 @@
       \node[shape=circle,draw,inner sep=2pt] (char) {#1};}
 }
 \renewcommand{\epsilon}{\varepsilon}
+\newcommand{\trianglerightneq}{\mathrel{\ooalign{\raisebox{-0.5ex}{\reflectbox{\rotatebox{90}{$\nshortmid$}}}\cr$\triangleright$\cr}\mkern-3mu}}
+\newcommand{\triangleleftneq}{\mathrel{\reflectbox{$\trianglerightneq$}}}
 
 \DeclareMathOperator{\ex}{ex}
 \DeclareMathOperator{\id}{id}
