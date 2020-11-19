@@ -1161,5 +1161,52 @@ The key result for proving \textbf{4.24} is:
   There is nothing to do if $a_1, \ldots, a_n$ are algebraically independent. So renumber the $a_i$ so that the first $r$ of them are algebraically independent, and $a_{r+1},\ldots, a_n$ are algebraically dependent on $a_1, \ldots, a_r$ over $k$.
 
   Then take $0 \neq f \in k[x_1, \ldots, x_r, x_n]$ with $f(a_1, \ldots, a_r, a_n) = 0$. Then $f(x_1, \ldots, x_r, x_n)$ is a  sum of terms $\lambda_{\tilde{\ell}}x_1^{\ell_1}\ldots x_r^{\ell_r}x_n^{\ell_n}$, where the $(r+1)$-tuple $\tilde{\ell}$ is of the form $(\ell_1, \ldots, \ell_r, \ell_n)$ for $\ell_i \in \R_{\geq 0}$.
+
+  Claim: there are positive integers $m_1, \ldots, m_r$ such that $\varphi: \tilde{\ell} \mapsto m_1\ell_1+\ldots+m_r\ell_r+\ell_n$ is injective for those $\tilde{\ell}$ with $\lambda_{\tilde{\ell}} \neq 0$.
+
+  To see this, note that there are only finitely many possibilities for the differences $\tilde{d} = \tilde{\ell} - \tilde{\ell}'$ with $\lambda_{\tilde{\ell}}, \lambda_{\tilde{\ell}'} \neq 0$. Writing $\tilde{d} = (d_1, \ldots, d_r, d_n)$, consider the finitely many nonzero tuples $(d_1, \ldots, d_r, d_n)$, consider the finitely many nonzero $(d_1, \ldots, d_r) \in \Z^r$ obtained.
+  Vectors in $\Q^r$ orthogonal to one of these $r$-tuples lie in finitely many $(r-1)$-dimensional rational subspaces. So we may pick $(q_1, \ldots,s q_r)$ with each $q_i > 0$, so that $\sum q_i d_i \neq 0$ for all the finitely many nonzero $(d_1, \ldots, d_r)$. Multiply by a positive integer to get $(m_1, \ldots, m_r)\in \Z^r_{\geq 0}$ such that $|\sum m_id_i| > |d_n|$ for all of the finitely many $\tilde{d}$ with $(d_1, \ldots, d_r) \neq 0$.
+
+  We thus conclude that, if $\varphi(\tilde{\ell}) = \varphi(\tilde{\ell'})$, then $d_1=\ldots = d_r = 0$, but then $\ell_n=\ell_n'$, and so $\tilde{\ell} = \tilde{\ell}'$.
+
+  Now for these $m_1, \ldots, m_r$, set $g(x_1, \ldots, x_r, x_n) = f(x_1+x_n^{m_1}, \ldots, x_r+x_n^{m_r}, x_n)$. This is a sum:
+  \[\sum_{\tilde{\ell}:\lambda_{\tilde{\ell}} \neq 0} \lambda_{\tilde{\ell}}(x_1 + x_n^{m_1})^{\ell_1}\ldots (x_r+x_n^{m_r})^{\ell_r}x_n^{\ell_n}\]
+  Different terms have different powers of $x_n$ - there will be a single term with the highest power of $x_n$. As a polynomial in $x_n$, the leading coefficient is one of the $\lambda_{\tilde{\ell}}$, and so is in $k$.
+
+  Put $b_i = a_i - a_n^{m_i}$ for each $1 \leq i \leq r$, and $h(x_n)=g(b_1, \ldots, b_r, x_n)$. This has leading coefficient in $k$, and all coefficients are in $k[b_1, \ldots, b_r]$. Moreover:
+  \[h(a_n) = g(b_1, \ldots, b_r, a_n) = f(a_1, \ldots, a_r, a_n) = 0\]
+  Dividing through by the leading coefficient shows that $a_n$ is integral over $k[b_1, \ldots, b_r]$. So for each $i \leq r$, $a_i = b_i = a_n^{m_i}$ is also integral over $k[b_1, \ldots, b_r]$.
+
+  We thus conclude that $T$ is integral over $k[b_1, \ldots, b_r, a_{r+1}, \ldots, a_{n-1}]$. By induction, this subring with fewer generators is integral over the polynomial algebra $R$, and so $T$ is integral over $R$.
+\end{proof}
+We now use the Noether Normalisation Lemma (NNT) to prove $\textbf{4.24}$:
+\begin{proof}[Proof of \textbf{4.24}.]
+  Let $T$ be an affine domain. We know there are $x_1, \ldots, x_r$ algebraically independent with $T$ integral over $k[x_1, \ldots, x_r] = R$, a polynomial algebra. By \textbf{4.19}, $\dim T = \dim R$. So any finitely generated $k$-algebra has dimension equal to that of a polynomial subalgebra in $r$ variables with
+  \[\tr\deg_k(\Frac(T)) = r\]
+  We now need to show that $\dim k[x_1, \ldots, x_r] = r$. Earlier, we say $\dim k[x_1, \ldots, x_r] \geq r$, for instance by observing $(0) \subsetneq (x_1)\subsetneq (x_1, x_2) \subsetneq \ldots \subsetneq (x_1, \ldots, x_r)$ is a strict chain of prime ideals.
+
+  We then prove equality by induction on $r$. If $r= 0$, we are done - the only prime is $(0)$. So assume $r \geq 1$.
+
+  Take a chain of primes in $R$: $\p_0\lneq \ldots \lneq \p_s$. Without loss of generality, as $R$ is a domain, take $\p_0 = 0$, and, since $\p_1$ contains $(f)$ for some irreducible $f$ as $k[x_1, \ldots, x_n]$ is a UFD, we may assume $\p_1 = (f)$.
+
+  Now consider $R/(f)$. $\tr\deg_k(\Frac(R/(f))) = r-1$. Induction gives that $\dim(R/(f)) = \dim k[Y_1, \ldots, Y_{r-1}]$ for some polynomial algebra with $r-1$ variables, which has dimension $r-1$ by induction.
+
+  But $\p_1 = (f)$, so consider the chain:
+  \[(0) = \p_1/\p_1 \lneq \p_2/\p_1 \lneq \ldots \lneq \p_s/\p_1\]
+  a chain of primes in $R/\p_1 = R/(f)$ of length $s-1$. Then we must have $s-1 \leq r-1$, and $s \leq r$. So $\dim R \leq r$, and so $\dim R = r$.
+\end{proof}
+The next result is on the example sheet:
+\begin{corollary}
+  If $\f{q}$ is a prime of an affine domain $T$, then:
+  \[\height(\f{q}) +\dim(T/\f{q}) = n \eqqcolon \dim T\]
+\end{corollary}
+\begin{proof}
+  Put $m = \height(\f{q})$ and pick a chain $\f{q}_0 \lneq \ldots \lneq \f{q}_m = \f{q}$ of primes of maximal length. By NNT, there is a subalgebra $R$ of $T$, with $T$ integral over $R$, and $R$ isomorphic to a polynomial algebra. Then $\dim R = \dim T$, and by \textbf{3.24}, $n = \dim R = \tr\deg_k(\Frac(T)) = \#$variables in the polynomial algebra.
+
+  Writ $\p_i = \f{q}_i \cap R$, and note $\height(\f{q}_1) = 1$, else we can find a longer chain. So by \textbf{4.20}, a corollary of going-down, since $R$ is integrally closed, $\height(\p_1) = 1$. So $\p_1 = (f)$ for $(f)$ irreducible (as $R$ is a UFD).
+
+  Thus $\tr\deg_k(\Frac(R/\p_1)) = n-1$.
+
+  The idea to finish the proof off is to apply induction to the prime $\f{q}/\f{q}_1$ in $T/\f{q}_1$. Firstly, $\dim (R/\p_1) = n-1$, by \textbf{3.24}. Secondly, by the induction hypothesis applied to $\f{q}/\f{q}_1$ in $T/\f{q}_1$, we have $\height(\f{q}/\f{q}_1) = m-1$. Thirdly, $\dim(T/\f{q}_1) = \dim(R/\p_1) = n-1$, since $R/\p_1$ embeds into $T/\f{q}_1$, and $T/\f{q}_1$ is integral over it. Finally, $\dim((T/\f{q}_1)/(\f{q}/\f{q}_1)) = \dim(T/\f{q})$. We thus conclude that $(m-1) + \dim(T/\f{q}) = n-1$, and so $\height(\f{q}) + \dim(T/\f{q}) = n$.
 \end{proof}
 \end{document}
