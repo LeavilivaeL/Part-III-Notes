@@ -2260,6 +2260,132 @@ We endow $W(L/K)$ with the weakest topology such that $I_{L/K}$ is an open subgr
 
     \item $\frac{W(L/K)}{W(L/F)} = \frac{W(L/K)}{W(L/K)\cap \Gal(L/F)} \cong \frac{W(L/K)\Gal(L/F)}{\Gal(L/F)} \cong \frac{\Gal(L/K)}{\Gal(L/F)} \cong \Gal(F/K)$.
   \end{enumerate}
-
 \end{proof}
+\section{Local Class Field Theory}
+Let $K$ be a non-archimedean local field.
+\begin{definition}
+  We say $L/K$ is \emph{abelian} if it is Galois and $\Gal(L/K)$ is an abelian group.
+\end{definition}
+If $L_1/K, L_2/K$ are abelian then it is a fact that
+\begin{enumerate}
+  \item $L_1L_2/K$ is abelian
+  \item If $L_1 \cap L_2 = K$, then there is a canonical isomorphism $\Gal(L_1L_2/K) \to \Gal(L_1/K)\times\Gal(L_2/K)$.
+\end{enumerate}
+We also have as a fact that there is a maximal abelian extension of $K$, which we denote as $K^{ab}$.
+
+For example, let $K^{ur}$ denote the maximal unramified extension of $K$ inside $K^{sep}$. Then:
+\[K^{ur} = \bigcup_{m=1}^\infty K(\zeta_{q^m-1})\]
+where $|k| = q, k_{K^{ur}} \cong \bar{\F}_q$.
+
+Then $\Gal(K^{ur}/K) \cong \Gal(\bar{\F}_q/\F_q) \cong \hat\Z$.
+
+So $K^{ur}$ is abelian, and hence contained in $K^{ab}$. Then we have an exact sequence:
+\[0 \to I_{K^{ab}/K} \to W(K^{ab}/K) \to \Z \to 0\]
+For $L/K$ unramified, let $\Frob_{L/K} \in \Gal(L/K)$ correspond to the Frobenius automorphism on $k_L/k$ (as $\Gal(L/K) \cong \Gal(k_L/k)$).
+\begin{theorem}\hspace*{0cm}
+  \begin{enumerate}
+    \item (Local Artin Reciprocity). There exists a unique topological isomorphism (i.e. an isomorphism of groups and a homeomorphism of topological spaces):
+    \[\Art_K : K^\times \to W(K^{ab}/K)\]
+    satisfying the properties:
+    \begin{enumerate}
+      \item $\Art_K(\pi)|_{K^{ur}} = \Frob_{K^{ur}/K}$ for any uniformiser $\pi \in K$.
+      \item For each finite subextension $L/K$ in $K^{ab}/K$
+      \[\Art_K(N_{L/K}(L^\times))|_L = \{1\}\]
+    \end{enumerate}
+    $\Art_K$ is called the Artin Reciprocity map.
+
+    \item Let $L/K$ be finite abelian. Then $\Art_K$ induces an isomorphism:
+    \[\frac{K^\times}{N_{L/K}(L^\times)} \cong \frac{W(K^{ab}/K)}{W(K^{ab}/L)} \cong \Gal(L/K)\]
+  \end{enumerate}
+\end{theorem}
+Remark: $\Frob_{K^{ur}/K}$ lifts $x\mapsto x^q$ in $\Gal(\bar{\F}_q/\F)$. This is called the ``arithmetic Frobenius." It has an inverse, $(\Frob_{K^{ur}/K})^{-1}$, called the ``geometric Frobenius." There is another normalisation of $\Art_K$ with $\Art_K(\pi)|_{K^{ur}} =(\Frob_{K^{ur}/K})^{-1}$.
+
+\subsection{Properties of the Artim map}
+\begin{itemize}
+  \item (Existence theorem). For $H \subseteq K^\times$ and open finite subgroup, there is a finite abelian extension $L/K$ such that $N_{L/K}(L^\times) = H$. In particular, $\Art_K$ induces an inclusion reversing isomorphism of posets
+
+  \begin{tabular}{p{0.4\textwidth}p{0.05\textwidth}p{0.4\textwidth}}
+    \raggedleft $\{\text{Open finite index subgroup of $K^\times$}\}$ & $\longleftrightarrow$ & $\{\text{finite abelian extensions } L/K\}$\\
+    \raggedleft $H$ & $\longmapsto$ & $(K^{ab})^{\Art_K(H)}$\\
+    \raggedleft $N_{L/K}(L^\times)$ & $\longmapsfrom$ & $L/K$
+  \end{tabular}
+  \item (Norm functoriality). Let $L/K$ be a finite separable extension. Then there is a commutative diagram
+  \begin{center}
+    \begin{tikzcd}
+      L^\times \arrow{r}{\Art_L} \arrow{d}{N_{L/K}} & W(L^{ab}/L) \arrow{d}{\text{res}} \\
+      K^\times \arrow{r}{\Art_K} & W(K^{ab}/K)
+    \end{tikzcd}
+  \end{center}
+  \item (Compatibility with Higher ramification groups).
+  \begin{definition}
+    Let $L/K$ be Galois. For $s \in \R_{\geq -1}$, we define
+    \[G^s(L/K) = \{\sigma \in \Gal(L/K) : \sigma|_{F} \in G^s(F/K) \text{ for all $F/K$ finite Galois subextensions}\}\]
+  \end{definition}
+  Corollary \textbf{16.7} tells us that $G^s(L/K)$ is well defined.
+
+  Let $s \in \Z_{\geq 0}$. Then:
+  \[\Art_K(U_K^{(s)}) = G^s(K^{ab}/K)\]
+  Note that $G^s(K^{ab}/K) \subseteq I_{K^{ab}/K} \subseteq W(K^{ab}/K)$ for $s \geq 0$.
+\end{itemize}
+\subsection{Construction of $\Art_{\Q_p}$}
+Recall that $\Q_p^{ur} = \bigcup_{m=1}^\infty \Q_p(\zeta_{p^m - 1}) = \bigcup_{p \nmid m} \Q_p(\zeta_m)$.
+
+We also saw on example sheet 3 that $\Q_p(\zeta_{p^n})/\Q_p$ gives a totally ramified extension of degree $p^{n-1}(p-1)$, with
+\[\theta_n : \Gal(\Q_p(\zeta_p)/\Q_p) \cong (\Z/p^n\Z)^\times\]
+For $n\geq m\geq 1$, there is a diagram
+\begin{center}
+  \begin{tikzcd}
+    \Gal(\Q_p(\zeta_{p^n})/\Q_p) \arrow{r}\arrow{d}{\theta_n} & \Gal(\Q_p(\zeta_{p^m})/\Q_p)\arrow{d}{\theta_m}\\
+    (\Z/p^n\Z)^\times \arrow{r} & (\Z/p^m\Z)^\times
+  \end{tikzcd}
+\end{center}
+Now set $\Q_p(\zeta_{p^\infty})) = \bigcup_{n=1}^\infty \Q_p(\zeta_{p^n})$. Then $\Q_p(\zeta_{p^\infty})/\Q_p$ is Galois, and we have
+\[\theta : \Gal(\Q_p(\zeta_{p^\infty})/\Q_p) \to \lim\limits_{\xleftarrow[n\geq 1]{}}(\Z/p^n\Z)^\times \cong \Z_p^\times\]
+We have $\Q_p(\zeta_{p^\infty}) \cap \Q_p^{ur} = \Q_p$.
+
+It then follows that there is an isomorphism
+\[\Gal(\Q_p(\zeta_{p^\infty})\Q_p^{ur}/\Q_p)\cong \hat{\Z}\times \Z_p^\times\]
+\begin{theorem}[Local Kronecker-Weber]
+  \[\Q_p^{ab} = \Q_p^{ur}\Q_p(\zeta_{p^\infty})\]
+\end{theorem}
+\begin{proof}
+  Later.
+\end{proof}
+The Artin map can now be constructed as follows:
+
+We have $\Q_p^\times \cong \Z\times \Z_p^\times; p^nu \mapsto (n, u)$. Then
+\[\Art_{\Q_p}(p^nu) = ((\Frob_{\Q_p^{ur}/\Q_p})^n, \theta^{-1}(u))\]
+
+This definition actually involves an arbitrary choice of a totally ramified extension $\Q_p(\zeta_{p^\infty})$, and there is no ``maximal totally ramified extension" of $\Q_p$. For example, see example sheet 3 q6(b). We also make a choice of a uniformizer $p$, which determines the isomorphism
+\[\Q_p^\times \cong \Z\times \Z_p^\times\]
+These choices are actually related, and in fact they ``cancel out", so that $\Art_{\Q_p}$ is in fact canonical.
+
+\subsection{General Case}
+$\Art_{\Q_p}$ was constructed by constructing a totally ramified extension $\Q_p(\zeta_{p^n})$ with
+\[\Gal(\Q_p(\zeta_{p^n})/\Q_p) \cong (\Z/p^n\Z)^\times \cong U_{\Q_p}^{(0)}/U_{\Q_p}^{(s)}\]
+In general, if $K$ is a local field and $\pi$ a uniformiser of $K$, then we construct for $n\geq 1$ a totally ramified extension $K_{\pi/n}/K$ satisfying the following:
+\begin{enumerate}
+  \item $K \subseteq \ldots \subseteq K_{\pi, n} \subseteq K_{\pi, n+1} \subseteq \ldots$
+  \item For $n\geq m \geq 1$ there is a diagram
+  \begin{center}
+    \begin{tikzcd}
+      \Gal(K_{\pi,n}/K) \arrow[hook, two heads]{d}{\psi_n} \arrow[two heads]{r} & \Gal(K_{\pi,m}/K) \arrow[two heads, hook]{d}{\psi_m} \\
+      \O_K^\times/U_K^{(n)} \arrow[two heads]{r}{\text{canon. projn.}} &\O_K^\times/U_K^{(m)}
+    \end{tikzcd}
+  \end{center}
+  \item  Setting $K_{\pi, \infty} \coloneqq \bigcup_{n=1}^\infty K_{\pi, n}$, we have
+  \[K^{ab}= K^{ur}K_{\pi, \infty}\]
+  Since $\O_K^\times = U_K^{(0)} \cong \lim\limits_{\xleftarrow[n]{}} O_K^\times/U_K^{(n)}$, (2) gives an isomorphism $\psi: \Gal(K_{\pi, \infty}/K) \cong \O_K^\times$. We can define $\Art_K$ by
+  \[K^\times \cong \Z \times \O_K^\times \to \Gal(K^{ur}/K)\times \Gal(K_{\pi, \infty}/K)\]
+  \[(\pi^n, u) \mapsto ((\Frob_{K^{ur}/K})^n, \psi^{-1}(u))\]
+  We have the following picture:
+  \begin{center}
+    \begin{tikzcd}
+      & \Q_p^{(ab)} \arrow[dash]{dl} \arrow[dash]{dr} & & & K^{ab} \arrow[dash]{dl} \arrow[dash]{dr}& \\
+      \Q_p^{ur} \arrow[dash, swap]{dr}{\hat{\Z}} & & \Q_p(\zeta_{p^\infty}) \arrow[dash]{dl}{\Z_p^\times} & K^{ur} \arrow[dash, swap]{dr}{\hat\Z} & & K_{\pi, \infty}\arrow[dash]{dl}{\O_K^\times}\\
+      & \Q_p & & & K &
+    \end{tikzcd}
+  \end{center}
+  The goal is then to construct these extensions $K_{\pi, n}$.
+\end{enumerate}
 \end{document}
