@@ -1279,7 +1279,7 @@ where we have equality on the left is $r >\frac{e}{p-1}$, and each quotient is $
 
 As a point of notation, when we have the map $\O_K \to \O_K/\pi\O_K$, we write $x \mapsto \tilde{x}$, and call this reduction mod $\pi$.
 \begin{proposition}
-  Let $E/K$ be an elliptic curve. The reduction mod $\pi$ off any two minimal Weierstrass equations for $E$ define isomorphic curves over $k$.
+  Let $E/K$ be an elliptic curve. The reduction mod $\pi$ of any two minimal Weierstrass equations for $E$ define isomorphic curves over $k$.
 \end{proposition}
 \begin{proof}
   Say the Weierstrass equations are related by $[u; r,s,t]; u \in K^\times; r,s,t \in K$.
@@ -1405,7 +1405,7 @@ We then define $K^{nr} = \bigcup_{m\geq 1} K_m$ inside $\bar{K}$, the maximal un
 Notation: $[n]^{-1}P = \{Q \in E(\bar{K}) : nQ = P\}$, and $K(P_1, \ldots, P_r) = K(x_1, \ldots, x_r, y_1, \ldots, y_r)$, $P_i = (x_i, y_i)$.
 
 \begin{proof}
-  For each $m \geq 1$, there is a short exact sequence $0\to K_1(K_m) \to E(K_m) \to \tilde{E}(k_m) \to 0$.
+  For each $m \geq 1$, there is a short exact sequence $0\to E_1(K_m) \to E(K_m) \to \tilde{E}(k_m) \to 0$.
 
   Taking union over all $m$ gives a commutative diagram:
   \begin{center}
@@ -1511,7 +1511,7 @@ Note that we'd like to say that $S$ is the set of bad primes. If $K$ has class n
   Hence $E_D(\Q)_{\text{tors}} \cong (\Z/2\Z)^2$. So $\rank E_D(\Q) \geq 1$ if and only if there are $x, y \in \Q$ with $y \neq 0$ such that $y^2 = x^3-Dx$, which by the first lecture is equivalent to $D$ being a congruent number.
 \end{enumerate}
 \begin{lemma}
-  Let $E/\Q$ be given by a Weierstrass equation with coefficients in $\Z$. Then:
+  Let $E/\Q$ be given by a Weierstrass equation with coefficients in $\Z$. Let $0 \neq T \in E(\Q)_\text{tors}$. Then:
   \begin{enumerate}
     \item $4x, 8y \in \Z$.
     \item If $2|a_1$ or $2T \neq O_E$, then $x, y \in \Z$.
