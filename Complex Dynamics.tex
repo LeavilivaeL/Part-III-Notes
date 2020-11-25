@@ -1103,4 +1103,84 @@ We are interested in two questions: do we have any local linearizability, and ar
 \begin{definition}
   We say an irrationally indifferent fixed point of $f$ is \emph{Siegel} (respectively \emph{Cremer}) if $f$ is locally linearizable (respectively not locally linearizable). That is, Siegel points are Fatou and Cremer points are Julia.
 \end{definition}
+Given $n \in \N$, let $m$ be the integer minimizing $|n\theta - m|$. Then we have
+\[|\lambda^n-1|=\sqrt{2-2\cos(2\pi n\theta)} = \sqrt{4\sin^2(\pi n \theta)} = 2|\sin(\pi(n\theta - m))|\]
+Now, since $|n\theta - m| < \frac12$, we approximate $\sin(\pi(n\theta-m))$ as $\pi|n\theta-m|$.
+So there are constants $c_1, c_2$ such that
+\[c_1|n\theta - m| \leq |\lambda^n-1| \leq c_2|n\theta -m|\]
+\begin{theorem}[Cremer]
+  Suppose that $f(z)$ is a rational map of degree $d \geq 2$ with $f(0) = 0$ and the multiplier $\lambda = e^{2\pi\im\theta}$ of $f$ at $0$ satisfying the following: there exist infinitely many pairs of coprime integers $p,q$ so that
+  \[\left| \theta-\frac{p}{q}\right| \leq \frac{1}{q^{d^q}}\tag{$\ast$}\]
+  Then $0$ is a Cremer fixed point.
+\end{theorem}
+\begin{proof}
+  Note that condition $(\ast)$ implies that there is a constant $C$ and infinitely many integers $q \in \N$ so that
+  \[|\lambda^q - 1| \leq C|q\theta-p| \leq \frac{C}{q^{d^q}-1}\]
+  So, in particular, $\lim \inf |\lambda^q -1|^{\frac{1}{d^q-1}} = 0$.
+
+  Since $0$ is not critical and $d \geq 2$, there is a nonzero preimage of $0$ - conjugate to assume it is $\infty$.
+
+  Up to scaling, we have $f(z) = \frac{a_{d-1}z^{d-1} + \ldots + \lambda z}{z^d+\ldots+1}$.
+
+  An easy induction shows that
+  \[f^n(z) = \frac{b_nz^{d^n-1}+\ldots + \lambda^n z}{z^{d^n}+\ldots + 1}\]
+  The points of period dividing $n$ are the roots of
+  \[b_nz^{d^n-1}+ \ldots +\lambda^n z - z(z^{d^n}+\ldots+1) = z[z^{d^n}+\ldots +\lambda^n-1]\]
+  And so the product of all non-zero roots is $\pm(\lambda^n-1)$.
+
+  So at least one of them must satisfy $|z| \leq |\lambda^n-1|^{\frac{1}{d^n-1}}$. By hypothesis, there exists a sequence of $n_k$ such that $|\lambda^{n_k}-1|^{\frac{1}{d^{n_k}-1}}\to 0$ as $k \to \infty$.
+
+  So there is a sequence of periodic points with $|z_k|\to 0$. All but finitely many are Julia, and $J(f)$ is closed, hence $0$ is also Julia.
+\end{proof}
+On example sheet 3 we will show that Cremer angles form a dense, uncountable subset of $S^1$.
+\begin{definition}
+  A Fatou component containing a Siegel periodic point is a \emph{Siegel disk}. Note that $f$ is conjugate to an irrational rotation on the full component.
+\end{definition}
+By the classification disk, we can only have possibility 4, and since the punctured disk/annulus don't contain a fixed point, the component is actually a disk, and $f$ is conjugate to an irrational rotation.
+
+\begin{proposition}
+  Let $f_\lambda(x) \coloneqq \lambda z + z^2$. Then for (Lebesgue) almost every $\lambda \in S^1$, 0 is a Siegel point of $f$.
+\end{proposition}
+\begin{proof}
+  For each $\lambda \in \bar\D$, define $\sigma(\lambda)$ to be the radius of the largest disk about 0 on which there is a conformal linearizing map $\psi_\lambda$, so that
+  \[\psi_\lambda(\lambda w) = f_\lambda(\psi_\lambda(w))\]
+  taking $\sigma(\lambda) = 0$ if no such map exists. $\lambda \mapsto \sigma(\lambda)$ cannot be continuous on $\bar\D$ if Siegel points exist, since Cremer and parabolic cycles are dense in $S^1$.
+
+  Claim: $\sigma$ is \emph{upper semicontinuous}, i.e. if, for any real $\sigma_0 \in \R$, the set $\{x \in X: \sigma(x) \geq \sigma_0\}$ is closed in $X$.
+
+  Note that $\sigma(\lambda)$ is uniformly bounded by $2$ for all $\lambda \in \bar\D$, considering the orbits $z \mapsto \lambda z + z^2$ for $|z|>2$ give escape to infinity. Fix $\sigma_0$, and consider a convergent sequence $\lambda_k$ inside the set $\{\lambda: \sigma(\lambda) \geq \sigma_0\}$. Then we have the associate maps $\psi_{\lambda_k}:\D(0, \sigma_0) \to \D(0, 2)$. By Montel's theorem, the sequence $\{\psi_{\lambda_k}\}$ forms a normal family, so has a holomorphic limit of some subsequence, $\psi$.
+
+  Now $\psi$ is a linearizing map for $\lambda = \lim_{k \to \infty} \lambda_k$, on $\D(0, \sigma_0)$, and so $\lambda \in \{\lambda' : \sigma(\lambda') \geq \sigma_0\}$. Hence this set is closed, and so $\sigma$ is indeed upper semicontinuous.
+
+  Recall that, if $\lambda \in \D\setminus\{0\}$, $f_\lambda$ has an attractor at $0$ with Koenig map $\phi_\lambda = \lim_{n\to\infty}\frac{f_\lambda^n(z)}{\lambda^n}$.
+
+  By locally uniform convergence then, the map $\lambda \mapsto \phi_\lambda(z)$ is holomorphic. Since the critical point $-\frac{\lambda}{2}$ is in the basin, the map
+  \[\lambda\mapsto \eta(\lambda) \coloneqq \phi_\lambda\left(-\frac{\lambda}{2}\right)\]
+  is holomorphic on $\D\setminus\{0\}$.
+
+  By example sheet 1, $\sigma(\lambda) = |\eta(\lambda)|$ for all $\lambda \in \D\setminus\{0\}$.
+
+  Since $\sigma(0) = 0$, upper semicontinuity gives us $\eta(\lambda) \to 0$ as $\lambda \to 0$, and $\eta(\lambda)$ is holomorphic on $\D$.
+
+  Consider for fixed $\lambda_0 \in S^1$ the limit $\lim_{\lambda \to \lambda_0} \eta(\lambda)$. This limit exists and is 0 if and only if $\sigma(\lambda_0) = 0$ by upper semicontinuity.
+
+  \begin{lemma}
+    Suppose that $f:\D \to \C$ is bounded and holomorphic, and non-zero on $\D\setminus\{0\}$. Then the radial limit
+    \[\lim_{r\to 1}f(re^{\im\theta})\]
+    exists and takes the value 0 on a set of Lebesgue measure 0.
+  \end{lemma}
+  \begin{proof}
+    Without loss of generality, scale $f$ to be $\D \to \D$. Let $E$ be the set of angles $\theta$ so that the limit exists and equals 0, and suppose that the Lebesgue measure $\ell(E) >0$. Fix $\delta, \epsilon > 0$, and let
+    \[E(\epsilon, \delta) \coloneqq \{\lambda \in S^1 : |f(r\lambda)| < \epsilon \text{ whenever }1-\delta <r < r\}\]
+    These are $\ell$-measurable, and so for each $\epsilon >0$, these satisfy that
+    \[\ell(E(\epsilon, \delta)) \to \ell(E)\text{ as } \delta \to 0\]
+    Then there is $\delta > 0$ so that $\ell(E(\epsilon, \delta)) \geq \frac{\ell(E)}{2}$. Then for $r > 1-\delta$:
+    \[\frac{1}{2\pi}\int_0^{2\pi} \log|f(re^{\im\theta})| d \theta \leq \frac{\ell(E)\log \epsilon}{2} \to -\infty \text{ as } \epsilon \to 0\]
+    On the other hand, if $f$ has a zero of order $k \geq 0$ at 0, then we have
+    \[\frac{1}{2\pi}\int_0^{2\pi}\log|f(re^{\im\theta})|d\theta = k\log r + C \to C \text{ as } r \to 1\]
+    since $\frac{f(z)}{z^k}$ is holomorphic and nonzero on $\D$. But then we have a contradiction, as $C$ is just a constant, so this integral cannot go to $-\infty$.
+  \end{proof}
+  Applying this lemma to $\sigma$ completes the proof of \textbf{12.6}.
+\end{proof}
+
 \end{document}

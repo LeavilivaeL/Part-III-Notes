@@ -1551,7 +1551,7 @@ where $e_x$ is the ramification index of $x$.
 Now assume that $L/K$ is Galois. Then, for any $\sigma \in \Gal(L/K)$, $\sigma(\mathcal{P}_i) \cap \O_K = \p$, and hence $\sigma(\mathcal{P}_i) \in \{\mathcal{P}_1, \ldots, \mathcal{P}_r\}$, and so $\Gal(L/K)$ acts on the set $\{\mathcal{P}_1, \ldots, \mathcal{P}_r\}$.
 
 \begin{proposition}
-  The action of $\Gal(L/K)$ on $\{\P_1, \ldots, \P_r\}$ is transitive.
+  The action of $\Gal(L/K)$ on $\{\mathcal{P}_1, \ldots, \mathcal{P}_r\}$ is transitive.
 \end{proposition}
 \begin{proof}
   Suppose the action is not transitive, so that there exists some $i \neq j$ with $\sigma(\mathcal{P}_i)$ is never $\mathcal{P}_j$ for any $\sigma \in \Gal(L/K)$.
@@ -1654,7 +1654,7 @@ Last time, we saw $[L:K] = e_{L/K}f_{L/K}$.
 \begin{definition}
   The extension $L/K$ is said to be
   \begin{itemize}
-    \item \emph{unramified} if $e_{L/K}$, i.e. $f_{L/K} = [L:K]$
+    \item \emph{unramified} if $e_{L/K} = 1$, i.e. $f_{L/K} = [L:K]$
     \item \emph{ramified} if $e_{L/K} > 1$, i.e. $f_{L/K} < [L:K]$
     \item \emph{totally ramified} if $e_{L/K} = [L:K]$, i.e. $f_{L/K} = 1$
   \end{itemize}
@@ -2388,4 +2388,123 @@ In general, if $K$ is a local field and $\pi$ a uniformiser of $K$, then we cons
   \end{center}
   The goal is then to construct these extensions $K_{\pi, n}$.
 \end{enumerate}
+\section{Lubin-Tate Theory}
+\subsection{Formal Group Laws}
+If $R$ is a ring, we write $R\llbracket x_1, \ldots, x_n \rrbracket = \sum_{k_1, \ldots, k_n \geq 0} a_{k_1,\ldots,k_n}x_1^{k_1}\ldots x_n^{k_n}$ where $a_i \in R$ for the ring of formal power series over $R$.
+\begin{definition}
+  A (one-dimensional commutative) \emph{formal group law} over $R$ is a power series $F(x, y) \in R\llbracket x,y\rrbracket$ satisfying:
+  \begin{enumerate}
+    \item $F(x,y) \equiv x+y \mod (x^2, y^2)$
+    \item $F(x,F(y,z)) = F(F(x,y),z)$ (associativity)
+    \item $F(x, y) = F(y,x)$ (commutativity)
+  \end{enumerate}
+\end{definition}
+For example, $\hat{\G}_a(x,y) = x+y$, which we call the formal additive group, or $\hat{\G}_m(x,y) = x+y+xy$, which we call the formal multiplicative group.
+\begin{lemma}
+  Let $R$ be a ring, with $F$ a formal group law over $R$. Then:
+  \begin{enumerate}
+    \item $F(x,0) = x, F(0, y) = y$
+    \item There is a unique power series $i(x) \in xR\llbracket x \rrbracket$ such that $F(x, i(x)) =0$.
+  \end{enumerate}
+\end{lemma}
+\begin{proof}
+  Sheet 4
+\end{proof}
+Let $K$ be a complete non-archimedean valued field, and $F$ a formal group law over $\O_K$. Then $F(x,y)$ converges for all $x, y \in \f{m}$, to an element in $\f{m}$.
+
+Defining $x \cdot_F y = F(x,y)$, then this turns $(\f{m}, \cdot_F)$ into an abelian group.
+
+For example, with $\hat{\G}_m/\Z_p$, we have $x \cdot_{\hat{\G}_m} y = x+y+xy$, which gives a group structure on $p\Z_p$ isomorphic to $(1+p\Z_p, \times)$, with isomorphism given by $x \mapsto 1+x$.
+
+\begin{definition}
+  Let $F, G$ be formal group laws over $R$. A homomorphism $f:F\to H$ is a power series in $x$ such that:
+  \[f(F(x,y)) = F(g(x), g(y))\]
+  We define $\End_R(F)$ to be the set of homomorphisms $f:F\to F$.
+\end{definition}
+\begin{lemma}
+  $\End_R(F)$ is a ring with addition given by
+  \[(f +_F g)(x) = F(f(x), g(x))\]
+  and multiplication is given by composition.
+\end{lemma}
+\begin{proof}
+  Let $f, g \in \End_R(F)$. Then
+  \begin{align*}
+    (f+_F g)\circ F(x,y) &= F(f(F(x,y)), g(F(x,y)))\\
+    &= F(F(f(x), f(y)), F(g(x), g(y)))\\
+    &= F(F(f(x), g(x)),F(f(y),g(y)))\\
+    &= F(f+_F g(x), f+_F g(y))
+  \end{align*}
+  and hence $f+_F g \in \End_R(F)$.
+
+  Moreover $f \circ g \circ F = f \circ F \circ g = F \circ f \circ g$, and so $f \circ g \in \End_R(F)$.
+
+  The ring axioms are left as an exercise.
+\end{proof}
+\subsection{Lubin-Tate Formal Groups}
+Let $K$ be a non-archimedean local field, with $|k|=q$.
+\begin{definition}
+  A formal $\O_K$-module over $\O_K$ is a formal group law $F(x,y) \in \O_K\llbracket x, y \rrbracket$ together with a ring homomorphism
+  \[ [\cdot ]_F : \O_K \to \End_{\O_K}(F)\]
+  such that, for all $a \in \O_K, [a]_F(x) \equiv ax\mod x^2$.
+\end{definition}
+\begin{definition}
+  Let $\pi \in O_K$ be a uniformizer. A Lubin-Tate series for $\pi$ is a power series $f(x)\in \O_K\llbracket x\rrbracket$ such that:
+  \begin{enumerate}
+    \item $f(x) \equiv \pi x \mod x^2$
+    \item $f(x) \equiv x^q \mod \pi$.
+  \end{enumerate}
+\end{definition}
+For instance, in the case $K = \Q_p$, $f(x) = (x+1)^p-1$ is a Lubin-Tate series for the uniformiser $p$.
+\begin{theorem}
+  Let $f(x)$ be a Lubin-Tate series for $\pi$. Then:
+  \begin{enumerate}
+    \item There exists a unique formal $F_f$ over $\O_K$ such that $f \in \End_{\O_K}(F_f)$.
+    \item There is a ring homomorphism
+    \[ [\cdot]_{F_f}:\O_K \to \End_{\O_K}(F_f)\]
+    satisfying $[\pi]_{F_f} = f(x)$.
+    \item If $g(x)$ is another Lubin-Tate series, then $F_f \cong F_g$ as formal $\O_K$-modules.
+  \end{enumerate}
+\end{theorem}
+$F_f$ is called the \emph{Lubin-Tate formal group law} for $\pi$ - only depends on $\pi$ up to isomorphism.
+
+For instance, if $K = \Q_p, f(X) = (x+1)^p-1$. Then the Lubin-Tate formal group $F_f$ associated to $f$ is $\hat{\G}_m$. To see this, it suffices to show that $f \circ \hat{\G}_m = \hat{\G}_m\circ f$.
+
+But $f(\hat{\G}_m(x,y)) = (1+x)^p(1+y)^p-1 = \hat{\G}_m(f(x),f(y))$.
+
+\begin{lemma}[Key Lemma]
+  Let $f(x), g(x)$ be a Lubin-Tate series for $\pi$, and let $L(x_1, \ldots, x_n) = \sum_{i=1}^n a_i x_i, a_i \in \O_K$. Then there is a unique power series
+  \[F(x_1, \ldots, x_n) \in \O_K\llbracket x_1, \ldots, x_n\rrbracket\]
+  such that
+  \begin{enumerate}
+    \item $F(x_1, \ldots, x_n) \equiv L(x_1, \ldots, x_n) \mod (x_1^2, \ldots, x_n^2)$
+    \item $f(F(x_1, \ldots, x_n)) = F(g(x_1), \ldots, g(x_n))$.
+  \end{enumerate}
+\end{lemma}
+\begin{proof}
+  We show by induction that there unique polynomial $F_m \in \O_K[x_1, \ldots, x_n]$ of total degree $\leq m$ such that
+  \begin{enumerate}
+    \item $f(F(x_1, \ldots, x_n))\equiv F_m(g(x_1), \ldots, g(x_n))\mod (x_1^{m+1},\ldots)$
+    \item $F_m(x_1, \ldots, x_n) \equiv L(x_1, \ldots, x_n) \mod (x_1^2, \ldots)$
+    \item $F_m \equiv F_{m+1} \mod (x^{m+1},\ldots)$.
+  \end{enumerate}
+  For $m=1$, take $F_1 = L$.
+  \[f(F(x_1, \ldots, x_n)) \equiv \pi L(x_1, \ldots, x_n) \mod \deg 2 \equiv F(g(x_1), \ldots, g(x_n)) \mod \deg 2\]
+  Suppose that $F_m$ have been constructed for $m \geq 1$. Then set $F_{m+1} = F_m+h$ where $h \in \O_K[x_1, \ldots, x_n]$ homogeneous of degree $m+1$.
+
+  Then $f \circ (F_m + h) = f \circ F_m + \pi h \mod \deg m+2$, since $f(x) \equiv \pi x \mod x^2$, e.g. using $f(x+y) = f(x)+f'(x)y+y^2(\ldots)$.
+
+  Similarly, $(F_m+h)\circ g) \equiv F_m \circ g + h(\pi x_1, \ldots, \pi x_n)\mod \deg m+2 \equiv F_m \circ g + \pi^{m+1}h(x_1, \ldots, x_n)$.
+
+  Thus $(1),(2),(3)$ are satisfied for $h$ if and only if
+  \[f\circ F_m - F_m \circ g \equiv (\pi-\pi^{m+1})h \mod \deg m+2\]
+  But $f(x) \equiv g(x) \equiv x^q \mod \pi$, and so
+  \[f \circ F_m - F_m \circ g \equiv 0 \mod \pi\]
+  and so is a power series in $\pi \O_K\llbracket x_1, \ldots, x_n \rrbracket$.
+
+  Let $r(x_1, \ldots, x_n)$ be the degree $m+1$ terms in $f \circ F_m - F_m \circ g$. Then set
+  \[h \coloneqq \frac{1}{\pi(1-\pi^m)}r \in \O_K [x_1, \ldots, x_n]\]
+  so that $F_{m+1}$ satisfies the three conditions. It is unique since $h$ is determined by property $(1)$.
+
+  Then setting $F \coloneqq \lim_{m\to\infty} F_m$, $F$ is as required in the lemma, and uniqueness follows from the uniqueness of $F_m$.
+\end{proof}
 \end{document}

@@ -1725,4 +1725,101 @@ It is a fact that there is a quadratic form called the \emph{canonical height} $
 
   Hence $\Sigma$ generates $E(K)$, and is finite, so $E(K)$ is finitely generated.
 \end{proof}
+Note that the structure theorem for finitely generated abelian groups shows that $E(K)$ is of the form
+\[E(K) \cong E(K)_\text{tors} \times \Z^r\]
+for some non-negative integer $r$, called the \emph{rank}. There is no known algorithm for computing the rank of $E(K)$ in all cases.
+
+\section{Heights}
+For simplicity, we will take $K = \Q$. Write $P \in \P^n(\Q)$ as $P = (a_0:\ldots:a_n)$ are (not necessarily pairwise) coprime integers.
+
+We define the \emph{height} of $P$, $H(P) = \max_{0 \leq i \leq n}|a_i|$.
+
+\begin{lemma}
+  Let $f_1, f_2 \in \Q[x_1, x_2]$ be coprime homogeneous polynomials of the same degree $d$. Let $F:\P^1 \to \P^1; (x_1:x_2) \mapsto (f_1(x_1,x_2):f_2(x_1, x_2))$.
+
+  Then there are constants $c_1, c_2 > 0$ such that
+  \[c_1H(P)^d \leq H(F(P)) \leq c_2H(P)^d\]
+  for all points $P \in \P^1(\Q)$.
+\end{lemma}
+\begin{proof}
+  Without loss of generality, $f_1, f_2 \in \Z[x_1, x_2]$. For the upper bound, write $P = (a:b)$, coprime. Then
+  \begin{align*}
+    H(F(P)) & \leq \max(|f_1(a,b)|, |f_2(a,b)|)\\
+    &\leq c_2 \max (|a|^d, |b|^d)
+  \end{align*}
+  where $c_2 = \max (\text{ sum of abs. values of coeffs of $f_i$})$.
+  So $H(F(P)) \leq c_2 H(P)^d$.
+
+   For lower bound, we claim there are $g_{ij} \in \Z[x_1, x_2]$ homogeneous polynomials of degree $d-1$ and $\kappa \in \Z_{>0}$ such that
+   \[\sum_{j=1}^2 g_{ij}f_j = \kappa x_i^{2d-1}\;\;\;\;\;\; i=1,2\tag{$\ast$}\]
+   Indeed, running Euclid's algorithm on $f_1(x,1), f_2(x,1)$ give $r, s \in \Q[x]$ of degree $<d$ such that
+   \[r(x)f_1(x, 1) + s(x)f_2(x, 1) = 1\]
+   Homogenising and clearing denominators gives $(\ast)$ for $i=2$, and likewise for $i=1$.
+
+   Write $P = (a_1:a_2)$ for integers $a_1, a_2$ coprime. Then $(\ast)$ gives that
+   \[\sum_{j=1}^2 g_{ij}(a_1, a_2)f_j(a_1, a_2) = \kappa a_i^{2d-1}\]
+   and so $\gcd(f_1(a_1, a_2), f_2(a_1,a_2))$ divides $\gcd(\kappa a_1^{2d-1}, \kappa a_2^{2d-1}) = \kappa$.
+
+   But also $|\kappa a_i^{2d-1}| \leq \underbrace{\max_{j=1,2} |f_j(a_1, a_2)|}_{\leq \kappa H(F(P))}\underbrace{\sum_{j=1}^2 |g_{ij}(a_1, a_2)|}_{\leq \gamma_i H(P)^{d-1}}$ where $\gamma_i = \sum_{j=1}^2 ($sum of absolute values of coefficients of $g_{ij}$). Hence we have
+   \[\kappa |a_i|^{2d-1} \leq \gamma_i H(F(P))H(P)^{d-1}\]
+   and so
+   \[\frac{1}{\max (\gamma_1, \gamma_2)}H(P)^{d} \leq H(F(P))\]
+\end{proof}
+Notation: for $x \in \Q$, we write $H(x) = H((x:1)) = \max(|u|, |v|)$ where $x = \frac{u}{v}$, $u, v$ coprime.
+
+Let $E/\Q$ be an elliptic curve, given by $y^2=x^3+ax+b$.
+
+Then we define the height function:
+\begin{align*}
+  H:E(\Q) & \to \R_{\geq 1}\\
+  P&\mapsto \begin{cases} H(x) & P = (x,y)\\ 1 & P=Q \end{cases}
+\end{align*}
+and the \emph{logarithmic height}
+\begin{align*}
+  h:E(\Q) & \to \R_{\geq 0}\\
+  P&\mapsto \log(H(P))
+\end{align*}
+\begin{lemma}
+  Let $E, E'$ be elliptic curves over $\Q$, and $\phi:E \to E'$ an isogeny defined over $\Q$.
+
+  Then there is $c>0$ such that
+  \[|h(\phi(P)) - \deg(\phi)h(P)| \leq c \forall P \in E(\Q)\]
+  Note that $c$ depends on $E, E', \phi$ but not on $P$.
+\end{lemma}
+\begin{proof}
+  Recall \textbf{5.3} that the $x$-coordinate of $\phi(P)$ only depends on the $x$-coordinate of $P$, say $x(\phi(P)) = \xi(x(P))$. Then \textbf{13.1} gives $c_1, c_2> 0$ such that
+  \[c_1 H(P)^d \leq H(\phi(P)) \leq c_2 H(P)^d\]
+  Taking logs gives the result.
+\end{proof}
+For example, if $\phi = [2]:E \to E$. Then there is $c>0$ such that
+\[|h(2P) - 4h(P)| \leq c \forall P \in E(\Q)\]
+\textbf{definition}
+  The \emph{canonical height} is defined as follows:
+  \[\hat{h}(P ) =\lim_{n\to\infty}\frac{1}{4^n}h(2^n P)\]
+
+We check convergence: let $m \geq n$. Then
+\[|\frac{1}{4^m} h(2^m P) - \frac{1}{4^n}h(2^nP)| \leq \sum_{r=n}^{m-1}|\frac{1}{4^{r+1}}h(2^{r+1}P) - \frac{1}{4^r}h(2^r P)| \leq \sum_{r=n}^{\infty}\frac{c}{4^{r+1}} = \frac{c}{3\cdot 4^n} \to 0\]
+So the sequence is Cauchy, and $\hat{h}(P)$ exists.
+\begin{lemma}
+  $|h(P)-\hat{h}(P)|$ is bounded.
+\end{lemma}
+\begin{proof}
+  Put $n=0$ in the above calculation. Then $|\hat{h}(P) - h(P)| \leq \frac{c}{3}$.
+\end{proof}
+\begin{corollary}
+  The set $\{P \in E(\Q) : \hat{h}(P) \leq B\}$ is finite.
+\end{corollary}
+\begin{proof}
+  $\hat{h}(P)$ bounded implies that $h(P)$ is bounded.
+
+  But then there are only finitely many possibilities for $x$, and so finitely many possibilities for $P$.
+\end{proof}
+\begin{lemma}
+  Let $\phi : E \to E'$ be an isogeny. Then $\hat{h}(\phi P) = (\deg \phi)\hat{h}(P)$.
+\end{lemma}
+\begin{proof}
+  \textbf{13.2} gives $c > 0$ such that
+  \[|h(\phi P) - (\deg \phi)h(P)| \leq c\]
+  Replace $P$ by $2^n P$, divide by $4^n$, and take the limit at $n \to \infty$.
+\end{proof}
 \end{document}
