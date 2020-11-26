@@ -1182,5 +1182,97 @@ By the classification disk, we can only have possibility 4, and since the punctu
   \end{proof}
   Applying this lemma to $\sigma$ completes the proof of \textbf{12.6}.
 \end{proof}
+\section{Irrationally Indifferent Points and Critical Points}
+\begin{definition}
+  The \emph{forward orbit} of a point $z_0$ under $f$ is the sequence:
+  \[\{f^n(z_0)\}_{n \in \N}\]
+  A critical orbit is the forward orbit of any critical point of $f$.
+\end{definition}
+\begin{theorem}
+  Repelling cycles are dense in $J(f)$, that is, for any rational map $f$ of degree $d \geq 2$, the Julia set is the closure of the repelling periodic points.
+\end{theorem}
+\begin{proof}
+  Recall that $J(f)$ has no isolated points, so without loss of generality we can ignore finitely many of them. Let $z_0 \in J(f)$ be such that $z_0$ has $d$ distinct preimages, none of which are $z_0$ (i.e. a non-critical non-fixed point, which excludes only finitely many).
 
+  Now let $N$ be a neighbourhood of $z_0$. Then we can pick holomorphic inverses of $f$, $\phi_1, \ldots, \phi_d$ on $N$ (possibly shrinking it if necessary), with $\phi_i(z_0) = z_i$. Suppose that, for all $z \in N$, and all $n \in \N$, $f^n(z) \notin \{z_0, \phi_1(z, \phi_1(z), \phi_2(z)\}$, and consider for each $n \in \N$,
+  \[g_n(z) \coloneqq \frac{f^n(z)-\phi_1(z)}{f^n(z)-\phi_2(z)}\cdot\frac{z-\phi_2(z)}{z-\phi_1(z)}\]
+  Then $g_n:\N \to \hat{\C}\setminus\{0, 1, \infty\}$, and so $\{g_n\}$ forms a normal family on $N$. But this is just a M\"obius transformation of $f^n$, and so $\{f^n\}$ forms a normal family on $N$, contradicting that $z_0 \in J(f)$.
+
+  So there is some $z \in N, n \in \N$ such that $f^n(z) \in \{z, \phi_1(z), \phi_2(z)\}$.
+
+  So $z$ is a point of period $n$ or $n+1$, and hence $N$ contains a periodic point. Shrinking $N$, we get an infinite sequence of periodic points converging to $z_0$, all but finitely many of which are repelling.
+\end{proof}
+\begin{corollary}
+  Let $U$ be an open neighbourhood intersecting $J(f)$. Then for all $n$ sufficiently large, $J(f) \subseteq f^n(U)$.
+\end{corollary}
+\begin{proof}
+  Since repelling cycles are dense in $J(f)$, there is some $z_0 \in U$ periodic and repelling, say $f^k(z_0) = z_0$. So by linearization, there is some $V \subseteq U$ such that $f^k(V) \supset V$.
+
+  So then $V \subseteq f^k(V) \subseteq f^{2k}(V) \subseteq \ldots$, and $\bigcup f^{kn}(V)$ cover $J(f)$, and by compactness we only need finitely many of them. But then we only need 1 of them, as they are nested. Then, by $f$-invariance of $J(f)$, this holds for all $n$ sufficiently large.
+\end{proof}
+\begin{proposition}
+  Suppose that $z_0$ is a Cremer point of $f$, or a boundary point of a Siegel disk. Then every neighbourhood of $z_0$ contains infinitely many distinct critical orbit points.
+\end{proposition}
+\begin{proof}
+  Suppose $z_0$ Cremer. Without loss of generality, $z_0 = 0$, and $f(z_0) = z_0$. Suppose there is a disk $D$ containing $z_0$ with no critical orbit points. Then we can define an inverse $g_n$ of $f^n$ on $D$ which fixes $0$. $g_n(D)$ contains no $f$-preimage of a critical point. Therefore $g_n(D)$ is contained in a hyperbolic domain unless $f$ is conjugate to $z^{\pm d}$, in which case all periodic points are superattracting or repelling. Hence $\{g_n\}$ forms a normal family on $D$, and let $g$ be some limit of a subsequence. Then $g(0) = 0$, and $(f^n)'(0) \in S^1$, and so shrinking $D$ if necessary, $g$ is conformal on $D$. Let $D'$ be a strictly smaller subdisk of $D$, and let $U' = g(D')$. Then infinitely many $f^n(U') \subseteq D$. On the other hand, $U' \cap J(f) \neq \emptyset$, and so by the corollary, any sufficiently large iterate of $U'$ covers $J(f)$, and so cannot be contained in $D, \contr$.
+
+  Now suppose $z_0 \in \partial \Delta$, for $\Delta$ a Siegel disk, with $f(\Delta) = \Delta$. By the same construction we can find $D$ with no critical orbit points, and $\{g_n\}$ a normal family of inverses of $f$, choosing $g_n(D \cap \Delta)$ to map into $\Delta$. For any limit $g$, a subdisk $D'$ must have $g(D') \subseteq F(f)$, since infinitely many iterates of $f$ map $g(D')$ into $D$. But then again we have a contradiction, as $D'$ contains $z_0$ which is in the boundary of a Siegel disk, hence Julia.
+\end{proof}
+What about the final possible type of fixed Fatou component?
+\begin{definition}
+  A Fatou component $U$ of $f$ is a \emph{Herman ring} if $U$ is conformally isomorphic to an annulus, under which isomorphism $f$ corresponds to an irrational rotation.
+\end{definition}
+It's beyond the scope of this course, but Herman rings do indeed exist. In sheet 3, we'll see that the boundary of a Herman ring consists of limit points of critical orbits.
+
+\underline{\textsc{Punchline:}} Any type of periodic Fatou component has some interaction with critical orbits, and similarly for any non-repelling periodic point.
+
+\begin{theorem}[Sullivan, No Wandering Domains]
+  Let $f$ be a rational map of degree $d \geq 2$. Then every Fatou component $U$ of $f$ is preperiodic; that is, there exist integers $m, n$, so that $f^{n+m}(U) = f^m(U)$. In particular, every Fatou component is either a branch cover or a conformal copy of some periodic Fatou component, according to whether $U, f(U), \ldots, f^m(U)$ contains a critical point of $f$ or not.
+\end{theorem}
+Together with the classification of hyperbolic domains with self-maps, we obtain a full classification of Fatou components, since each eventually maps to a periodic one.
+\begin{theorem}[Classification of Fatou Components of Rational Maps]
+  Let $U$ be a Fatou component of $f$, where $f$ has degree $d \geq 2$, with $f(U) = U$. Then $U$ is one of the following:
+  \begin{itemize}
+    \item the immediate basin of an attracting fixed point.
+    \item the basin of a petal of a parabolic fixed point.
+    \item a Siegel disk.
+    \item a Herman ring.
+  \end{itemize}
+\end{theorem}
+\begin{proof}
+  By classification of self-maps of $U$, either:
+  \begin{itemize}
+    \item $U$ contains an attracting fixed point.
+    \item All orbits of $U$ escape to the boundary.
+    \item Some iterate of $f$ is the identity on $U$, i.e. $f|_U$ is an automorphism of finite order.
+    \item $f$ is conjugate to an irrational rotation of a conformal disk, punctured disk, or annulus.
+  \end{itemize}
+  The third case cannot happen, as then some iterate of $f$ would be the identity on $\hat\C$.
+
+  The punctured disk case of the fourth one cannot happen, as $J(f)$ has no isolated points.
+
+  In the first case, $U$ is an attracting basin. The other two cases of the fourth case correspond to Siegel disk and Herman ring.
+
+  Hence, we just need to show that the second case is equivalent to $U$ being the basin of a petal of parabolic fixed point.
+
+  Given $z$ in $U$, the collection of limit points of the iterates $f^n(z)$ is a connected subset of the boundary, because $f$ is uniformly continuous with respect to spherical distance. On the other hand, any such accumulation point is fixed by $f$ by Schwarz-Pick, since distance $\to \infty$ at the boundary with respect to the hyperbolic metric.
+
+  Since $f$ has only finitely many fixed points, a connected set of them can only contain 1, and so there is a unique such point, and by Schwarz-Pick, all orbits are attracted to this point.
+
+  This boundary fixed point is Julia, so it is not attracting or Siegel, and attracts $U$ so cannot be repelling. So it is parabolic or Cremer, and so its multiplier $\lambda$ lies on the unit circle. WLOG, put this point at 0. We then use the ``Snail Lemma".
+
+  Fix a neighbourhood of $0$ on which $f$ is conformal, and $z \in U$ in the neighbourhood, and a path $p:[0,1] \to U$ from $z$ to $f(z)$, and extend $p(t)$ to $[0, \infty)$ by $p(t+1) \coloneqq f(p(t))$. Lifting $p$ by $z \mapsto e^{\im z}$, we obtain then a continuous modulus $r(t)$ and argument $\theta(t)$, both from $[0, \infty) \to \R$, such that $p(t) = r(t)e^{\im\theta(t)}$.
+
+  Since $f(z) =\lambda z+ a_2z^2+\ldots$, we have $\theta(t+1) = \theta(t)+c+o(1)$, and so $e^{\im c} = \lambda$.
+
+  We can then lift $f$ to $F(r, \theta) = (r', \theta')$, where $\theta' = \theta+c+o(1)$ as $r \to \infty$ for the correct choice of lift.
+
+  Suppose that $c>0$. Then $\theta(t) \to \infty$ as $t \to \infty$. Given small $r > 0$, and any choice of $t_r$ such that $t > t_r \implies r(t) < r(t_r)$, we have a connected region $V_r$ defined by the $\theta$-axis, the horizontal line $\theta=\theta(t_r)$, and the left hand side of the curve $p(t)$.
+
+  Under iteration by $F$, $r \to 0$ for all points in $V_r$.
+
+  So the image $W$ of $V_r$ consists of points attracted under $f$ to $0$. $W$ contains a punctured disk since $V$ contains a vertical strip of height $2\pi$. But then $0$ is necessarily an attracting fixed point, contradicting Julia.
+
+  If $c<0$, we have the same argument, and so $c=0$. But then $\lambda = e^{\im \cdot 0} = 1$, and $0$ is parabolic, and $U$ is an attracting basin.
+\end{proof}
 \end{document}
