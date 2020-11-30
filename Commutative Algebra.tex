@@ -1333,4 +1333,73 @@ If $R$ is noetherian and $I$ is finitely generated, say by $x_1, \ldots, x_s$, t
   \[M_0^\ast \subseteq M_1^\ast \subseteq \ldots\]
   and $M^\ast = \bigcup M_k^\ast$. Since $R^\ast$ is noetherian, $M^\ast$ is finitely generated as an $R^\ast$-module if and only if the chain terminates, i.e. $M^\ast = M^\ast_N$ for some $N$, which happens if and only if $M_{N+j} = I^jM_N$ for all $j \geq 0$, i.e. precisely when the filtration is stable.
 \end{proof}
+\begin{proposition}[Artin-Rees Lemma - 1956]
+  Let $R$ be a noetherian ring, $I \trianglelefteq R$, and $M$ a finitely generated $R$-module, with $\{M_n\}$ a stable $I$-filtration of $M$. If $M'$ is a submodule of $M$, then $\{M'\cap M_n\}$ is a stable $I$-filtration of $M'$.
+\end{proposition}
+Immediately after taking $M_n = I^nM$, we obtain what is usually called the Artin-Rees Lemma:
+\begin{lemma}
+  There is an integer $s \geq 0$ such that
+  \[(I^n M)\cap M' = I^{n-s}((I^s M)\cap M') \forall n \geq s\]
+\end{lemma}
+\begin{proof}
+  Certainly $(M' \cap M_n)$ is an $I$-filtration of $M'$: $I(M'\cap M_n) \subseteq IM' \cap IM_n \subseteq M' \cap M_{n+1}$ since $\{M_n\}$ is an $I$-filtration.
+
+  So $\{M'\cap M_n\}$ yields a graded $R^\ast$-module $\bigoplus M'\cap M_n$ of $M^\ast = \bigoplus M_n$.
+
+  Since $\{M_n\}$ is stable, \textbf{5.4} gives that $M^\ast$ is a finitely generated $R^\ast$-module, and hence is a noetherian $R^\ast$-module, as $R^\ast$ is noetherian. So $\bigoplus M' \cap M_n$ is a finitely generated $R^\ast$-module. \textbf{5.4} again gives that $\{M'\cap M_n\}$ is a stable $I$-filtration.
+\end{proof}
+\begin{proposition}[Krull's Intersection Theorem]
+  Let $R$ be noetherian with $I \trianglelefteq R$, and $M$ a finitely generated $R$-module. Let $N = \bigcap_{n \geq 0} I^nM$. Then:
+  \begin{enumerate}
+    \item There is some $r \in 1+I$ with $rN = 0$.
+    \item If $I \subseteq J(R)$ then $N = 0$.
+    \item If $R$ is an integral domain then $\bigcap_{n\geq 0}I^n = 0$.
+    \item If $R$ is local then $N = 0$.
+  \end{enumerate}
+\end{proposition}
+\begin{proof}
+  For $1., 2.,$ by \textbf{5.6}, $I^n M \cap N = I^{n-s}(I^s M \cap N)$ for some $s$ and all $n \geq s$. But the right hand side is $I^{n-s}N$ and the left hand side is $N$, so $N = I^{n-s}N$. Now apply Nakayama.
+
+  For $3.$, if $R$ is an integral domain, take $M=R$. If $N \neq 0$, then $rN = 0$ for some $r \in 1+I$. This would give 0 divisors, so we have a contradiction.
+
+  For $4.$, if $R$ is local, then all ideals are in $J(R)$, and so $2.$ applies.
+\end{proof}
+\subsection{Topology and Completion}
+Given a filtration $M = M_0 \supseteq M_1 \supseteq \ldots$, we define a topology with basis of open sets given by all sets of the form $m + M_n$ for some $m \in M, n \in \N \setminus\{0\}$.
+
+If $\bigcap M_n = 0$, then we can put a metric on $M$, given by $d(m_1, m_2) = p^{-k}$, where $k = \max_n \{m_1, m_2 \in M_n\}$, and $p$ is a rational prime. This metric yields the same topology as above.
+
+The choice of $p$ is important in the special case where $M = \Z, M_n = p^n \Z$. Usually though, $p$ is unimportant, since different choices of $p$ yield the same topology.
+
+Two filtrations $M_n, M'_n$ define the same topology if, for each $n$,
+\[\exists \begin{cases} s(n) \st M_n \supseteq M'_{s(n)} \\ t(n) \st M_n' \supseteq M_{t(n)} \end{cases}\]
+The $I$-adic topology on $M$ is the one from the filtration $\{I^nM\}$, and in particular on $R$ is the one from the filtration $\{I^n\}$. Note that all stable $I$-filtrations induce the same topology:
+
+Since $IM_n \subseteq M_{n+1}$, we have $I^nM\subseteq M_n$. Also, $IM_n = M_{n+1}$ for sufficiently large $n$, say $\geq N$. Then $M_{n+N} = I^nM_N \subseteq I^nM$.
+
+\textbf{Examples.}
+\begin{itemize}
+  \item $I = (p)$ in $\Z$ - this gives the \emph{p-adic topology}: two integers are close together if their difference is divisible by a large power of $p$.
+  \item $I = (f)$ in $k[x]$, for $f$ irreducible.
+\end{itemize}
+Let $\{M_n\}$ be a stable $I$-filtration, $R$-noetherian, $M$ a finitely generated $R$-module. If $N\subseteq M$ then by the Artin-Rees Lemma, $N \cap M_n$ is a stable $I$-filtration on $N$, and so the subspace topology on $N$ induced from the $I$-adic topology on $M$ is the same as the $I$-adic topology on $N$.
+
+\begin{definition}
+  A \emph{Cauchy sequence} $(x_m)$ in $M$ is a sequence such that, for any open set $U$ containing $0$ there is $a(U) \in \N$ with $x_r - x_s \in U$ for all $r, s \geq a(U)$.
+\end{definition}
+It's enough to consider open sets $U$ of the form $M_n$. Hence a Cauchy sequence is one such that, for all $r, s \geq a(M_n)$, $x_r \equiv x_s \mod M_n$. Two Cauchy sequences $(x_n), (y_n)$ are \emph{equivalent} if $x_m-y_m \to 0$ (meaning that, for any open $U \ni 0$, there is $b(U) \in \N$ with $m \geq b(U) \implies x_m-y_m \in U$.
+\begin{definition}
+  The \emph{I-adic completion} $\hat{M}$ of $M$ is the set of equivalence classes of Cauchy sequences. If $(x_n), (y_n)$ are Cauchy sequences, so is $(x_n + y_n)$, and its class depends only on the classes of $(x_n)$ and $(y_n)$.
+
+  The \emph{I-adic completion} $\hat{R}$ of $R$ is the set of equivalence classes of Cauchy sequences under the $I$-adic topology, with addition as above, and multiplication defined by $[r_n]\cdot [s_n]
+   = [r_ns_n]$.
+\end{definition}
+So $\hat{R}$ is a ring, and $\hat{M}$ is an $\hat{R}$-module, with $[r_n]\cdot [x_n] = [r_nx_n]$.
+
+There is a ring homomorphism $R \to \hat{R}$ given by $r \mapsto [r]$, and kernel $\bigcap I^n$. Similarly, there is an additive group homomorphism $M \to \hat{M}, x \mapsto [x]$ with kernel $\bigcap I^n M$.
+
+Krull's Intersection Theorem (\textbf{5.7}) gives cases where these maps are injective, e.g. $R \to \hat{R}$ is injective if $R$ is an integral domain, and $M \to \hat{M}$ is injective if $I \subseteq J(R)$.
+\begin{definition}
+  $R$ is \emph{complete} if $R \cong \hat{R}$ is an isomorphism.
+\end{definition}
 \end{document}
