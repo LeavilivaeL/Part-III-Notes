@@ -1402,4 +1402,115 @@ Krull's Intersection Theorem (\textbf{5.7}) gives cases where these maps are inj
 \begin{definition}
   $R$ is \emph{complete} if $R \cong \hat{R}$ is an isomorphism.
 \end{definition}
+There is another way of defining things, via \emph{inverse limits}: if $\{M_n\}$ is a stable $I$-filtration, then we have canonical projection maps $\varphi_{r,s}: M/M_r \to M/M_s$ for $r>s$. Then we write
+\[\lim_{\leftarrow}M/M_n \coloneqq \left\{(\ldots, y_n + M_n, \ldots) \in \prod_n (M/M_n) : \varphi_{r,s}(y_r+M_r) = y_s +M_s \forall r > s\right\}\]
+We have term-by-term addition, and in the case of $\lim_{\leftarrow}{R/I^n}$, also term-by-term multiplication. For each $r$ there is a canonical projection $\psi_r:\lim\limits_\leftarrow M/M_n \to M_r$.
+
+Then for $[x_n] \in \hat{M}$, we can set $y_n +M_n \coloneqq x_{a(M_n)} + M_n$, where $a(M_n)$ is where the sequence stabilises as defined in the definition of a Cauchy sequence. Similarly, we have a map $\hat{R} \to \lim\limits_\leftarrow (R/I^n)$. These maps are injective: those sequences which eventually lie in $M_n$ for all $n$ are those equivalent to the zero sequence. Moreover, they are surjective, as $(\ldots, y_n+M_n, \ldots) \mapsfrom [y_n]$. Hence $\hat{M}$ can be identified with $\lim\limits_\leftarrow M/M_n$. We then inherit the topology given by the filtration $\{\hat{M}_n\}$, where $\hat{M}_n = \{(M_0, \ldots, M_n, y_{n+1}+M_{n+1}, \ldots)\}$ is the submodule consisting of sequences that are initially zero for the first $n$ steps.
+
+Doing the same for $\hat{R}$ gives ideals of $\hat{R}$, and in particular $\hat{I}$ has elements with entry in $R/I$ zero. $R/I \cong \hat{R}/\hat{I}$, and more generally, $R/I^n \cong \hat{R}/\hat{I}^n$.
+
+\textbf{Examples.}
+\begin{enumerate}
+  \item $R = \Z, I=(p)$ for $p$ prime. Then $\hat{R}$ is the ring of $p$-adic integers, $\lim\limits_\leftarrow \Z/p^n\Z$.
+  \item $R = k[x_1, \ldots, x_n]$. Then if $I = (x_1, \ldots, x_n)$, we have $\lim\limits_\leftarrow k[x_1, \ldots, x_n]/I_n = k[[x_1, \ldots, x_n]]$. Here we identify the power series $1+x+x^2+\ldots$ with the sequence of partial sums, $(0, 1+(x), 1+x+(x^2), \ldots)$.
+\end{enumerate}
+If $\hat{r} \in \hat{I}$, then $\hat{1}-\hat{r}$ has multiplicative inverse $\hat{1}+\hat{r}+\hat{r}^2+\ldots$. This converges in $\hat{R}$, the $I$-adic completion. Thus, if $I$ is maximal in $R$ so that $R/I \cong \hat{R}/\hat{I}$ is a field, then any element of $\hat{R}$ not in $\hat{I}$ has an inverse, and we can multiply by something to put it in the form $\hat{1}-\hat{r}$.
+\begin{proposition}
+  Let $R$ be a noetherian local ring and $I$ its maximal ideal. Then $\hat{R}$ is a local ring with maximal ideal $\hat{I}$.
+\end{proposition}
+\begin{proof}
+  $\hat{R}/\hat{I} \cong R/I$, and hence $\hat{R}/\hat{I}$ is a field, so $\hat{I}$ is a maximal ideal. By the remark, $\hat{I} = J(\hat{R})$, hence is the unique maximal ideal.
+\end{proof}
+\begin{proposition}
+  Suppose $R$ is noetherian. If $N$ is a submodule of a finitely generated $R$-module $M$, then $\hat{N}$ is a submodule of $\hat{M}$, and $\hat{M/N} \cong \hat{M}/\hat{N}$. Alternatively, if
+  \begin{center}
+    \begin{tikzcd}
+      0 \arrow{r} & M_1 \arrow{r} & M \arrow{r} & M_2 \arrow{r} & 0
+    \end{tikzcd}
+  \end{center}
+  is a short exact sequence of finitely generated $R$-modules, then
+  \begin{center}
+    \begin{tikzcd}
+      0 \arrow{r} & \hat{M}_1 \arrow{r} & \hat{M} \arrow{r} & \hat{M}_2 \arrow{r} & 0
+    \end{tikzcd}
+  \end{center}
+  is exact.
+\end{proposition}
+\begin{proof}
+  By the Artin-Rees Lemma, the $I$-adic topology on $N$ is the subspace topology induced from the $I$-adic topology on $M$. Two Cauchy sequences $(x_n), (y_n)$ with all $x_n, y_n \in N$ are equivalent in $M$ if and only if they are equivalent in $N$. Any open $U$ in $N$ is of the form $V \cap N$ for some $V$ open in $M$. If $x_n-y_n \in U$ for large enough $n$, then $x_n -y_n \in V\cap N$, and so $\hat{N}$ embeds in $\hat{M}$ via $[x_n]_N \mapsto [x_n]_M$. Viewing $\hat{M}$ as $\lim\limits_\leftarrow (M/M_n)$, the image of this map is the set of elements of the form $(\ldots, y_n+M_n, \ldots)$, with $y_n +M_n \in (N+M_n)/M_n$.
+
+  Now consider the map $\pi:\hat{M} \to \hat{M/N}$, given by
+  \[(\ldots, y_n+M_n, \ldots) \mapsto (\ldots, y_n+N+M_n, \ldots)\]
+  The kernel is the image of $\hat{N}$.
+
+  Finally, we show that $\pi$ is surjective: we must find $z+M_{n+1}$ in the following the diagram, given the rest of it:
+  \begin{center}
+    \begin{tikzcd}
+      x+N+M_{n+1} \arrow{r} & y+N+M_n\\
+      z+M_{n+1} \arrow{r}\arrow{u} & y+M_n \arrow{u}
+    \end{tikzcd}
+  \end{center}
+  We require $z \in y + M_n, z \in x + N+M_{n+1}$. We know $x \in y_N+M_n$, and hence $x+\eta \in y+M_n$ for some $\eta \in N$. Now set $z = x+\eta$.
+\end{proof}
+\begin{proposition}
+  If $R$ is a noetherian ring, $I$ an ideal of $R$, then the $I$-adic completion $\hat{R}$ of $R$ is noetherian.
+\end{proposition}
+\begin{proof}
+  Since $R$ is noetherian, $I$ is finitely generated, say by $r_1, \ldots, r_n$. Let $J_1$ be the ideal of $R[x_1, \ldots, x_n]$ generated by $(x_1-r_1, \ldots, x_n-r_n)$. This is the kernel of the map
+  \begin{align*}
+    R[x_1, \ldots, x_n] &\to R\\
+    x_i \mapsto r_i
+  \end{align*}
+  Let $J_2 = (x_1, \ldots, x_n) \trianglelefteq R[x_1, \ldots, x_n]$. The $J_2$-adic topology on the $R[x_1, \ldots, x_n]$-module $R[x_1, \ldots, x_n]/J_1 \cong R$ is the same as the $I$-adic topology on $R$, since $(J_2 +J_1)/J_1 \leftrightarrow I$. Forming the completion with respect to the $J_2$-adic topology, we have
+  \[\hat{(R[x_1, \ldots, x_n]/J_1)} \cong \hat{(R[x_1, \ldots, x_n])}/\hat{J_1}\]
+  by \textbf{5.12}. But $\hat{R} \cong \hat{(R[x_1, \ldots, x_n])} \cong R[[x_1, \ldots, x_n]]$, which is noetherian by \textbf{1.8}. Thus the $I$-adic completion of $R$ is an image of a noetherian ring, and so is noetherian.
+\end{proof}
+\begin{proposition}
+  For any ring $R$, if $M$ is finitely generated, then $\hat{R}\otimes_R M \to \hat{M}$ is surjective.
+
+  If moreover $R$ is noetherian, then this map is an isomorphism, via the composition
+  \[\hat{R}\otimes_R M \to \hat{R}\otimes_R\hat{M} \to \hat{R}\otimes_{\hat{R}} \hat{M} = \hat{M}\]
+  (recall that $\hat{R} \times \hat{M} \to \hat{R}\otimes_{\hat{R}}\hat{M}$, and the universal $\hat{R}$-bilinear map is also $R$-bilinear, so we get the second map.)
+\end{proposition}
+\begin{proof}
+  $M$ is finitely generated, say by $x_1, \ldots, x_n$. We define $F$ to be the free $R$-module on $n$ generators, say $y_1, \ldots, y_n$. Then we have an $R$-module map $F \to M$ given by $y_i \to x_i$. So then we have a short exact sequence $0 \to N \to F \to M \to 0$.
+
+  Then by \textbf{3.9} and \textbf{5.12}, we get the commutative diagram with exact rows:
+  \begin{center}
+    \begin{tikzcd}
+      & \hat{R}\otimes_R N \arrow{d}{\alpha} \arrow{r} & \hat{R}\otimes_R F \arrow{d}{\beta} \arrow{r} & \hat{R} \otimes_R M \arrow{d}{\gamma} \arrow{r} & 0\\
+      0 \arrow{r} & \hat{N} \arrow{r} & \hat{F} \arrow{r}{\delta} & \hat{M} \arrow{r} & 0
+    \end{tikzcd}
+  \end{center}
+  Now $I$-adic completion computes with finite direct sums, hence:
+  \[\hat{R} \otimes_R F = \hat{R} \otimes_R \bigoplus R = \bigoplus (\hat{R} \otimes_R R) = \hat{R}^n = \hat{F}\]
+  So $\beta$ is an isomorphism (since $F$ is free). Since $\delta$ is surjective, $\gamma$ must be surjective. We've shown that, for any finitely generated module $M$ the map $\hat{R}\otimes_R M \to \hat{M}$ is surjective, and so $\alpha$ is also surjective.
+
+  It thus remains to show that $\gamma$ is injective. Let $x \in \ker \gamma$. Exactness at $\hat{R}\otimes_R M$ implies that $x$ is in the image of $y \in \hat{R}\otimes_R F$, say. Consider $\beta(y) \in \ker\delta$. Exactness at $\hat{F}$ gives that $\beta(y)$ is the image of an element of $\hat{N}$, which, because $\alpha$ is surjective, is the image of $z \in \hat{R}\otimes_R N$, say. This $z$ maps to $y_1 \in \hat{R}\otimes F$, with $y_1-y \in \ker\beta$.
+
+  But $\beta$ is an isomorphism, and hence $y_1=y$, so $y$ is an image, so in the kernel of the map to $\hat{R} \otimes M$. So its image $x$ is zero.
+\end{proof}
+\subsection{The Associated Graded Ring}
+Let $R$ be a ring, $I \trianglelefteq R$, $M$ an $R$-module, with $\{M_n\}$ an $I$-filtration of $M$. Then define:
+\[\gr(R) = \gr_I(R) = \bigoplus_{n\geq 0}I^n/I^{n+1}\]
+taking $I^0 = R$, and
+\[\gr(M) = \bigoplus_{n\geq 0}M_n/M_{n+1}\]
+We have multiplication in $\gr(R)$ generated by $(x_m +I^{m+1})\cdot (x_n+I^{n+1}) = x_mx_n+I^{m+n+1}$, and check this doesn't depend on the representative chosen. Then $\gr(M)$ is a graded $\gr_I(R)$-module in the natural way.
+\begin{proposition}
+  Let $R$ be a noetherian ring, $I\trianglelefteq R$. Then:
+  \begin{enumerate}
+    \item $\gr_I(R)$ is noetherian.
+    \item $\gr_I(R) \cong \gr_{\hat{I}}(\hat{R})$ as graded rings.
+    \item If $M$ is a finitely generated $R$-module and $\{M_n\}$ is a stable $I$-filtration of $M$, then $\gr(M)$ is a finitely generated graded $\gr_I(R)$-module.
+  \end{enumerate}
+\end{proposition}
+\begin{proof}\hspace*{0cm}
+  \begin{enumerate}
+    \item If $R$ is noetherian, then the ideal $I$ is finitely generated, say by $x_1, \ldots, x_n$, with $\bar{x}_i \coloneqq x_i + I^2 \in I/I^2$. Then $\gr_I(R) = (R/I)[\bar{x}_1, \ldots, \bar{x}_n]$, a ring of finite type over $R/I$ which is noetherian. So by Hilbert's basis theorem, this is noetherian.
+    \item Use the fact that $I^n/I^{n+1}\cong \hat{I}^n/\hat{I}^{n+1}$.
+    \item If $\{M_n\}$ is a stable $I$-filtration, then there is some $n_0$ such that $M_{n_0 + r} = I^r M_{n_0}$ for all $r \geq 0$. So $\gr(M)$ is generated as an $\gr(R)$-module by $\bigoplus_{n\leq n_0}M_n/M_{n+1}$. But each $M_n/M_{n+1}$ is a noetherian $R$-module, and annihilated by $I$, and hence is a finitely generated $R/I$-module. Hence $\bigoplus_{n\leq n_0}M_n/M_{n+1}$ is a finitely generated $R/I$-module. So $\gr(M)$ is finitely generated as a $\gr(R)$-module.
+  \end{enumerate}
+\end{proof}
+Now we consider the case where $R$ is a noetherian local ring with maximal ideal $\p$, $I$ is an ideal with $\sqrt{I} = \p$. Also $\gr_\p(R)$ is an affine $R/\p$-algebra. We then deduce properties of $R$ from the theory of affine algebras.
 \end{document}
