@@ -1275,4 +1275,43 @@ Together with the classification of hyperbolic domains with self-maps, we obtain
 
   If $c<0$, we have the same argument, and so $c=0$. But then $\lambda = e^{\im \cdot 0} = 1$, and $0$ is parabolic, and $U$ is an attracting basin.
 \end{proof}
+\section{Next Steps}
+\subsection{Open Questions - Quadratic Polynomials}
+\begin{definition}
+  Let $f$ be a rational map of degree $d \geq 2$. If every critical point of $f$ is attracted to some attracting cycle, then $f$ is \emph{hyperbolic}.
+\end{definition}
+Hyperbolic maps have a large stable on set on which the dynamics of $f$ are simply described. The Julia sets have measure $0$, with Hausdorff dimension $<2$. All maps $z\mapsto z^2+c$ with $c \in \C\setminus M$ are hyperbolic maps.
+\begin{conjecture}[Density of Hyperbolicity for Quadratic Polynomials (DH)]
+  The set $\{c \in\C: f_c(z) = z^2+c \text{ is hyperbolic}\}$ is dense in $\C$.
+\end{conjecture}
+We expect this because of the following:
+\begin{theorem}[Lyubich]
+  DH holds for real parameters $c$.
+\end{theorem}
+This is somewhat surprising however, as:
+\begin{theorem}[Jakobsen]
+  The collection of non-hyperbolic parameters $c \in \R$ is a set of positive measure.
+\end{theorem}
+\begin{conjecture}[MLC]
+  The Mandelbrot set is locally connected. Equivalently, the Reimann map $\hat\C \setminus \bar\D \xrightarrow{\thicksim} \hat\C \setminus M$ extends continuously to the boundary of the disk.
+\end{conjecture}
+The equivalence above follows from Caratheodory's theorem.
+
+It has been shown by Douady and Hubbard that MLC $\implies$ DH.
+
+Sullivan gave a correspondence between the complex dynamics of rational maps and the theory of finitely generated Kleinian groups (i.e. subgroups of $PSL_2$). Under this equivalence, MLC would tell us that quadratic polynomial dynamics can be described purely combinatorially.
+\begin{definition}
+  A complex number $c$ is a \emph{Misiurewicz parameter} if $f_c(z)$ has 0 strictly preperiodic.
+\end{definition}
+We have the following properties if Misiurewicz parameters:
+\begin{enumerate}
+  \item If $c$ is Misiurewicz, then $c \in \partial M$.
+  \item Any periodic Fatou component either contains a critical point which is attracted to point, or has a dense critical orbit on its boundary. If $c$ is Misiurewicz, then it follows that the only periodic Fatou component is $B(\infty)$, which is its own unique preimage. But then Sullivan's No Wandering Domains Theorem tells us that there are no other Fatou components, and therefore $K(f_c) = J(f_c)$.
+  \item Misiurewicz parameters are dense in the $\partial M$.
+\end{enumerate}
+For example $c=\im$. $0 \mapsto \im \mapsto -1+\im \mapsto -\im \mapsto -1+\im \mapsto \ldots$.
+\begin{theorem}[Tan Lei]
+  The Mandelbrot set at a Misiurewicz point $c$ is asymptotically self similar to the Julia set of $f_c(z)$ at $c$.
+\end{theorem}
+
 \end{document}
