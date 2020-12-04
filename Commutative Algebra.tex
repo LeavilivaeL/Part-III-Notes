@@ -72,7 +72,7 @@ A large portion of the course deals with the dimension of rings. We can define i
 \item In a geometric context in terms of growth rates.
 \item The transcendence degree of a field of fractions.
 \end{itemize}
-For commutative rings, all three give the same answer. There is in fact a fourth method, using homological algebra, which in the case of ``nice" noetherian rings also gives the same answer.
+For commutative rings, all three give the same answer. There is in fact a fourth method, using homological algebra, which in the case of ``nice''"'' noetherian rings also gives the same answer.
 
 Most of this theory dates back to 1920-1950. Rings of dimension 0 are called \emph{artinian} rings, and in dimension 1 there are special properties which are important in number theory, particularly in the study of algebraic curves.
 
@@ -627,7 +627,7 @@ If $R$ is a ring with a multiplicatively closed subset $S$, and $I \triangleleft
 \begin{definition}
   A property $\mathscr{P}$ of a ring $R$ (or $R$-module $M$) is \emph{local} if $R$ (or $M$) has $\mathscr{P}$ if and only if $R_p$ (or $M_p$) has $\mathscr{P}$ for every prime ideal $p \subseteq R$.
 \end{definition}
-We have just shown that ``being noetherian" is a local property. We will now go on to prove that another property is local:
+We have just shown that ``being noetherian'' is a local property. We will now go on to prove that another property is local:
 \begin{lemma}
   The following are all equivalent:
   \begin{enumerate}
@@ -641,7 +641,7 @@ We have just shown that ``being noetherian" is a local property. We will now go 
 
   Suppose $M_q = 0$ for all maximal $q$, but $M \neq =$. Then take $0 \neq m \in M$. The annihilator of $m$ is a proper ideal of $R$, and so it is contained in a maximal ideal $q$ by Zorn. Consider $\frac{m}{1} \in M_q$. By assumption, $M_q =0$, and hence $\frac{m}{1} = 0$. So $sm =0$ for some $s \in S\coloneqq R\setminus q$. But we already had $q$ containing the annihilator of $m$, and so we have a contradiction.
 \end{proof}
-So ``being 0" is a local property!
+So ``being 0'' is a local property!
 \begin{lemma}
   Let $\varphi:M \to N$ be a $R$-module homomorphism. Then the following are equivalent:
   \begin{enumerate}
@@ -1026,7 +1026,7 @@ This theorem tells us that strict chains of primes in $T$ induce strict chains o
   Now by \textbf{14.4}, $S^{-1}\f{q}$ and $S^{-1}\f{q}_1$ are maximal. But $S^{-1}\f{q} \leq S^{-1}\f{q}_1$, and hence $S^{-1}\f{q}= S^{-1}\f{q}_1$. Using the one-to-one correspondence between primes of $S^{-1}T$ and of $T$ not intersecting $S$, we must have $\f{q}=\f{q}_1$.
 \end{proof}
 \begin{theorem}[Lying over Theorem]
-  Let $R \leq T$ be rings, and $T$ integral over $R$. Let $\p$ be a prime ideal of $R$. Then there is a prime ideal $\f{q}$ of $T$ with $\f{q} \cap R =\p$ - we say $\f{q}$ ``lies over" $\p$.
+  Let $R \leq T$ be rings, and $T$ integral over $R$. Let $\p$ be a prime ideal of $R$. Then there is a prime ideal $\f{q}$ of $T$ with $\f{q} \cap R =\p$ - we say $\f{q}$ ``lies over'' $\p$.
 
   In other words, the map $\Spec(T) \to \Spec(R)$ is surjective.
 \end{theorem}
@@ -1035,8 +1035,8 @@ This theorem tells us that strict chains of primes in $T$ induce strict chains o
 
   Then $S^{-1}\f{q} \cap S^{-1}R$ is maximal by \textbf{4.14} and hence is the unique maximal ideal $S^{-1}\p$ of $S^{-1}R = R_\p$. So $S^{-1}\f{q}\cap S^{-1}R = S^{-1}\p$. Hence $\f{q}\cap R = \p$.
 \end{proof}
-Now we will have two theorems of Cohen and Seidelberg (1946) - the ``going up" and ``going down" theorems, that will allow us to move from chains of prime ideals in $R$ to such chains in $T$, where $R\leq T$ are rings and $T$ is integral over $R$. The second theorem will need stronger conditions:
-\begin{theorem}[``Going-up Theorem"]
+Now we will have two theorems of Cohen and Seidelberg (1946) - the ``going up'' and ``going down'' theorems, that will allow us to move from chains of prime ideals in $R$ to such chains in $T$, where $R\leq T$ are rings and $T$ is integral over $R$. The second theorem will need stronger conditions:
+\begin{theorem}[``Going-up Theorem'']
   Let $R \subset T$ be rings with $T$ integral over $R$. Let $\p_1 \leq \ldots \leq \p_n$ be a chain of prime ideals of $R$, and $\f{q}_1 \leq \ldots \leq \f{q}_m$ ($m<n$) a chain of prime ideals in $T$, with $\f{q}_i \cap R = \p_i$ for $1\leq i \leq m$.
 
   Then we can extend the chain of $\f{q}$s to a chain of length $n$ with $\f{q}_i \cap R = \p_i$ for $1 \leq i \leq n$.
@@ -1044,12 +1044,12 @@ Now we will have two theorems of Cohen and Seidelberg (1946) - the ``going up" a
 \begin{proof}
   By induction, it's enough to consider the case $n = 2, m=1$. Write $\bar{R}$ for $R/\p_1$, $\bar{T}$ for $T/\f{q}_1$. Then $\bar{R} \injection \bar{T}$ with $\bar{T}$ integral over $\bar{R}$, using the fact that $\f{q}_1 \cap R = \p_1$ and \textbf{4.12.2}. By the lying over theorem, there is a prime $\f{q}_2$ of $\bar{T}$ such that $\bar{q}_2 \cap \bar{R} = \bar{\p}_2$. Lifting back gives a prime ideal $\f{q}_2$ of $T$ with $\f{q}_2 \geq \f{q}_1$, and $\f{q}_2 \cap R = \p_2$.
 \end{proof}
-\begin{theorem}[``Going-down Theorem"]
+\begin{theorem}[``Going-down Theorem'']
   Let $R \subset T$ be integral domains, with $R$ integrally closed in $T$ and $T$ integral over $R$. Let $\p_1 \geq \ldots \geq \p_n$ be a chain of prime ideals of $R$, and $\f{q}_1 \geq \ldots \geq \f{q}_m$ ($m<n$) be a chain of prime ideals in $T$, with $\f{q}_i \cap R = \p_i$ for $1 \leq i \leq m$.
 
   Then we can extend the chain of $\f{q}$s to a chain of length $n$ with $\f{q}_i \cap R = \p_i$ for $1 \leq i \leq n$.
 \end{theorem}
-Later we will apply these to finitely generated $k$-algebras $T$ and prove ``Noether normalisations" - if $T$ is a domain the $T$ is integral over a subalgebra isomorphic to a polynomial algebra.
+Later we will apply these to finitely generated $k$-algebras $T$ and prove ``Noether normalisations'' - if $T$ is a domain the $T$ is integral over a subalgebra isomorphic to a polynomial algebra.
 
 \begin{corollary}[of going up]
   Let $R \leq T$, with $T$ integral over $R$. Then $\dim R = \dim T$.
@@ -1522,7 +1522,7 @@ Now let $\mathscr{C}$ be some class of finitely generated $T_0$-modules, and $\l
   The \emph{Poincar\'e series} of $M$ with respect to $\lambda$ is the generating function of $\lambda(M_n)$, i.e. the power series
   \[P(M, t) = \sum_{n=0}^\infty \lambda(M_n)t^n \in \Z[[t]]\]
 \end{definition}
-For example, if $T_0$ is a field, we could take $\lambda$ to be the ``vector space dimension" function.
+For example, if $T_0$ is a field, we could take $\lambda$ to be the ``vector space dimension'' function.
 
 More generally, if $T_0$ is artinian, then take $\lambda(U)$ to be the length of a composition series for $U$.
 \begin{theorem}[Hilbert, Serre]
@@ -1673,8 +1673,8 @@ For example, free modules are projective and injective. If $R$ is an integral do
   \item We could take a projective presentation for $N$ and apply $\cdot \otimes M$, giving the same kernel.
   \item We could take a short exact sequence $0 \to N \to I \to L\to 0$ with $I$ injective and apply $\Hom(M, \cdot)$ to get $0 \to \Hom(M,N) \to \Hom(M,I) \to \Hom(M,L)$. Then cokernel arising is the same as $\Ext(M,N)$.
   \item Any $R$-module $M$ does indeed embed into an injective module. Actually, using Zorn, we can show there is a smallest such unique up to isomorphism, called the \emph{injective hull} of $M$, $I_M$.
-  \item $\Ext$ denotes ``extension". An alternative description defines an equivalence relation on all extensions of $M$ by $N$: $0 \to N \to X \to M\to 0$. The zero element of $\Ext(M,N)$ represents the split sequence $0 \to N \to N \oplus M \to M \to 0$. So if $\Ext(M,N) = 0$, then the only extensions are the split ones.
-  \item $\Tor$ denotes ``torsion". If $R = \Z$, then $\Tor(\Q/\Z, A)$ is the torsion subgroup of the abelian group $A$.
+  \item $\Ext$ denotes ``extension''. An alternative description defines an equivalence relation on all extensions of $M$ by $N$: $0 \to N \to X \to M\to 0$. The zero element of $\Ext(M,N)$ represents the split sequence $0 \to N \to N \oplus M \to M \to 0$. So if $\Ext(M,N) = 0$, then the only extensions are the split ones.
+  \item $\Tor$ denotes ``torsion''. If $R = \Z$, then $\Tor(\Q/\Z, A)$ is the torsion subgroup of the abelian group $A$.
   \item $\Tor$ and $\Ext$ are abelian groups. If $R$ is commutative, they are $R$-modules - recall that $M \otimes N$ is an $R$-module if $R$ is commutative, but not necessarily otherwise.
 \end{itemize}
 \stepcounter{theorem}
