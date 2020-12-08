@@ -1,6 +1,5 @@
 \documentclass[10pt,a4paper]{article}
 \input{./preamble.tex}
-\pgfplotsset{compat=1.16}
 
 \title{Commutative Algebra}
 \begin{document}
@@ -1899,4 +1898,56 @@ Going back to the last of the examples above, we have $\ker \mu = \angle{r \otim
   \item $M_n(k)$ is $k$-separable. Given $\beta: R \to R \otimes R$, the image of $1$ is called the \emph{separatory idempotent}. For $M_n(k)$ it is obtained as follows: take $e_{ij}$ to be the elementary matrix with $1$ in the $(i,j)$-entry and $0$ everywhere else. Fix $j$, and consider $\sum_i e_{ij}\otimes e_{ji}$. This is the separatory idempotent. Its image under $\mu$ is $\sum e_ii = 1$, the identity matrix.
   \item Take $\C G$, for $G$ a finite group. Then $\C G \otimes \C G^{op} \cong \C G \otimes \C G \cong \C (G \times G)$, a semisimple algebra. All submodules are direct summands, and in particular $\C G$ is a direct summand of $\C(G \times G)$. Thus $\Dim \C G = 0$.
 \end{itemize}
+\subsection{Derivations}
+$\Hom_{(R,R)}(R \otimes R, M) \cong \Hom_k(k,M)$, as a map is determined by the image of $1 \otimes 1$, since it's free of rank $1$ on this generator. Also,
+\[\Hom_{(R,R)}(\underbrace{R\otimes \ldots \otimes R}_{n+2}, M) \cong \Hom_{k}(\underbrace{R \otimes \ldots \otimes R}_{n}, M)\]
+\begin{definition}
+  The \emph{Hochschild cochain complex} is
+  \[M = \Hom_k(k,M) \xrightarrow{\delta_0} \Hom_k(R,M) \xrightarrow{\delta_1} \Hom_k(R\otimes R, M) \to \ldots\]
+  where:
+  \begin{align*}
+    (\delta_0 f)(r) &= rf(1)-f(1)r\\
+    (\delta_1 f)(r_1 \otimes r_2) &= r_1f(r_2)-f(r_1r_2)+f(r_1)r_2\\
+    (\delta_2 f)(r_1 \otimes r_2 \otimes r_3) &= r_1f(r_2\otimes r_3)-f(r_1r_2\otimes r_3)+f(r_1\otimes r_2r_3) - f(r_1\otimes r_2)r_3
+  \end{align*}
+  and so on. Then for $\HH^1(R,M)$, we want $\ker \delta_1/\im \delta_0$.
+\end{definition}
+\begin{definition}
+  $\ker \delta_1 = \{f \in \Hom_k(R,M) : f(r_1r_2) = r_1f(r_2) + f(r_1)r_2\}$ is the set of \emph{derivations} $R \to M$, written $\Der(R,M)$.
+  \[\im \delta_0 = \{f \in \Hom_k(R,M) : f\text{ of the form }r\mapsto rm-mr\text{ for some m}\}\]
+  are the \emph{inner derivations}, written $\Inn\Der(R,M)$. So
+  \[\HH^1(R,M) = \Der(R,M)/\Inn\Der(R,M)\]
+\end{definition}
+\textbf{Examples.}
+\begin{itemize}
+  \item $M=R$: $\HH^1(R,R) = \Der(R)/\Inn\Der(R)$.
+  \item If $R$ is commutative, $\Inn\Der(R) = 0$, and so $\HH^1(R,R) = \Der(R)$.
+  \item In general, $\Der(R)$ forms a Lie algebra. If $D_1, D_2$ are derivations $R \to R$, then $D_1 D_2 - D_2 D_1 \in \End_k(R)$ is also a derivation.
+  \item If $\theta \in \Hom_{(R,R)}(R\otimes_k R, M)$, it is determined by the image $m$ of $1 \otimes 1$, and the restriction to $\ker \mu$ is the map $r \otimes 1 - 1 \otimes r \mapsto rm-mr$.
+
+  Consider $\phi \in \Hom_{(R,R)}(\ker \mu, M)$. Define $d : R \to M; r \mapsto \psi(r\otimes 1 -1 \otimes r)$.
+
+  Note that $rs \mapsto \phi(rs \otimes 1-1 \otimes rs) = \phi(r(s\otimes 1-1\otimes s)+(r\otimes 1-1\otimes r)s) = rd(s)+d(r)s.$
+  \item $R = k[x]$. $\Der(R) = \{p(x)\frac{d}{dx} : p(x) \in k[x]\}$, where $\charr k = 0$ (otherwise differentiation doesn't behave well).
+  \item In the case $M=R$, an $(R,R)$-bimodule when $R$ is commutative, we have that derivations are examples of differential operators: if $R$ is a commutative $k$-algebra, we define differential operators iteratively as:
+  \[D(R) = \bigcup D^i(R): D^0(R) = \{D \in \End(R):[r,D] = 0 \forall r \in R\}\]
+  and then
+  \[D^i(R) = \{D \in \End(R):[r,D]\in D^{i-1}(R) \forall r \in R\}\]
+  \item For example, $D(k[x]) = k[x, \frac{d}{dx}] \subseteq \End_k(k[x])$. If $R = k[x_1, \ldots, x_n]$ and $\charr k = 0$, then, by induction
+  \[D(k[x_1, \ldots, x_n]) = k[x_1, \frac{\partial}{\partial x_1}, \ldots, x_n, \frac{\partial}{\partial x_n}]\]
+\end{itemize}
+\begin{definition}
+  Given $M$ an $(R,R)$-bimodule, we form the \emph{semidirect product} $R \ltimes M$ with addition as usual, but multiplication given by $(r_1, m_1)\cdot (r_2, m_2) = (r_1r_1, r_1m_2+m_1r_2)$. Alternatively, this is $R+ M\epsilon$ where $\epsilon^2 =0$, and $\epsilon$ commutes with everything. $M \epsilon$ is an ideal and $(M\epsilon)^2 = 0$.
+\end{definition}
+\begin{lemma}
+  $\Der(R,M) \cong \{\text{algebra complement to }M \text{ in }R \ltimes M\}$.
+\end{lemma}
+\begin{proof}
+  A complement to $M$ is an embedded copy of $R$ in $R\ltimes M$:
+  \[R \injection R \ltimes M; r \mapsto (r, D(r))\]
+  This function $D: R \to M$ is a derivation. Conversely, $D: R \to M$ gives such an embedding.
+\end{proof}
+\begin{corollary}
+  $\Der(R,M) = \{\text{automorphisms of }R \ltimes M = R+M\epsilon\}$, where on $R \ltimes M, r\mapsto (r, D(r))$ and $m \mapsto m$ corresponds to on $R+M\epsilon$, $r\mapsto r+D(r)\epsilon, m\epsilon \mapsto m\epsilon$. $\Inn\Der(R,M) = \{\text{automorphisms of }R \ltimes M \text{ of the form obtained by conjugation by }1+m\epsilon\}$.
+\end{corollary}
 \end{document}

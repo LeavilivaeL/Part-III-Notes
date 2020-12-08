@@ -1820,6 +1820,157 @@ So the sequence is Cauchy, and $\hat{h}(P)$ exists.
 \begin{proof}
   \textbf{13.2} gives $c > 0$ such that
   \[|h(\phi P) - (\deg \phi)h(P)| \leq c\]
-  Replace $P$ by $2^n P$, divide by $4^n$, and take the limit at $n \to \infty$.
+  Replace $P$ by $2^n P$, divide by $4^n$, and take the limit as $n \to \infty$.
 \end{proof}
+\textbf{Remarks.}
+\begin{enumerate}
+  \item $H$ and $h$ depend on a choice of Weierstrass equation. \textbf{13.5} applied in the case where $\phi$ is an isomorphism (so $\deg \phi = 1$) shows that $\hat{h}$ does not.
+  \item Taking $\phi = [n]:E \to E$ shows $\hat{h}(nP) = n^2\hat{h}(P)$.
+\end{enumerate}
+\begin{lemma}
+  Let $E/\Q$ be an elliptic curve, with Weierstrass equation $y^2=x^3+ax+b$. Then there is some $c > 0$ such that
+  \[H(P+Q)H(P-Q) \leq cH(P)^2 H(Q)^2 \forall P, Q \in E(\Q)\text{ with }P,Q,P\pm Q \neq O_E\]
+\end{lemma}
+\begin{proof}
+  Let $P,Q,P+Q,P-Q$ have $x$ coordinates $x_1, \ldots, x_4$ respectively. By \textbf{5.7} there exist polynomials $W_0, W_1, W_2 \in \Z[x_1,x_2]$ of degree $\leq 2$ in $x_1$ and of degree $\leq 2$ in $x_2$ such that $(1:x_3+x_4:x_3x_4) = (W_0:W_1:W_2)$.
+
+  Write $x_i = r_i/s_i$ for $r_i, s_i \in \Z$ coprime. Then we get
+  \[(s_3s_4:r_3s_4+r_4s_3:r_3r_4) = ((r_1s_2-r_2s_1)^2:\ldots:\ldots)\]
+  Note that the three integers on the left are coprime.
+
+  Then $H(P+Q)H(P-Q) = \max(|r_3|,|r_3|)\max(|r_4|,|s_4|) \leq 2\max(|s_3s_4|,|r_3s_4+r_4s_3|,|r_3r_4|)$, and, since the three terms on the right are integers, so must be $\geq$ the corresponding coprime terms on the left, we have:
+  \begin{align*}
+    H(P+Q)H(P-Q) & \leq 2 \max(|r_1s_2-r_2s_1|^2, \ldots)\\
+    &\leq c H(P)^2 H(Q)^2
+  \end{align*}
+  where $c$ depends on $E$ but not on $P,Q$.
+\end{proof}
+\begin{theorem}
+  $\hat{h}:E(\Q) \to \R_{\geq 0}$ is a quadratic form.
+\end{theorem}
+\begin{proof}
+  Take logs in the last lemma gives
+  \[h(P+Q) + h(P-Q) \leq 2h(P)+2h(Q) + c\]
+  for all $P,Q$ with $P,Q,P+Q,P-Q \neq O_E$. We can remove this last restriction by using the fact that $|h(2P)-4h(P)|$ is bounded.
+
+  Replacing $P,Q$ by $2^nP, 2^nQ$, dividing by $4^n$, and taking the limit as $n \to \infty$, we lose the constant, and so
+  \[\hat{h}(P+Q)+\hat{h}(P-Q) \leq 2\hat{h}(P)+2\hat{h}(Q)\]
+  Replacing $P, Q$ by $P+Q$, $P-Q$ and using $\hat{h}(2P) = 4\hat{h}(P)$, we get the inequality the other way round, and so we have equality, so $\hat{h}$ is a quadratic form.
+\end{proof}
+The places of a number field $K$ are the finite places (=primes), so that $|x|_\p = c^{v_\p(x)}$ for some fixed constant $c>1$, and the infinite places (=real \& complex embeddings), so that $|x|_\sigma = |\sigma(x)|^d$ for some fixed $d>0$.
+
+For each place $v$ we may choose a normalisation $\abs{\cdot}_v$ (i.e. make a choice of $c$ and $d$) so that
+\[\prod_v |\lambda|_v = 1 \forall \lambda \in K^\times\]
+For $K$ a number field, consider $P = (a_0:a_1:\ldots :a_n)\in\P^n(K)$. We define $H(P ) = \prod_v \max_{0 \leq i\leq n} |a_i|_v$, which is well defined because of the product formula.
+
+Let $\pi_i :E\times E \times E \to E$ be the projection maps onto the $i\th$ factor for $i=1,2,3$. Let $\pi_{ij} = \pi_i + \pi_j$, and $\pi_{123} = \pi_1+\pi_2+\pi_3$. There is a result called the theorem of the cube which says that, if $D \in \Div(E)$, then
+\[\pi_{123}^\ast D + \pi_1^\ast D + \pi_2^\ast D \thicksim \pi_{12}^\ast D + \pi_{13}^\ast D + \pi_{23}^\ast D\]
+This can be used to give alternative proofs of \textbf{5.6} and \textbf{13.7}.
+
+\section{Dual Isogenies \& The Weil Pairing}
+Let $K$ be a perfect field and $E/K$ an elliptic curve.
+\begin{proposition}
+  Let $\Phi \subseteq E(\bar{K})$ be a finite $\Gal(\bar{K}/K)$-stable subgroup. Then there is an elliptic curve $E'/K$ and a separable isogeny $\phi:E \to E'$ defined over $K$ with kernel $\Phi$ such that every isogeny $\psi:E \to E''$ with $\Phi \subseteq \ker \psi$ factors uniquely via $\phi$:
+  \begin{center}
+    \begin{tikzcd}
+      E \arrow{r}{\psi} \arrow[swap]{d}{\phi} & E''\\
+      E' \arrow[swap, dashrightarrow]{ur}{\exists !} &
+    \end{tikzcd}
+  \end{center}
+\end{proposition}
+\begin{proof}
+  Omitted, see Silvermann \textbf{III.4.12}.
+\end{proof}
+\begin{proposition}
+  Let $\phi:E \to E'$ be an isogeny of degree $n$. Then there is a unique isogeny $\hat{\phi}:E'\to E$ such that $\hat{\phi}\phi = [n]$.
+\end{proposition}
+\begin{proof}
+  In the case that $\phi$ is separable, $|\ker \phi| = n \implies \ker \phi \subseteq E[n]$. Then apply \textbf{14.1} with $\psi = [n]$.
+
+  For the case where $\phi$ is inseparable, see Silvermann \textbf{III.6.1}.
+
+  For uniqueness, suppose $\psi_1\phi = \psi_2\phi = [n]$. Then rearrange to get $(\psi_1-\psi_2)\phi = 0$, and so $\psi_1=\psi_2$ as $\phi$ is nonconstant.
+\end{proof}
+\textbf{Remarks.}
+\begin{enumerate}
+  \item $E_1 \thicksim E_2 \iff E_1, E_2$ isogenous. Then $\thicksim$ is an equivalence relation.
+  \item $\deg [n] = n^2 \implies \deg \hat{\phi} = \deg \phi = n$, and $\hat{[n]} = [n]$.
+  \item $\phi\hat{\phi}\phi = \phi[n]_E = [n]_{E'}\phi \implies \phi\hat{\phi} = [n]_{E'}$. In particular, $\hat{\hat{\phi}} = \phi$.
+  \item $\hat{\phi\psi} = \hat{\psi}\hat{\phi}$.
+  \item If $\phi\in \End(E)$, then $\phi^2-\tr[\phi]+[\deg\phi] = 0$. Rearranging, we see $\hat{\phi} = [\tr\phi] - \phi$, and so $\tr\phi = \phi+\hat{\phi}$.
+\end{enumerate}
+\begin{lemma}
+  If $\phi, \psi \in \Hom(E, E')$, then $\hat{\phi+\psi} = \hat{\phi} + \hat{\psi}$.
+\end{lemma}
+\begin{proof}
+  If $E=E'$, then this follows from $\tr(\phi + \psi) = \tr{\phi}+\tr{\psi}$.
+
+  In general, let $\alpha: E' \to E$ be any isogeny (e.g. $\hat{\phi}$). Then the first part tells us $\hat{\alpha\phi + \alpha\psi} = \hat{\alpha\phi} + \hat{\alpha\psi}$, so $\hat{\alpha}(\hat{\phi+\psi}) = \hat{\alpha}(\hat{\phi}+\hat{\psi})$, and then cancel $\hat{\alpha}$.
+\end{proof}
+In Silvermann's book, he proves this lemma before knowing that the degree map is a quadratic form, and uses it to show that $\deg$ is a quadratic form.
+\subsection{The Weil Pairing}
+\textbf{Definition.} $\text{sum}:\Div(E) \to E; \sum n_P(P) \mapsto \sum n_P P$ is the map taking a formal sum of points to the actual summation of the points using the group law on $E$.
+
+Recall that $E \cong \Pic^0(E)$, given by $P \mapsto [(P)-(O_E)]$. Then $\sum n_P P \mapsto [\sum n_P (P) - \sum n_P (O_E)]$, and so $\text{sum} D \mapsto [D]$ for all $D \in \Div^0(E)$.
+\begin{lemma}
+  Let $D \in \Div(E)$. Then $D\thicksim 0$ if and only if $\deg D = 0$ and $\text{sum}D = O_E$.
+\end{lemma}
+Let $\phi:E \to E'$ be an isogeny of degree $n$, with dual isogeny $\hat{\phi}:E' \to E$. Assume that $\charr K \nmid n$, so that $\phi, \hat{\phi}$ are separable.
+
+We define the Weil pairing $e_P: E[\phi]\times E'[\hat{\phi}] \to \mu_n$:
+
+Let $T \in E'[\hat{\phi}]$. Then $nT = 0$, and so there exists $f \in \bar{K}(E')^\ast$ such that $\div f = n(T) - n(0)$.
+
+Pick $T_0 \in E(\bar{K})$ with $\phi(T_0) = T$. Then $\phi^\ast(T) - \phi^\ast(0) = \sum_{P \in E[\phi]} (P+T_0) - \sum_{P \in E[\phi]}(P)$ has sum $n T_0 = \hat{\phi}\phi T_0 = \hat{\phi} T = 0$.
+
+So there is some $g \in \bar{K}(E)^\ast$ such that $\div(g) = \phi^\ast(T) - \phi^\ast(0)$.
+
+Now $\div(\phi^\ast f) = \phi^\ast \div f = n(\phi^\ast(T) - \phi^\ast(0)) = n\div g = \div(g^n)$, so $\phi^\ast f = g^n$ up to multiplication by a constant $c \in \bar{K}^\ast$. Rescaling $f$, we can ignore this constant.
+
+If $S \in E[\phi]$, then $\phi \tau_S = \phi$, i.e. $\tau_S^\ast \phi^\ast = \phi^\ast$, so $\tau_S^\ast (\div g) = \div g$, and so $\tau_S^\ast g = \zeta g$ for some constant $\zeta$.
+
+$\zeta = g(X+S)/g(X)$ for all points $X$ by definition for all $X \in E(\bar{K}) \setminus \{\text{zeros/poles of $g$}\}$. Then $\zeta^n = g(X+S)^n/g(X)^n = f(\phi(X+S))/f(\phi(X)) = 1$, since $\phi(S) = 0$ and $\phi$ is an isogeny.
+
+Then we define the Weil pairing $e_\phi(S,T) = \zeta = g(X+S)/g(X)$ for any $X$ not a zero or pole of $g$.
+
+\begin{proposition}
+  $e_\phi$ is bilinear and non-degenerate.
+\end{proposition}
+\begin{proof}
+  For linearity in the first argument, we have
+  \[e_\phi(S_1+S_2,T) = \frac{g(X+S_1+S_2)}{g(X+S_2)}\frac{g(X+S_2)}{g(X)} = e_\phi(S_1,T)e_\phi(S_2,T)\]
+  For linearity in the second argument, let $T_1, T_2 \in E'[\hat{\phi}]$. Then
+  \[\div(f_1) = n(T_1)-n(O); \div(f_2) = n(T_2)-n(O)\]
+  and then
+  \[\phi^\ast f_1 = g_1^n; \phi^\ast f_2 = g_2^n\]
+  Then there is $h \in \bar{K}(E')^\ast$ such that $\div(h) = (T_1)+(T_2)-(T_1+T_2)-(O)$.
+
+  Then put $f = \frac{f_1f_2}{h^n}$ and $g = \frac{g_1g_2}{\phi^\ast h}$. We then check: $\div(f) = n(T_1+T_2)-n(O)$, and $\phi^\ast = \frac{\phi^\ast f_1 \phi^\ast f_2}{(\phi^\ast h)^n} = \left(\frac{g_1g_2}{\phi^\ast h}\right)^n = g^n$.
+
+  So $e_\phi(S, T_1+T_2) = \frac{g(X+S)}{g(X)} = \frac{g_1(X+S)}{g_1(X)}\frac{g_2(X+S)}{g_2(X)}\frac{h(\phi(X))}{h(\phi(X+S))} = e_\phi(S,T_1)e_\phi(S,T_2)$ as $S \in \ker \phi$.
+
+  Then to see that $e_\phi$ is nondegenerate, fix $T \in E'[\hat{\phi}]$ and suppose that $e_\phi(S,T)=1$ for all $S \in E[\phi]$. By definition of the Weil pairing, $\tau_S^\ast g = g$ for all $S \in E[\phi]$.
+
+  Then $\bar{K}(E)$ is a Galois field extension of $\phi^\ast \bar{K}(E')$ with Galois group $E[\phi]$ acting as $\tau_S^\ast$. So $g = \phi^\ast h$ for some $h \in \bar{K}(E')$, and hence $\phi^\ast f = g^n = \phi^\ast(h^n)$, and so $f= h^n$. Hence $\div(H) = (T)-(O)$, and so $T = O$.
+
+  We've shown that the map $E'[\hat{\phi}] \injection \Hom(E[\phi], \mu_n); T \mapsto (S \mapsto e_\phi(S,T))$. This map is thus an isomorphism by counting.
+\end{proof}
+\textbf{Remarks.}
+\begin{enumerate}
+  \item If $E,E', \phi$ are defined over $K$, then $e_\phi$ is Galois equivariant, i.e. $e_\phi(\sigma S, \sigma T) = \sigma(e_\phi(S,T))$.
+  \item Taking $\phi = [n]:E \to E$, so that $\hat{\phi} = [n]$, gives $e_n:E[n]\times E[n] \to \mu_{n^2}$. It can be shown, since $e_n$ is bilinear, that we only actually have image in $\mu_n$.
+\end{enumerate}
+\begin{corollary}
+  If $E[n]\subseteq E(K)$, then $\mu_n \subseteq K$.
+\end{corollary}
+\begin{proof}
+  $e_n$ non-degenerate implies that there are $S,T \in E[n]$ such that $e_n(S,T)$ is a primitive $n\th$ root of unity, say $\zeta_n$. To see this, pick $T \in E[n]$ of order $n$. Then the group homomorphism $E[n] \to \mu_n; S \mapsto e_n(S,T)$ has image $\mu_d$ for some $d |n$. Then $e_n(S,dT) = 1$ for all $S \in E[n]$, and so by nondegeneracy, $dT = 0$, and so $d=n$.
+
+  Then $\sigma(\zeta_n) = e_n(\sigma S, \sigma T)= e_n(S,T)$, and so $\zeta_n \in K$.
+\end{proof}
+For example, there is no $E/\Q$ with $E(\Q)_\text{tors} = (\Z/3\Z)^2$, since not all of the cube roots of unity are defined over $\Q$.
+
+\textbf{Remark.} In fact, the Weil pairing $e_n$ is alternating, so that $e_n(T,T) = 1$ for all $T$.
+
+In particular, $e_n(S+T,S+T)$, we have $e_n(S,T) = e_n(T,S)^{-1}$.
 \end{document}
