@@ -1586,7 +1586,7 @@ For example $\Gal(\Q(\sqrt{2}, \sqrt{3}, \sqrt{5})/\Q) \cong (\Z/2\Z)^3$.
 \begin{theorem}
   There is a bijection
   \begin{align*}
-    \{\text{finite subgroups }\Delta \subseteq K^\times/(K^\times)^n\} &\leftrightarrow \{\text{finite abelian extensions }L/K\text{ or exponent dividing $n$}\}\\
+    \{\text{finite subgroups }\Delta \subseteq K^\times/(K^\times)^n\} &\leftrightarrow \{\text{finite abelian extensions }L/K\text{ of exponent dividing $n$}\}\\
     \Delta &\mapsto K(\sqrt[n]{\Delta})\\
     \frac{(L^\times)^n \cap K^\times}{(K^\times)^n} &\mapsfrom L
   \end{align*}
@@ -1973,4 +1973,266 @@ For example, there is no $E/\Q$ with $E(\Q)_\text{tors} = (\Z/3\Z)^2$, since not
 \textbf{Remark.} In fact, the Weil pairing $e_n$ is alternating, so that $e_n(T,T) = 1$ for all $T$.
 
 In particular, $e_n(S+T,S+T)$, we have $e_n(S,T) = e_n(T,S)^{-1}$.
+
+\section{Galois Cohomology}
+Here, $G$ is a group and $A$ is a $G$-module (an abelian group with action of $G$ via group homomorphisms), i.e. a module over $\Z[G]$.
+\begin{definition}
+  $H^0(G,A) = A^G$, the subgroup of $A$ fixed by all of $G$.
+
+  $C^1(G,A) = \{\text{maps} G \to A\}$, not necessarily group homomorphisms. We call these maps ``cochains''.
+
+  $Z^1(G,A) = \{(a_\sigma)_{\sigma \in G} : a_{\sigma \tau} = \sigma(a_\tau) + a_\sigma\}$, the set of ``cocycles''.
+
+  $B^1(G,A) = \{(\sigma b- b)_{\sigma \in G} : b \in A\}$, the set of ``coboundaries''.
+
+  We have $C^1(G,A) \supset Z^1(G,A) \supset B^1(G,A)$. These are all groups under the pointwise operations. We then define $H^1(G,A) = \frac{Z^1(G,A)}{B^1(G,A)}$.
+\end{definition}
+\textbf{Remark.} If $G$ acts trivially on $A$, then $H^1(G,A) = Z^1(G,A) = \Hom(G,A)$. We can then go on to define $H^2, H^3, \ldots$, but we won't use these here.
+
+\begin{theorem}
+  A short exact sequence of $G$ modules
+  \[0 \to A \xrightarrow{\phi} B \xrightarrow{\psi} C \to 0\]
+  gives rise to a long exact sequence of abelian groups:
+  \[0 \to A^G \xrightarrow{\phi} B^G \xrightarrow{\psi} C^G \xrightarrow{\delta} H^1(G,A) \xrightarrow{\phi_\ast} H^1(G,B) \xrightarrow{\psi_\ast} H^1(G,C) \to \ldots\]
+\end{theorem}
+\begin{proof}
+  Omitted.
+\end{proof}
+\textbf{Definition of $\delta$.} Let $c \in C^G$. Then there exists $b \in B$ such that $\psi(b) = c$. Then $\psi(\sigma b - b) = \sigma c - c = 0$ for all $\sigma \in G$. Hence $\sigma b - b = \psi(a_\sigma)$ for some $a_\sigma \in A$.
+
+Then $\phi(a_{\sigma \tau} - \sigma(a_\tau) - a_\sigma) = \sigma \tau b - b - \sigma(\tau b -b) - (\sigma b -b) = 0$. $\phi$ is injective, so $a_{\sigma \tau} = \sigma(a_\tau) + a_\sigma$, and hence $(a_\sigma)_{\sigma \in G} \in Z^1(G,A)$.
+
+We define $\delta(c) = \text{class of }(a_\sigma)_{\sigma \in G}$ in $H^1(G,A)$.
+
+\begin{theorem}
+  Let $A$ be a $G$-module, and $H \triangleleft G$ a normal subgroup. Then there is an \emph{inflation-restriction} exact sequence:
+  \[0 \to H^1(G/H, A^H) \xrightarrow{\text{inf}} H^1(G,A) \xrightarrow{\text{res}} H^1(H,A)\]
+\end{theorem}
+\begin{proof}
+  Omitted.
+\end{proof}
+Let $K$ be a perfect field. Then $\Gal(\bar{K}/K)$ is a topological group, with basis of open subgroups the $\Gal(\bar{K}/L)$ for $L$ some finite extension of $K$.
+
+If $G = \Gal(\bar{K}/K)$, we modify the definition of $H^1(G,A)$ by insisting on:
+\begin{enumerate}
+  \item The stabiliser of each $a \in A$ is an open subgroup of $G$.
+  \item All cochains $G \to A$ are continuous, where $A$ is given the discrete topology.
+\end{enumerate}
+Then $H^1(\Gal(\bar{K}/K),A) = \lim\limits_{\xrightarrow[L/K\text{ finite Galois}]{}}H^1(\Gal(L/K), A^{\Gal(\bar{K}/L)})$. The maps used for this direct limit are the inflation maps.
+\begin{theorem}[Hilbert's Theorem 90.]
+  Let $L/K$ be finite Galois. Then $H^1(\Gal(L/K), L^\ast) = 0$.
+\end{theorem}
+\begin{proof}
+  Let $G = Gal(L/K)$. Let $(a_\sigma)_{\sigma \in G} \in Z^1(G, L^\ast)$. Then distinct automorphisms are linearly independent. Then:
+  \begin{align*}
+    \exists y \in L \st \underbrace{\sum_{\tau \in G}a_\tau^{-1}\tau(y)}_x \neq 0\
+  \end{align*}
+  Then for $\sigma \in G$, $\sigma(x) = \sum_{\tau \in G}\sigma(a_\tau)^{-1}\sigma\tau(y) = a_\sigma\sum_{\tau \in G} a_{\sigma\tau}^{-1}\sigma\tau(y) = a_\sigma x$, using the cocycle identity, which after rearranging gives $\sigma(a_\tau)^{-1} = a_\sigma a_{\sigma\tau}^{-1}$.
+
+  So $\sigma(x) = a_\sigma x$, and hence $a_\sigma = \sigma(x)/x$. So $(a_\sigma)_{\sigma \in G} \in B^1(G,L^\ast)$, and so $H^1(G, L^\ast) = 0$.
+\end{proof}
+\begin{corollary}
+  $H^1(\Gal(\bar{K}/K), \bar{K}^\ast) = 0$
+\end{corollary}
+\textbf{Application.} Assume $\charr K \nmid n$. Then there is an exact sequence of $\Gal(\bar{K}/K)$-modules $0 \to \mu_n \to \bar{K}^\ast \xrightarrow{^\wedge n} \bar{K}^\ast \to 0$.
+
+Then when we take the long exact sequence, we get:
+\[K^* \xrightarrow{^\wedge n} K^\ast \to H^1(\Gal(\bar{K}/K), \mu_n) \to H^1(\Gal(\bar{K}/K), \bar{K}^\ast)\]
+but this last term is 0 by Hilbert 90. So:
+\[H^1(\Gal(\bar{K}/K), \mu_n) \cong K^\ast/(K^\ast)^n\]
+If $\mu_n \subset K$, then
+\[H^1(\Gal(\bar{K}/K), \mu_n) = \Hom_{\text{cts}}(\Gal(\bar{K}/K), \mu_n) \cong K^\ast/(K^\ast)^n\tag{$\dagger$}\]
+if $L/K$ is a finite Galois extension, then we have a projection map $\pi:\Gal(\bar{K}/K) \surjection \Gal(L/K)$, and so
+\[\Hom(\Gal(L/K), \mu_n) \injection \Hom_{\text{cts}}(\Gal(\bar{K}/K), \mu_n)\]
+via $\chi \mapsto \chi\circ\pi$.
+
+We then claim that every finite subgroup $\Xi$ of $\Hom_{\text{cts}}(\Gal(\bar{K}/K), \mu_n)$ arises uniquely in this way for $L/K$ a finite abelian extension of exponent dividing $n$.
+
+So, from $\dagger$, we recover \textbf{11.2}.
+
+To prove the claim, consider the pairing $\Gal(\bar{K},K)\times \Xi \to \mu_n$ given by $(\sigma, \chi) \mapsto \chi(\sigma)$. This is bilinear, and has trivial right kernel, and the left kernel is
+\[\bigcap_{\chi \in \Xi} \ker(\chi)\subset \Gal(\bar{K}/K)\text{ an open normal subgroup}\]
+and hence $\Gal(\bar{K}/L)$ for some $L/K$ finite Galois.
+
+We then get a nondegenerate pairing $\Gal(L/K) \times \Xi \to \mu_n$. In particular,
+\begin{align*}
+  \Gal(L/K) &\injection \Hom(\Xi, \mu_n)\\
+  \Xi &\injection \Hom(\Gal(L/K), \mu_n)
+\end{align*}
+The first tells us $L/K$ is abelian of exponent dividing $n$ and that the second is in fact surjective, so $\Xi = \Hom(\Gal(L/K), \mu_n)$, so we have the claim.
+
+As a point of notation, we will write $H^1(K, \cdot)$ as shorthand for $H^1(\Gal(\bar{K}/K), \cdot)$.
+\begin{lemma}
+  Let $[K:\Q_p]<\infty$ with $p \nmid n$. Then:
+  \[\ker(H^1(K,\mu_n)) \to H^1(K^{nr}, \mu_n) \cong \O_K^\ast/(\O_K^\ast)^n\]
+\end{lemma}
+\begin{proof}
+  By Hilbert 90, it suffices to show that the sequence
+  \[\O_K^\ast/(\O_K^\ast)^n \xrightarrow{\alpha} K^\ast/(K^\ast)^n \xrightarrow{\beta} (K^{nr})^\ast/(K^{nr})^{\ast n}\]
+  is exact.
+
+  For $\Image(\alpha) \subset \ker(\beta)$, let $a \in \O_K^\ast$. If $f(x) = x^n-a \in \O_K[x]$, then $\tilde{f}(x) = x^n-\tilde{a} \in k[x]$ has distinct roots in $\bar{k}$, as $p \nmid n$.
+
+  Then $K(\sqrt[n]{a})/K$ is unramified, and so $a \in (K^{nr})^{\ast n)}$.
+
+  For $\ker(\beta) \subseteq \Image(\alpha)$, let $x(K^\ast)^n \in \ker \beta$. Write $x = u\pi^r$ with $u \in \O_K^\ast$, $r \in \Z$.
+
+  Since the discrete valuation on $K$ extends to a discrete valuation on $K^{nr}$, we have $r \equiv 0 \mod n$, and so $x(K^\ast)^n = u(K^\ast)^n$.
+\end{proof}
+
+Let $\phi:E \to E'$ be an isogeny of elliptic curves over $K$. Then there is a short exact sequence of $\Gal(\bar{K}/K)$-modules
+\[0 \to E[\phi] \to E \xrightarrow{\phi} E' \to 0\]
+This gives a long exact sequence
+\[E(K) \xrightarrow{\phi} E'(K) \xrightarrow{\delta} H^1(K, E[\phi]) \to H^1(K, E) \xrightarrow{\phi_\ast} H^1(K, E')\]
+We get a short exact sequence
+\begin{center}
+  \begin{tikzcd}
+    0 \arrow{r} & E'(K)/\phi(E(K)) \arrow{d}\arrow{r} & H^1(K, E[\phi]) \arrow{d}{res_v}\arrow{r}\arrow[red]{dr} & H^1(K,E)[\phi_\ast] \arrow{d}{res_v}\arrow{r} & 0\\
+    0 \arrow{r} & \prod_v E'(K_v)/\phi(E(K_v)) \arrow{r} & \prod_v H^1(K_v, E[\phi]) \arrow{r} & \prod_v H^1(K_v, E)[\phi_\ast] \arrow{r} & 0
+  \end{tikzcd}
+\end{center}
+Now take $K$ to be a number field.
+
+For each place $v$, fix an embedding $\bar{K} \subset \bar{K}_v$. Then $\Gal(\bar{K}_c/K_v) \subset \Gal(\bar{K}/K)$.
+
+\textbf{Definition.} The $\phi$-\emph{Selmer group} is $S^{(\phi)}(E/K) = \ker {\textcolor{red} \searrow} = \ker(H^1(K, E[\phi])\to \prod_v H^1(K_v, E))$. Another way to think about it is as the elements $\alpha$ in $H^1(K, E[\phi])$ whose restriction $res_v(\alpha) \in \Image(\delta_v)$.
+
+The \emph{Tate-Shafarevich group} is $\Sha(E/K) = \ker(H^1(K,E) \to \prod_v H^1(K_v, E)).$
+
+We get a short exact sequence
+\[0 \to E'(K)/\phi(E/K) \to S^{(\phi)}(E/K) \to \Sha(E/K)[\phi_\ast] \to 0\]
+Taking $\phi = [n]$ gives
+\[0 \to E(K)/nE(K) \to S^{(n)}(E/K) \to \Sha(E/K)[n] \to 0\]
+We can then reorganise the proof of weak Mordell-Weil to get
+\begin{theorem}
+  $S^{(n)}(E/K)$ is finite.
+\end{theorem}
+\begin{proof}
+  For $L/K$ a finite Galois extension there is an exact sequence
+  \[0 \to H^1(\Gal(L/K), E(L)[n]) \xrightarrow{inf} H^1(K, E[n]) \xrightarrow{res} H^1(L, E[n])\]
+  We have $H^1(\Gal(L/K), E(L)[n])$ is finite.
+
+  By extending our field we may assume that $E[n] \subset E(K)$, and hence $\mu_n \subset K$.
+
+  So $E[n] \cong \mu_n \times \mu_n$ as Galois modules. Hence $H^1(K, E[n]) \cong H^1(K, \mu_n) \times H^1(K, \mu_n) \cong K^\ast/(K^\ast)^n \times K^\ast/(K^\ast)^n$, by Hilber 90.
+
+  Let $S = \{$primes of bad reduction for $E/K\}\cup\{v|n\}\cup\{v \text{ infinite}\}$. Then $S$ is finite.
+
+  The subgroup of $H^1(K,A)$ unramified outside $S$ is $H^1(K,A; S)\coloneqq \ker(H^1(K,A) \to \prod_{v\notin S} H^1(K_v^{nr}, A))$.
+
+  There is a commutative diagram with exact rows
+  \begin{center}
+    \begin{tikzcd}
+      E(K_v) \arrow{r}{\times n}\arrow[hookrightarrow]{d} & E(K_v) \arrow{r}{\delta_v}\arrow[hookrightarrow]{d} & H^1(K_v, E[n])\arrow{d}{res}\\
+      E(K_v^{nr}) \arrow{r}{\times n} & E(K_v^{nr}) \arrow{r} & H^1(K_v^{nr}, E[n])
+    \end{tikzcd}
+  \end{center}
+  The bottom left $\times n$ map is surjective for all $v \notin S$ - see the proof of \textbf{9.9}. Hence $\Image(\delta_v) \subset \ker(res)$.
+
+  Then $S^{(n)}(E/K) = \{\alpha \in H^1(K, E[n]) : res_v(\alpha) \in \Image(\delta_v)\forall v\} \subset H^1(K, E[n]; S) \cong H^1(K, \mu_n; S)\times H^1(K, \mu_n; S) \cong K(S, n)\times K(S,n)$ by \textbf{15.3}.
+
+  But $K(S,n)$ is finite by \textbf{11.4}, and so $S^{(n)}(E/K)$ is finite.
+\end{proof}
+\textbf{Remark.} $S^{(n)}(E/K)$ is finite and effectively computable. It is conjectured that $\Sha(E/K)$ is finite. This would imply that the rank is effectively computable.
+
+\section{Descent by cyclic isogeny}
+$E, E'$ are elliptic curves over $K$ a number field. We have $\phi:E \to E'$ an isogeny of degree $n$. Suppose that $E'[\hat{\phi}]\cong \Z/n\Z$ generated by $T\in E'(K)$. Then $E[\phi] \cong \mu_n$ as Galois modules, via $S \mapsto e_\phi(S,T)$. We then get a short exact sequence of $\Gal(\bar{K}/K)$-modules
+\[0 \to \mu_n \to E \xrightarrow{\phi} E' \to 0\]
+We then get a long exact sequence
+\[E(K) \to E'(K) \xrightarrow{\delta} H^1(K, \mu_n) \to H^1(K, E)\]
+By Hilbert 90, $H^1(K, \mu_n) \cong K^\ast/(K^\ast)^n$.
+\begin{theorem}
+  Let $f \in K(E')$ and $g \in K(E)$ with $\div(f) = n(T) - n(0)$ and $\phi^\ast f = g^n$.
+
+  Then $\alpha(P) = f(P) \mod (K^\ast)^n$ for all $P \in E'(K)\setminus \{0, T\}$.
+\end{theorem}
+\begin{proof}
+  Let $Q \in \phi^{-1}(P)$. Then $\delta(P)$ is represented by the cocycle $\sigma \mapsto \sigma(Q) -Q \in E[\phi] \cong \mu_n$.
+
+  Then $e_\phi(\sigma Q-Q, T) = \frac{g(\sigma Q-Q+X)}{g(X)}$ for any $X \in E$ not a zero or pole of $g$. Taking $X=Q$, we have $\frac{g(\sigma Q)}{g(Q)} = \frac{\sigma(g(Q))}{g(Q)} = \frac{\sigma\sqrt[n]{f(P)}}{\sqrt[n]{f(P)}}$. Hence $\delta(P)$ is represented by the cocycle $\sigma \mapsto \frac{\sigma\sqrt[n]{f(P)}}{\sqrt[n]{f(P)}}$
+
+  But $H^1(K, \mu_n) \cong K^\ast/(K^\ast)^n$ via $(\sigma \mapsto \frac{\sigma \sqrt[n]{x}}{\sqrt[n]{x}})\mapsfrom x$.
+
+  Hence $\alpha(P) = f(P) \mod (K^\ast)^n$.
+\end{proof}
+\subsection{Descent by 2-isogeny}
+Given $E: y^2=x(x^2+ax+b); E':y^2 = x(x^2+a'x+b')$, where $a'=-2a, b'=a^2-4b$. Then we have $\phi:E \to E'; (x,y) \mapsto \left(\left(\frac{y}{x}\right)^2, \frac{y(x^2-b)}{x^2}\right)$. We can think of $E'$ as being the quotient of $E$ by its 2-torsion point $(0,0)$.
+
+If we repeat this procedure, we get $\hat{\phi}: E' \to E; (x,y) \mapsto \left(\frac{1}{4}\left(\frac{y}{x}\right)^2, \frac{y(x^2-b')}{8x^2}\right)$.
+
+It can be checked (see example sheet 4) that $\phi$ and $\hat{\phi}$ are dual.
+
+Then $E[\phi] = \{0,T\}; E'[\hat{\phi}] = \{0, T'\}$ where $T, T'$ are $(0,0)\in E,E'$ respectively.
+
+\begin{proposition}
+  There is a group homomorphism $E'(K) \to K^\ast/(K^\ast)^2$ given by
+  \[(x,y) \mapsto \begin{cases} x \mod (K^\ast)^2 & x \neq 0\\ b' \mod (K^\ast)^2 & x = 0\end{cases}\]
+  with kernel $\phi(E(K))$.
+\end{proposition}
+\begin{proof}
+  Either: apply \textbf{16.1} with $f = x \in K(E'), g = y/x \in K(E)$.
+
+  Or: direct calculation - see example sheet 4.
+\end{proof}
+We now have an injective group homomorphism $\alpha_{E'} : \frac{E'(K)}{\phi E(K)} \injection K^\ast/(K^\ast)^2$. By swapping $E,E'$, we also get $\alpha_E : \frac{E(K)}{\hat{\phi}(E'(K))}\injection K^\ast/(K^\ast)^2$.
+
+\begin{lemma}
+  $2^{\text{rank}(E(K))} = \frac{|\Image \alpha_E||\Image \alpha_{E'}|}{4}$
+\end{lemma}
+\begin{proof}
+  If $A\xrightarrow{f}B\xrightarrow{g}C$ is a homomorphism of abelian groups then there is an exact sequence
+  \[0 \to \ker f \to \ker (gf) \xrightarrow{f} \ker g \to \coker f \xrightarrow{g} \coker (gf) \xrightarrow \coker g \to 0\]
+
+  Since $\hat{\phi}\phi = [2]_E$, we get an exact sequence
+  \[0 \to \underbrace{E(K)[\phi]}_{\Z/2\Z} \to E(K)[2] \xrightarrow{\phi} \underbrace{E'(K)[\hat{\phi}]}_{\Z/2\Z} \to \underbrace{E'(K)/\phi E(K)}_{\Image \alpha_{E'}} \xrightarrow{\hat{\phi}} E(K)/2E(K) \to \underbrace{E(K)/\hat{\phi} E'(K)}_{\Image \alpha_E} \to 0\]
+
+  Since the alternating product of the orders of the groups along this sequence is 1, we get:
+  \[\frac{|E(K)/2E(K)|}{|E(K)[2]|} = \frac{|\Image \alpha_E||\Image \alpha_{E'}|}{4}\]
+  The Mordell-Weil theorem says that $E(K) \cong \Delta \times \Z^r$ where $\Delta$ is a finite group and $r$ is the rank of $E(K)$.
+
+  Then $E(K)/2E(K) \cong \Delta/2\Delta \times (\Z/2\Z)^r$, and $E(K)[2] \cong \Delta[2]$. Now $|\Delta/2\Delta| = |\Delta[2]|$ by finiteness, and so the result follows.
+\end{proof}
+\begin{lemma}
+  If $K$ is a number field and $a, b \in \O_K$ then $\Image \alpha_E \subseteq K(S,2)$ where $S = \{$primes dividing $b\}$.
+\end{lemma}
+\begin{proof}
+  We must show that, if $x, y \in K$ are coordinates of a point on $E$, so $y^2=x(x^2+ax+b)$ and $\p$ is a prime outside $S$, so $v_\p(b) = 0$, then $v_\p(x)$ is even.
+
+  Suppose first that $v_\p(x) < 0$. Then \textbf{9.1} tells us $v_\p(x) = -2r, v_\p(y) = -3r$ for some $r \geq 1$, and so $v_\p(x)$ is even.
+
+  If instead $v_\p(x) > 0$, then $x^2+ax+b$ is an algebraic integer and not divisible by $\p$. Hence $v_\p(x^2+ax+b) = 0$, and so $v_\p(x) = v_\p(y^2) = 2v_\p(y)$ is even.
+\end{proof}
+\begin{lemma}
+  If $b_1 b_2 = b$ then $b_1(K^\ast)^2 \in \Image(\alpha_E)$ if and only if \[w^2 = b_1u^4+au^2v^2+b_2v^4\tag{$\ast$}\] is soluble for $u,v,w \in K$ not all zero.
+\end{lemma}
+\begin{proof}
+  If $b_1 \in (K^\ast)^2$ or $b_2 \in (K^\ast)^2$, then both conditions are satisfied. So we may assume $b_1, b_2 \notin (K^\ast)^2$.
+
+  Then $b_1(K^\ast)^2 \in \Image(\alpha_E)$ if and only if there are $(x,y) \in E(K)$ with $x = b_1t^2$ for some $t \in K^\ast$.
+
+  Substituting into the Weierstrass equation, we get $y^2 = b_1t^2((b_1t^2)^2 + ab_1t^2 + b)$. This can be rearranged to get
+  \[\left(\frac{y}{b_1t}\right)^2 = b_1t^4 + at^2 + b_2\]
+  and so $(\ast)$ has a solution. The converse follows just by reversing the steps.
+\end{proof}
+Now take $K = \Q$.
+
+\textbf{Example 1.} $E: y^2 = x^3-x$. Here $a = 0, b = -1$. Then $S = \emptyset$, and so $\Image(\alpha_E) \subseteq \Q(S,2) = \angle{-1} \subset \Q^\ast/(\Q^\ast)^2$. Checking the above condition for $-1$ gives $-1 \in \Image(\alpha_E)$, and so we have equality.
+
+Then $E': y^2 = x^3+4x$, and $\Image(\alpha_{E'}) \subseteq \angle{-1,2}$. We then check $b_1 = -1, 2, -2$ in turn using $(\ast)$ in the previous lemma.
+
+E.g. for $b_1 = -1$, we have $w^2 = -u^4-4v^4$, which has no solutions in $\Q$. Checking these gives only $b_1 = 2 \in \Image(\alpha_{E'})$, and so $\Image(\alpha_{E'}) = \angle{2} \subseteq \Q^\ast/(\Q^\ast)^2$.
+
+We can then use $\textbf{16.3}$ to see that $2^r = \frac{2\cdot 2}{4} = 1$, and so the rank of this curve $E(\Q)$ is zero, and hence $1$ is not a congruent number.
+
+\textbf{Example 2.} $E: y^2 = x^3 + px$ where $p$ is prime $\equiv 5 \mod 8$. Then $b_1 = -1$ gives $w^2 = -u^4-pv^4$ insoluble over $\R$. $b_1 = p$ gives a soluble equation and so $\Image(\alpha_E) = \angle{p} \subseteq \Q^\ast/(\Q^\ast)^2$.
+
+$E': y^2 = x^3-4px$. $\Image(\alpha_{E'}) \subseteq \angle{-1,2,p}\subseteq \Q^\ast/(\Q^\ast)^2$.
+
+Note that $\alpha_{E'}(T') = (-4p)(\Q^\ast)^2 = (-p)(\Q^\ast)^2$, and so $-p \in \Image(\alpha_{E'})$.
+
+We then check $b_1 = 2, -2, p$. Using $\legendre{2}{p} = -1$, we get that the equations for $b_1 = 2, -2$ have no solutions.
+
+Hence $\Image(\alpha_{E'}) \subseteq \angle{-1,p}\subseteq \Q^\ast/(\Q^\ast)^2 = -1$, including $p$ if and only if $w^2 = pu^4-4v^4$ has solutions in $\Q$.
+
+Then $\rank E(\Q) = \begin{cases} 0 & \text{equation has solution} \\ 1 & \text{equation has no solutions} \end{cases}$.
 \end{document}
