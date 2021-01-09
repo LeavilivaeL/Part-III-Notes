@@ -2507,4 +2507,380 @@ But $f(\hat{\G}_m(x,y)) = (1+x)^p(1+y)^p-1 = \hat{\G}_m(f(x),f(y))$.
 
   Then setting $F \coloneqq \lim_{m\to\infty} F_m$, $F$ is as required in the lemma, and uniqueness follows from the uniqueness of $F_m$.
 \end{proof}
+
+\begin{proof}[Proof of 20.7]
+  \begin{enumerate}
+    \item By \textbf{Lemma 20.8}, there exists a unique power series $F_f(x,y) \in \O_K\llbracket x,y\rrbracket$ such that $F_f(x,y) \equiv x+y \mod \deg 2$, and $f(F_f(x,y)) = F_f(f(x),f(y))$. We need to check that $F_f$ is a formal group law. For associativity:
+    \[F_f(x, F_f(y,z)) \equiv x+y+z \equiv F_f(F_f(x,y), z) \mod \deg 2\]
+    and $f\circ F_f(x, F_f(y,z)) = F_f(f(x), F_f(f(y), f(z)))$. Similarly, $F_f(F_f(x,y),z)$ commutes with $f$, and hence these two power series must be the same by uniqueness from the key lemma.
+
+    Commutativity is similar - use the uniqueness.
+
+    For $F_f(x,0) = x, F_f(0,y) = y$, these again follow by uniqueness.
+
+    \item By \textbf{Lemma 20.8}, for $a \in \O_K$, there is $[a]_{F_f} \in \O_K \llbracket x\rrbracket$ such that $[a]_{F_f} \equiv ax \mod x^2$, and $f\circ [a]_{F_f} = [a]_{F_f}\circ f$.
+
+     Then $[a]_{F_f} \circ F_f \equiv ax+ay \equiv F_f \circ [a]_{F_f} \mod \deg 2$, and they both commute with $f$.
+
+     Hence by uniqueness, $[a]_{F_f}\circ F_f = F_f \circ [a]_{F_f}$, i.e. $[a]_{F_f} \in \End_{\O_K}(F_f)$.
+
+     So the map $[]_{F_f}:\O_K \to \End_{\O_K}(F_f)$ is a ring homomorphism, and $F_f$ is a formal $\O_K$-module. $[\pi]_{F_f} = f$, by uniqueness.
+
+     \item If $g$ is another Lubin-Tate series for $\pi$, then let $\theta(x) \in \O_K\llbracket x\rrbracket$ be the unique power series such that $f \circ \theta(x) = \theta \circ g(x)$ and $\theta(x)\equiv x \mod x^2$.
+
+     Then $\theta \circ F_f = F_g(\theta(x),\theta(y))$ by uniqueness, and so $\theta \in \Hom_{\O_K}(F_f, F_g)$.
+
+     Reverse the roles of $f, g$, and get $\theta^{-1} \in \Hom_{\O_K}(F_g, F_f)$, with $g \circ \theta^{-1}(x) = \theta^{-1}\circ f(x)$.
+
+     But then $\theta^{-1}\circ \theta(x) = x, \theta \circ \theta^{-1}(x) = x$ by uniqueness, and so $\theta$ is an isomorphism of formal $\O_K$-modules.
+  \end{enumerate}
+\end{proof}
+\section{Lubin-Tate Extensions}
+Take $\bar{K}$ an algebraic closure of $K$, with $\bar{m} \subseteq \O_{\bar{K}}$ a maximal ideal.
+\begin{lemma}
+  For $F$ a formal $\O_K$-module, $\bar{m}$ becomes a genuine $\O_K$-module with operations:
+  \[x+_F y = F(x,y); a\cdot_F y = [a]_{F}(x)\]
+  where $a \in \O_K, x,y \in \bar{m}$.
+\end{lemma}
+\begin{proof}
+  Note that $\bar{K}$ is not complete.
+
+  What we need is: if $x \in \bar{m}$, then $x \in m_L$ for some $L/K$ finite.
+
+  Then $[a]_F \in \O_K\llbracket X \rrbracket \implies [a]_F(x)$ converges in $L$, and since $m_L$ is closed, $[a]_F(x) \in m_L \subseteq \bar{m}$.
+
+  Similarly, $x+_F y \in \bar{m}$.
+
+  The module structure then follows from the definitions.
+\end{proof}
+\begin{definition}
+  Let $f$ be a Lubin-Tate series for $\pi$ and $F_f$ the associated formal $\O_K$-module. The $\pi^n$-torsion group is defined to be
+  \begin{align*}
+    \mu_{f,n} &= \{x \in \bar{m} : \pi^n \cdot_{F_f} x=0\}\\
+    &= \{x \in \bar{m} : f_n(x) = f \circ \ldots \circ f (x) = 0\}
+  \end{align*}
+\end{definition}
+Then $\mu_{f,n}$ is an $\O_K$-module, and $\mu_{f,n} \subseteq \mu_{f, n+1}$.
+
+For example, if $K = \Q_p$, then $f(x) = (x+1)^p-1$ is a Lubin-Tate series for $p$.
+
+Then $[p^n]_{F_f}(X) = (x+1)^{p^n}-1$ (e.g. induct on $n$). Thus $\mu_{f, n} = \{\zeta_{p^n}^i-1 : 0 \leq i < p^n\}$.
+
+Now let $f(X)$ be the Lubin-Tate series:
+\[f(X) = \pi X + X^q\]
+Then $f_n(X) = f \circ f_{n-1}(X) = f_{n-1}(X)(\pi+f_{n-1}(X)^{q-1})$
+
+Set $h_n(X) \coloneqq \frac{f_n(X)}{f_{n-1}(X)} = (\pi+f_{n-1}(X)^{q-1})$. Then we have the following proposition:
+\begin{proposition}
+  \begin{enumerate}
+    \item $h_n(X)$ is a separable Eisenstein polynomial of degree $q^{n-1}(q-1)$.
+    \item $\mu_{f,n}$ is a free $\O_K/\pi^n \O_K$-module of rank $1$.
+  \end{enumerate}
+\end{proposition}
+\begin{proof}\hspace*{0cm}
+  \begin{enumerate}
+    \item $h_1(X) = \pi+X^{q-1}$.
+    It is clear that $h_n(X)$ is monic of degree $q^{n-1}(q-1)$. Then since $f(X) \equiv X^q \mod \pi \implies f_{n-1}(X)^{q-1} \equiv X^{q^{n-1}(q-1)}\mod \pi$.
+
+    Since $f_{n-1}(X)$ has zero constant term, we have $h_n(X) = \pi+f_{n-1}(X)^{q-1}$ has constant term $\pi$, and so is Eisenstein.
+
+    Since $h_n(X)$ is irreducible, $h_n(X)$ is separable if $\charr K = 0$ or if $\charr K = p$ and $h_n'(X) \neq 0$.
+
+    Assume that $\charr K = p$ and induct on $n$:
+
+    $h_q(X) = \pi + X^{q-1}$ is separable.
+
+    Now suppose that $h_1, \ldots, h_{n-1}$ are separable. Then $f_{n-1}(X) = h_{n-1}(X)\ldots h_1(X)X$ is separable.
+
+    Then $h_n(X) = (\pi + f_{n-1}(X)^{q-1})$ and so $h_{n}'(X) = (q-1)f'_{n-1}(X)f_{n-1}(X)^{q-2}$ is nonzero, so $h_n(X)$ is separable.
+
+    \item Let $\alpha$ be a root of $h_n(X)$. Since $h_n(X), f_{n-1}(X)$ are coprime, $\alpha \notin \mu_{f, n}\setminus \mu_{f, n-1}$. Then the map
+    \[\tilde{\phi}:\O_K \to \mu_{f,n}; a\mapsto a\cdot_{F_f}(\alpha)\]
+    is an $\O_K$-module homomorphism with $\pi^n\O_K \subseteq \ker \tilde{\phi}$.
+
+    As $\alpha \in \mu_{f,n}\setminus \mu_{f, n-1}$, $\pi^{n-1}\cdot_{F_f}\alpha \neq 0$, and thus $\pi^n \O_K =\ker \tilde{\phi}$.
+
+    Thus $\tilde{\phi}$ induces an injection
+    \[\phi:\O_K/\pi^n\O_K \to \mu_{f,n}\]
+    Since $f_n(X)$ is separable,
+    \[|\mu_{f,n}|=  \deg f_n(X) = q^n = |\O_K/\pi^n\O_K\|\]
+    Thus $\phi$ is an isomorphism by counting.
+
+    Since $x \in \mu_{f, n}$ is a root of $f_n(X)$, $x$ is algebraic.
+  \end{enumerate}
+\end{proof}
+\begin{proposition}
+  Let $g$ be another Lubin-Tate series for $\pi$. Then
+  \begin{enumerate}
+    \item $\mu_{f,n} \cong \mu_{g, n}$ as $\O_K$-modules.
+    \item $K(\mu_{f,n}) = K(\mu_{g,n})$.
+  \end{enumerate}
+\end{proposition}
+\begin{proof}
+  Let $\theta \in \Hom_{\O_K}(F_f, F_g)$ be an isomorphism of formal group laws. Then $\theta$ induces an isomorphism $\theta : (\bar{m}, +_{F_f}) \to (\bar{m}, +_{F_g})$ of $\O_K$-modules, and hence an isomorphism between their torsion points $\mu_{f,n} \to \mu_{g,n}$.
+
+  Then, as the torsion points are algebraic, $K(\mu_{f,n})/K$ is finite, and hence complete. Since $\theta(X)\in \O_K\llbracket X \rrbracket$, for $x \in \mu_{f, n}$, $\theta(x) \in K(\mu_{f,n})$. Hence $K(\mu_g, n) \subseteq K(\mu_{f,n})$.
+
+  Thus $K(\mu_{g,n})/K$ is finite. Applying the same argument to $\theta^{-1}$ gives the other inclusion, and so $K(\mu_{f,n}) = K(\mu_{g,n})$.
+\end{proof}
+\begin{definition}
+  \[K_{\pi,n} \coloneqq K(\mu_{f,n})\]
+  This is called the \emph{Lubin-Tate} extension of degree $n$ associated to $\pi$.
+\end{definition}
+By \textbf{21.4}, $K_{\pi,n}$ does not depend on $f$. $K_{\pi,n} \subseteq K_{\pi, n+1}$.
+
+\section{Lubin-Tate Extensions}
+Here, $K$ is a non-archimedean local field with uniformizer $\pi$, and $|k|=q$.
+\begin{theorem}\hspace*{0cm}
+  \begin{enumerate}
+    \item $K_{\pi, n}$ is a totally ramified Galois extension of degree $q^{n-1}(q-1)$
+
+    \item There are isomorphisms
+    \[\psi_n: \Gal(K_{\pi,n}/K) \to (\O_K/\pi^n)^\times \cong \O_K^\times/U_K^{(n)}\]
+    characterised by
+    \[\psi_n(\sigma)\cdot_{F_f} x = \sigma(x)\]
+    for all $x \in \mu_{f,n}, \sigma \in \Gal(K_{\pi,n}/K)$.
+  \end{enumerate}
+\end{theorem}
+\begin{proof}\hspace*{0cm}
+  \begin{enumerate}
+    \item By the independence of choice of series, we may pick $f(X) = \pi X + X^q$.
+
+    Let $\alpha$ be a root of $h_n(X) \coloneqq \frac{f_n(X)}{f_{n-1}(X)}$.
+
+    We then show that $K(\alpha) = K(\mu_{f,n}) = K_{\pi,n}$.
+
+    By \textbf{21.4}, every $x \in \mu_{f,n}$ is of the form $a \cdot_{F_f}\alpha$ for some $a \in \O_K$, where $\alpha \in \mu_{f,n}\setminus \mu_{f,n-1}$.
+
+    Since $K(\alpha)$ is complete and $[a]_{F_f}(X) \in \O_K\llbracket X\rrbracket$, we thus have
+    \[x = [a]_{F_f}(\alpha) \in K(\alpha)\]
+    Hence we must have $K(\alpha) = K(\mu_{f,n})$.
+
+    Since $h_n(X)$ is Eisenstein of degree $q^{n-1}(q-1)$ (by \textbf{21.4}), $K(\alpha)/K$ is totally ramified of degree $q^{n-1}(q-1)$ (by \textbf{14.8}). It is Galois since $K(\alpha) = K(\mu_{\pi,n})$ is the splitting field of $f_n$.
+
+    \item Let $\sigma \in \Gal(K_{\pi,n}/K)$. We then show that $\sigma \in \Aut_{\O_K}(\mu_{f,n})$.
+
+    Note that $\sigma$ preserves $\mu_{f,n}$, and $\sigma$ acts continuously on $K(\mu_{\pi,n})$.
+
+    Since $F_f(X,Y) \in \O_K\llbracket X, Y\rrbracket$ and $[a]_{F_f} \in \O_K\llbracket X\rrbracket$ for all $a \in \O_K$, we have that:
+    \[\sigma(x+_{F_f}y) = \sigma(x)+_{F_f} \sigma(y) \forall x, y \in \mu_{f,n}\]
+    and
+    \[\sigma(a \cdot_{F_f} x) = a\cdot_{F_f} \sigma(x)\]
+    These both follow from continuity of $\sigma$.
+
+    So $\sigma \in \Aut_{O_K}(\mu_{f,n})$. This induces a group homomorphism
+    \[\Gal(K_{\pi,n}/K) \injection \Aut_{\O_K}(\mu_{f,n})\]
+    which is injective since $K_{\pi,n} = K(\mu_{f,n})$.
+
+    Now since $\mu_{f,n} \cong \O_K/\pi^n$, then
+    \[\Aut_{\O_K}(\mu_{f,n}) \cong \Aut_{\O_K}(\O_K/\pi^n) \cong (\O_K/\pi^n)^\times\]
+
+    Then we obtain $\psi_n : \Gal(K_{\pi,n}) \injection (\O_K/\pi^n)^\times$ defined by
+    \[\psi_n(\sigma) \in (\O_K/\pi^n)^\times \text{ is the unique element such that }\psi_n(\sigma)\cdot_{F_f}x = \sigma(x) \forall x \in \mu_{f,n}\]
+    Then by counting, $[K_{\pi,n}:K] = q^{n-1}(q-1) = |(\O_K/\pi^n)^\times|$, and so $\psi_n$ is an injection between finite sets of the same size, $\psi_n$ is a bijection.
+
+    Now let $g$ be another Lubin-Tate series for $\pi$.
+
+    Then we get $\psi_n' : \Gal(K_{\pi,n}) \to (\O_K/\pi^n)^\times$. Then \textbf{20.6} tells us there is an isomorphism of formal $\O_K$-modules $\theta:F_f \to F_g$. This induces an isomorphism $\theta: \mu_{f,n}\to \mu_{g,n}$ of genuine $\O_K$-modules.
+
+    Now $\theta \in \O_K \llbracket X \rrbracket$ implies that
+    \[\theta(\sigma(x)) = \sigma(\theta(x)) \forall x \in \mu_{f,n}, \sigma \in \Gal(K_{\pi,n}/K)\]
+    and so $\theta(\psi_n(\sigma)\cdot_{F_f} x) = \psi_n' \cdot_{F_g} \theta(x)$.
+
+    So then $\psi_n(\sigma)\cdot_{F_g}\theta(x) = \psi_n'(\sigma)\cdot_{F_g}\theta(x)$, and hence $\psi_n = \psi_n'$.
+  \end{enumerate}
+\end{proof}
+We then define $K_{\pi, \infty} \coloneqq \bigcup_{n=1}^\infty K_{\pi,n}$. We have an immediate corollary:
+\begin{corollary}
+  There is an isomorphism
+  \[\psi:\Gal(K_{\pi,\infty}/K) \cong \O_K^\times\]
+\end{corollary}
+\begin{proof}
+  The characterising property of the $\psi_n$s from the previous theorem gives a commutative diagram
+  \begin{center}
+    \begin{tikzcd}
+      \Gal(K_{\pi, n+1}) \arrow{r}{\psi_{n+1}} \arrow{d}{\text{restriction}}& \O_K^\times/U_K^{(n+1)} \arrow{d}{\text{natural projn}}\\
+      \Gal(K_{\pi, n}) \arrow{r}{\psi_n} & \O_K^\times/U_K^{(n)}
+    \end{tikzcd}
+  \end{center}
+  Taking inverse limits on both sides, we get
+  \[\Gal(K_{\pi, \infty}/K) \cong \lim_{\leftarrow}\O_K^\times/U_K^{(n)} \cong \O_K^\times\]
+\end{proof}
+\subsection{Artin Map}
+\begin{theorem}[Generalised Kronecker-Weber Theorem]
+  \[K^{ab} = K^{ur}K_{\pi, \infty}\]
+\end{theorem}
+Proof will follow later.
+
+For example, if $K=\Q_p, f(X) = (X+1)^p-1$, then we have $\mu_{f,n} = \{\zeta_{p^n}^i - 1 : 0\leq i<p\}$.
+
+Then \textbf{22.3} says that
+\[\Q_p^{ab} = \Q_p^{ur}\Q_p(\zeta_{p^\infty}) = \bigcup_{n=1}^\infty \Q_p(\zeta_n)\]
+Note that $K_{\pi, \infty} \cap K^{ur} = K$, as $K_{\pi, \infty}$ is totally ramified. Hence $\Gal(K^{ab}/K) \cong \Gal(K^{ur})/K \times \Gal(K_{\pi, \infty}/K)$. We then define the Artin map via the following commutative diagram:
+\begin{center}
+  \begin{tikzcd}
+    K^\times \arrow{r}{\Art_K} \arrow{d}{u\pi^n\mapsto (n,u)} & \Gal(K^{ab}/K)\\
+    \Z\times \O_K^\times \arrow[swap]{r}{(n,u)\mapsto (\Fr^n_{K^{ur}/K}, \psi^{-1}(u))} & \Gal(K^{ur}/K)\times \Gal(K_{\pi, \infty}/K) \arrow{u}
+  \end{tikzcd}
+\end{center}
+The image of $\Art_K$ lands in $W(K^{ab}/K)$, and so we get $\Art_K:K^\times \to W(K^{ab}/K)$.
+
+We can show that $\Art_K$ is independent of the choice of uniformizer $\pi$, but this proof is omitted here.
+
+For $L/K$ possibly infinite, we write $N(L/K)$ for the intersection over all finite $F/K, F \subseteq L$ of $N_{F/K}(F^\times)$. This is a subgroup of $K^\times$. Then we have:
+\begin{proposition}
+  Let $x \in K$ with $v_K(x) > 1$, and $\sigma \in \Gal(K^{sep}/K)$ such that $\sigma|_{K^{ab}} = \Art_K(x)$. Set $L = (K^{sep})^\sigma$. Then:
+  \[N(L/K) = \angle{x}\]
+\end{proposition}
+\begin{proof}
+  Omitted - uses Colemann operators. See Patrick Allen's notes.
+\end{proof}
+\begin{theorem}[Norm Functoriality]
+  Let $L/K$ be finite, separable. Then we have a commutative diagram:
+  \begin{center}
+    \begin{tikzcd}
+      L^\times \arrow{r}{\Art_L} \arrow{d}{N_{L/K}} & W(L^{ab}/L) \arrow{d}{\text{restriction}}\\
+      K^\times \arrow{r}{\Art_K} & W(K^{ab}/K})
+    \end{tikzcd}
+  \end{center}
+\end{theorem}
+\begin{proof}
+  Since the set of uniformizers of $L^\times$ generate $L^\times$, it suffices to show that the diagram commutes on all uniformizers, i.e.,
+  \[\Art_L(\pi_L)|_{K^{ab}} = \Art_K(N_{L/K}(\pi_L))\]
+  where $\pi_L$ is a uniformizer in $L$.
+
+  Let $\sigma \in \Gal(K^{sep}/L)$ be a lift of $\Art_L(\pi_L)$, and then $K_\sigma \coloneqq (K^{sep})^\sigma$.
+
+  Let $x = \Art_K^{-1}(\Art_L(\pi_L)|_{K^{ab}}) \in K^\times$. We need to show $x = N_{L/K}(\pi_L)$. By \textbf{22.4}, we have $N(K_\sigma/L) = \angle{\pi_L}\subseteq L^\times$, and $N(K_\sigma/K) = \angle{x} \subseteq K^\times$.
+
+  Thus $\angle{N_{L/K}(\pi_L)} = N_{L/K}(\angle{\pi_L}) = N_{L/K}(N(K_{\sigma}/L)) = N(K_\sigma/K) = \angle{x} \subseteq K^\times$.
+
+  Since these subgroups are the same, $N_{L/K}(\pi_L)) = x^{\pm 1}$. It suffices thus to show that $v_K(x) > 0$.
+
+  Now $\Art_L(\pi_L)|_{L^{ab}} = \Fr_{L^{ur}/L}$, and hence $\Art_L(\pi_L)|_{K^{ur}} = \Fr_{K^{ur}/K}^{f_{L/K}}$.
+
+  Hence $v_K(x) > 0$ by the definition of $\Art_K$.
+\end{proof}
+\begin{corollary}
+  Let $L/K$ be finite abelian. Then $\Art_K$ induces an isomorphism
+  \[K^\times/N_{L/K}(L^\times) \cong \Gal(L/K)\]
+\end{corollary}
+\begin{proof}
+  Since $L/K$ is abelian, $L^{ab} = K^{ab}$. Hence it follows that $K^\times/N_{L/K}(L^\times) \cong W(K^{ab}/L)/W(K^{ab}/K) \cong \Gal(L/K)$ (by \textbf{18.3}).
+\end{proof}
+
+\section{Generalised Local Kronecker-Weber Theorem}
+Here $K$ will be a non-archimedean local field, $|k|=q$, and $\pi$ a uniformiser. We need a few preparatory results:
+\begin{proposition}
+  Let $K_{\pi,n}$ denote the Lubin-Tate extension of degree $n$ associated to $\pi$. Then the isomorphism
+  \[\psi_n:\Gal(K_{\pi,n}/K)\coloneqq G \cong (\O_K/\pi^n\O_K)^\times \cong U_K^{(0)}/U_K^{(0)}\]
+  induces isomorphisms
+  \[G_s \cong \begin{cases} U_K^{(0)}/U_K^{(n)} & s \leq 0\\ U_K^{(k)}/U_K^{(n)} & q^{k-1}-1 < s \leq q^{k}-1; 1 \leq k \leq n-1 \\ 1 & s > q^{n-1}-1 \end{cases}\]
+\end{proposition}
+\begin{proof}
+  For $s\leq 0$, note that $G_s = G_{-1}$ since $K_{\pi,n}/K$ is totally ramified.
+
+  Let $v_n$ be the normalised valuation on $K_{\pi,n}$. Then recall $i_{K_{\pi,n}/K}:G \to \Z\cup\{\infty\}$ given by
+  \[i_{K_{\pi,n}/K}(\sigma) = \max\{i\in\Z : \sigma \in G_{i-1}\}\]
+
+  Let $f = \pi X + X^q, \alpha \in \mu_{f,n}\setminus \mu_{f,n-1}$. Then $\alpha$ is a uniformizer in $\O_{K_{\pi,n}}$, and $\O_{K_{\pi,n}} = \O_K[\alpha]$.
+
+  Hence $i_{K_{\pi,n}/K}(\sigma) = v_n(\sigma(\alpha)-\alpha)$. Fix $\sigma \in G$ and let $\psi_n(\sigma)=u$, and let
+  \[k =\max\{r : u \in \U_K^{(r)}/U_K^{(n)}\}\]
+  Then $u-1 \in \pi^k\O_K\setminus \pi^{k+1}\O_K$. By definition of $G_s$, it suffices to show that $v_n(\sigma(\alpha)-\alpha) = q^k$.
+
+  Since $\sigma(\alpha)-\alpha = u \cdot_{F_f}\alpha-\alpha = (u-1)\cdot_{F_f}\alpha$, we have
+  \[\sigma(\alpha)-\alpha \in \mu_{f, n-k}\setminus \mu_{f, n-k-1}\]
+
+  Hence $\sigma(\alpha)-\alpha$ is a uniformizer in $K_{\pi, n-k}$, and since $e_{K_{\pi,n}/K_{\pi,n-k}} = q^k$, we have $v_n(\sigma(\alpha)-\alpha) = q^k$.
+\end{proof}
+\begin{corollary}
+  $\psi_n$ induces isomorphisms
+  \[G^s \cong \begin{cases} U_K^{(0)}/U_K^{(n)} & s \leq 0\\ U_K^{(k)}/U_K^{(n)} &  k-1 < s \leq k, 1 \leq k \leq n-1\\ 1 & n-1<s\end{cases}\]
+\end{corollary}
+\begin{proof}
+  For $s\leq 0, G_s = G^s$ and we're done.
+
+  Otherwise, we need to compute $\phi_{K_{\pi,n}/K}(s) = \int_0^s \frac{1}{[G_0:G_t]} dt$.
+
+  We have for $1 \leq k \leq n-1$ that
+  \begin{itemize}
+    \item $\phi_{K_{\pi,n}/K}$ is linear on $(q^{k-1}-1, q^k-1]$.
+    \item $\phi_{K_{\pi,n}/K}(q^k-1) = \sum_{i=1}^k \frac{(q^k-1)-(q^{k-1}-1)}{q^k(q-1)} = \sum_{i=1}^k 1 = k$
+  \end{itemize}
+  This is the same computation as in $\Q_p(\zeta_{p^n})/\Q_p$.
+
+  The result then follows from $G^{\phi_{K_{\pi,n}K}(s)} = G_s$.
+\end{proof}
+\begin{proposition}
+  Let $\sigma \in \Gal(K^{ab}/K)$ such that $\sigma|_{K^{ur}} = \Fr_{K^{ur}/K}$ and set $K_\sigma  = (K^{ab})^\sigma$. Then $K^{ab} = K_\sigma K^{ur}$.
+\end{proposition}
+\begin{proof}
+  It is known that $\bar{\angle{\sigma}} = \Gal(K^{ab}/K_\sigma) \cong \hat{\Z}$ - this follows from \textbf{18.5}.
+
+  Assuming this, let $F/K_\sigma$ be a finite extension of degree $d$, with $F \subseteq K^{ab}$.
+
+  We want to show that $F \subseteq K^{ur}K_\sigma$.
+
+  Now $\Gal(K^{ab}/K_\sigma) \cong \hat{\Z}$ implies there is a unique degree $d$ extension of $K_\sigma$ contained in $K^{ab}$, corresponding to $\hat{\Z}/d\hat{\Z}$.
+
+  Then $\sigma|_{K^{ur}} = \Fr_{K^{ur}/K}$, and so $K_\sigma \cap K^{ur} = K$, and hence $\Gal(K_dK_\sigma/K_\sigma) \cong \Gal(K_d/K) \cong \hat{\Z}/d\hat{\Z}$, where $K_d/K$ is the is the degree $d$ unramified extension, and so $F = K_dK_\sigma$.
+\end{proof}
+\begin{lemma}
+  Let $L_1, L_2$ be two abelian extensions of $K$ such that $\Gal(L_1/K)^n = 1, \Gal(L_2/K)^n = 1$. Then $\Gal(L_1L_2/K)^n = 1$.
+\end{lemma}
+\begin{proof}
+  This is essentially just Herbrand's theorem. Set $H_1 = \Gal(L_1L_2/L_1), H_2 = \Gal(L_1L_2/L_2)$.
+
+  Then $G^nH_1/H_1 \cong \Gal(L_1/K)^n = 1$, and $G^nH_2/H_2 \cong \Gal(L_2/K)^n = 1$.
+
+  So $G^n \subseteq H_1 \cap H_2 = 1$, and we must have equality.
+\end{proof}
+Now consider $K^{ur}K_{\pi, \infty}$. We note that $\Gal(K^{ur}K_{\pi, \infty}/K)$ is abelian, isomorphic to $\hat{\Z}\times \O_K^\times$ and so this compositum is contained in $K^{ab}$. We want to show equality:
+\textbf{Theorem 22.3}
+\[K^{ab} = K^{ur}K_{\pi,\infty}\]
+\begin{proof}
+  Let $\tilde{\sigma} \in \Gal(K^{ur}K_{\pi,\infty}/K)$ corresponds to $(\Fr_{K^{ur}/K}, \id) \in \Gal(K^{ur}/K)\times \Gal(K_{\pi,\infty}/K)$.
+
+  Let $\sigma \in \Gal(K^{ab}/K)$ such that $\sigma|_{K_{\pi,\infty}K^{ur}} = \tilde{\sigma}$.
+
+  Then set $K_\sigma = (K^{ab})^\sigma$. Then $K_\sigma \cap K^{ur} = K \implies K_\sigma$ is totally ramified.
+
+  We have $K_{\pi,\infty} = (K^{ur}K_{\pi,\infty})^{\tilde{\sigma}} \subseteq K_\sigma$.
+
+  By \textbf{23.3}, it suffices to show that $K_{\pi, \infty} = K_\sigma$. Let $F/K$ be finite Galois, with $F \subseteq K_\sigma$. Then take $n \geq 1$ such that $\Gal(F/K)^n = 1$, and let $L = K_{\pi, n}F$.
+
+  Then \textbf{23.4} implies that $\Gal(L/K)^n = 1$. Since $L/K$ is totally ramified, example sheet 3 q7 (Hasse-Arf) implies that
+  \[ [L:K]| q^{n-1}(q-1) = [K_{\pi,n}:K] \implies L = K_{\pi,n}\]
+  But then $F \subseteq K_{\pi,n}$, and so $K_\sigma = K_{\pi,\infty}$.
+\end{proof}
+Remark: the Hasse-Arf theorem says $K_{\pi,n}$ ``maxes out" possible jumps.
+
+\section{Quadratic Forms}
+Here $K$ is a field, with characteristic $2$.
+
+A quadratic form of rank $n$ is a function
+\[Q(x_1, \ldots, x_n) = \sum_{1 \leq i,j \leq n} a_{ij} x_ix_j\]
+where $a_{ij} \in K, a_{ij} = a_{ji}$, and the matrix $A = (a_{ij})$ is non-degenerate.
+\begin{definition}
+  $Q$ represents an element $c \in K$ if there are $\alpha_1, \ldots, \alpha_n \in K$ not all $0$ such that $Q(\alpha_1, \ldots, \alpha_n) = c$
+\end{definition}
+If $Q$ represents $0$, then $Q$ represents all $c \in K$. If $Q \sim Q'$ (in the sense that $A' = P^T A P$ for some matrix $P$), then $Q$ represents 0 if and only if $Q'$ represents 0. Every quadratic form is equivalent to a diagonal form.
+\begin{proposition}
+  Let $p>2$ and $Q$ diagonal with coefficients $a_i \in \Q_p^\times$. Suppose either
+  \begin{enumerate}
+    \item $n \geq 3$ and $a_i \in \Z_p^\times$ for all $i$ or
+    \item $n \geq 5$
+  \end{enumerate}
+  Then $Q$ represents $0$.
+\end{proposition}
+\begin{proof}
+  Suppose $n=3$, then $Q = ax^2+by^2-z^2$ for $a, b \in \Z_p^\times$. Then the maps $\F_p \to \F_p$ given by $x \mapsto \bar{a}x^2$ and $y\mapsto 1- \bar{b}y^2$ have images of size $\frac{p+1}{2}$, and hence they overlap.
+
+  So there are $x, y \in \Z_p$ with $ax^2+by^2\equiv 1 \mod p$.
+
+  Hensel implies that $ax^2+by^2 \in (\Z_p^\times)^2$, and so $X^2-ax^2+by^2$ has a solution in $\Z_p$, and so $Q$ represents $0$.
+
+  For the second case, suppose wlog $v_p(a_i) \in \{0,1\}$ for all $i$, scaling by powers of $p$. $n \geq 5$ implies that wlog $v_p(a_1) = v_p(a_2) = v_p(a_3)$. If these are zero, reduce to case 1. Otherwise, divide by $p$ and we are in case 1.
+\end{proof}
 \end{document}
