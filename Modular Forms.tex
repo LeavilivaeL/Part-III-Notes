@@ -1,0 +1,152 @@
+\documentclass[10pt,a4paper]{article}
+\input{./preamble.tex}
+
+\title{Modular Forms}
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+\setcounter{section}{-1}
+\section{Introduction}
+\textbf{Notation.} We will write $\H \coloneqq \{\tau \in \C: \Im(\tau) > 0\}$ for the complex upper half plane. This is acted on by two groups: \[GL_2(\R)^+ = \{g \in GL_2(\R): \det(g) > 0\} \geq SL_2(\Z) = \{g \in GL_2(\Z) : \det(g)=1\}\]
+\begin{lemma}
+  $GL_2(\R)^+$ acts on $\H$ by M\"obius transformations. This action is transitive.
+\end{lemma}
+\begin{proof}
+  Let $\tau \in \H, g = \begin{pmatrix} a&b\\c&d\end{pmatrix} \in GL_2(\R)^+$. We then write $g\tau = \frac{a\tau+b}{c\tau+d}$. This is an action on $\C$ by theory about M\"obius transformations. To see that $g\tau \in \H$, we check:
+  \[\Im(g\tau) = \frac{1}{2}(g\tau - \overline{g\tau}) = \det(g) \frac{\Im(\tau)}{|c\tau+d|^2}\]
+
+  Now for transitivity, let $\tau = x+\im y \in \H$. Then $\tau = \begin{pmatrix}y&x\\0&1\end{pmatrix}\im$.
+\end{proof}
+\begin{definition}
+  Let $k \in \Z$, and $f : \H \to \C\cup\{\infty\}$, and let $g \in GL_2(\R)^+$. Then we define $f|_k[g]:\H \to \C\cup\{\infty\}$ by the formula
+  \[f|_k[g](\tau) = f(g\tau)\det(g)^{k-1}j(g, \tau)^{-k}\]
+  where $j(g, \tau) = c\tau+d$.
+\end{definition}
+\begin{lemma}
+  This defines a right actions of $GL_2(\R)^+$ on the set of functions $f:\H \to \C\cup\{\infty\}$.
+\end{lemma}
+\begin{proof}
+  Suppose $g, h \in GL_2(\R)^+$. We need to show that $f|_k[gh] = (f|_k[g])|_k[h]$.
+  \begin{align*}
+    RHS(\tau) &= f|_k[g](h\tau)\det(h)^{k-1}j(h, \tau)^{-k}\\
+    &= f(gh\tau)\det(g)^{k-1}j(g, h\tau)^{-k}j(h,\tau)^{-k}\det(h)^{k-1}\\
+    LHS(\tau) &= f(gh\tau)\det(gh)^{k-1}j(gh,\tau)
+  \end{align*}
+  So we need to check that $j(g, h\tau)j(h,\tau) = j(gh,\tau)$.
+
+  Note that if $g = \begin{pmatrix}a&b\\c&d\end{pmatrix}$, then $g\begin{pmatrix}\tau\\1\end{pmatrix} = \begin{pmatrix}a\tau+b\\c\tau+d\end{pmatrix} = j(g,\tau)\begin{pmatrix}g\tau\\1\end{pmatrix}$.
+
+  So $gh\begin{pmatrix}\tau\\1\end{pmatrix} = j(gh,\tau)\begin{pmatrix}gh\tau\\1\end{pmatrix} = gj(h,\tau)\begin{pmatrix}h\tau\\1\end{pmatrix} = j(h,\tau)j(g,h\tau)\begin{pmatrix}gh\tau\\1\end{pmatrix}$.
+\end{proof}
+\begin{definition}
+  Let $k \in \Z$, and let $\Gamma \leq SL_2(\Z)$ be a finite index subgroup. Then a meromorphic function $f:\H \to \C \cup\{\infty\}$ is called a weakly modular function of weight $k$ and level $\Gamma$ if it satisfies $\forall \gamma \in \Gamma, f|_k [\gamma] = f$.
+\end{definition}
+
+\textbf{Motivating Examples}
+\begin{enumerate}
+  \item Modular forms were first studied in the context of elliptic functions. Suppose that $E$ is an elliptic curve over $\C$, and let $\omega$ be a non-vanishing holomorphic differential on $E$. Then there's a unique holomorphic isomorphism of Riemann surfaces
+  \[\C/\Lambda \xrightarrow[\psi]{\sim} E(\C)\]
+  such that $\psi^{\ast}(\omega) = dz$. Here $\Lambda\subset\C$ is a lattice.
+
+  $E$ can be defined by the equation $y^2=x^3-60G_4(\Lambda)x-140G_6(\Lambda)$ where $G_k(\Lambda) = \sum\limits_{\omega \in \Lambda\setminus\{0\}}\omega^{-k}$. This is absolutely convergent provided $k \geq 4$.
+
+  If $\tau \in \H$, then we can write $\Lambda_\tau = \Z\tau \oplus \Z$. This is a lattice, and the functions $G_k(\tau) = G_k(\Lambda \tau)$ are examples of modular forms.
+
+  \item If $f:\H \to \C$ is a modular form, then $f$ has a Fourier expansion $f(\tau) = \sum\limits_{n\geq 0}a_n e^{2\pi\im n\tau/h}$ for some natural number $h$, and complex numbers $a_n$. These Fourier coefficients often carry useful arithmetic information.
+
+  For example, consider $\theta(\tau) = \sum\limits_{n \in \Z}e^{\pi\im n^2\tau}$. If $k \geq 2$ is an even integer, then $\theta^{2k}$ is a modular form of weight $k$. Its Fourier expansion is $\theta^{2k}(\tau) = \sum\limits_{n \geq1}r_{2k}(n)e^{\pi\im n \tau}$ where $r_{2k}(n)$ is the number of ways of writing $n = x_1^2 + \ldots x_{2k}^2$, where $x_i \in \Z$.
+
+  By relating $\theta^{2k}$ to other modular forms with known Fourier series, we can then get information about the numbers $r_{2k}(n)$. For example, $r_4(n) = 8\sum\limits_{d|n, 4\nmid d} d$.
+
+  \item Recall the Riemann zeta function $\zeta(s) = \sum_{n\geq 1}n^{-s}$. This function has some important properties:
+  \begin{enumerate}[label=\alph*)]
+    \item It has a meromorphic continuation to all of $\C$.
+    \item It has a functional equation relating $\zeta(s)$ and $\zeta(1-s)$.
+    \item It has a representation as an Euler product $\zeta(s) = \prod_{p}(1-p^{-s})^{-1}$.
+  \end{enumerate}
+  Any series $L(s) = \sum_{n\geq 1}a_n n^{-s}$ with $a_n \in \C$ which has properties analogous to these is called an $L$-function.
+
+  For example, if $N \in \N$ and $\chi: (\Z/N\Z)^\times \to \C^\times$ is a character, we can define the Dirichlet $L$-function $L(\chi, s) = \sum_{(n,N)=1} \chi(n \mod N)n^{-s}$. These functions can be used to prove Dirichlet's theorem on primes in arithmetic progression.
+
+  Modular forms can be used to construct $L$-functions with these properties. To find the right modular forms, we need to introduce Hecke operators.
+
+  \item The Langlands programme predicts relations between objects ocurring in number theory and modular forms. This includes as a special case the Shimura-Taniyama-Weil conjecture, otherwise known as the modularity theorem. This asserts a bijection between elliptic curves over $\Q$ up to isogeny and certain modular forms, given by ($L$-function of elliptic curve) = ($L$-function of modular form).
+\end{enumerate}
+\section{Modular forms on $SL_2(\Z)$}
+Recall the definition, for $f:\H \to \C, k \in \Z, g \in GL_2(\R)^+$, we have
+\[f|_k[g](\tau) = \det(g)^{k-1}f(g\tau)j(g,\tau)^{-k}\]
+We said $f$ is \emph{weakly modular of weight k and level $SL_2(\Z)$} if $f$ is meromorphic on $\H$ and, for all $\gamma \in SL_2(\Z)$, $f|_k[\gamma] = f$.
+
+Note that $T = \begin{pmatrix}1&1\\0&1 \end{pmatrix} \in SL_2(\Z)$ satisfies $f|_k[T](\tau) = f(\tau+1)$. So if $f$ is a weakly modular function, then we can define a new function
+\[\tilde{f}:\{q \in \C: 0<|q|<1\} \to \C; e^{2\pi\im\tau} \mapsto f(\tau)\]
+This function $\tilde{f}$ is meromorphic, since $f$ is.
+\begin{definition}
+  We say that the weakly modular function $f$ is:
+  \begin{itemize}
+    \item meromorphic at $\infty$ if $\tilde{f}$ is meromorphic at 0.
+    \item holomorphic at $\infty$ if $\tilde{f}$ is holomorphic at 0.
+    \item vanishes at $\infty$ if $\tilde{f}$ is holomorphic and vanishes at 0.
+  \end{itemize}
+\end{definition}
+If $f$ is meromorphic at $\infty$ then $\tilde{f}$ has a Laurent expansion $\tilde{f}(q) = \sum_{n \in \Z}a_nq^n$ valid in some region $\{0 <|q|< \epsilon\}$, where $a_n \in \C$ and $a_n = 0$ if $n<0$ and $|n|$ is sufficiently large.
+
+We get a formula $f(\tau) = \sum_{n\in \Z}a_nq^n$ where $q = e^{2\pi\im\tau}$. This is valid in some region $\{\tau \in \H : \Im \tau > R\}$, and is called the $q$-expansion of $f$. Then $f$ is holomorphic at $\infty$ if and only if $a_n = 0$ when $n < 0$, and $f(\infty) = a_0$.
+\begin{definition}
+  Let $f$ be a weakly modular function of weight $k$ and level $SL_2(\Z)$. We say that $f$ is
+  \begin{itemize}
+    \item a \emph{modular function} if $f$ is meromorphic at $\infty$.
+    \item a \emph{modular form} if $f$ is holomorphic in $\H$ and holomorphic at $\infty$.
+    \item a \emph{cuspidal modular form} if $f$ is a modular form vanishing at $\infty$.
+  \end{itemize}
+  all with weight $k$ and level $SL_2(\Z)$.
+
+  We write $M_k(SL_2(\Z))$ for the $\C$-vector space of modular forms of weight $k$ and level $SL_2(\Z)$. We write $S_k(SL_2(\Z))$ for the subspace of cuspidal modular forms.
+\end{definition}
+\textbf{Examples.} If $\tau \in \H$, then $\Lambda_\tau = \Z_\tau \oplus \Z$. if $k \in \Z$, then we can define $G_k(\tau) = \sum\limits_{\omega \in \Lambda_\tau\setminus\{0\}}\omega^{-k}$.
+
+If $\gamma = \begin{pmatrix}a&b\\c&d\end{pmatrix} \in SL_2(\Z)$, then $\Lambda_{\gamma \tau} = \Z\left(\frac{a\tau+b}{c\tau+d}\right)\oplus \Z = j(\gamma,\tau)^{-1}\Z(a\tau+b)\oplus \Z(c\tau+d) = j(\gamma,\tau)^{-1}\Lambda_\tau$.
+
+Finally, we find $G_k|_k[\gamma](\tau) = G_k(\gamma\tau)j(\gamma,\tau)^{-k} = \sum\limits_{\omega \in \Lambda_{\gamma\tau}\setminus\{0\}}(\omega j(\gamma,\tau))^{-k} = \sum\limits_{\omega \in \Lambda_\tau\setminus\{0\}} \omega^{-k} = G_k(\tau)$.
+\begin{proposition}
+  Suppose $k \geq 4$ and $k$ is even. Then $G_k(\tau)$ converges absolutely and uniformly on compact subsets of $\H$. Moreover, $G_k(\tau)$ is holomorphic at $\infty$ and $G_k(\infty) = 2\zeta(k)$. In particular, $G_k \in M_k(SL_2(\Z))$.
+\end{proposition}
+\textbf{Remark.} We have $-I = \begin{pmatrix} -1&0\\0&-1 \end{pmatrix} \in SL_2(\Z)$ and $f|_k[-I] = f\cdot(-1)^k$, so if $k$ were odd then $f \equiv 0$, and hence $M_k(SL_2(\Z)) = 0$ when $k$ is odd.
+\begin{proof}
+  Fix $A \geq 1$. Define $\Omega_A = \{\tau \in \H : |\Re(|\tau)|\leq A, \Im(\tau) \geq \frac{1}{A}\}$. We'll show uniform convergence of $G_k$ in $\Omega_A$. Note that if $\tau \in \Omega_A$, then for any $x \in \R$, $|\tau+x| \geq \frac{1}{A}$, and $|\tau+x| \geq \frac{1}{2}|x|$ if $|x|\geq 2A$. Hence $|\tau+x| \geq \sup(1/A, 1/2A^2|x|) \geq \frac{1}{2A^2}\sup(1, |x|)$ for any $x \in \R$.
+
+  If $\tau \in \Omega_A$, then:
+  \begin{align*}
+    \sum_{(m,n) \in \Z^2\setminus\{0\}} |m\tau+n|^{-k} &= \sum_{(m,n)} |m|^{-k}|\tau+n/m|^{-k} \\
+    &\leq \sum_{(m,n)}\frac{|m|^{-k}}{(2A)^{-k}}\sum(1, |n/m|)^{-k}\\
+    &= \sum_{(m,n)}(2A)^k \sup(|m|^{-k}, |n|^{-k})\\
+    &= \sum_{r \in \N} (2A)^k r^k 8r = (2A)^k8\zeta(k-1)
+  \end{align*}
+  This shows absolute and uniform convergence.
+
+  To show that $G_k$ is holomorphic at $\infty$ and $G_k(\infty) = 2\zeta(k)$, it's enough to show that
+  \[\lim_{\tau\in\Omega_1, \Im\tau\to\infty} G_k(\tau) = 2\zeta(k)\]
+  This limit equals $\sum\limits_{(m,n)}\lim\limits_{\Im\tau\to\infty}(m\tau+n)^{-k} = \sum\limits_{n\in \Z\setminus \{0\}}n^{-k} = 2\zeta(k)$, as all terms with $m \neq 0$ vanish.
+\end{proof}
+$G_k$ is an example of an \emph{Eisenstein series}.
+\begin{definition}
+  We define the \emph{normalised Eisenstein series} $E_k(\tau) = \frac{1}{2\zeta(k)}G_k(\tau) = 1 + \sum_{n\geq 1}a_nq^n$. We'll see that the $a_n$ are rational numbers of bounded denominators.
+\end{definition}
+\textbf{Remark.} If $f \in M_k(SL_2(\Z))$ and $g \in M_\ell(SL_2(\Z))$, then $fg \in M_{k+\ell}(SL_2(\Z))$. So $E_4^3, E_6^2 \in M_{12}(SL_2(\Z))$, and $E_4^3(\infty) = E_6^2(\infty)$, so $\Delta = \frac{E_4^3-E_6^2}{1728} \in S_{12}(SL_2(\Z))$. We'll see shortly that $\Delta = \sum_{n\geq 1} b_nq^n$ where $b_1 = 1, b_n \in \Z$ for all $n \geq 1$.
+
+We now study a fundamental domain for the action of $SL_2(\Z)$ on $\H$. We will write $\Gamma(1) = SL_2(\Z)$, and $\overline{\Gamma(1)} = SL_2(\Z)/\angle{-I}$. This will make sense later.
+
+We write \[\mathscr{F} = \{\tau \in \H : -\frac12 \leq \Re\tau \leq \frac12, |\tau|\geq 1\}\] and \[\mathscr{F}' = \{\tau \in \mathscr{F} : \Re \tau < 1/2, |\tau| = 1 \implies \Re\tau \leq 0\}\]
+We have elements $T = \begin{pmatrix} 1&1\\0&1\end{pmatrix}$ and $S =\begin{pmatrix}0&-1\\1&0\end{pmatrix}\in \Gamma(1)$.
+\begin{proposition}
+  $\mathscr{F}$ is a fundamental domain for the action of $\overline{\Gamma(1)}$ on $\H$. More precisely, if $\tau\in\H$ there is $\gamma \in \overline{\Gamma(1)}$ such that $\gamma\tau \in \mathscr{F}$. If $\gamma \tau \in \mathscr{F}^\circ$, then $\gamma$ is unique. Moreover, each $\tau \in \H$ is $\overline{\Gamma(1)}$-conjugate to exactly one element of $\mathscr{F}'$.
+\end{proposition}
+\begin{proof}
+  We first prove that any $\tau \in \H$ is $\overline{\Gamma(1)}$-conjugate to an element of $\mathscr{F}$. We proved earlier that if $\tau \in \H$ and $\gamma \in \Gamma(1)$, then $\Im \gamma(\tau) = \Im(\tau)/|c\tau+d|^2$.
+
+  If $\tau \in \H$, then $\Lambda_\tau = \Z_\tau \oplus \Z$ is a lattice. So as $(c,d) \in \Z^2\setminus\{0\}$, the numbers $|c\tau+d|$ achieve a minimum. Consequently, the numbers $\Im \gamma(\tau)$ for $\gamma \in \Gamma(1)$ achieve a maximum. So \textsc{wlog} we may assume $\Im(\tau) \geq \Im(\gamma \tau)$ for all $\gamma \in \Gamma(1)$. Also \textsc{wlog} we may take $-\frac12 \leq \Re(\tau) \leq \frac12$.
+
+  We then claim that these properties are sufficient for $\tau \in \mathscr{F}$. It is sufficient to show that $|\tau| \geq 1$. We have $\Im(S\tau) = \Im(\tau)/|\tau|^2 \leq \Im(\tau)$, and hence $|\tau|^2 \geq 1$, so we are done.
+\end{proof}
+
+\end{document}

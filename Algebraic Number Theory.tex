@@ -1,0 +1,181 @@
+\documentclass[10pt,a4paper]{article}
+\input{./preamble.tex}
+
+\title{Algebraic Number Theory}
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+\section{Absolute Values and Places}
+$K$ is a field. An \emph{absolute value} (AV) on $K$ is a function $\abs{\cdot}:K \to \R_{\geq 0}$ such that, for all $x, y \in K$:
+\begin{enumerate}[label=\roman*)]
+  \item $|x| = 0 \iff x= 0$
+  \item $|xy| = |x||y|$
+  \item $|x+y| \leq |x|+|y|$
+\end{enumerate}
+We will also assume that $\abs{\cdot}$ is not trivial, i.e.
+\begin{enumerate}
+  \item[iv)] $\exists x \in K : |x|\neq 0,1$
+\end{enumerate}
+An AV is \emph{non-archimedean} if it satisfies
+\begin{enumerate}
+  \item[iii-NA)] $|x+y| \leq \max(|x|, |y|)$
+\end{enumerate}
+and \emph{archimedean} otherwise.
+
+An AV determines a metric $d(x,y) = |x-y|$ which makes $K$ a \emph{topological field}.
+
+\textbf{Remark} It's convenient to weaken iii):
+\begin{enumerate}
+  \item[iii')] $\exists \alpha > 0 \st \forall x,y, |x+y|^{\alpha} \leq |x|^\alpha+|y|^\alpha$
+\end{enumerate}
+For non-archimedean AVs, this makes no difference. What this does mean is that if $\abs{\cdot}$ is an AV, then so is $\abs{\cdot}^{\alpha}$ for any $\alpha > 0$. The point of this is that we want $z \mapsto z\bar{z}$ on $\C$ to be an AV - we'll see why later.
+
+Let's suppose $\abs{\cdot}$ is a non-archimedean AV. Then $\{x\in K : |x|\leq 1\} = R$ is a subring of $K$. It is a local ring with unique maximal ideal $\{|x|<1\} = \mathfrak{m}_R$.
+
+It is a \emph{valuation ring} of $K$ (i.e. $x \in K \setminus R \implies x^{-1}\in R$).
+\begin{lemma}
+  $R$ is a maximal subring of $K$.
+\end{lemma}
+\begin{proof}
+  Let $x \in K\setminus R$, so $|x|>1$. Then if $y \in K$, there is some $n \geq 0$ with $|yx^{-n}| = \frac{|y|}{|x|^n} \leq 1$. So $y \in x^n R$ for $n \gg 0$, and hence $R[x] = K$. Hence $R$ is maximal.
+\end{proof}
+There is a general notion of valuation (not nec. $\R$-valued). In the more general context, these valuations are called \emph{rank 1 valuations}, and they have this maximality property.
+
+We say two absolute values $\abs{\cdot}$ and $\abs{\cdot}'$ are \emph{equivalent} if there is $\alpha > 0$ with $\abs{\cdot}' =\abs{\cdot}^{\alpha}$. This is an equivalence relation.
+\begin{proposition}
+  The following are equivalent:
+  \begin{enumerate}[label=\roman*)]
+    \item $\abs{\cdot}, \abs{\cdot}'$ are equivalent.
+    \item $|x| \leq |y| \iff |x|'\leq |y|'$.
+    \item $|x| < |y| \iff |x|' < |y|'$.
+  \end{enumerate}
+\end{proposition}
+\begin{proof}
+  From local fields, or exercise.
+\end{proof}
+\begin{corollary}
+  Let $\abs{\cdot}, \abs{\cdot}'$ be non-archimedean AVs, with valuation rings $R, R'$. Then $\abs{\cdot}, \abs{\cdot}'$ are equivalent if and only if $R = R'$ if and only if $R \subset R'$.
+\end{corollary}
+Equivalent AVs define equivalent metrics, hence the same topologies, hence the \emph{completion} of $K$ with respect to $\abs{\cdot}$ depends only on the equivalence class of $\abs{\cdot}$.
+
+Inequivalent AVs determine ``independent'' topologies in the following sense:
+\begin{proposition}[Weak Approximation]
+  Let $\abs{\cdot}_i$ for $1\leq i\leq n$ be pairwise inequivalent AVs on $K$, and $a_1, \ldots, a_n \in K$, $\delta > 0$.
+
+  Then there is $x \in K$ such that, for all $i$, $|x-a_i|_i < \delta$.
+\end{proposition}
+\begin{proof}
+  Suppose $z_j \in K$ such that $|z_j|_j > 1$, and $|z_j|_i < 1$ for all $i \neq j$. Then $\abs{\frac{z_j^N}{z_j^N + 1}}_i \to 0$ as $N \to \infty$ if $i \neq j$, and to $1$ if $i=j$.
+
+  So then $x = \sum a_j \frac{z_j^N}{z_j^N + 1}$ works for $N$ sufficiently large. So it's enough to find $z_j$, and by symmetry take $j=1$. We then induct on $n$. The case $n=1$ is trivial.
+
+  Suppose we have $y$ with $|y|_1 > 1$, and $|y|_2, \ldots, |y|_{n-1} < 1$. If $|y|_n < 1$, we're finished, otherwise pick $w \in K$ with $|w|_1 > 1 > |w|_n$, by \textbf{1.2}. If $|y|_n=1$, then $z = y^Nw$ works, and if $|y|_n > 1$, then $z = \frac{y^Nw}{y^N+1}$ works.
+\end{proof}
+\textbf{Remark.} If $K = \Q$, $\abs{\cdot}_1, \ldots, \abs{\cdot}_n$ are the $p_i$-adic AVs for distinct primes $p_i$ and $a_i \in \Z$, then weak approximation says that, for all $n_i \geq 1$, there is $x \in \Q$ which is a $p_i$-adic integer for all $i$, and $x \equiv a_i \mod p_i^{n_i}$ for all $i$. This is weaker than CRT, which guarantees $x \in \Z$.
+
+\textbf{Definition.}  A \emph{place} of $K$ is an equivalence class of AVs on $K$.
+
+\textbf{Example} $K=\Q$. \emph{Ostrowski's Theorem} implies every AV on $\Q$ is equivalent to one of $\abs{\cdot}_p, \abs{\cdot}_\infty$. So places of $\Q$ are the primes, and $\infty$. We write $V_K$ for the set of places of $K$.
+
+We write $V_{K, \infty}$ for the places given by archimedean AVs (the infinite places).
+
+We write $V_{K,f}$ for the places given by non-archimedean AVs (the finite places).
+
+We often use letters $v, w$ denote places. Given $v \in V_K, K_v$ will denote the completion of $K$ at $v$. If $v:K^\times \to \R$ is a \emph{valuation}, we will also use $v$ to denote the corresponding place, i.e. the equivalence class of AVs $x \mapsto \gamma^{-v(x)}$.
+
+We can restate the weak approximation in terms of places:
+\addtocounter{theorem}{-1}
+\begin{proposition}
+  Let $v_1, \ldots, v_n$ be distinct places of $K$. Then the image of the diagonal inclusion
+  \[ K \injection \prod_{1\leq i\leq n}K_{v_i}\]
+  is dense.
+\end{proposition}
+\subsection{Extensions and Places}
+Let $L/K$ be finite and separable, and let $v, w$ be places of $K, L$ respectively. Say $w$ \emph{lies over} or \emph{divides} $v$ (notation $w|v$) if $v$ is the restriction of $w$ to $K$.
+
+Then there is a unique continuous $K_v\injection L_w$ extending $K \injection L$.
+\begin{proposition}
+  There is a unique isomorphism of topological rings
+  \[L \otimes_K K_v \xrightarrow{\sim} \prod_{w|v}L_w\]
+  mapping $x \otimes y$ to $(xy)_w$.
+\end{proposition}
+\begin{corollary}\hspace*{0cm}
+  \begin{enumerate}
+    \item $\{w|v\}$ is finite, nonempty, and $[L:K] = \sum_{w|v} [L_w:K_v]$
+    \item $\forall x \in K$, \\$N_{L/K}(x) = \prod_{w|v}N_{L_w/K_v}(x)$\\
+    $\Tr_{L/K}(x) = \sum_{w|v}\Tr_{L_w/K_v}(x)$.
+  \end{enumerate}
+\end{corollary}
+If $L/K$ is Galois with Galois group $G$, then $G$ acts on the places $w$ of $L$ lying over a given $v$. We define the \emph{decomposition group} $D_w$ or $G_w$ to be the stabiliser of $w$. This action is transitive. If $g \in D_w$, then it is continuous for the topology induced by $w$ on $L$, so it extends to an automorphism of $L_w$, the completion of $L$ at $w$.
+\[G \supset D_w \cong \Gal(L_w/K_v)\]
+Suppose $v$ is a \emph{discrete valuation} of $L$, i.e. it is a finite place, and the valuation ring is a DVR. Then so is any $w|v$, and we define:
+\begin{itemize}
+  \item $f(w|v)$, the degree of residue class extension, $= e_{L_w/K_v}$
+  \item $e(w|v)$, the ramification degree
+\end{itemize}
+and $[L_w:K_v] = e(w|v)f(w|v)$.
+\section{Number Fields}
+A lot of this theory applies to other global fields, e.g. function fields. $K$ will here be a number field (i.e. finite extension of the rationals) with ring of integers $O_K$. We have some basic properties:
+\begin{itemize}
+  \item $O_K$ is a \emph{Dedekind domain}, i.e.
+  \begin{enumerate}
+    \item Noetherian (in fact, $O_K$ is a f.g. $\Z$-module).
+    \item Integrally closed in $K$ (by definition).
+    \item Every non-zero prime ideal is maximal, so has Krull dimension $\leq 1$.
+  \end{enumerate}
+\end{itemize}
+We have some basic results about Dedekind domains:
+\begin{theorem}\hspace*{0cm}
+  \begin{enumerate}
+    \item A local domain is Dedekind if and only if it is a DVR.
+    \item For a domain $R$, TFAE:
+    \begin{enumerate}
+      \item $R$ is Dedekind.
+      \item $R$ is Noetherian and for every non-zero prime $\p$, $R_\p$ is a DVR.
+      \item Every fractional ideal of $R$ is invertible.
+    \end{enumerate}
+    \item A Dedekind domain with only finitely many prime ideals (i.e. \emph{semi-local}) is a PID.
+  \end{enumerate}
+\end{theorem}
+\begin{proof}\hspace*{0cm}
+  \begin{enumerate}
+    \item Proved in local fields, $\implies$ is the hardest part.
+    \item Let $K = \Frac(R)$. A fractional ideal of $R$ is a non-zero $R$-submodule $I \subset K$ for some $0 \neq x \in R$ where $xI \subset R$ is an ideal. For $(a)\implies (b)$ it is enough to check (exercise) that the basic properties are preserved under localisation.
+
+    For $(b)\implies (c)$, $I$ is invertible if there is a fractional ideal $I^{-1}$ such that $II^{-1} = R$. To prove $(c)$, we may assume $I \subset R$ is an ideal. Then let $I^{-1} = \{x \in K : xI \subset R\}$. If $0 \neq y \in I$, then $R \subset I^{-1} \subset y^{-1}R$, and so $I^{-1}$ is a fractional ideal. Clearly $I^{-1}I \subset R$. Now let $P \subset R$ be prime - it is sufficient to show $I^{-1}I \nsubset P$. Let $I = (a_1, \ldots, a_n)$. WLOG take $v_P(a_1) \leq v_P(a_i)$ for all $i >1$. Then $IR_P = a_1R_P$, as $R_P$ is a DVR.
+
+    Hence $a_i/a_1 = x_i/y_i \in R_P$ where $x_i \in R, y_i \in R\setminus P$. Then $y = \prod y_i \notin P$ as $P$ is prime, and $ya_i/a_1 \in R$ for all $i$, and so $y/a_i \in I^{-1}$, so $y \in II^{-1}\setminus P$.
+
+    For $(c)\implies (a)$, we check the properties. $R$ is Noetherian - let $I \subset R$ be an ideal. Then $II^{-1} =R \implies 1 = \sum_{i=1}^n a_ib_i, a_i \in I, b_i \in I^{-1}$. Let $I' = (a_1, \ldot, a_r) \subset I$. Then $I'I^{-1} = R = II^{-1}$, and so $I' = I$, and $I$ is finitely generated.
+
+    $R$ is integrally closed. Let $x \in K$, integral over $R$. Then $I \coloneqq R[x] = \sum_{0\leq i < d} Rx^i \subset K$ is a fractional ideal. Obviously $I^2 = I$, so $I = I^2I^{-1} = II^{-1} = R$, i.e. $x \in R$.
+
+    Every non-zero prime is maximal. Take $\{0\} \neq Q \subset P \subsetneq R$ where $P,Q$ are prime. Then $R \subsetneq P^{-1} \subset Q{^-1}$, and $Q\subsetneq P^{-1}Q \subset R$, and $P(P^{-1}Q) = Q$, so as $Q$ is prime and $P^{-1}Q \nsubset R$, we must have $P\subset Q$, and so $P= Q$.
+
+    \item Let $R$ be a semi-local Dedekind domain with non-zero primes $P_1, \ldots, P_n$. Choose $x \in R$ with $x \in P_1 \setminus P_1^2, x\in P_2, \ldots, P_n$. Then $P_1 = (x)$ and every ideal is a product of powers of $\{P_i\}$ (see below), hence $R$ is a PID.
+  \end{enumerate}
+\end{proof}
+\begin{theorem}
+  Let $R$ be Dedekind. Then:
+  \begin{enumerate}
+    \item The group of fractional ideals is freely generated by the non-zero prime ideals, and
+    \[I = \prod_P P^{v_P(I)}\]
+    with $v_P(I) = \inf_{x\in I}(v_P(x))$.
+    \item If $(R:I) < \infty$ for all $I \neq (0)$, then for all $I, J$, $(R: IJ) = (R:I)(R:J)$.
+  \end{enumerate}
+\end{theorem}
+\begin{proof}\hspace*{0cm}
+  \begin{enumerate}
+    \item If $I \neq R$, then $I \subset P$ for some prime ideal $P$. Then $I = PI', I' = IP^{-1} \supsetneq I$. Then by Noetherian induction, $I$ is a product of powers of prime ideals, say $I = \prod P^{a_P}$.
+
+    We get the same for fractional ideals $J = x^{-1} I$.
+
+    Consider the homomorphisms $\{$fractional ideals of $R\}\to\{$fractional ideals of $R_P\}\to\Z$ given by $I \mapsto IR_P$, $(\pi^n)\mapsto n$.
+
+    The composition is $I \mapsto v_P(I)$, and if $Q \neq P$ then $v_P(Q) = 0$.
+
+    So $\{$fractional ideals of $R\}\to \bigoplus_P \Z$ maps $\prod P^{a_P}$ to $(a_P)_P$. Hence the $a_P$ are unique and this is an isomorphism.
+  \end{enumerate}
+\end{proof}
+\end{document}

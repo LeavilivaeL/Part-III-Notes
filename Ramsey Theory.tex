@@ -1,0 +1,41 @@
+\documentclass[10pt,a4paper]{article}
+\input{./preamble.tex}
+
+\title{Ramsey Theory}
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+\section{Monochromatic Systems}
+Here, we let $\N = \{1,2,3,\ldots\}$, and write $[n] = \{1,2,\ldots, n\}$. For a set $X$ and $r \in \N$, we write $X^{(r)} = \{A \subset X : |A|=r\}$, the collection of all $r$-sets in $X$.
+
+Suppose we are given a $2$-colouring of $\N^{(2)}$, i.e. a function $C: \N^{(2)} \to \{1,2\}$. We can think of this being a colouring of the edges of the complete graph on $\N$. Can we find an infinite monochromatic $M$, i.e. a set $M \subset \N$ such that $C$ is constant on $M^{(2)}$.
+
+\textbf{Examples}
+\begin{enumerate}
+  \item Colour $ij$ (shorthand for the set ${i,j}$) red if $i+j$ is even, and blue if $i+j$ is odd. Here, the answer is yes - take $M = 2\N = \{2,4,6,\ldots\}$.
+  \item Colour $ij$ red if $\max\{n: 2^n|i+j\}$ is even, and blue if it is odd. The answer is yes - $M = \{4^0,4^1,4^2,4^3,\ldots\}$.
+  \item Colour $ij$ red if $i+j$ has an even number of distinct prime factors, and blue if odd. This is more difficult. To save some time, we shall use the following theorem to answer every question of this form:
+\end{enumerate}
+\begin{theorem}[Ramsey's Theorem]
+  Let $C: \N^{(2)} \to \{1,2\}$ be a 2-colouring of $\N^{(2)}$. Then there exists an infinite monochromatic subset of $\N$.
+\end{theorem}
+\begin{proof}
+  Pick $a_1 \in \N$. Then there are infinitely many edges out of $a_1$, so infinitely many have the same colour - say all edges from $a_1$ to the infinite set $B_1$ have colour $c_1$.
+
+  Now pick $a_2 \in B_1$. There must be some infinite set $B_2 \subseteq B_1\setminus\{a_2\}$ with all edges $a_2$ to $B_2$ are the same colour, say $c_2$, and repeat inductively.
+
+  We then obtain $a_1, a_2, a_3, \ldots$ and colours $c_1, c_2, c_3, \ldots$ such that $a_ia_j$ for $i<j$ has colour $c_i$. Now infinitely many of the $c_i$ must be the same colour, say $c$. Then we may take $M = \{a_i: c_i = c\}$.
+\end{proof}
+
+\textbf{Remarks}
+\begin{enumerate}
+  \item This is sometimes called a 2-pass proof - we went through all the numbers to build the sequence $a_1, a_2, \ldots$.
+  \item In example 3, no explicit example is known.
+  \item The exact same proof works for $n$ colours. Alternatively, we could deduce this from Ramsey's theorem + induction - view the colours as `1' and `2 or 3 or ...'. If the infinite set is coloured 1, we are done, otherwise repeat with the $n-1$ colours remaining.
+  \item An infinite monochromatic set is more than having arbitrarily large finite monochromatic sets. For example, make $\{1\}, \{2,3\}, \{4,5,6\}, \ldots$ all monochromatic blue sets, but make all edges between them red. Then there is no infinite monochromatic blue set (there is however an infinite red set - $\{1,3,6,\ldots\}$).
+\end{enumerate}
+
+\textbf{Example}
+Any sequence $x_1, x_2, \ldots$ in $\R$ (or any totally ordered set) has a monotone subsequence. This was seen in Analysis I, where the proof worked by fiddling around with lim sups and lim infs. Instead, just colour $ij$ `up' if $x_i \leq x_j$, and `down' if $x_i>x_j$. Then apply Ramsey's theorem.
+\end{document}
