@@ -11,14 +11,14 @@ Asymptotic notation: for functions $f, g$ we will write $f = O(g)$ to mean there
 
 All sets will be finite and nonempty unless otherwise specified. Usually, they will be subsets of some abelian group, denoted by $G$. If finite, we will write $N = |G|$, for instance $G = \Z/N\Z$ or $\F_p^n$ (where $N = p^n$). Much of what we do is valid for any abelian group, some of it only for finite groups, and some only for specific groups. Often, it can be generalised and sometimes not - e.g. $\F_p^n$ vs $\Z/N\Z$.
 
-We will write $\one_A(x)$ for the indicator function on a subset $A \subseteq G$, i.e. $\one_A(x) = 1$ if $x \in A$, and $0$ if not. We also define the convolution of functions $f, g:G \to G$ by \[(f \star g)(x) = \sum_{y \in G}f(y)g(x-y) = \sum_{y+z=x}f(y)g(z)\]
+We will write $\one_A(x)$ for the indicator function on a subset $A \subseteq G$, i.e. $\one_A(x) = 1$ if $x \in A$, and $0$ if not. We also define the convolution of functions $f, g:G \to G$ by \[(f \ast g)(x) = \sum_{y \in G}f(y)g(x-y) = \sum_{y+z=x}f(y)g(z)\]
 We define the ``difference convolution'' by
 \[(f \circ g)(x) = \sum_{z\in G}f(x+z)g(z) = \sum_{y-z = x}f(y)g(z)\]
 
 We define an inner product on function $G \to \C$ by
 \[\angle{f,g} = \sum_{x\in G}f(x)\overline{g(x)}\]
-We have the trivial but useful adjoin property that
-\[\angle{f\star g, h} = \angle{f, h \circ \bar{g}}\]
+We have the trivial but useful adjoint property that
+\[\angle{f\ast g, h} = \angle{f, h \circ \bar{g}}\]
 which follows from $x+y=z \iff x = z-y$.
 
 \section{Sum Sets}
@@ -110,5 +110,240 @@ What about iterated sumsets? We write $kA$ for the k-fold sumset of $A$, i.e. th
 
 Note that $|A| \leq |kA| \leq |A|^k$. This does not mean $A$ dilated by $k$!
 
-If $|A$ is small, we might want to know whether $|A+A|$ being small implies that $|kA|$ are also relatively small? The answer turns out to be yes! This is known as Pl\"unnecke's inequality, which says that if $|A+A|\leq K|A|$, then $|kA|\leq K^k|A|$. The original proof by Pl\"unnecke is graph-theoretic - it can be found in Tao \& Vu. More recently, Petridis has found an alternative proof which is presented here.
+If $|A$ is small, we might want to know whether $|A+A|$ being small implies that $|kA|$ are also relatively small? The answer turns out to be yes! This is known as Pl\"unnecke's inequality, which says that if $|A+A|\leq K|A|$, then $|kA|\leq K^k|A|$. The original proof by Pl\"unnecke is graph-theoretic - it can be found in Tao \& Vu. More recently, Petridis has found an alternative proof which is presented here. It uses the following lemma:
+\begin{lemma}[Pl\"unnecke-Petridis Inequality]
+  For any $A, B$ there exists $X \subseteq A$ such that, for all $C$
+  \[\frac{|C+X+B|}{|C+X|} \leq \frac{|A+B|}{|A|} \tag{$\ast$}\]
+\end{lemma}
+\begin{proof}
+  Note that $(\ast)$ holds whenever $|C|=1$, and hence
+  \[\frac{|X+B|}{|X|}\leq \frac{|A+B|}{|A|}\tag{$\ast \ast$}\]
+  We will chose $X \subseteq A$ such that $(\ast\ast)$ holds and $\frac{|X+B|}{|X|}$ is minimal. Note that $X = A$ satisfies $(\ast\ast)$, and so this choice makes sense.
+
+  We then show that $(\ast)$ holds for all $C$ by induction on $|C|$. The case $|C|=1$ is immediate.
+
+  Now suppose that $|C|> 1$, and choose some $c \in C$, and let $C' = C\setminus\{c\}$. Then:
+  \[C+X = (C'+X)\sqcup (c+X')\]
+  for some $X' \subseteq X$, maximal such that $C'+X$ and $c+X'$ are disjoint. By maximality, $c+(X\setminus X')\subseteq C'+X$, and so $c + (X\setminus X') + B\subseteq C'+X+B$. Hence:
+  \[C+X+B = (C'+X+B)\cup((C+X+B)\setminus(c+X\setminus X' +B))\]
+  Taking cardinalities of both sides,
+  \begin{align*}
+    |C+X+B| &\leq |C'+X+B|+|c+X+B| - |c+X\setminus X' +B|\\
+    &= |C'+X+B| + |X+B| - |X\setminus X' + B|\\
+    &\leq \frac{|A+B|}{|A|}|C'+X| + |X+B| - \frac{|X+B|}{|X|}|X\setminus X'|
+  \end{align*}
+  using the inductive hypothesis and the fact that $\frac{|X\setminus X'+B|}{|X\setminus X'|} \geq \frac{|X+B|}{|X|}$ by minimality. Continuing, we have:
+  \begin{align*}
+    |C+X+B| &\leq \frac{|A+B|}{|A|}|C'+X| + |X+B|\left(1-\frac{|X\setminus X'}{|X|}\right)\\
+    &= \frac{|A+B|}{|A|}|C'+X| + \frac{|X+B|}{|X|}|X'|\\
+    &\leq \frac{|A+B|}{|A|}(|C'+X|+|X'|)\\
+    &= \frac{|A+B|}{|A|}|C+X|
+  \end{align*}
+\end{proof}
+\begin{corollary}[Pl\"unnecke's Inequality]
+  If $|A+B|\leq K|A|$, then there exists $X \subseteq A$ such that, for all $k\geq 1$,
+  \[|X+kB| \leq K^k|X|\]
+  In particular, $|kB| \leq K^{k}|A|$.
+\end{corollary}
+\begin{proof}
+  This follows immediately from the Pl\"unnecke-Petridis Inequality by induction on $k$. For $k=1$, we have $|X+B|\leq K|X|$, by taking any $C$ with $|C|=1$. In general, take $C = (k-1)B$, and then
+  \[|X+kB| = |C+X+B| \leq K|X+C| = K|X+(k-1)B| \leq K\cdot K^{k-1}|X| = K^k|X|\]
+  by induction. The second claim follows since trivially,
+  \[|kB| \leq |X+kB| \text{ and } K^k|X| \leq K^k|A|\]
+\end{proof}
+By coupling this with Ruzsa's triangle Inequality (RTI), we get a form for mixed sums and differences.
+\begin{corollary}
+  Suppose $|A+B|\leq K|A|$. For any $k, \ell \in \N$ with $k+\ell \geq 2$,
+  \[|kB - \ell B| \leq K^{k+\ell}|A|\]
+\end{corollary}
+\begin{proof}
+  By RTI with $X$ as above,
+  \[|kB-\ell B| \leq \frac{|X+kB||X+\ell B|}{|X|} \leq \frac{K^k|X|K^\ell|X|}{|X|} =K^{k+\ell}|X| \leq K^{k+\ell}|A|\]
+\end{proof}
+\section{Additive Energy}
+The size of the sumset is one way to measure the `structure' of $A$, but not the only way. One advantage of using $\frac{|A+A|}{|A|}$ is that it controls the same quantity for subsets automatically: i.e., if $X \subset A$, then $|X+X| \leq |A+A|$. However, it has the disadvantage that $\frac{|A+A|}{|A|}$ can grow out of control quickly if we add in a small number of elements. It's often more convenient to use ``additive energy'' to measuer structure.
+\begin{definition}
+  The \emph{additive energy} of $A$, $E(A)$ is defined to be
+  \[E(A) = \#\{(a,b,c,d) \in A^4: a+b=c+d\}\]
+\end{definition}
+Note that while small sumsets occur in `structured' sets, here this corresponds to large additive energy. For example, if $A$ is an arithmetic progression, then $E(A) \approx |A|^3$.
+
+If $A$ is a geometric progression, then $E(A) \approx |A|^2$, as $2^k + 2^\ell = 2^r + 2^s \iff \{k,\ell\} = \{r,s\}$.
+
+We have an alternate definition of $E(A)$ - note that
+\begin{align*}
+  E(A) &= \sum_{a,b \in A} \sum_{c,d \in A} \sum_x \one_{a+b=x}\one_{c+d=x}\\
+  &= \sum_x\left(\sum_{a,b\in A} \one_{a+b}=x\right)\\
+  &= \sum_x \one_A \ast \one_A(x)^2\\
+  &= \norm{\one_A \ast \one_A}_2^2
+\end{align*}
+(recall that the $L^p$ norm of $f:G \to \C$ is defined by $\norm{f}_p = \left(\sum_x |f(x)|^p\right)^{1/p}$, and $\norm{f}_\infty = \sum_{x\in G}|f(x)|$).
+
+Its status as an $L^2$-norm explains why $E(A)$ is so useful in analytic arguments. Also note that the size of the sumset $|A+A|$ is the size of the support of $\one_A \ast \one_A$, sometimes called the ``$L^0$-norm''. Note that the $L^1$-norm of $A$ is $\sum_{a,b \in A}\sum_x \one_{a+b=x} = \sum_{a,b\in A} 1 = |A|^2$.
+
+It should also be noted that
+\begin{align*}
+  E(A) &= \#\{(a,b,c,d) \in A^4 : a-c=b-d\}\\
+  &= \sum_x \one_A \circ \one_A(x)^2 = \norm{\one_A\circ\one_A}_2^2
+\end{align*}
+\begin{lemma}
+  $|A|^2 \leq E(A) \leq |A|^3$ and $E(A) \geq \frac{|A|^4}{|A+A|}$.
+\end{lemma}
+i.e., small sumset $\implies$ large energy.
+\begin{proof}
+  $|A|^2 \leq E(A)$ comes from counting solutions to $a+b=c+d$ where $a=c$ and $b=d$.
+
+  $E(A)\leq |A|^3$ is because once we have fixed $a,b,c$, then either there are 1 or 0 choices for $d$.
+
+  To connect $E(A)$ with the size of the sumset, we use the Cauchy-Schwarz inequality, i.e.
+  \[\sum a_ib_i \leq \left(\sum|a_i|^2\right)^{1/2}\left(\sum |b_i|^2\right)^{1/2}\]
+  We have
+  \begin{align*}
+    |A|^2 &= \sum_x \one_A\ast \one_A(x) \times 1\\
+    &= \sum_x \one_A\ast \one_A(x) \times \one_{A+A}(x)\\
+    &\leq \left(\sum_x \one_A \ast \one_A(x)^2\right)^{1/2}\left(\sum_x\one_{A+A}(x)^2\right)^{1/2}\\
+    &= E(A)^{1/2}|A+A|^{1/2}
+  \end{align*}
+  Similarly, we have $E(A) \geq \frac{|A|^4}{|A-A|}$.
+\end{proof}
+The converse to small sumset $\implies$ large energy does not hold. If we take $A$ to be the union of an arithmetic progression and geometric progression of equal sizes, then $|A+A| \gg |A|^2$ (from the geometric progression), but $E(A) \gg |A|^3$ (from the arithmetic progression).
+
+$A$ itself is not structured much, but a large subset of $A$ is. One might hope that this construction is the only thing that can go wrong. More precisely, that if $A$ has large energy, then there is a large subset of $A$ with small doubling. The answer to this hope is yes! - the Balog-Szemer\'edi-Gowers Lemma.
+\begin{lemma}[Balog-Szemer\'edi-Gowers]
+  If $E(A) \geq K^{-1} |A|^3$ for some $K \geq 1$, then there exists $A' \subseteq A$ such that:
+  \begin{enumerate}
+    \item $|A'| \gg K^{-1}|A|$
+    \item $|A'-A'| \ll K^7 |A|$.
+  \end{enumerate}
+\end{lemma}
+Note that the dependence on $K$ is polynomial, and also that we can recover a bound for $|A'+A'|$ via the Ruzsa triangle inequality:
+\[|A'+A'| \leq \frac{|A'+A'|\cdot |A'+A'|}{|A'|} \leq K^{14}|A|\]
+We will use the ``first moment method'' -  a simple application of probability which is very useful in combinatorics. It essentially says that if $X$ is a real-valued random variable then $X \geq \E X$ with positive probability.
+\begin{proof}[Proof (following Schoen).]
+  Firstly, we will find a large subset $X \subset A$ such that there are `many' differences in $X-X$ with `many' different representations as elements of $A-A$. Note that, if all of $A-A$ had $\geq K^{-O(1)}|A|$ representations, then $E(A) = \sum_x \one_A \circ \one_A (x)^2 \geq |A-A|K^{-O(1)}|A|^2$, and on the other hand $\leq |A|^3$, then $|A-A| \leq K^{O(1)}|A|$.
+
+  We will then find some $X' \subseteq X$ such that $|X'-X'|$ is small as required. We'll break these steps up into the following lemmas.
+\end{proof}
+\begin{lemma}
+  If $E(A) \geq K^{-1}|A|^3$ then for any $0 < c < 1$ there is some $X \subseteq A$ such that $|X| \gg K^{-1}|A|$ and for all but at most $c|X|^2$ many pairs $(a,b)\in X^2$,
+  \[\one_A\circ \one_A (a-b) \gg c^2 K^{-3}|A|\]
+\end{lemma}
+\begin{proof}
+  The set $X$ will be of the form $A \cap (A+s)$ for some $s \in A-A$ randomly chosen. We choose $s \in A-A$ with probability $\frac{\one_A \circ \one_A(s)}{|A|^2}$. Then:
+  \begin{align*}
+    \E |X| &= \sum_s \P(s \text{ chosen})|A \cap (A+s)|\\
+    &= \sum_s \frac{\one_A\circ \one_A(s)}{|A|^2}\sum_{a \in A}\one_A(a-s)\\
+    &= \frac{1}{|A|^2}\sum_s \one_A \circ \one_A(s)^2\\
+    &= \frac{E(A)}{|A|^2}
+  \end{align*}
+  For any $G \subset A^2$, we calculate $\E |X^2 \cap G|$.
+
+  Using linearity of expectation:
+  \begin{align*}
+    \E |X^2 \cap G| &= \sum_{(a,b) \in G} \P(a,b \in X)\\
+    &= \sum_{(a,b) \in G}\sum_s \frac{\one_A\circ \one_A(s)}{|A|^2}\one_A(a-s)\one_A(b-s)\\
+    &= \frac{1}{|A|^2}\sum_{(a,b) \in G} \sum_s \one_A \circ \one_A(s)\one_A(a-s)\one_A(b-s)
+  \end{align*}
+  We bound the inner sum above by Cauchy-Schwarz:
+  \begin{align*}
+    \sum_s \one_A \circ \one_A(s) \one_A(a-s)\one_A(b-s) & \leq \left(\sum_s \one_A\circ \one_A(s)^2\right)^{1/2}\left(\sum_{s\in G} \one_A(a-s)\one_A(b-s)\right)^{1/2}\\
+    &= E(A)^{1/2}\one_A\circ \one_A(a-b)^{1/2}
+  \end{align*}
+  It then follows that:
+  \[\E|X^2\cap G| \leq \frac{E(A)^{1/2}}{|A|^2} \sum_{(a,b)\in G} \one_A \circ \one_A(a-b)^{1/2}\]
+  In particular, if $G \subset A^2$ is the set of pairs $(a,b)$ such that:
+  \[\one_A \circ \one_A(a-b) \leq \frac{c^2}{4}\frac{E(A)^3}{|A|^8}\]
+  then
+  \[\E|X^2 \cap G| \leq \frac{c}{2}\frac{E(A)^2}{|A|^4}\]
+  using the trivial bound that $|G| \leq |A|^2$.
+
+  Furthermore, by Cauchy-Schwarz again, $\E |X|^2 \geq (\E |X|)^2$, so $\E|X|^2 \geq \frac{E(A)^2}{|A|^4}$.
+
+  Hence, by the first moment method, there is some $X \subseteq A$ such that
+  \[|X|^2 -\frac{1}{c}|X^2 \cap G| \geq \frac{1}{2}\frac{E(A)^2}{|A|^4}\]
+
+  Hence we have:
+  \begin{enumerate}
+    \item $|X|^2 \geq \frac12 \frac{E(A)^2}{|A|^4} \geq \frac12 \frac{|A|^2}{K^2}$, so $|X| \gg \frac{|A|}{K}$.
+    \item $|X^2 \cap G| \leq c|X|^2$
+  \end{enumerate}
+\end{proof}
+It remains to find some large $A'\subset X$ such that $|A'-A'|$ is small.
+\begin{proof}[Proof of BSG.]
+  We apply the previous lemma to $A$ with $c = \frac18$, to obtain some $X$ as stated.
+
+  Since $\one_A \circ \one_A(a-b) = \one_A\circ \one_A(b-a)$, we can define a graph $H$ with vertex set $X$, such that $a,b$ are connected by an edge in $H$ if and only if $a \neq b$ and $\one_A \circ \one_A(a-b) \gg K^{-3}|A|$.
+
+  By \textbf{Lemma 4.4}, there are at most $\frac18|X|^2$ many pairs $(a,b) \in X^2$ where this condition fails, and hence $H$ has at least $\binom{|X|}{2} - \frac{1}{16}|X|^2$ edges.
+
+  If $d(x)$ denotes the degree of a vertex $x \in H$, then:
+  \[\sum_{x \in X} d(x) \geq \frac{7}{8}|X|^2 - |X|\]
+  Let $A'$ be the subset of $X$ consisting of those elements of degree at least $\frac34|X|$ in $H$.
+
+  The contribution to the degree count from $x \notin A'$ is at most $\frac{3}{4}|X|^2$, and hence:
+  \[|X||A'| \geq\sum_{x \in A'} d(x) \geq \frac18 |X|^2-|X|\]
+  and hence $|A'| \gg |X|$.
+
+  We now claim that, for any $x \in A'-A'$, there at $\gg K^{-6}|A|^2 |X|$ many quadruples $(a_1,a_2,a_3,a_4) \in A^4$ such that $x=a_1-a_2+a_3-a_4$. Assuming this, since the number of such quadruples is at most $|A|^4$, we have:
+  \[|A|^4 \gg |A'-A'|K^{-6}|A|^2|X|\]
+  Then, rearranging we will have:
+  \[|A'-A'| \ll K^6 \frac{|A|^2}{|X|} \ll K^7|A|\]
+  Fix some $a,b \in A'$ such that $x = a-b$. By choice of $A'$, there are $\geq \frac12 |X|$ many $c \in X$ such that $(a,c), (b,c)$ are edges in $H$.
+
+  Hence there are $\gg K^{-3}|A|$ many $(a_1,a_2) \in A^2$ such that $a_1-a_2 = a-c$ and $\gg K^{-3}|A|$ many $(a_3,a_4) \in A^2$ such that $a_3-a_4=b-c$. Since different $c$ give different quadruples for fixed $x$, in total we have:
+  \[\gg\left(\frac12|X|\right)\left(K^{-3}|A|\right)\left(K^{-3}|A|\right)\gg |X|K^{-6}|A|\]
+  many such quadruples.
+\end{proof}
+\textbf{Addendum/Big Picture Remarks.} The goal of BSG is to go from $E(A)$ is large (i.e. $\geq K^{-1}|A|^3$) to getting $A'\subset A$ with $|A'-A'| \ll |A'|$, where $A'$ is a `large' subset of $A$.
+
+Recall that $E(A)$ is $\sum_x \one_A\circ\one_A(x)^2$, where $\one_A\circ\one_A(x)$ is the number of ways of writing $x$ as a difference in $A-A$.
+dd
+Let $S$ dbe the set $\{x: \one_A \circ \one_A(x) \geq \frac{1}{2K}|A|\}$ (note that trivially $\one_A\circ\one_A(x) \leq |A|$), so $x \in S$ implies that $x$ really can be written as a difference in a large number of ways. We want to know how big $S$ is.
+
+One the one hand,
+\[\sum_{x\notin S}\one_A\circ\one_A(x)^2 < \frac{1}{2K}|A|\sum_{x}\one_A\circ\one_A(x) = \frac{1}{2K}|A|^3\]
+
+Now since $\sum_{x} \one_A\circ\one_A(x)^2 = \frac{1}{K}|A|^3$, we must have:
+\[|S||A|^2 \geq \sum_{x\in S}\one_A\circ\one_A(x)^2 \geq \frac{1}{2K}|A|^3\]
+and hence
+\[|S| \gg \frac{1}{K}|A|\]
+For an upper bound on $S$, we note that $|S|\frac{1}{2K}|A| \leq \sum_{x \in S}\one_A \circ\one_A(x) \leq \sum_x \one_A\circ\one_A(x) = |A|^2$, and so $|S| \ll K|A|$. So up to some constant terms, $|S|$ is essentially $|A|$.
+
+Since $x \in S$ implies that $x$ is represented many times in $A-A$, we must have $S \subset A-A$. So we would be done if we could find $A'\subset A$ such that $A'-A' \subset S$.
+
+This can't be done in general, but we can find a large $A'\subset A$ such that ``99\%'' of all pairs $(a',b') \in A'^2$ have $a'-b'\in S$ - this is \textbf{4.4}. Such an $S$ is often called a ``symmetry set''. We then want to get to a ``100\%'' statement: we know that 99\% of the $(a',b')$ have $a'-b'\in S$, so we expect for most $a',b' \in S$, there are $\gg |A'|$ many $c\in A'$ such that $a'-c, b'-c \in S$.
+
+We then write $a'-b' = (a'-c)-(b'-c) \in S-S$. So we can write $a'-c \in S$ as $a_1-a_2$ in many ways, and likewise for $b'-c$. So $a'-b'$ can be written in $\gg K|A'||A|^2$ many ways, and so in total have $\gg |A'-A'||A|^3$ many such quadruples. But trivially there are at most $|A|^4$ quadruples, so $|A'-A'|\ll K|A|$.
+
+\section{Covering}
+We say that $A$ is $K$-covered by $B$ if there is $X$ with $|X| \leq K$ such that $A \subseteq X+B$. I.e., we can contain $A$ in at most $K$-many translates of $B$.
+
+For example, if $A$ is $K$-covered by $B$, where $|B|\ll|A|$ and $|B|$ has small doubling, then $A$ must also have small doubling:
+\[|A+A| \leq |X+X+B+B|\ll K^2|B+B|\ll_K |B| \ll |A|\]
+We can often get more from covering than this suggests. For instance, we can control iterated sums: if $A+B$ is efficiently covered by $A$ itself, then so is $A+nB$ for small $n$. If $A+B \subset A+X$, then $A+nB \subset A+nX$.
+
+Before we use this concept, we need to show how to produce efficient coverings. The first way is due to Ruzsa, and is simple and useful.
+\begin{lemma}[Ruzsa Covering Lemma]
+  If $|A+B|\leq K|B|$, then $A$ is $K$-covered by $B-B$.
+\end{lemma}
+\begin{proof}
+  Let $X$ be maximal such that $(x+B)_{x\in X}$ are disjoint.
+
+  We can control the size of $X$:
+  \[|X||B|=|X+B| \leq |A+B| \leq K|A|\]
+  and so $|X|\leq K$.
+
+  If $a \in X$, then obviously $a\in X+B - B$. If $a \in A\setminus X$, then $a+B$ must intersect $x+B$ for some $x \in X$ (by maximality). I.e. there are $b_1, b_2 \in B$ such that $a+b_1 = x+b_2$. But then $a= x+b_1-b_2 \in X+B-B$, and so $A \subseteq X+B-B$.
+\end{proof}
+Note that we are covering $A$ by $B-B$, not $B$ itself. This is because $B-B$ is much `smoother' than $B$ itself - e.g. what if $B$ is a large random subset of $G$. On average, $G$ needs $\gg \log |G|$ translates of $B$ to cover everything, so even though $|G+B| \leq |G| \ll |B|$, but if $G \subset X+B$, then $X \gg \log |G|$ (with high probability). So $G$ is not efficiently covered by $B$, even though $|G+B|\ll |B|$. But $B-B = G$ with high probability. Indeed, any $B\subset G$ with $|B|>\frac12 |G|$ has $B-B=G$, since for any $x \in G$, consider $B$ and $x+B$. These are subsets of $G$ of size $>\frac12 |G|$, so they must intersect. I.e. there are $b_1, b_2 \in B$ with $b_1 = x+b_2$.
+
+We now present an application of Ruzsa's covering lemma and Pl\"unnecke's inequality -  a non-trivial inverse sumset result.
+
+As we saw earlier, if $H$ is a subgroup of $G$ and $A \subst x+H$ with $|A|\gg|H|$, then $|A+A| \ll |A|$. We will show that this is the only way that $A$ can have small doubling in groups of small torsion (e.g. $G = \F_p^n$, not in subsets of $\Z$ or $\Z/N\Z$).
+\begin{theorem}
+  If $A \subset \F_p^n$ is such that $|A+A|\leq K|A|$, then there is a subgroup $H \leq \F_p^n$ and $x$ such that $A \subseteq x+H$ and $|A|\gg_{p, K}|H|$.
+\end{theorem}
+\begin{proof}
+  Without loss of generality, $0 \in A$. The idea is to take $H = \angle{A}$. But trivially we only have $|H|\leq p^{|A|}$ - we will use the small doubling of $A$ to control the size of $H$.
+\end{proof}
 \end{document}

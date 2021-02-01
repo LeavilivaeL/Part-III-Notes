@@ -100,6 +100,15 @@ Then there is a unique continuous $K_v\injection L_w$ extending $K \injection L$
   \[L \otimes_K K_v \xrightarrow{\sim} \prod_{w|v}L_w\]
   mapping $x \otimes y$ to $(xy)_w$.
 \end{proposition}
+\begin{proof}
+  Both sides are finite dimensional normed $K_v$-vector spaces. The idea will be to choose a basis of $L/K$ so that $L \otimes_K K_v \cong K_v^{[L:K]}$ (with the $\sup$ norm), and on the RHS we also use the $\sup$ norm. Then we use the fact that any 2 norms on a finite dimensional vector space over a field complete with respect to an absolute value are equivalent (see Cassesl and Fr\"ohlich, Ch. III, section 8).
+
+  Write $L = K(a)$ where $f \in K[T]$ is a minimal polynomial for $a$, and is separable. Factor $f = \prod g_i$ in $K_v$, so that the $g_i \in K_v[T]$ are irreducible and distinct.
+
+  Let $L_i = K_v[T]/(g_i)$. Then $L \otimes_K K_v = K_v[T]/(f) \cong \prod_i L_i$. Now let $w|v$, inducing $i_w:L \injection I_w$. Let $g_w \in K_v[T]$ be the minimal polynomial of $i_w(a)$ over $K_v$. Then $g_w|f$, so $g_w$ is one of the $g_i$s, and $L_w = K_v(i_w(a)) = L_i$.
+
+  Conversely, $K_v$ is complete and $L_i/K_v$ is finite, so there is a unique extension of $v$ to $L_i$, and we get a bijection $\{g_i\}\leftrightarrow \{w|v\}$, and $L\otimes_K K_v \cong \prod L_w$.
+\end{proof}
 \begin{corollary}\hspace*{0cm}
   \begin{enumerate}
     \item $\{w|v\}$ is finite, nonempty, and $[L:K] = \sum_{w|v} [L_w:K_v]$
@@ -107,8 +116,20 @@ Then there is a unique continuous $K_v\injection L_w$ extending $K \injection L$
     $\Tr_{L/K}(x) = \sum_{w|v}\Tr_{L_w/K_v}(x)$.
   \end{enumerate}
 \end{corollary}
-If $L/K$ is Galois with Galois group $G$, then $G$ acts on the places $w$ of $L$ lying over a given $v$. We define the \emph{decomposition group} $D_w$ or $G_w$ to be the stabiliser of $w$. This action is transitive. If $g \in D_w$, then it is continuous for the topology induced by $w$ on $L$, so it extends to an automorphism of $L_w$, the completion of $L$ at $w$.
-\[G \supset D_w \cong \Gal(L_w/K_v)\]
+If $L/K$ is Galois with Galois group $G$, then $G$ acts on the places $w$ of $L$ lying over a given $v$: if $\abs{\cdot}$ is an AV on $L$ then, for all $g \in G$, the map $x\mapsto \abs{g^{-1}x}$ is an AV on $L$, agreeing with $\abs{\cdot}$ on $K$, and hence gives a (left) action of $G$ on $\{w|v\}$, $g(w) = w \circ g^{-1}$. If $w=v_P$ for a prime $P$, then $gw = v_{g(P)}$.a
+
+We define the \emph{decomposition group} $D_w$ or $G_w$ to be the stabiliser of $w$. This action is transitive. If $g \in D_w$, then it is continuous for the topology induced by $w$ on $L$, so it extends to an automorphism of $L_w$, the completion of $L$ at $w$.
+\[G \supset\Gal(L_w/K_v) \supseteq D_w\]
+Then we have
+\begin{align*}
+  \#G &= (G:G_w)\#G_w\\
+  &\leq (G:G_w)[L_w:K_v]\\
+  &= \sum_{g \in G/G_w} [L_{g(w)}:K_v]\\
+  &\leq \sum_{w|v}[L_w:K_v]\\
+  &= [L:K] = \#G
+\end{align*}
+Hence equality holds throughout, and $G_w = \Gal(L_w/K_v)$.
+
 Suppose $v$ is a \emph{discrete valuation} of $L$, i.e. it is a finite place, and the valuation ring is a DVR. Then so is any $w|v$, and we define:
 \begin{itemize}
   \item $f(w|v)$, the degree of residue class extension, $= e_{L_w/K_v}$
@@ -147,7 +168,7 @@ We have some basic results about Dedekind domains:
 
     Hence $a_i/a_1 = x_i/y_i \in R_P$ where $x_i \in R, y_i \in R\setminus P$. Then $y = \prod y_i \notin P$ as $P$ is prime, and $ya_i/a_1 \in R$ for all $i$, and so $y/a_i \in I^{-1}$, so $y \in II^{-1}\setminus P$.
 
-    For $(c)\implies (a)$, we check the properties. $R$ is Noetherian - let $I \subset R$ be an ideal. Then $II^{-1} =R \implies 1 = \sum_{i=1}^n a_ib_i, a_i \in I, b_i \in I^{-1}$. Let $I' = (a_1, \ldot, a_r) \subset I$. Then $I'I^{-1} = R = II^{-1}$, and so $I' = I$, and $I$ is finitely generated.
+    For $(c)\implies (a)$, we check the properties. $R$ is Noetherian - let $I \subset R$ be an ideal. Then $II^{-1} =R \implies 1 = \sum_{i=1}^n a_ib_i, a_i \in I, b_i \in I^{-1}$. Let $I' = (a_1, \ldots, a_r) \subset I$. Then $I'I^{-1} = R = II^{-1}$, and so $I' = I$, and $I$ is finitely generated.
 
     $R$ is integrally closed. Let $x \in K$, integral over $R$. Then $I \coloneqq R[x] = \sum_{0\leq i < d} Rx^i \subset K$ is a fractional ideal. Obviously $I^2 = I$, so $I = I^2I^{-1} = II^{-1} = R$, i.e. $x \in R$.
 
@@ -176,6 +197,204 @@ We have some basic results about Dedekind domains:
     The composition is $I \mapsto v_P(I)$, and if $Q \neq P$ then $v_P(Q) = 0$.
 
     So $\{$fractional ideals of $R\}\to \bigoplus_P \Z$ maps $\prod P^{a_P}$ to $(a_P)_P$. Hence the $a_P$ are unique and this is an isomorphism.
+    \item By unique factorisation of ideals (part 1.), $\prod P^{a_P} \cap \prod P^{b_P} = \prod P^{\max{a_P,b_P}}$. So if $I+J=R$, then $IJ = I \cap J$, and so by CRT, $R/IJ \cong R/I\cap J \cong R/I \times R/J$, and we are done in this case.
+
+    Hence this step reduces to showing that $(R:P^{n+1}) = (R:P)(R:P^n)$.
+
+    Now localising at $P$ gives $P^n \cong R_P/P^nR_P$, so WLOG $R$ is local, hence a DVR, and $P = (\pi)$.
+
+    Then $R/(\pi^n)\cong (\pi)/(\pi^{n+1})$ via multiplication by $\pi$, and hence $(R:P^{n+1}) = (R:P)(P:P^{n+1}) = (R:P)(R:P^n)$.
+  \end{enumerate}
+\end{proof}
+The quotient group $Cl(R) \coloneqq \{\text{fractional ideals of $R$}\}/\{\text{principal fractional ideals of $R$}\}$ is the \emph{class group} (or \emph{Picard group}) of $R$.
+
+If $K$ is a number field, then we write $Cl(K) = Cl(O_K)$, the \emph{ideal class group} of $K$.
+\begin{theorem}
+  For $K$ a number field, $Cl(K)$ is finite.
+\end{theorem}
+The proof will come later.
+
+\subsection{Places of Number Fields}
+Recall Ostrowski's theorem, which says that $V_\Q = \{p:p\text{ prime}\}\cup\{\infty\}$.
+
+Let $\p \subset \O_K$ be a nonzero prime ideal. Then $\p$ determines a discrete valuation $v_\p$ of $K$, and so a non-archimedean absolute value $\abs{x}_\p = r^{-v_\p(x)}$ where $r>1$.
+\begin{theorem}
+  This gives a bijection $\{\text{primes of $O_K$}\} \to V_{K,f}$.
+\end{theorem}
+\begin{proof}
+  Let $P\neq Q$. Then there exists $x \in P \setminus Q$, and then $|x|_P < 1 = |x|_Q$, so $|\cdot|_P, |\cdot|_Q$ are inequivalent, and the map is injective.
+
+  Let $\abs{\cdot}$ be a non-archimedean absolute value on $K$, with valuation ring $R = \{x \in K : |x|\leq 1\}$. As $\abs{\cdot}$ is non-archimedean, $\Z\subset R$ and hence $R \supset O_K$ as $R$ is integrally closed. So $R \supset O_{K,P}$ for some prime $P = \mathfrak{m}_R \cap O_K$. Hence $R = O_{K,P}$ because by \textbf{1.1}, $O_{K,P}$ is a maximal subring of $K$.
+
+  Hence $\abs{\cdot}$ and $\abs{\cdot}_P$ are equivalent.
+\end{proof}
+For $v \in V_{K,f}$, write $P_v$ for the corresponding prime deal of $O_K$. Then $K_v$, the completion of $K$ at $v$, is a complete discretely valued field, with valuation ring $O_v$ or $O_{K_v} \subset K_v$, not to be confused with $O_{K,P_v}$.
+
+The normalised discrete valuation will be the one for which $v:K^\times \surjection \Z$ is surjective. We will denote by $\pi_v \in O_v$ any generator of the maximal ideal. We often assume $\pi_v \in K$. Then $v(\pi_v) = 1$.
+
+We write $k_v = O_K/P_v \cong O_v/(\pi^v)$, is finite, of order $q_v = p^{f_v}$ for a rational prime $p$ divisible by $v$.
+
+We then normalise the absolute value so that $\abs{x}_{v} = q_v^{-v(x)}$, so that $\abs{\pi_v}_v = \frac{1}{q_v}$.
+
+For infinite places, we have the unique infinite place $\infty$ of $\Q$, with $\Q_\infty = \R$. So then $K \otimes_\Q \R \cong \prod_{v \in V_{K,\infty}} K_v$. Each $K_v$ is a finite extension of $\R$, so is one of $\R$ and $\C$. These correspond to the cases where we say $v$ is real or complex respectively.
+
+In the complex case, since $K \subset K_v$ is dense, we cannot have $K \subset \R$. On the other hand, by Galois theory $\Sigma_K = \{\text{homomorphisms }K \injection \C\}$ has order $n = [K:\Q]$, and $K \otimes_\Q \C \cong \prod_{\sigma \in \Sigma_K} \C$. Complex conjugation acts on both sides by $x \otimes z \mapsto x \otimes \bar{z}$ and $(z_\sigma)_\sigma \mapsto (\overline{z_{\bar{\sigma}}})_\sigma$.
+
+Let $\sigma_1, \ldots, \sigma_{r_1} : K \injection \R$, $\sigma_{r_1+1} = \bar{\sigma}_{r_1+r_2+1}, \ldots, \sigma_{r_1+r_2} = \bar{\sigma_n} : K \injection \C$ where $r_1+2r_2 = n$. Then, taking fixed points under complex conjugation,
+\[K \otimes_\Q \R \cong \prod_{\sigma \text{ real}} \R \times \prod_{(\sigma, \bar{\sigma})} \{(z,\bar{z}) \in \C \times \C\} \cong \R^{r_1}\times \C^{r_2}\]
+Therefore we have:
+\begin{theorem}
+  There is a bijection
+  \[\Sigma_K / (\sigma \thicksim \bar{\sigma}) \xrightarrow{\sim} V_{K,\infty}\]
+  given by $\sigma \mapsto |\sigma(\cdot)|$, where $\abs{\cdot}$ is the Euclidean absolute value in $\R$ or $\C$.
+\end{theorem}
+We write $K_\infty \coloneqq K \otimes_\Q \R$, which is canonically isomorphic to $\prod_{v \in V_{K, \infty}} K_v$ and noncanonically isomorphic to $\R^{\#\{\text{real }v\}}\times \C^{\#\{\text{complex }v\}}$.
+
+We now choose the normalised absolute values such that, if $v$ is real corresponding to $\sigma:K \injection \R$, then $\abs{x}_v = \abs{\sigma(x)}_\infty$, and if $v$ is complex, then $\abs{x}_v = \sigma(x)\bar{\sigma}(x) = |\sigma(x)|^2$.
+
+If $v$ is finite and $w|v$, then $L_w/K_v$ is a finite extension of non-archimedean local fields, and $[L_w:K_v] = e(w|v)f(w|v)$.
+
+If $v$ is infinite and $w|v$, then $L_w/K_v = \begin{cases} \R/\R & f= e=1\\ \C/\C & f=e=1 \\\C/\R & v\text{ ramified, } e=2,f=1\end{cases}$
+\begin{proposition}
+  Let $x \in L, v \in V_K$. Then:
+  \[|N_{L/K}(x)|_v = \prod_{w|v}|x|_w\]
+\end{proposition}
+\begin{proof}
+  $N_{L/K}(x) = \prod_{w|v}N_{L_w/K_v}(x)$, so it is enough to show that $|N_{L_w/K_v}(x)|_v = |x|_w$.
+
+  For $v$ a finite place, it is enough to take $x = \pi_w \in L$. Then:
+  \begin{align*}
+    |N_{L_w/K_v}(\pi_w)|_v &= |u\pi_v^{f(w|v)}|_v\\
+    &= q_v^{-f(w|v)} = q_w^{-1} = |\pi_w|_w
+  \end{align*}
+
+  For $v$ an infinite place, we need only consider $L_w/K_v \cong \C/\R$. But $N_{\C/\R}(z) = z\bar{z}$ by definition.
+\end{proof}
+\begin{theorem}[Product Formula]
+  Let $x \in K^\times$. Then:
+  \[|x|_v = 1 \text{ for all but finitely many $v$}\]
+  and
+  \[\prod_{v\in V_K}|x|_v = 1\]
+\end{theorem}
+\begin{proof}
+  Write $x = a/b$ where $a,b \in O_K^\times$. Then $\{v \in V_K: |x|_v \neq 1\}\subset V_{K, \infty} \cup\{v \in V_{K,f} : v(a)\text{ or }v(b) >0\}$, a finite set.
+
+  Now $\prod_{v\in V_K}|x|_v = \prod_{p\leq \infty} \left(\prod_{v|p}|x|_v) = \prod_{p\leq \infty}|N_{K/\Q}(x)|_p$, so it is enough to prove this for $K= \Q$.
+
+  By multiplicativity, we reduce to $x = q$, a prime, or $x= -1$. In the former case, $|q|_p = \begin{cases} \frac1q & p =q\\1 & p \neq q, \infty\\ q& p=\infty \end{cases}$, and in the latter, $|-1|_p = 1$ for all $p \leq \infty$. Hence the product over all of these is 1.
+\end{proof}
+\textbf{Remark.} In $\R$, the standard measure $dx$ transforms under $\R^\times$ as $d(ax) = |a|dx$. In $\C$, the standard measure is $dxdy$. This transforms under $\C^{\times}$ as $dxdy \mapsto |a|^2dxdy$. In both these cases, we see the scaling is the normalised AV of $a$.
+
+Fact: on $K_v$ for any $v$ there is a translation-invariant measure, the ``Haar measure'', $d_v(x)$. Then for all $a \in K_v^\times$, $d_v(ax) = |a|_v d_v(x)$, where $\abs{\cdot}_v$ is a normalised AV.
+
+\section{Different and Discriminant}
+Suppose $R \subset S$ are commutative rings with 1, such that $S$ is a free $R$-module of finite rank $n \geq 1$. Then we have a trace map $\Tr_{S/R}:S \to R$, the trace of the $R$-linear map $y \mapsto xy$.
+
+If $x_1, \ldots, x_n$ are elements of $S$, define the discriminant:
+\[\disc_{S/R}(x_i) = \disc(x_i) = \det \Tr_{S/R} (x_ix_j) \in R\]
+
+If $y_i = \sum_{j=1}^n r_{ji}x_j$, then $\Tr_{S/R}(y_iy_j) = \sum_{k,\ell} r_{ki}r_{\ell j}\Tr_{S/R}(x_kx_\ell)$.
+
+Hence $\disc(y_i) = \det(r_{ij})^2 \disc(x_i)$.
+
+Writing $S = \bigoplus_{i=1}^n Re_i$, we also define $\disc(S/R) = (\disc(e_i)) \subset R$, an ideal of $R$, independent of basis by the previous line.
+
+This has the following basic properties:
+\begin{itemize}
+  \item $S = S_1 \times S_2$ implies $\disc(S/R) = \disc(S_1/R)\disc(S_2/R)$
+  \item If $f:R \to R'$ is a ring homomorphism, then $\disc(S\otimes_R R'/R') = f(\disc(S/R))\subset R'$.
+  \item If $R$ is a field, then $\disc(S/R)$ is an ideal, so is $R$ or $\{0\}$, and is $R$ iff the $R$-bilinear form $(x,y)\mapsto \Tr_{S/R}(sy)$ is non-degenerate.
+\end{itemize}
+If $L/K$ is a finite field extension, then $\disc(L/K) = K \iff$ the trace form is non-degenerate, which holds $\iff$ there is some $x \in L$ with non-zero trace, i.e. iff $L/K$ is separable. More generally:
+\begin{theorem}
+  Let $k$ be a field and $A$ a finite dimensional $k$-algebra. Then $\disc(A/k) \neq 0$ (so $=k$) if and only if $A = \prod K_i$ where $K_i/k$ are finite separable field extensions.
+\end{theorem}
+\begin{proof}
+  We can write $A = \prod A_i$ where $A_i$ are indecomposable, so local, $k$-algebras, and so we may assume $A$ is local with maximal ideal $\m$.
+
+  If $\m = 0$, i.e. $A$ is field, then this is reduced to the previous statement.
+
+  If not, then every element of $\m$ is nilpotent, so there is $x \in \m\setminus 0$ nilpotent, and so the endomorphism $y \mapsto xy$ of $A$ is nilpotent, and for all $r \in A$, so is $y\mapsto (rx)y$, and hence for all $r \in A$, $\Tr_{A/k}(rx) = 0$, giving a degenerate trace form so a zero discriminant.
+\end{proof}
+If $R$ is a Dedekind domain, $K = \Frac(R)$, and $L/K$ is finite separable with $S$ the integral closure of $R$ in $L$, then we say $S/R$ is an \emph{extension of Dedekind domains}. Then $S$ is a finitely generated $R$-module, but needn't be free.
+\begin{proposition}
+  $S$ is a \emph{locally free} $R$-module of rank $n = [L:K]$ (i.e. for all $P \subset R, S_P \cong R_P^n$).
+\end{proposition}
+\begin{proof}
+  $S \subset L$ so $S$ is torsion free, hence so is $S_P$, and $R_P$ is a PID, so $S_P$ is free. $S$ spans $L$ as a $K$-vector space, so $S$ has rank $\dim_K L = n$.
+\end{proof}
+\begin{lemma}
+  If $x \in S$, $\Tr_{L/K}(x) \in R$.
+\end{lemma}
+\begin{proof}
+  If $R$ is local, then $S$ is a free $R$-module, so $\Tr_{L/K}(x) = \Tr_{S\otimes_R K/K}(x\otimes 1) = \Tr_{S/R}(x) \in R$.
+
+  So, in general, for all $0 \neq P \subset R$, $y = \Tr_{L/K}(x) \in R_P$, and $\cap_P R_P = \{x \in K : v_P(x) \geq 0 \forall P\} = R$.
+\end{proof}
+Then there are 2 equivalent definitions of $\disc(S/R):$
+
+\textbf{Definition.} $\disc(S/R) \coloneqq$ the ideal of $R$ generated by $\{\disc_{L/K}(x_1, \ldots, x_n) : x_1, \ldots, x_n \in S\}$. If $S$ is free, this gives the previous definition.
+
+As $S \otimes_R K = L$ is separable over $K$, $\disc(L/K) \neq 0$, and so $\disc(S/R) \neq \{0\}$.
+\begin{proposition}
+  $\disc(S/R) R_P = \disc(S_P/R_P)$ for all $P$.
+\end{proposition}
+\begin{proof}
+  We claim there exist $x_1, \ldots, x_n \in S$ which are an $R_P$-basis for $S_P$. Certainly, there is such a basis in $S_P$, say $e_1, \ldots, e_n$. Now let:
+  \[\mathscr{Q} \coloneqq \{\text{primes }Q\subset S : v_Q(e_i) < 0\text{ for some $i$}\}\]
+  $\mathscr{Q}$ is finite. Then by the CRT, there are $a_i \in S$ such that $v_Q(a_i) + v_Q(e_i) \geq 0$ for all $Q \in \mathscr{Q}$, and $v_P(a_i) \geq 1$.
+
+  Then $x_i = a_ie_i \in S$, and $x_i\equiv e_i$ mod $PS$. So $(x_i)$ is an $R/P$-basis for $S/PS = S_P/PS_P$. So $(x_i)$ is an $R_P$ basis for $S_P$.
+
+  Hence the discriminant $\disc(S_P/R_P) = \disc(x_i)R_P$, and hence $\disc(x_i) \in \disc(S/R)$. So $\disc(S_P/R_P) \subset \disc(S/R)R_P$, and the other inclusion is obvious.
+\end{proof}
+The alternate definition of $\disc(S/R)$ is:
+\begin{itemize}
+  \item if $x_1, \ldots, x_n \in S$ is a $K$-basis for $L$, then $\disc_{L/K}(x_i) \neq 0$.
+
+  Let $\mathcal{P} = \{P \subset R : v_P(\disc_{L/K}(x_i)) > 0\}$, a finite set. So for all $P \notin \mathcal{P}$, $\disc(S_P/R_P) = R_P$. Then we can define $\disc(S/R) = \prod_{P \in \mathcal{P}} P^{v_P(\disc(S_P/R_P))}$.
+\end{itemize}
+This is equivalent to the previous definition by \textbf{3.4}.
+\begin{theorem}
+  $v_P(\disc(S/R)) = 0$ if and only if $P$ is unramified in $S$ and for all $Q \subset S$ over $P$, the residue field extension $\frac{S}{Q}/\frac{R}{P}$ is separable.
+\end{theorem}
+\begin{proof}
+  We may assume $R$ is local, so that $S$ is a free $R$-module. We know $PS = \prod_Q Q^{e_Q}$. So:
+  \[ S \otimes_R (R/P) \cong S/PS \cong \prod_{Q} S/Q^{e_Q}\]
+  So $v_P(\disc(S/R)) = 0$ if and only if $\disc(\frac{S}{PS}/\frac{R}{P}) = \frac{R}{P}$ if and only if each $S/Q^{e_Q}$ is a finite separable field extension of $R/P$, if and only if, for all $Q$, $e_Q = 1$ and $\frac{S}{Q}/\frac{R}{P}$ is separable.
+\end{proof}
+\begin{proposition}
+  Let $P \subset R$. Then $v_P(\disc(S/R)) = \sum_{Q\supset P}v_P(\disc(\hat{S}_Q/\hat{R}_P))$.
+\end{proposition}
+\begin{proof}
+  By \textbf{3.4} we may assume $R$ is local, so $S$ is a free $R$-module, and then:
+  \[S\otimes_R \hat{R} \cong \prod \hat{S}_Q\]
+  So $v_P(\disc(S/R)) = v_P(\disc(S\otimes_R \hat{R}/\hat{R})) = \sum_Q v_P(\disc(\hat{S}_Q/\hat{R}))$.
+\end{proof}
+\textbf{Definition.} The \emph{inverse different} $\mathscr{D}_{S/R}^{-1}$ of an extension $S/R$ of Dedekind domains is:
+\[\mathscr{D}_{S/R}^{-1} = \{x \in L : \forall y \in S, \Tr_{L/K}(xy) \in R\}\]
+This is the dual of $S$ with respect to the trace form $(x,y) \mapsto \Tr_{L/K}(xy)$.
+
+This is clearly an $S$-submodule of $L$. If $\bigoplus_{i=1}^n Rx_i \subset S$, let $(y_i)$ be the dual basis to $(x_i)$ for the trace form, i.e. $\Tr_{L/K}(x_iy_j) = \delta_{ij}$. Then $S \subset \mathscr{D}_{S/R}^{-1} \subset \bigoplus_{i=1}^n Ry_i$, so $\mathscr{D}_{S/R}^{-1}$ is a fractional ideal (since it is finitely generated), and its inverse $\mathscr{D}_{S/R}$ is an ideal of $S$, called the \emph{different}.
+\begin{proposition}\hspace*{0cm}
+  \begin{enumerate}
+    \item $P\subset R \implies \mathscr{D}_{S_P/R_P} = \mathscr{D}_{S/R}S_P$
+    \item $N_{L/K}(\mathscr{D}_{S/R}) = \disc(S/R)$
+    \item $Q \subset S$ lying over $P\subset R$. Then $v_Q(\mathscr{D}_{S/R}) = v_Q(\mathscr{D}_{\hat{S}_Q/\hat{R}_P})$
+  \end{enumerate}
+\end{proposition}
+\begin{proof}\hspace*{0cm}
+  \begin{enumerate}
+    \item Exercise. Same idea as \textbf{3.4}.
+    \item By (1) and \textbf{3.4}, we can suppose $R$ is local. Then $S$ is a PID by \textbf{2.1.iii}, so the inverse different $\mathscr{D}^{-1}_{S/R} = x^{-1} S$ for some $0 \neq x \in S$. Let $(e_i)$ be a basis for $S/R$. Then there exists a basis $(e_i')$ for $S/R$ such that
+    \[\Tr_{L/K}(e_i x^{-1} e'_j) = \delta_{ij}\]
+    Let $x^{-1}e_j = \sum_{k} b_{kj}e_k$ where $b_{kj} \in K$. Then the ideal:
+    \begin{align*}
+      (1) &= (\det[\Tr_{L/K}(e_ix^{-1}e_j')]) \\
+      &= (\det (\Tr_{L/K}(e_ie_j))\det(b_ij)) \\
+      &= \det(b_{ij}) \disc(S/R)
+    \end{align*}
+    But $N_{L/K}(x^{-1}) = u \det(b_{ij})$ for some unit in $R$. So $(1) = (N_{L/K}(x^{-1}))\disc(S/R)$. Since we are in Dedekind domains we can cancel $\disc(S/R)$, giving the result.
   \end{enumerate}
 \end{proof}
 \end{document}

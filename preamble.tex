@@ -11,7 +11,7 @@
 \usepackage{xspace}
 \usepackage{tikz}
 \usepackage{mathrsfs}
-\usetikzlibrary{shapes, arrows, decorations.pathmorphing, ducks, automata}
+\usetikzlibrary{shapes, arrows, decorations.pathmorphing, decorations.markings, ducks, automata}
 \usepackage[parfill]{parskip}
 \usepackage{subcaption}
 \usepackage{stmaryrd}
@@ -23,6 +23,7 @@
 \usepackage{tikz-cd}
 \usepackage{hyperref}
 \usepackage[usestackEOL]{stackengine}
+\usepackage{mathdots}
 
 \usepackage{fontspec}
 \usepackage{newpxtext, newpxmath}
@@ -90,6 +91,7 @@
 \renewcommand{\epsilon}{\varepsilon}
 \newcommand{\trianglerightneq}{\mathrel{\ooalign{\raisebox{-0.5ex}{\reflectbox{\rotatebox{90}{$\nshortmid$}}}\cr$\triangleright$\cr}\mkern-3mu}}
 \newcommand{\triangleleftneq}{\mathrel{\reflectbox{$\trianglerightneq$}}}
+\newcommand{\E}{\mathds{E}}
 
 \DeclareMathOperator{\ex}{ex}
 \DeclareMathOperator{\id}{id}
@@ -140,6 +142,9 @@
 \DeclareMathOperator{\Dim}{Dim}
 \DeclareMathOperator{\Der}{Der}
 \DeclareMathOperator{\Inn}{Inn}
+\DeclareMathOperator{\Stab}{Stab}
+\DeclareMathOperator{\Int}{Int}
+\DeclareMathOperator{\disc}{disc}
 
 \let\emph\relax
 \DeclareTextFontCommand{\emph}{\bfseries\em}
