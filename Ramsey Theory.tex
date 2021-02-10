@@ -197,4 +197,94 @@ Note - this is contained in van der Waerden's theorem - we prove it here for cla
 
   So we have the $r$ colour focused APs of length $m-1$.
 \end{proof}
+\subsection{The Ackermann or Grzegorczyk Hierarchy}
+This is a sequence of functions $f_1, f_2, \ldots$, each $\N \to \N$, given by:
+\begin{itemize}
+  \item $f_1(x) = 2x$
+  \item $f_{n+1}(x) = f_n^{(x)}(1)$
+\end{itemize}
+So $f_2(x) = 2^x$. $f_3(x) = 2^{2^{\iddots^2}}$, with the tower having $x$ 2s. We don't have notation for $f_4$, but we can compute $f_4(1) = 2, f_4(2) = 2^2 = 4, f_4(3) = 2^{2^{2^2}} = 65536$, and $f_4(4)$ is a tower of 2s of height 65536.
+
+We say $f:\N \to \N$ if there are $c, d >0$ with $f_n(cx) \leq f(x) \leq f_n(dx)$. So our upper bound on $W(3, k)$ was a function of $k$ of type 3., and in general, our bound on $W(m,k)$ is of type $m$, and our bound on $W(m) = W(m,2)$ as a function of $m$ grows faster than every $f_n$. This is often a feature of such `double inductions', and for a long time it was thought that $W(m)$ does actually grow this fast.
+
+Shelah (1987) found a proof of van der Waerden using induction only on $m$, and his proof gives $W(m,k) \leq f_4(m+k)$. Graham offered \$1000 for a bound on $W(m)$ of type 3. Gowers (1998) showed $W(m) \leq 2^{2^{2^{2^{2^{m+9}}}}}$.
+
+For lower bounds, we know that $W(m) \geq \frac{2^m}{8m}$.
+\begin{corollary}
+  Whenever $\N$ is finitely coloured, some colour class contains arbitrarily long arithmetic progressions.
+\end{corollary}
+\begin{proof}
+  For each $n$, there is a monochromatic AP of length $n$, of colour $c_n$. Some colour must occur infinitely often.
+\end{proof}
+\textbf{Remark.} We cannot guarantee an infinite AP - take 1 red, 2 blues, 3 reds, 4 blues, etc. Alternatively, there are only countably many infinite APs. List them in order, e.g. $A_1, A_2, \ldots$. Pick $x_1, y_1 \in A_1$ and colour them differently. Now pick distinct $x_2, y_2 \in A_2$ new, and make colour them differently. However, we do have the following:
+\begin{theorem}[Strengthened van der Waerden]
+  For every $m$, whenever $\N$ is finitely coloured, there exists an AP of length $m$ that, together with its common difference (i.e. $\{a, a+d, a+2d, \ldots, a+(m-1)d\}\cup\{d\}$), is monochromatic.
+\end{theorem}
+\begin{proof}
+  Induction on $k$, the number of colours. $k=1$ is done.
+
+  Given $n$ suitable for $k-1$, we'll show $W(n(m-1)+1, k)$ is suitable for $k$. So, given a $k$-colouring of $[W(n(m-1)+1, k)]$, we have a monochromatic AP of length $n(m-1)+1$, say $[a, a+d, a+2d, \ldots, a+n(m-1)d]$ red.
+
+  If $d$ is red, then we are done, as $\{a, a+d, \ldots, a+(m-1)d\}\cup\{d\}$ is red.
+
+  But also, if $2d$ is red, then we are done, as $\{a, a+2d, \ldots, a+2(m-1)d\}\cup\{2d\}$ is red. In fact, if any $rd$ for $1 \leq r\leq n$ is red, then we are done in the same way.
+
+  Hence $\{d, 2d, \ldots, nd\}$ is $(k-1)$-coloured. But, by the inductive hypothesis, we are done, as this contains the required sequence by definition of $n$.
+\end{proof}
+\textbf{Remarks.} From now on we don't care about bounds. The bounds in the above proof are far too big to be reasonably describable on paper. The case $m=2$ is called \emph{Schur's Theorem}: whenever $\N$ is finitely coloured, there are monochromatic $x, y, z$ with $x+y=z$. We can also prove this directly from Ramsey. Indeed, given a $k$-colouring of $\N$, we construct a colouring of $\N^{(2)}$ via $d(ij) = c(j-i)$. Then there is a monochromatic triangle $ijk$. So $c(k-i) = c(k-j) = c(j-i)$, and $(k-j) + (j-i) = k-i$.
+\section{The Hales-Jewett Theorem}
+Let $X$ be a finite set. A subset $L$ of $X^n$ is called a \emph{line} or \emph{combinatorial line} if there is a non-empty $I \subset [n]$ and $a_i \in X$ for each $i \in [n]\setminus I$, such that $L = \{(x_1, \ldots, x_n) \in X^n: x_i = a_i \forall i \notin I, x_i=x_j \forall i,j \in I\}$. $I$ is called the active coordinates.
+
+For example, in $[3]^2$, the lines are 3 vertical, 3 horizontal, and 1 diagonal. We don't allow the other diagonal, since there the $x$-coordinate goes up and the $y$-coordinate goes down. There is no assumed ordering on $X$, and so we want lines to be invariant under reordering. This other diagonal would cease to be a line if we reordered $X$, and hence we exclude it.
+\begin{theorem}[Hales-Jewett Theorem]
+  For all $m, k$ there exists $n$ such that, whenever $[m]^n$ is $k$-coloured, there is a monochromatic line.
+\end{theorem}
+\textbf{Remarks.}
+\begin{enumerate}
+  \item The least such $n$ is denoted $HJ(m,k)$.
+  \item This essentially says that $m$-in-a-row noughts-and=crosses, played in enough dimensions, cannot end in a draw. As an exercise, show it is a win for the first player.
+  \item Hales-Jewett (HJ) implies VDW. Just map $X^n$ linearly into $\N$, e.g. add up the coordinates. Indeed, given a $k$ colouring of $\N$ induce a $k$-colouring of $[m]^n$ by $d((x_1, \ldots, x_m)) = c(x_1+\ldots+x_m)$. So there is a monochromatic line $L$ in $[m]^n$, which corresponds to a monochromatic AP of length $m$ in $\N$, with common difference given by the number of active coordinates of $L$.
+\end{enumerate}
+For a line $L$ in $[m]^n$ write $L^-$ for its first point and $L^+$ for its last point. We say $L_1, \ldots, L_r$ are \emph{focused} at $f$ if $L_i^+ = f$ for all $i$, and \emph{colour focused} if they are each monochromatic (except at $f$) of different colours.
+\begin{proof}[Proof of Hales-Jewett]
+  We will do this by induction on $m$. $m=1$ is trivial.
+
+  Now, given $m > 1$, we may assume $HJ(m-1, k)$ exists for all $k$.
+
+  Claim: for all $r \leq k$ there exists $n$ such that, whenever $[m]^n$ is $k$-coloured there is either:
+  \begin{itemize}
+    \item a monochromatic line
+    \item or $r$ colour-focused lines
+  \end{itemize}
+  If we can prove this then we're done, since then we put $r=k$ and look at the focus.
+
+  We then prove this claim by induction on $r$. If $r=1$, then done, by taking $n = HJ(m-1,k)$.
+
+  Given $n$ suitable for $r-1$, we'll show $n + HJ(m-1, k^{m^n})$ is suitable for $r$. Write $n'$ for $HJ(m-1, k^{m^n})$. So, given a $k$-colouring of $[m]^{n+n'}$ with no monochromatic line, view $[m]^{n+n'}$ as $[m]^n \times [m]^{n'}$. At each point of $[m]^{n'}$ there are $k^{m^n}$ ways to colour $[m]^n$.
+
+  So, by choice of $n'$, we have a line $L$ in $[m]^{n'}$ such that, for all $a \in [m]^n$ and $b,b' \in L\setminus\{L^+\}$ we have $c(a,b) = c(a,b') = c'(a)$, say.
+
+  By definition of $n$, $c'$ has $r-1$ colour focused lines, say $L_1, \ldots, L_{r-1}$, with active coordinate sets $J_1, \ldots, J_{r-1}$, focused at $f$. Let $L$ have active coord set $I$. Then the lines $L_1', \ldots, L_{r-1}^'$ where $L_i'$ starts at $L_i', L^-$ and has active coord set $J_i \cup I$ are colour focused at $(f, L^+)$, and also the line starting at $(f, L^-)$ with active coords set $I$, are a set of $r$ colour focused lines at $(f, L^+)$. Hence we are done.
+\end{proof}
+This is essentially the van der Waerden proof, just slightly rephrased.
+
+A \emph{d-dimensional subspace} of $X^n$ is a set $S \subset X^n$ such that there exist disjoint $I_1, \ldots, I_d \subseteq [n]$, and points $a_i \in X$ for each $i \in [n]\setminus(I_1\cup\ldots\cup I_d)$, such that every point in $S$ has $i\th$ coordinate $a_i$ if $i \notin I_1\cup\ldots\cup I_d$, and if $i,j \in I_k$ for some $k$ then $x_i=x_j$.
+\begin{theorem}[Extended Hales-Jewett Theorem]
+  For any $m,k,d$, there is an $n$ such that any $k$-colouring of $[m]^n$ contains a monochromatic $d$-dimensional subspace.
+\end{theorem}
+\begin{proof}
+  View $X^{dn}$ as $(X^d)^n$, i.e. $n$-coordinates, each of which is a point in $X^d$.
+
+  Clearly any line in $(X^d)^n$ corresponds to a $d$-dimensional subspace of $X^{dn}$, so we are done -  we can take $n=dHJ(m^d,k)$.a
+\end{proof}
+Let $S$ be a finite subset of $\N^d$. A \emph{homothetic copy} of $S$ is any set of the form $a+\lambda S$, where $a \in \N^d$ and $\lambda \in \N$. For instance, the homothetic copies of $[n]$ in $\N$ are precisely the APs of length $n$.
+\begin{theorem}
+  Let $S$ be a finite subset of $\N^d$. Then, whenever $\N^d$ is finitely coloured, there is a monochromatic homothetic copy of $S$.
+\end{theorem}
+\begin{proof}
+  Let $S = \{S(1), \ldots, S(m)\}$. Given a $k$-colouring $c$ of $\N^d$, we induce a $k$-colouring $c'$ of $[m]^n$ where $n$ is large by $c'(x_1, \ldots, x_n) = c(S(x_1)+\ldots +S(x_n))$. We have a monochromatic line $L$ for $c'$ , say with active coordinate set $I$. But now, taking $S(x_1)+\ldots +S(x_n)$ for ecah $x \in L$, we have a monochromatic homothetic copy of $S$ with $\lambda = |I|$.
+\end{proof}
+There is an alternate proof via product arguments and focusing.
+
+
 \end{document}

@@ -103,7 +103,7 @@ We get a formula $f(\tau) = \sum_{n\in \Z}a_nq^n$ where $q = e^{2\pi\im\tau}$. T
 
   We write $M_k(SL_2(\Z))$ for the $\C$-vector space of modular forms of weight $k$ and level $SL_2(\Z)$. We write $S_k(SL_2(\Z))$ for the subspace of cuspidal modular forms.
 \end{definition}
-\textbf{Examples.} If $\tau \in \H$, then $\Lambda_\tau = \Z_\tau \oplus \Z$. if $k \in \Z$, then we can define $G_k(\tau) = \sum\limits_{\omega \in \Lambda_\tau\setminus\{0\}}\omega^{-k}$.
+\textbf{Examples.} If $\tau \in \H$, then $\Lambda_\tau = \Z\tau \oplus \Z$. if $k \in \Z$, then we can define $G_k(\tau) = \sum\limits_{\omega \in \Lambda_\tau\setminus\{0\}}\omega^{-k}$.
 
 If $\gamma = \begin{pmatrix}a&b\\c&d\end{pmatrix} \in SL_2(\Z)$, then $\Lambda_{\gamma \tau} = \Z\left(\frac{a\tau+b}{c\tau+d}\right)\oplus \Z = j(\gamma,\tau)^{-1}\Z(a\tau+b)\oplus \Z(c\tau+d) = j(\gamma,\tau)^{-1}\Lambda_\tau$.
 
@@ -482,4 +482,355 @@ Later, we'll give $\overline{\Gamma(1)}\diagdown \H \sqcup \{\infty\}$ the struc
 
   So we need to show that $\sigma_3(n) \equiv \sigma_5(n) \mod 12$ for all $n \in \N$. It would be enough to show that $n^3 \equiv n^5 \mod 3$ and $\mod 4$ for all $n \in \N$, which is true. This shows that $b_n \in \Z \forall n \geq 2$. It remains to show that the leading term of $\Delta$ is $q$. It's $\frac{3\cdot 240 + 2\cdot 504}{1728} = 1$.
 \end{proof}
+\begin{proposition}
+  Let $k \geq 0$ be an even integer. Then there is a basis $f_1, \ldots, f_n$ for the space $S_k(SL_2(\Z))$ such that:
+  \begin{enumerate}[label=\alph*)]
+    \item If $f_i = \sum_{n\geq 1} a_n (f_i)q^n$, then $a_n(f_i) \in \Z$ for all $n \in \N$, $i=1,\ldots, N$.
+    \item We have $a_n(f_i) = \delta_{in}$ if $1 \leq i, n \leq N$.
+  \end{enumerate}
+\end{proposition}
+\begin{proof}
+  We can assume $S_k(SL_2(\Z)) \neq 0$. We write $k=12a + d$, where $4 \leq d \leq 14$. We know $\dim_{\C} S_k(SL_2(\Z)) = N = \floor{k/12}$ if $k \neq 2 \mod 12$, otherwise $\floor{k/12}-1$. Hence $a = N$.
+
+  We then write $d = 4A+6B$ for some $A,B \in \Z_{\geq 0}$. We then introduce the modular forms $g_i = \Delta^i E_4^A E_6^B E_6^{2(N-i)}$ for $i =1, \ldots, N$.
+
+  The $g_i$ are modular forms of weight $12i + 4A+6B + 12(N-i) = 12N+d = k$.
+
+  The leading term in the $q$-expansion of $g_i$ is $q^i \cdot 1^A \cdot 1^b \cdot 1^{2(N-i)} = q^i$.
+
+  All the numbers $a_n(g_i)$ for $n \in \N, i=1, \ldots, N$ are integers.
+
+  So we have $g_1 = q + a_2(g_1)q^2 + \ldots$, $g_2 = 0+q^2 + a_3(g_2)q^3+\ldots$, and so on.
+
+  Hence we can perform row reduction over $\Z$ to find modular forms $f_1, \ldots, f_n$ as in the statement of the proposition.
+\end{proof}
+\section{Hecke Operators and L-functions}
+Hecke operators are endomorphisms of $S_k(SL_2(\Z))$ and $M_k(SL_2(\Z))$. They're indexed by $n \in \N$. The exist for rather abstract reasons.
+\begin{definition}
+  Let $G$ be a group, which may be infinite, and let $H \leq G$ be a subgroup. We say $(G,H)$ is a \emph{Hecke pair} if for all $g \in G$, the set $H\diagdown HgH$ is finite, where $HgH = \{h_1gh_2 : h_1, h_2 \in H\}$, acted on the right by $H$.
+\end{definition}
+\begin{lemma}
+  Let $H \leq G$ be groups. Then if $g \in G$, there is a bijection:
+  \[H \cap g^{-1}HG \diagdown H \to H\diagdown HgH\]
+  In particular $(G,H)$ is a Hecke pair if and only if, for all $g \in G, [H:H\cap g^{-1}Hg] < \infty$.
+\end{lemma}
+\begin{proof}
+  We first write down the map $H \to H \diagdown HgH$, given by $h \mapsto Hgh$. This map is surjective. We need to show that, if $h_1, h_2 \in H$, then $Hgh_1 = Hgh_2 \iff x \exists x \in H\cap g^{-1}Hg$ such that $h_1=xh_2$.
+
+  But $Hgh_1 = Hgh_2 \iff \exists x \in H$ such that $xgh_1 = gh_2$, i.e. $h_1 = g^{-1}x^{-1}gh_2 \iff \exists y \in H\cap g^{-1}Hg$ such that $h_1 = yh_2$.
+
+  To see this, note that if $h_1 = g^{-1}x^{-1}gh_2$, then $g^{-1}x^{-1}g \in H$, and $gg^{-1}x^{-1}gg^{-1} = x^{-1} \in H$. So if $y = g^{-1}x^{-1}g$, then $y \in H\cap g^{-1}Hg$, and $h_1 = yh_2$. On the other had, if there exists $y \in H\cap g^{-1}Hg$ such that $h_1 = yh_2$, then we can write $y = g^{-1}x^{-1}g$, where $x \in H$, and then $h_1 = g^{-1}x^{-1}gh_2$.
+\end{proof}
+\begin{definition}
+  Let $(G,H)$ be a Hecke pair. Then the Hecke algebra $\mathcal{H}(G,H)$ is defined to be the set of all functions $f:G \to \C$ satisfying the conditions:
+  \begin{enumerate}
+    \item $\forall g\in G, h_1,h_2 \in H$, we have $f(h_1gh_2) = f(g)$.
+    \item $f$ is nonzero on only finitely many elements $H$-double cosets.
+  \end{enumerate}
+  If $f_1, f_2 \in \mathcal{H}(G,H)$, then we define their product:
+  \[(f_1 \cdot f_2)(g) = \sum_{i} f_1(gg_i^{-1})f_2(g_i)\]
+  where $g_i$ is any set of representatives for the decomposition $G = \sqcup_i Hg_i$.
+\end{definition}
+\textbf{Remarks.}
+\begin{enumerate}
+  \item We can generalise this to the context where $G$ is a locally compact topological group.
+  \item There is another natural definition for the product. The one we choose is well-adapted to right actions.
+\end{enumerate}
+\begin{lemma}
+  The multiplication in $\mathcal{H}(G,H)$ is well-defined and associative. Moreover, $[H]$ is the unit element.
+\end{lemma}
+\textbf{Notation.} If $X \subset G$, then $[X]:G \to G$ is its characteristic function. So if $g \in G$, then $[HgH] \in \mathcal{H}(G,H)$.
+\begin{proof}
+  By definition, $(f_1\cdot f_2)(g) = \sum_{i}f_1(gg_i^{-1})f_2(g_i)$. We first check that this sum is finite. Note that we can write $f_1(g) = \sum_{x_i}\lambda_i [Hx_i H]$. Since $(G,H)$ is a Hecke pair, we can write $[Hx_iH] = \sum_j [Hy_{ij}]$, hence $f_1 = \sum_{i,j} \lambda_i [Hy_{ij}]$, where the sum is finite.
+
+  Similarly, we can write $f_2 = \sum_{k,\ell}\mu_k [Hz_{k\ell}]$, where the sum is finite.
+
+  So:
+  \[(f_1\cdot f_2)(g) = \sum_{i,j,k\ell,r}\lambda_i \mu_k [Hy_{ij}](gg_r^{-1})[Hz_{k\ell}](g_r)\tag{$\ast$}\]
+  We see this sum is finite since the non-zero terms have $g_r \in Hz_{k\ell}$, i.e. $Hz_{k\ell} = Hg_r$.
+
+  We next check that $f_1\cdot f_2$ is independent of the choice of $g_i$. Any other choice is given by $h_i g_i$ for some elements $h_i \in H$.
+
+  Then $(f_1\cdot f_2)(g) = \sum_{i} f_1(g(h_ig_i)^{-1})f_2(h_ig_i) = \sum_{i} f_1(gg_i^{-1}h_i^{-1})f_2(h_ig_i) = \sum_i f_1(gg_i^{-1})f_2(g_i)$.
+
+  We next check that $f_1\cdot f_2$ is $H$-biinvariant. If $g \in G$, $h_1,h_2 \in H$, then:
+  \[(f_1\cdot f_2)(h_1gh_2) = \sum_i f_1(h_1gh_2g_i^{-1})f_2(g_i) = \sum_i f_1(g(g_ih_2^{-1})^{-1})f_2(g_ih_2^{-1})\]
+  Since $G = \sqcup_i Hg_i$, $G = \sqcup_{i} Hg_ih-2^{-1}$, this is equal to $(f_1\cdot f_2)(g)$
+
+  We next check that $f_1\cdot f_2$ is supported on finitely many $H$-double cosets. It is enough to check that $f_1\cdot f_2$ is supported on finitely many right $H$-cosets.
+
+  Using $(\ast)$ , we see that if $(f_1\cdot f_2)(g) \neq 0$, then there are $i,j,k,\ell, r$ such that $g_r \in Hz_{k\ell}$ and $gg_r^{-1}\in Hy_{ij}$, so there are $i,j,k,\ell$ such that $g \in Hy_{ij}Hz_{k\ell}$.
+
+  Since $(G,H)$ is a Hecke pair, $Hy_{ij}Hz_{k\ell}$ is a union of finitely many $H$-right cosets. So we've shown that $f_1\cdot f_2 \in \mathcal{H}(G,H)$.
+
+  We next show associativity. If $f_1, f_2, f_3 \in \mathcal{H}(G,H)$, then:
+  \begin{align*}
+    (f_1\cdot(f_2\cdot f_3))(g) &= \sum_i f_1(gg_i^{-1})(f_2\cdot f_3)(g_i) = \sum_{i,j} f_1(gg_i^{-1})f_2(g_ig_j^{-1})f_3(g_j)\\
+    ((f_1\cdot f_2)\cdot f_3)(g) &= \sum_j (f_1\cdot f_2)(gg_j^{-1})f_3(g_j) = \sum_{i,j} f_1(gg_j^{-1}g_jg_i^{-1})f_2(g_ig_j^{-1})f_3(g_j)
+  \end{align*}
+  which are equal. Not that $G = \sqcup_i Hg_i \implies G = \sqcup_i Hg_ig_j^{-1}$.
+
+  It remains to show that $[H]$ is the unit in $\mathcal{H}(G,H)$. We need to check just that $[H]\cdot f = f$ forall $f \in \mathcal{H}(G,H)$.
+  \[([H]\cdot f)(g) = \sum_{i}[H](gg_i^{-1})f(g_i)\]
+  Now note that $[H](gg_i^{-1}) \neq 0 \iff gg_i^{-1} \in H \iff Hg=Hg_i$, so this is equal to $f(g)$.
+\end{proof}
+\begin{definition}
+  Let $V$ be a $\C$-vector space on which $G$ acts on the right by linear maps. The subspace of $H$-invariants is $V^H \coloneqq \{v \in V : \forall h \in H, vh = v\}$.
+\end{definition}
+\begin{proposition}
+  Let $V$ be a $\C$-vector space on which $G$ acts on the right by $\C$-linear maps. Let $(G,H)$ be a Hecke pair. Then $V^H$ is a right $\mathcal{H}(G,H)$-module under the action $v\in V, f\in \mathcal{H}(G,H)$ gives
+  \[ v\cdot f = \sum_{i} f(g_i)(v\cdot g_i)\]
+  where $G = \bigsqcup_i Hg_i$.
+\end{proposition}
+\begin{proof}
+  We first check $v \cdot f$ is a well defined element of $V$. The sum is finite, as $f(g_i)$ is non-zero for only finitely many elements $g_i$. If we choose different coset representative $h_i g_i$ with $h_i \in H$, then
+  \[\sum_i f(h_ig_i)(c \cdot h_i g_i) = \sum_{i} f(g_i)(v\cdot g_i)\]
+  as $v \in V^H$.
+
+  We next check that $v\cdot f$ is in $V^H$. If $h \in H$, then:
+  \[(v\cdot f)\cdot h = \sum_i f(g_i) vg_i h = \sum_i f(g_i h)vg_i h = v\cdot f\]
+  since $g_i h$ is also a transversal of $G$ by $H$.
+
+  We next need to check that, if $v \in V^H$ and $f_1, f_2 \in \mathcal{H}(G,H)$, then $v\cdot(f_1\cdot f_2) = (v\cdot f_1)\cdot f_2$. We compute:
+  \begin{align*}
+    LHS &= \sum_i (f_1 f_2)(g_i)(v\cdot g_i)\\
+    &= \sum_i \sum_j f_1(g_i g_j^{-1})f_2(g_j)(v\cdot g_i)\\
+    RHS &= \sum_j f_2(g_j)((v\cdot f_1)\cdot g_j)\\
+    &= \sum_j \sum_i f_2(g_j)f_1(g_ig_j^{-1})(v\cdot g_ig_j^{-1}g_j)
+  \end{align*}
+  using that, for fixed $j$, $g_ig_j^{-1}$ is also a transversal.
+\end{proof}
+Now fix $k \in \Z$. Let $V_k = \{f:\H \to \C \text{ meromorphic}\}$, equipped with the weight $k$ action of $GL_2(\Q)^+ = GL_2(\Q) \cap GL_2(\R)^+$.
+\begin{lemma}
+  $(GL_2(\Q)^+, \Gamma(1))$ is a Hecke pair.
+\end{lemma}
+\begin{proof}
+  If $N \in \N$, then we define $\Gamma(N) = \ker(SL_2(\Z)\to SL_2(\Z/N\Z))$. This is a finite index subgroup of $\Gamma(1)$. We need to check that, if $g \in GL_2(\Q)^+$, then $[\Gamma(1):\Gamma(1)\cap g^{-1}\Gamma(1)g]<\infty$.
+  Fix $g \in GL_2(\Q)^+$. We can find $N \in \N$ such that $Ng$ and $Ng^{-1} \in M_2(\Z)$. Then:
+  \[g\Gamma(N^2)g^{-1} \subset g(1+N^2 M_2(\Z))g^{-1} = 1+(Ng)M_2(\Z)(Ng^{-1}) \subset M_2(\Z)\]
+  So $g \Gamma(N^2)g^{-1} \leq \Gamma(1)$, and hence $\Gamma(N^2) \leq g^{-1}\Gamma(1)g \cap \Gamma(1)$.
+\end{proof}
+Hence $V_k^{\Gamma(1)}$, the space of weakly modular functions of weight $k$ and level $\Gamma(1)$, is a $\mathcal{H}(GL_2(\Q)^+, \Gamma(1))$-module.
+\begin{definition}
+  For $n \in \N$, write $T_n$ for the endomorphism of $V_k^{\Gamma(1)}$ induced by the element $[X_n] \in \mathcal{H}(GL_2(\Q)^+, \Gamma(1))$, where $X_n = \{g \in M_2(\Z) : \det(g)=n\}$.
+\end{definition}
+\begin{lemma}
+  The set $\Gamma(1)\diagdown X_n$ is finite, and a set of representatives is:
+  \[\left\{\begin{pmatrix} a&b\\0& d \end{pmatrix}: a,d \in \N, ad = n, b \in \Z, 0\leq b < d\right\}\]
+\end{lemma}
+\begin{proof}
+  If $\alpha \in X_n$, then $\Z^2 \alpha \leq \Z^2$ of index $\det(\alpha) = n$. There's a map:
+  \[\Gamma(1)\diagdown X_n \to L_n \coloneqq \{\Lambda \leq \Z^2 : [\Z^2:\Lambda] = n\}\]
+  given by $\alpha \mapsto \Z^2\alpha$. This map factors through the subgroup $\Gamma(1)$. We claim this map is bijective.
+
+  It's surjective, since if $\Lambda \leq \Z^2$ has index $n$, then we can find $u,v \in \Lambda$ such that $\Lambda = \Z u \oplus \Z v$, and then $\Lambda = \Z^2 \alpha$, where $\alpha = \begin{pmatrix} u& u \\v &v \end{pmatrix}$. After possibly swapping $u, v$, we can assume that $\det(\alpha) = n$.
+
+  It's injective since if $\alpha, \beta \in X_n$ and $\Z^2 \alpha = \Z^2 \beta$, then $\Z^2 = \Z^2 \beta \alpha^{-1}$. This forces $\beta \alpha^{-1} = \gamma \in SL_2(\Z)$, and so $\beta \equiv \alpha$ modulo $\Gamma(1)$.
+
+  It remains to find a suitable $\alpha$ for each choice of $\Lambda \leq \Z^2$ of index $n$.
+
+  Take $e_1, e_2$ to be the standard basis of $\Z^2$. Then $\Z e_2 \cap \Lambda \leq \Z e_2$ has finite index, say $d$. Then we have a short exact sequence:
+  \[0 \to \Z e_2/(\Z e_2 \cap \Lambda) \to \Z^2/ \Lambda \to \Z^2 / (\Lambda+ \Z e_2) \to 0\]
+  Suppose $\Z^2 / (\Lambda + \Z e_2) \cong \Z e_1/\Z e_1\cap(\Lambda + \Z e_2)$ has order $a$. Then $ad = n$.
+
+  Note that $d \in \N$ is the least $d$ such that $d e_2 \in \Lambda$, and $a \in \N$ is the least $a$ such that $a e_1 \in \Lambda + \Z e_2$. $a \in \N$ is the least $a$ such that $a e_1 \in \Lambda + \Z e_2$. Equivalently, the least $a$ such that there exists $b \in \Z$ with $a e_1 + b e_2 \in \Lambda$. We can fix a choice of $b$ by requiring $0 \leq b < d$. There's a unique choice of $b$ with this property since, if $a e_1+  b e_2 \in \Lambda$ and $a e_1 + c e_2 \in \Lambda$ with $c > b$, then $(c-b)e_2 \in \Lambda$ which would be a contradiction if $c-b <d$.
+
+  $\Lambda$ is thus generated by $(a, b)$ and $(0, d)$, and so $\Lambda = \Z^2 \alpha$ where $\alpha = \begin{pmatrix} a & b \\ 0 & d\end{pmatrix}$.
+\end{proof}
+\begin{proposition}
+  Let $n \in \N$ and $f$ be a modular function of weight $k$ and level $SL_2(\Z)$ with $q$-expansion $f(\tau) = \sum_{m\in \Z}a_m q^m$. Then $T_n f$ is also a modular function with $q$-expansion $\sum_{m \in \Z} b_m q^m$, where $b_m = \sum_{a|(m,n)} a^{k-1}a_{mn/a^2}$.
+\end{proposition}
+\begin{proof}
+  By definition, $T_n f = f \cdot [X_n] = \sum_{g \in \Gamma(1)\diagdown X_n} f|_k[g]$. More explicitly:
+  \begin{align*}
+    (T_n f)(\tau) &= \sum_{ad = n, 0 \leq b<c} f\left(\frac{a\tau+b}{d}\right)d^{-k}n^{k-1}\\
+    &= n^{k-1}\sum_{m \in \Z} \sum_{ad = n} a_m \sum_{0 \leq b < d} e^{2\pi\im m\left(\frac{a\tau+b}{d}\right)}\\
+    &= n^{k-1}\sum_{m \in \Z}\sum_{ad =n}a_m e^{2\pi\im\left(\frac{am\tau}{d}\right)}\sum_{0\leq b <d}e^{2\pi\im m b/d}
+  \end{align*}
+  Note that $\sum_{0\leq b <d} e^{2\pi\im mb/d} = \begin{cases} d & d|m \\0 & d\nmid m\end{cases}$. So we have:
+  \begin{align*}
+    (T_n f)(\tau) &= n^{k-1}\sum_{m\in \Z}\sum_{ad = n, d|m}d^{1-k}a_m e^{2\pi\im a m \tau/d}\\
+    &= \sum_{ad = n}a^{k-1}\sum_{m\in\Z}a_{dm}e^{2\pi\im a m \tau}\\
+    &= \sum_{m \in \Z}q^m \left(\sum_{a|(m,n)} a_{mn/a^2}a^{k-1}\right)
+  \end{align*}
+  It remains to show that $T_n f$ is a modular function. We need to check that $\sum_{a|(m,n)}a^{k-1}a_{nm/a^2} = 0$ when $m<0$ and $|m| \gg 0$.
+
+  Call $a_{nm/a^2} = b_m$. Then suppose that there is $r \in \N$ such that $a_m =0$ whenever $m<-r$. If $b_m \neq 0$, then there is $a|(n,m)$ such that $a_{nm/a^2} \neq 0$, so $nm/a^2 \geq -r$, so $m \geq -ra^2/n$. Since $a|n$, we must have $a \leq n$, and hence $m \geq -rn$.
+\end{proof}
+\begin{corollary}
+  $T_n$ preserves the spaces $M_k(SL_2(\Z))$ and $S_k(SL_2(\Z))$.
+\end{corollary}
+\begin{proof}
+  If $f$ is a modular form then $f$ is holomorphic in $\H$ and $a_m = 0$ when $m < 0$. We know:
+  \[T_n(f) = \sum_{\substack{ad = n\\0\leq b<d}} f|_k\left[\begin{pmatrix}a&b\\0&d\end{pmatrix}\right]\]
+  And this is certainly holomorphic in $\H$.
+
+  We need to check $b_m = 0$ if $m<0$. But $b_m$ is a sum of terms $a^{k-1}a_{mn/a^2}$ which are $0$ is $m<0$.
+
+  If $f$ is also cuspidal, then $a_0 =0$, so $b_0 = \sum_{a|n}a^{k-1}a_0 = \sigma_{k-1}(n)a_0 = 0$.
+\end{proof}
+\begin{corollary}
+  If $f$ is a modular function, then $a_0(T_n f) = \sigma_{k-1}(n)a_0(f)$, and $a_1(T_n f) = a_n(f)$.
+\end{corollary}
+\begin{lemma}
+  Let $(G,H)$ be a Hecke pair. Let $f_1 = \sum_i \lambda_i [Hx_i]$ and $f_2 = \sum_j \mu_j [Hy_j]$ be elements of $\mathcal{H}(G,H)$.
+
+  Then $f_1\cdot f_2 = \sum_{i,j} \lambda_i \mu_j [Hx_iy_j]$.
+\end{lemma}
+\begin{proof}
+  \[(f_1 \cdot f_2)(g) = \sum_k f_1(gg_k^{-1})f_2(g_k) = \sum_{i,j,k} \lambda_i [Hx_i](gg_k^{-1})\mu_j [Hy_j](g_k)\]
+  where $G = \bigsqcup_k Hg_k$.
+
+  For each $j$, there is a unique $k(j)$ such that $g_{k(j)} \in Hy_j$. Then write $g_{k(j)} = h_j y_j$.
+
+  Then $(f_1\cdot f_2)(g) = \sum_{i,j}\lambda_i \mu_j [Hx_i](gy_j^{-1}h_j^{-1}) = \sum_{i,j}\lambda_i \mu_j [Hx_i](gy_j^{-1}) = \sum_{i,j}\lambda_i \mu_j[Hx_iy_j](g)$.
+\end{proof}
+\begin{proposition}
+  \begin{enumerate}
+    \item If $n,m \in \N$ and $(n,m) =1$, then $T_n \circ T_m = T_{nm}$.
+    \item Let $p, n \in \N$ with $p$ prime. Then $T_{p^n}\circ T_p = T_{p^{n+1}} + p^{k-1}T_{p^{n-1}}$.
+  \end{enumerate}
+\end{proposition}
+\begin{proof}
+  Let $X_+ = \{g \in M_2(\Z) : \det(g) > 0\} = \bigsqcup_{n \in \N} X_n \subseteq GL_2(\Q)^+$.
+
+  Let $\mathscr{L}_+ = \{\Lambda \subseteq \Z^2 \text{ of finite index}\} = \bigsqcup_{n \in \N} \mathscr{L}_n$.
+
+  Last time we showed there is a bijection $SL_2(\Z)\diagdown X_n \to \mathscr{L}_n$ given by $\alpha \mapsto \Z^2\alpha$
+
+  Hence there's a bijection $SL_2(\Z)\diagdown X_+ \to \mathscr{L}_+$.
+
+  If $f \in \mathcal{H}(GL_2(\Q)^+, SL_2(\Z))$ is supported in $X_+$, then we can identify $f$ with a function $\varphi_f : \mathscr{L}_+ \to \C$ given by $\varphi_f(\Z^2 \alpha) = f(\alpha)$.
+
+  Now fix $n, m \in \N$. We can write $[X_n] = \sum_i [SL_2(\Z)x_i]$ and $[X_m] = \sum_j [SL_2(\Z)y_j]$.
+
+  Then $[X_n][X_m] = \sum_{i,j} [SL_2(\Z)x_iy_j]$.
+
+  For fixed $j$, we have $\Z^2 \geq \Z^2y_j \geq \Z^2 x_iyj$, and the $\Z^2 x_iy_j$ are exactly the subgroups of $\Z^2 y_j$ of index $n$.
+
+  For varying $i$ and $j$, the $\Z^2 x_iy_j$ are exactly the subgroups of $\Z^2$ of index $nm$, each $\Lambda$ appearing with multiplicity
+  \[\#\{\Z^2 \geq \Lambda' \geq \Lambda | [\Z^2:\Lambda'] = m \text{ and }[\Lambda':\Lambda] = n\}\]
+  When $(n,m) = 1$, each subgroup $\Lambda \leq \Z^2$ of index $nm$ has a unique $\Z^2 \geq \Lambda' \geq \Lambda$ such that $[\Z^2:\Lambda'] = m$ and $[\Lambda':\Lambda] = n$. We find $[X_n]\cdot [X_m] = [X_{nm}]$, hence $T_n\circ T_m = T_{nm}$.
+
+  Now consider $p$ a prime and $n \in \N$. We want to compute $[X_p]\cdot [X_{p^n}] = f$. Then $f$ corresponds to $\varphi_f : \mathscr{L}_{p^{n+1}} \to \C$, given by $\varphi_f(\Lambda) = \#\{\Z^2\geq \Lambda'\geq \Lambda\}$, where $[\Z^2:\Lambda'] = p^n, [\Lambda':\Lambda] = p$.
+
+  We compute $\varphi_f(\Lambda)$.
+  \begin{itemize}
+    \item[Case 1:] $\Z^2/\Lambda$ is cyclic. Then $\Z^2/\Lambda$ has a unique subgroup of order $p$, so $\varphi_f(\Lambda) = 1$.
+    \item[Case 2:] $\Z^2/\Lambda \cong \Z/p^a\Z \oplus \Z/p^b\Z$ where $a,b \geq 1$ and $a+b = n+1$. Equivalently, $\Lambda \leq p\Z^2$. In this case $\Z^2/\Lambda$ has $p+1$ subgroups of order $p$, so $\varphi_f(\Lambda) = p+1$.
+  \end{itemize}
+  So $\varphi_f:\mathscr{L}_{p^{n+1}}\to \C$ is equal to $1 + p \delta_{\Lambda \leq p\Z^2}$.
+
+  hence $[X_p]\cdot [X_{p^n}] = [X_{p^{n+1}}] + p[pX_{p^{n+1}}]$, and so $T_{p^n}\circ T_p = T_{p^{n+1}} + p \cdot p^{2k-2}\cdot p^{-k} T_{p^{n-1}} = T_{p^{n+1}}+p^{k-1}T_{p^{n-1}}$.
+\end{proof}
+\begin{corollary}
+  \begin{enumerate}
+    \item For all primes $p$, $T_{p^n}$ is a polynomial in $T_p$.
+    \item For all $n,m \in\N$, $T_n$ and $T_m$ commute.
+  \end{enumerate}
+\end{corollary}
+\begin{proof}
+  \begin{enumerate}
+    \item By induction on $n$, using the identity for $T_{p^{n+1}}$.
+    \item We know that if $n = \prod_i p_i^{a_i}$, then $T_n = \prod_i T_{p_i^{a_i}}$. We also know that $T_{p^a}, T_{q^b}$ commute for any primes $p,q; a,b \in \N$.
+  \end{enumerate}
+\end{proof}
+\begin{proposition}
+  Let $k \geq 4$ be even. Then, for all $n \in \N$, $T_n E_k = \sigma_{k-1}(n)E_k$.
+\end{proposition}
+I.e., the $E_k$ are eigenvectors for the linear operators $T_n$, with eigenvalues $\sigma_{k-1}(n)$.
+
+This has the consequence that, if we want to diagonalise the actions of $T_n$ on $M_k$, it's enough to diagonalise the actions of $T_n$ on $S_k$, because of the decomposition $M_K(SL_2(\Z)) = S_k(SL_2(\Z)) \oplus \C E_k$.
+\begin{proof}
+  To show $E_k$ is an eigenvector of $T_n$, it's enough to show it's an eigenvector of the $T_p$ where $p$ ranges over the primes.
+
+  The eigenvalue is found to be $\sigma_{k-1}(n)$ be the identity $a_0(T_n E_k) = \sigma_{k-1}(n)a_0(E_k)$ (and $a_0(E_k) \neq 0$).
+
+  Let $p$ be prime. We'll show $G_k$ is an eigenvector of $T_p$.
+  \[(T_pG_k)(\tau) = \sum_{\substack{ad = p\\ 0\leq b < d}} G_k|_k\left[\begin{pmatrix}a&b\\0&d\end{pmatrix}\right] = \sum_{\substack{ad = p\\ 0\leq b < d}}\sum_{\substack{\omega \in \Lambda_{(a\tau+b)/d}\\ \omega \neq 0}}\omega^{-k}p^{k-1}d^{-k}\]
+  where $\Lambda_\tau = \Z\tau \oplus \Z$.
+
+  Note $\Lambda_{(a\tau+b)/d} \frac{1}{d}(\Z(a\tau+b)\oplus d\Z)$. These $\Z(a\tau+b)\oplus d\Z$ are precisely the subgroups of $\Lambda_\tau$ of index $p$, and hence:
+  \[(T_p G_k)(\tau) = \sum_{\substack{ad = p\\ 0\leq b < d}} p^{k-1} \sum_{\substack{\omega \in \Lambda_{(a\tau+b)/d}\\\omega \neq 0}} (d\omega)^{-k} = \sum_{\substack{\Lambda' \leq \Lambda_\tau \\ [\Lambda_\tau:\Lambda']=p }} p^{k-1} \sum_{\omega \in \Lambda'\setminus\{0\}} \omega^{-k}\]
+
+  Think of some $\omega \in \Lambda_\tau \setminus \{0\}$. How many $\Lambda' \leq \Lambda_\tau$ of index $p$ contain $\omega$?
+  \begin{enumerate}
+    \item[Case 1] $\omega \notin p\Lambda_\tau$. Then $\Lambda' = \Z_\omega +p\Lambda_\tau$ is the unique such subgroup.
+    \item[Case 2] $\omega \in p\Lambda_\tau$. Then every such $\Lambda'\leq \Lambda_\tau$ contains $\omega$.
+  \end{enumerate}
+  Hence:
+  \begin{align*}
+    (T_pG_k)(\tau) &= p^{k-1}\left[\sum_{\omega \in \Lambda_\tau\setminus\{0\}} \omega^{-k} + \sum_{\omega \in p\Lambda_\tau \setminus\{0\}} p\omega^{-k} \right] \\
+    &= p^{k-1}\left[G_k(\tau) + \sum_{\omega \in \Lambda_\tau \setminus\{0\}} p(p\omega)^{-k}\right]\\
+    &= (1+p^{k-1})G_k(\tau)\\
+    &= \sigma_{k-1}(p)G_k(\tau)
+  \end{align*}
+\end{proof}
+Our focus now is on $S_k(SL_2(\Z))$.
+\begin{lemma}\hspace*{0cm}
+  \begin{enumerate}
+    \item $\frac{dxdy}{y^2}$ where $\tau = x+\im y$ is a $GL_2(\R)^+$-invariant area form.
+    \item If $f, g: \H \to \C$ are smooth and invariant under the weight $k$ action of a subgroup $G \leq GL_2(\R)^+$, then $\omega(f,g) = f(\tau)\overline{g(\tau)}y^k \frac{dydx}{y^2}$ satisfies $\alpha^{\ast}\omega(f,g) = \det(\alpha)^{2-k}\omega(f,g)$ for all $\alpha \in G$.
+  \end{enumerate}
+\end{lemma}
+\begin{proof}\hspace*{0cm}
+  \begin{enumerate}
+    \item $\tau = x+\im y, d\tau = dx+\im dy, d \bar{\tau} = dx-\im dy$, so $d\tau d\bar{\tau} = -2\im dxdy$
+
+    If $g = \begin{pmatrix}a&b\\c&d \end{pmatrix} \in GL_2(\R)^+$, then
+    \[g^\ast (d\tau) = d\frac{a\tau+b}{c\tau+d} = \frac{a(c\tau+d)-c(a\tau+d)}{(c\tau+d)^2}d\tau = \frac{\det(g)}{j(g\tau)^2}d\tau\]
+    Hence $g^{\ast}\left(\frac{d\tau d\bar{\tau}}{y^2}\right) = \frac{\det(g)^2 d\tau d\bar{\tau}}{|j(g,\tau)^4|} = \left(\frac{\det(g) y}{|j(g\tau)|^2}\right)^{-2} = \frac{d\tau d\bar{\tau}}{y^2}$.
+    \item Take $\alpha = \begin{pmatrix}a&b\\c&d \end{pmatrix} \in G$. Then $\alpha^\ast \omega(f,g) = f(\alpha \tau)\overline{g(\alpha\tau)}\Im(\alpha \tau)^k \frac{dxdy}{y^2}$.
+
+    We know $f(\alpha \tau)j(\alpha, \tau)^{-k}\det(\alpha)^{k-1} = f(\tau)$, and similarly for $g$, so
+    \[\alpha^{\ast}\omega(f,g) = \det(\alpha)^{2-k}\omega(f,g)\]
+  \end{enumerate}
+\end{proof}
+So if $f, g$ are invariant under the weight $k$ action of $\Gamma(1)$, we have a $\Gamma(1)$-invariant area form $\omega(f,g)$.
+\begin{definition}
+  If $\varphi:\H \to \C$ is a $\Gamma(1)$-invariant function, then:
+  \[\int_{\Gamma(1)\diagdown \H}\varphi \frac{dxdy}{y^2} = \int_{\mathscr{F}} \varphi \frac{dxdy}{y^2}\]
+  when this integral is absolutely convergent.
+\end{definition}
+\begin{definition}
+  Let $f, g\in S_k(\Gamma(1))$. Then we define
+  \[\angle{f, g} = \int_{\Gamma(1)\diagdown \H} \omega(f,g)\]
+\end{definition}
+\begin{lemma}
+  For any $f, g \in S_k(\Gamma(1))$, then integral defining $\angle{f,g}$ is absolutely convergent. This defines an inner product on the $\C$-vector space $S_k(\Gamma(1))$.
+\end{lemma}
+\begin{proof}
+  It's enough to show that
+  \begin{enumerate}
+    \item $\int_{\Gamma(1)\diagdown \H} \frac{dxdy}{y^2} < \infty$
+    \item If $f \in S_k(\Gamma(1))$, then $|f(\tau)|y^{k/2}$ is bounded in $\mathscr{F}$.
+  \end{enumerate}
+  To show (1), we observe that $\mathscr{F} \subseteq \{\tau \in \H: -\frac12 \leq \Re \tau \leq \frac12, \Im \tau \geq \frac12\}$, so:
+  \[\int_{\Gamma(1)\diagdown \H}\frac{dxdy}{y^2} \leq \int_{x=-\frac12}^\frac12 \int_{y=\frac12}^\infty \frac{dxdy}{y^2} < \infty\]
+
+  To show (2), we observe that $|f(\tau)|y^{k/2} \leq \sum_{n\geq 1}|a_n|e^{-2\pi ny}y^{k/2} \to 0$ as $y \to \infty$.
+
+  Note - here we're using that $f$ is cuspidal. Then we have:
+  \[\omega(f,g) = f(\tau)y^{k/2} \overline{g(\tau)}y^{k/2} \frac{dxdy}{y^2} \implies \angle{f,g} \text{ is absolutely convergent}\]
+  If $\angle{f,f} = 0$, then $\int_{\Gamma(1)\diagdown \H}|f(\tau)|^2 y^k \frac{dxdy}{y^2} = 0 \implies f \equiv 0$, and so $\angle{\cdot,\cdot}$ is an inner product.
+\end{proof}
+\begin{definition}
+  Suppose that $\Gamma \leq \Gamma(1)$ is a subgroup of finite index. Let $\varphi: \H \to \C$ be a smooth function, invariant under translation by $\Gamma$. Then we define
+  \[\int_{\Gamma \diagdown \H} \varphi \frac{dxdy}{y^2} = \int_{\Gamma(1)\diagdown \H} \sum_{\gamma \in \Gamma \diagdown \Gamma(1)}(\varphi \circ \gamma)\frac{dxdy}{y^2}\]
+\end{definition}
+\begin{definition}
+  Suppose $\Gamma \leq \Gamma(1)$ is a subgroup of $\Gamma(1)$ of finite index and let $f, g:\H \to \C$ be invariant under the weight $k$ action of $\Gamma$. Then we define
+  \[\angle{f,g} = [\Gamma(1):\Gamma]^{-1} \int_{\Gamma \diagdown \H}\omega(f,g) = [\Gamma(1):\Gamma]\int_{\Gamma \diagdown \H}f \bar{g}y^{k}\frac{dxdy}{y^2}\]
+  when this integral is absolutely convergent.
+\end{definition}
+\textbf{Remarks.}
+\begin{enumerate}
+  \item If $\Gamma' \leq \Gamma \leq \Gamma(1)$ is another finite index subgroup, then $\angle{f, g}$ defined using $\Gamma$ is the same as $\angle{f,g}$ defined using $\Gamma'$.
+  \item If $f:\H \to \C$ is invariant under the weight $k$ action of $\Gamma(1)$, and $\alpha \in GL_2(\Q)^+$, then $f|_k(\alpha)$ is invariant under the weight $k$ action of the group $\alpha^{-1}\Gamma(1)\alpha \cap \Gamma(1)$, which has finite index in $\Gamma(1)$.
+\end{enumerate}
+\begin{proposition}
+  Let $f, g:\H \to \C$ be smooth function which are invariant under the weight $k$ action of $\Gamma(1)$. Then we have:
+  \[\angle{f|_k[\alpha], g|_k[\alpha]} = \det(\alpha)^{k-2}\angle{f,g}\]
+  whenever both sides of this equality are defined.
+\end{proposition}
 \end{document}

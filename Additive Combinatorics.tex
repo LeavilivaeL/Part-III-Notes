@@ -6,6 +6,7 @@
 \maketitle
 \tableofcontents
 \newpage
+\setcounter{section}{-1}
 \section{Elementary Tools}
 Asymptotic notation: for functions $f, g$ we will write $f = O(g)$ to mean there is a constant $c > 0$ such that, for large enough $x$, $|f(x)| \leq c|g(x)|$. Sometimes, we will write $f = O_h(g)$ if $c$ depends on $h$. We will also sometimes write $f \ll g$ to mean $f=O(g)$ (or indeed $g \gg f$, or $f \ll_h g$). We will also write such things as $(x+h)^2 = x^2 + O_h(x)$. We will often write $\log X$ - it will typically be irrelevant which base, but it will be assumed that $X$ is large.
 
@@ -96,7 +97,7 @@ There are two ways to generate new sets with small doubling from old.
   \item \underline{Pass to a sumset.} If $|A+A|\leq K|A|$ and $X = A+Y$, then $|X+X| \leq |A+A+Y+Y| \leq |Y|^2|A+A| \leq (K|Y|^2)|X|$. So if $A$ has doubling $K$ and $X = A+Y$ where $|Y| \leq K^{O(1)}$, then $X$ has doubling $\leq K^{O(1)}$. In fact it suffices if $|Y+Y| \leq K^{O(1)}|Y|$ and $|X| \geq K^{-O(1)}|A||Y|$.
 \end{enumerate}
 This accounts for all sets with small doubling. That is, if $|A+A| \leq 100|A|$, then $A$ is obtained from a coset or AP via these two operations. We'll state this more precisely and prove it later on.
-\section{Sumset Calculus}
+\subsection{Sumset Calculus}
 How are the sizes of sumsets related to each other?
 \begin{lemma}[Ruzsa's Triangle Inequality]
   For any sets $A,B,C$, $|A+B| \leq \frac{|A+C||B-C|}{|C|}$.
@@ -160,7 +161,7 @@ By coupling this with Ruzsa's triangle Inequality (RTI), we get a form for mixed
   By RTI with $X$ as above,
   \[|kB-\ell B| \leq \frac{|X+kB||X+\ell B|}{|X|} \leq \frac{K^k|X|K^\ell|X|}{|X|} =K^{k+\ell}|X| \leq K^{k+\ell}|A|\]
 \end{proof}
-\section{Additive Energy}
+\subsection{Additive Energy}
 The size of the sumset is one way to measure the `structure' of $A$, but not the only way. One advantage of using $\frac{|A+A|}{|A|}$ is that it controls the same quantity for subsets automatically: i.e., if $X \subset A$, then $|X+X| \leq |A+A|$. However, it has the disadvantage that $\frac{|A+A|}{|A|}$ can grow out of control quickly if we add in a small number of elements. It's often more convenient to use ``additive energy'' to measuer structure.
 \begin{definition}
   The \emph{additive energy} of $A$, $E(A)$ is defined to be
@@ -173,7 +174,7 @@ If $A$ is a geometric progression, then $E(A) \approx |A|^2$, as $2^k + 2^\ell =
 We have an alternate definition of $E(A)$ - note that
 \begin{align*}
   E(A) &= \sum_{a,b \in A} \sum_{c,d \in A} \sum_x \one_{a+b=x}\one_{c+d=x}\\
-  &= \sum_x\left(\sum_{a,b\in A} \one_{a+b}=x\right)\\
+  &= \sum_x\left(\sum_{a,b\in A} \one_{a+b=x}\right)^2\\
   &= \sum_x \one_A \ast \one_A(x)^2\\
   &= \norm{\one_A \ast \one_A}_2^2
 \end{align*}
@@ -315,7 +316,7 @@ This can't be done in general, but we can find a large $A'\subset A$ such that `
 
 We then write $a'-b' = (a'-c)-(b'-c) \in S-S$. So we can write $a'-c \in S$ as $a_1-a_2$ in many ways, and likewise for $b'-c$. So $a'-b'$ can be written in $\gg K|A'||A|^2$ many ways, and so in total have $\gg |A'-A'||A|^3$ many such quadruples. But trivially there are at most $|A|^4$ quadruples, so $|A'-A'|\ll K|A|$.
 
-\section{Covering}
+\subsection{Covering}
 We say that $A$ is $K$-covered by $B$ if there is $X$ with $|X| \leq K$ such that $A \subseteq X+B$. I.e., we can contain $A$ in at most $K$-many translates of $B$.
 
 For example, if $A$ is $K$-covered by $B$, where $|B|\ll|A|$ and $|B|$ has small doubling, then $A$ must also have small doubling:
@@ -339,11 +340,345 @@ Note that we are covering $A$ by $B-B$, not $B$ itself. This is because $B-B$ is
 
 We now present an application of Ruzsa's covering lemma and Pl\"unnecke's inequality -  a non-trivial inverse sumset result.
 
-As we saw earlier, if $H$ is a subgroup of $G$ and $A \subst x+H$ with $|A|\gg|H|$, then $|A+A| \ll |A|$. We will show that this is the only way that $A$ can have small doubling in groups of small torsion (e.g. $G = \F_p^n$, not in subsets of $\Z$ or $\Z/N\Z$).
+As we saw earlier, if $H$ is a subgroup of $G$ and $A \subset x+H$ with $|A|\gg|H|$, then $|A+A| \ll |A|$. We will show that this is the only way that $A$ can have small doubling in groups of small torsion (e.g. $G = \F_p^n$, not in subsets of $\Z$ or $\Z/N\Z$).
 \begin{theorem}
   If $A \subset \F_p^n$ is such that $|A+A|\leq K|A|$, then there is a subgroup $H \leq \F_p^n$ and $x$ such that $A \subseteq x+H$ and $|A|\gg_{p, K}|H|$.
 \end{theorem}
 \begin{proof}
   Without loss of generality, $0 \in A$. The idea is to take $H = \angle{A}$. But trivially we only have $|H|\leq p^{|A|}$ - we will use the small doubling of $A$ to control the size of $H$.
+
+  We want to use Ruzsa's covering lemma - the obvious way is $|A+A|\leq K|A|$, so $|A|$ is $K$-covered by $A-A$. But $A$ is 1-covered by $A-A$ anyway, so this is useless. Instead, we will cover $A+A-A$ by $A-A$. Pl\"unnecke's inequality says that:
+  \[|A+A-A+A| \leq K^4|A|\]
+  and hence by Ruzsa's covering lemma, there is $X \subset 2A-A$ with $|X|\leq K^4$ and:
+  \begin{align*}
+    A+A-A &\subseteq X+A-A\\
+    A+A+A-A & \subseteq X+(A+A-A) \subseteq X+X+A-A
+  \end{align*}
+  and so on. In general, we have for all $n \geq 1$, $nA+(A-A) \subseteq nX + (A-A)$. If $H_0 = \angle{X}$, then $|H_0| \ll_{p,K} 1$, because $|H_0| \leq p^{|X|} \leq p^{K^4} = C(p,K) \cdot 1$.
+
+  Let $H = \angle{A}$. If $h \in H$, then $h \in nA$ for some $n \geq 1$, so:
+  \[h \in nA \subseteq nA + (A-A) \subseteq nX + (A-A) \subseteq H_0 + (A-A)\]
+  Hence $H \subseteq H_0 + (A-A)$. So $|A| \leq |H_0||A-A|\ll_{p,K} 1\cdot K^2|A| \ll_{p,K} |A|$.
 \end{proof}
+Note the essential use of bounded torsion, when we bounded $|H_0|\ll_{p,K} 1$. If we tried this in $\Z$, then $|H_0| = \infty$. Even in $\Z/N\Z$, if $|X|\geq 2$, then $H_0 = \angle{X} = \Z/N\Z$ (if $N$ is prime). Something similar does hold however if we replace `subgroup' by `arithmetic progression'.
+
+The dependency on constants is $|H| \leq (K^2 p^{K^4}) |A|$. This has been improved - the best known bound is due to Green-Tao, Lovett, and Zohar, and is of the form $|H| \leq p^{o(K)} |A|$.
+
+This is the best possible: if $|A| = K$ and $A$ is linearly independent over $\F_p$, then $|A+A|\leq |A|^2 \leq K|A|$, and the smallest cost containing $A$ has size $p^K$.
+
+But, part of the need for this exponential dependence is that we insisted $A$ is $1$-covered by $H$.
+
+Note in the example above, $A$, is $K$-covered by $\{0\}$. Now we expect that we can do polynomial bounds in $K$, but this is still open.
+\begin{conjecture}[Marton]
+ If $A \subset F_p^n$ has $|A+A|\leq K|A|$, then $A$ is $C$-covered by $H\leq \F_{p^n}$ with $|H| \leq |A|$, where $C = O_p(K^{O_p(1)})$.
+\end{conjecture}
+\begin{conjecture}[Polynomial Freiman-Ruzsa conjecture for $\F_p^n$]
+ If $|A| \subset \F_p^n$ has $|A+A|\leq K|A|$, then there is $H \leq \F_p^n$ such that $|H|\ll_p K^{O_p(1)}|A|$ and $|A\cap(x+H)|\gg_p K^{-O_p(1)}|A|$.
+\end{conjecture}
+These conjectures are equivalent: assume Marton's conjecture. Then there is $X$ with $|X| \ll K^{O(1)}$ such that $A \subset X+H$ and $|H| \leq |A|$. Then by pigeonholing, there is some $x \in X$ such that $|A\cap (x+H)| \geq K^{-O(1)}|A|$. We'll see the other direction later on.
+
+A similar form of PFR is conjectured for any abelian group, again replacing subgroups by arithmetic progressions.
+
+\subsection{Span-Covering}
+In covering, we wanted a ``small'' $X$ such that $A \subset X+B$. Sometimes, it's enough for $X$ to have ``low complexity'' (i.e. $X$ is spanned by a small number of elements).
+\begin{definition}
+  We say $A$ is $K$-span covered by $B$ if there is $X$ of size $|X| \leq K$ such that:
+  \[A \subset \text{Span}(X) + B\]
+  where $\text{Span}(X) = \{\sum_{x\in X}c_x x : c_x \in \{-1,0,1\}\}$.
+\end{definition}
+\begin{lemma}
+  If $|A+A| \leq K|A|$ and $|A+B| \leq K'|B|$. Then $A$ is $O(K \log(KK'))$-span covered by $B-B$.
+\end{lemma}
+Note that if $K$ is fixed, we can view this as $O(\log K')$ dependence. So $|\text{Span}(X)| \approx 3^{\log(K')} \approx (K')^c$.
+\begin{proof}
+  We construct a sequence of sets $B_0, B_1, \ldots$ as follows: first, let $B_0 = B$. We then construct $B_{n+1}$ in terms of $B_n$.
+
+  Suppose there are $2K$ many disjoint translates of $B_n$ of the form $a+B_n$ for $a \in A_n'$ disjoint, where $|A_n'| = 2K, A_n' \subseteq A$. Then we just let $B_{n+1}  A_n' + B_n$, and note that $|B_{n+1}| = 2K|B_n|$.
+
+  Otherwise, let $A' \subseteq A$ be maximal such that $(a+B_n)$ for $a \in A'$ are disjoint, so $|A'| < 2K$. Now let $B_{n+1} = A' + B_n$ and stop the construction.
+
+  We first show this construction must stop eventually. By induction, $B_n \subset B+nA$, so $(2K)^n|B| = |B_n| \leq |B_nA|$. Now,
+  \begin{align*}
+    |B+nA| &\leq \frac{|B+A||nA-A|}{|A|} \hspace*{3cm}(RTI)\\
+    &\leq K'|B|K^{n+1} \hspace*{3cm}(\text{Pl\"unnecke})
+  \end{align*}
+  So $(2K)^n \leq K'K^{n+1}$, so $2^n \leq K'K$, so $n \leq \log_2(K'K)\ll \log(K' K)$. Hence we must stop at some $n = O(\log(KK'))$.
+
+  We now claim that the span of $X = A_0' \cup \ldots \cup A_n'$ covers $A$ by $B-B$. Then we are done, since $|X|\leq \sum_{i=0}^n |A_n'| \leq 2K(n+1) \ll K \log(KK')$.
+
+  Suppose that $a \in A$. We know that $a+B_n$ is not disjoint from $B_{n+1}$, since $A'$ was chosen to be maximally disjoint. So $a \in B_{n+1}-B_n$. Hence $A \subseteq B_{n+1} - B_n$. But $B_{n+1} = A_n' + A_{n-1}' + \ldots +A_0' + B$, $B_n = A_{n-1}' + \ldots +A_0'+B$.
+
+  So $A \subseteq B_{n+1}-B_n = B-B + (A_0'-A_0') + \ldots +(A_{n-1}' -A_{n-1}') + A_n' \subseteq B-B + \text{Span}(X)$.
+\end{proof}
+\subsection{Finding Arithmetic Progressions}
+What kind of conditions on a set of integers guarantee the existence of an arithmetic progression?
+\begin{conjecture}[Baudet, 1920s]
+  If $\Z$ is coloured red/blue, then there exist arbitrarily long APs of the same colour.
+\end{conjecture}
+For instance, any colouring of $\{1, \ldots, 9\}$ contains a monochromatic 3AP.
+\begin{theorem}[van der Waerden]
+  For any $r, k \geq 1$, if $\Z$ is $r$-coloured then there exists a monochromatic $k$-term arithmetic progression.
+\end{theorem}
+This is proven in the Part III course Ramsey Theory.
+
+We might also ask which colour class contains the $k$-AP. Perhaps it is always the largest?
+\begin{conjecture}
+  For any $\delta > 0$, if $A \subset \Z$ has `density' $\delta$, then $A$ has arbitrarily long APs.
+\end{conjecture}
+This would imply VDW, since in an $r$-colouring there must be a colour class with density $\geq \frac{1}{r}$. This also turns out to be true:
+\begin{theorem}[Szemer\'edi, 1975]
+  For any $\delta > 0$ and $k \geq 1$ there exists $N \ll_{k, \delta} 1$ such that, if $N' \geq N$ and $A \subset \{1, \ldots, N'\}$ with $|A| \geq \delta N'$, then $A$ contains a $k$-term AP.
+\end{theorem}
+There are many different proofs - the combinatorial one by Sz\'emeredi, as well as ones via ergodic theory, hypergraph regularity, and an analytic proof by Gowers.
+
+Let $r_k(N)$ be the size of the largest $A \subseteq \{1, \ldots, N\}$ such that $A$ has no $k$-term APs, so that Sz\'emeredi's theorem is that $\frac{r_k(N)}{N}\to 0$ as $N \to \infty$.
+\begin{theorem}[Gowers]
+  For all $k\geq 3$,
+  \[r_k(N) \ll \frac{N}{(\log\log N)^{c_k}}\]
+\end{theorem}
+In this course we will focus on the case $k=3$. Let $r(N) = r_3(N)$.
+\begin{theorem}[Roth, 1953]
+  $\frac{r(N)}{N} \to 0$ as $N \to \infty$.
+\end{theorem}
+In fact, Roth proved $r(N) \ll \frac{N}{\log\log N}$. Roth used Fourier analysis. We will develop enough Fourier analysis to prove:
+\begin{theorem}[Bourgain, 1999]
+  $r(N) \ll \left(\frac{\log\log N}{\log N}\right)^{1/2}N$
+\end{theorem}
+\section{Fourier Analysis}
+\subsection{Basic Concepts}
+We will only be considering finite abelian groups. Let $G$ be a finite abelian group. A \emph{character} on $G$ is a group homomorphism $\gamma:G \to \C^\times$. Lower-case Greek letters will be reserved for characters, and lower-case Roman letters are for elements of $G$.
+
+The set of characters can be made into a group with the group operation pointwise multiplication, and the identity the trivial character $\one(x) = 1 \forall x \in G$. This group is $\hat{G}$, the \emph{dual group} of $G$. Since multiplication in $\C$ is abelian, $\hat{G}$ is abelian. Since any character is a homomorphism, $\gamma(0) = 1$. Also, $\gamma(x)$ is a $|G|\th$ root of unity for any $x \in G$. Hence $\hat{G}$ is a finite abelian group.
+\begin{lemma}
+  $\hat{G}\cong G$
+\end{lemma}
+\begin{proof}
+  Omitted. Straightforward with classification of finite abelian groups. Note it is obvious is $G$ is cyclic.
+\end{proof}
+For example, if $G = \Z/N\Z$, then any $\gamma \in \{1, \ldots, N\}$ induces a character by $\gamma(x) = e\left(\frac{\gamma x}{N}\right)$, where $e(z) = \exp(2\pi\im z)$. Or, if $G = \F_p^n$, then $\gamma \in \F_p^n$ gives a character $\gamma \in \hat{G}$ where $\gamma(x) = e\left(\frac{\gamma\cdot x}{p}\right)$.
+
+When talking about $G$, we use the counting measure, the sum. With $\hat{G}$, we use the `normalised probability measure' $\frac{1}{N}\Sigma$, which we denote by $\E$.
+
+We have a natural inner product for functions $f,g:G\to \C$:
+\[\angle{f, g} = \sum_{x \in G} f(x)\overline{g(x)}\]
+And, if $f,g : \hat{G} \to \C$, we use:
+\[\angle{f,g} = \E_{\gamma \in \hat{G}} f(\gamma)\overline{g(\gamma)}\]
+\begin{lemma}[Orthoganality]
+  For any $\gamma \in \hat{G}$:
+  \[\sum_{x \in G} \gamma(x) = \begin{cases} |G| & \gamma = \one \\ 0 & \ow\end{cases}\]
+  For any $x \in G$:
+  \[\E_{\gamma \in \hat{G}} \gamma(x) = \begin{cases} 1 & x = 0\\ 0 & \ow\end{cases}\]
+\end{lemma}
+\begin{proof}
+  If $\gamma= \one$ or $x = 0$, this is trivial.
+
+  Now suppose $\gamma \neq \one$, so there is $y \in G$ such that $\gamma(y) \neq 1$. If $S = \sum_{x\in G}\gamma(x)$, then:
+  \begin{align*}
+    \gamma(y)S &= \gamma(y)\sum_{x\in G} \gamma(x)\\
+    &= \sum_{x \in G} \gamma(y)\gamma(x)\\
+    &=  \sum_{x\in G} \gamma(y+x)\\
+    &= \sum_{x\in G} \gamma(z) = S
+  \end{align*}
+  Hence $S = 0$. The second claim is similar, using $\lambda \in \hat{G}$ with $\lambda(x) \neq 1$.
+\end{proof}
+\subsection{Fourier Transform}
+If $f: G \to \C$, then we define $\hat{f} : \hat{G} \to \C$ by:
+\[\hat{f}(\gamma) = \sum_{x\in G} f(x)\overline{\gamma(x)} = \angle{f, \gamma}\]
+\begin{lemma}[Parseval's Identity]
+  For any $f, g : G \to \C$, we have:
+  \[\angle{f, g} = \angle{\hat{f}, \hat{g}}\]
+  In particular, $\norm{f}_2 = \norm{\hat{f}}_2$.
+\end{lemma}
+\begin{proof}
+  \begin{align*}
+    \angle{f,g} &= \sum_{x\in G} f(x) \overline{g(x)}\\
+    &= \sum_{x,y \in G}f(x)\overline{g(y)}\one_{x=y}\\
+    &= \sum_{x,y \in G}f(x)\overline{g(y)}\E_{\gamma \in \hat{G}}\gamma(y-x)\\
+    &= \E_{\gamma \in \hat{G}}\left(\sum_{x\in G}f(x)\gamma(-x)\right)\left(\sum_{y\in G}\overline{g(y)}\gamma(y)\right)\\
+    &= \E_{\gamma \in \hat{G}}\left(\sum_{x\in G} f(x)\overline{\gamma(x)}\right)\overline{\left(\sum_{y\in G} g(y)\overline{\gamma(y)}\right)}\\
+    &= \angle{\hat{f}, \hat{g}}
+  \end{align*}
+\end{proof}
+\begin{lemma}[Diagonalises convolution]
+  Given $f, g:G \to \C$, we have:
+  \[\widehat{f\ast g} = \hat{f}\cdot \hat{g}\]
+\end{lemma}
+\begin{proof}
+  For any $\gamma \in \hat{G}$,
+  \begin{align*}
+    \widehat{f\ast g}(\gamma) &= \sum_{z\in G} f\ast g(z) \overline{\gamma}(z)\\
+    &= \sum_{z\in G}\sum_{x,y \in G} f(x) g(y) \one_{x+y=z}\overline{\gamma(z)}\\
+    &= \sum_{x,y \in G} f(x)g(y)\overline{\gamma(x+y)}\\
+    &= \left(\sum_{x\in G}f(x)\overline{\gamma(x)}\right)\left(\sum_{y \in G}g(y)\overline{\gamma(y)}\right)
+  \end{align*}
+\end{proof}
+\subsection{Roth's Theorem in $\F_{p^n}$}
+Our goal is to prove Roth's thoerm in $\Z$ - if $A \subset \{1, \ldots, N\}$ and $|A|/N$ is large, then $A$ contains a 3AP. We will first prove a version of this in $\F_p^n$, and the proof for $\Z$ will be a ``translation'' of this proof.
+
+Fix some odd prime $p\geq 3$ (in $p=2$, then 3APs are trivial as $x, x+d, x$ is a 3AP). Then a 3AP is  a set of the form $\{x, x+d, x+2d\}$ where $x, d \in \F_p^n$. We allow $d=0$, but call a 3AP with $d\neq 0$ `non-trivial'.
+
+We're given $A \subseteq \F_p^n$ and we know its size or equivalently its \emph{density} $\alpha = |A|/p^n$. We want to deduce that $\alpha$ large implies $A$ has a non-trivial 3AP.
+
+Two observations:
+\begin{enumerate}
+  \item This is easy if $A$ is very structured, e.g. if $A$ is a subspace.
+  \item This is easy if $A$ is random. The expected number of 3APs in $A$ is approximately the sum over all 3APs in $\F_p^n$ of the probability that 3AP is contained in $A$, which is about $p^{2n} \times \alpha^3$. The number of trivial 3APs in $A$ is just $|A| = \alpha p^n$, so provided $\alpha^3 p^{2n}$ is much larger than $\alpha p^n$, the non-trivial count dominates, and there must be some non-trivial 3APs.
+\end{enumerate}
+Tao called this the ``structred vs randomness'' dichotomy - all sets should be structured to some degree and random to some degree, and so the theorem should be true.
+
+Our proof will use the ``density increment strategy''.
+
+Suppose that $A \subseteq \F_p^n$ has no non-trivial 3APs. We want to show that $\alpha = |A|/p^n$ is small.
+
+Either:
+\begin{enumerate}
+  \item $A$ has $\gg \alpha^3 p^{2n}$ many 3APs, and hence either:
+  \begin{enumerate}
+    \item $\alpha$ is small - done.
+    \item $A$ has a non-trivial 3AP - contradiction.
+  \end{enumerate}
+  \item $A$ is not well-distributed, and there is a large subspace $W \leq \F_p^n$ and a coset of $W$, say $x+W$, on which $A$ has increased density (i.e. $\frac{|A\cap (W+x)|}{|W|} \geq \alpha(1+c)$ for $c>0$).
+
+  Then we zoom in on $A \cap (W+x)$ (or rather $(A-x)\cap W$, as being a 3AP is invariant under translation). $W \cong \F_p^{n-m}$ for some small $m$, and repeat.
+\end{enumerate}
+We can't repeat forever since $\alpha$ is bounded above by 1, so we eventually stop and are done.
+
+The goal is:
+\begin{theorem}[Meshulam, 1957]
+  If $A \subseteq \F_p^n$ has no non-trivial 3APs, then $|A|\ll_p \frac{p^n}{n}$, and in particular, $\frac{|A|}{p^n} \to 0$ as $n \to \infty$.
+\end{theorem}
+
+Our main tool is:
+\begin{lemma}
+  Let $V$ be an $n$-dim vector space over $\F_p^n$ and let $A \subseteq V$ with density $\alpha$. Suppose that $A$ has no non-trivial 3APs. Then either:
+  \begin{enumerate}
+    \item $\alpha \leq \frac{\sqrt{2}}{p^{n/2}}$ or
+    \item There is a subspace $V' \leq V$ of codimension 1, and $x \in V$ with:
+    \[\frac{|(A-x)\cap V'|}{|V'|} \geq (1+\frac{\alpha}{4})\alpha\]
+  \end{enumerate}
+\end{lemma}
+\begin{proof}[Proof of Meshulam using \textbf{Lemma 2.6}]
+  Let $A \subseteq \F_p^n$ with density $\alpha > 0$ and no nontrivial 3APs. We want $\alpha \ll \frac{1}{n}$.
+
+  If $\alpha \leq p^{-n/4}$, then we're done.
+
+  It's also enough to prove this for large $n$ - if our proof showed that $\alpha \leq \frac{100}{n}$ for all $n \geq 1000$, then using $\alpha \leq 1$, we get that $\alpha \leq \frac{1000}{n}$ for all $n \geq 1$, and so $\alpha \ll \frac{1}{n}$ for all $n \geq 1$.
+
+  Let $k \geq 0$ be maximal such that the following holds: there is a sequence of sets $A_0, \ldots, A_k$ and associated $V_0, \ldots, V_k$ vector spaces over $\F_p$ such that:
+  \begin{enumerate}
+    \item $A_0 = A, V_0 = \F_p^n$.
+    \item $A_i \subseteq V_i$.
+    \item $A_i$ has no nontrivial 3APs.
+    \item If $\alpha_i = \frac{|A_i|}{|V_i|}$ then $\alpha_{i+1} \geq (1+\frac14\alpha_i)\alpha_i$ for all $0 \leq i < k$.
+    \item $|V_{i+1}| = \frac{1}{p}|V_i|$.
+  \end{enumerate}
+  Note that $k=0$ and the sequences $A_0, V_0$ work, so some such maximal $k$ exists, and $k$ cannot be infinite, since $1\leq |V_i| = p^{-i}|V_0| = p^{n-i}$.
+
+  How large can $k$ be? Induction shows that:
+  \[\alpha_i \geq (1+\alpha/4)^i \alpha \geq (1+i\alpha/4)\alpha\]
+  and in particular, after $i \geq \ceil{4/\alpha}$ steps, $\alpha_i \geq 2\alpha$. After another $\ceil{4/2\alpha}$ steps, $\alpha_i \geq 4\alpha$, and so on. Hence:
+  \[k \leq \sum_{j=0}^{O(\log(1/\alpha))} \ceil{4/2^j\alpha} \leq \sum_{j=0}^\infty \ceil{4/2^j\alpha} \ll \alpha^{-1}\]
+  We can assume in particular that
+  \[k \leq \frac{n}{10}\]
+  or else $n \ll \alpha^{-1}$, so $\alpha \ll \frac{1}{n}$ and we're done.
+
+  Now apply \textbf{Lemma 2.6} to $A_k \subseteq V_k$. If the second conclusion of \textbf{Lemma 2.6} holds, then there exists $V' \leq V_k$ and $x \in V_k$ such that
+  \[\frac{|(A_k-x)\cap V'|}{|V'|} \geq (1+\frac{\alpha_k}{4})\alpha_k\]
+  But then we could let $A_{k+1} = (A_k-x)\cap V'$ and $V_{k+1} = V'$, contradicting the maximality of $k$. Hence the first conclusion must be held and
+  \[\alpha_k \leq \frac{\sqrt{2}}{p^{n/2}} \implies p^{-n/4} <\alpha \leq  \alpha_k \ll \frac{1}{|V_k|^{\frac12}}\]
+  By induction $|V_k| = p^{n-k} \geq p^{\frac{9}{10}n}$, and so $p^{-n/4} \ll p^{-9n/20}$, which is a contradiction.
+\end{proof}
+We now try to prove Meshulam's theorem. The strategy is to:
+\begin{enumerate}
+  \item Write the difference between the number of 3APs in $A$ and the expected number in a generic set of density $\alpha$ as an inner product involving $\one_A$ and the balanced function $\one_A-\alpha \one_G$.
+  \item If $A$ has no nontrivial 3APs and is not too small, then this difference is large in absolute value.
+  \item Apply Parseval's identity to this inner product.
+  \item Deduce that there is some $\gamma \neq \one$ at which the Fourier transform of $\one_A - \alpha\one_G$ is large in absolute value.
+  \item Use this large Fourier coefficient to get a density increment, by choosing $V'$ a subspace orthogonal to $\gamma$.
+\end{enumerate}
+\begin{proof}
+  Think of $V$ as $\F_p^n$. We first note that 3APs are exactly the sets $\{x,y,z\}$ such that $x+y=2z$ (as $z-x = y-z$, if the AP is, in order, $x,z,y$).
+
+  In these terms, a `trivial' 3AP (where $d=0$) corresponds to the trivial solutions $x=y=z$.
+
+  Hence the number of 3APs in $A$ is
+  \[\sum_{x,y,z \in A} \one_{x+y=2z} = \sum_{x,y \in A} \sum_{w \in 2\cdot A} \one_{x+y=w} = \sum_{w \in 2\cdot A} \one_A \ast \one_A(w) = \angle{\one_A \ast \one_A, \one_{2\cdot A}}\]
+  where $2\cdot A$ is $A$ dilated by $2$, not $A+A$. Since $p$ is odd, $g \mapsto 2g$ is a bijection, so $|2\cdot A| = |A|$.
+
+  We want to compare this to the expected count. Introduce the `first-order approximation' to $\one_A$ as $\alpha \cdot \one_G$. Note that this agrees with $\one_A$ on average, i.e. $\sum_x \one_A(x) = |A| = \alpha p^n = \sum_x \alpha \one_A(x)$. Then:
+  \begin{align*}
+    \angle{\alpha \one_G \ast \one_A, \one_{2\cdot A}} &= \alpha \angle{\one_G\ast \one_A, \one_{2\cdot A}}\\
+    &= \alpha \angle{\one_G, \one_{2\cdot A} \circ \one_A}\\
+    &= \alpha \sum_{x \in G}\sum_{a,b \in A} \one_{2a-b =x}\\
+    &= \alpha|A|^2\\
+    &= \alpha^3p^{2n}
+  \end{align*}
+  (Note that this is the expected number of 3APs in a random set of density $\alpha$)
+
+  We will compare this to the actual count of 3APs in $A$.
+  \begin{align*}
+    \angle{\one_A\ast \one_A, \one_{2\cdot A}} - \angle{\alpha\one_G\ast \one_A, \one_{2\cdot A}} &= \angle{(\one_A-\alpha\one_G)\ast \one_A, \one_{2\cdot A}}\\
+    &=\angle{F_A\ast \one_A, \one_{2\cdot A}}
+  \end{align*}
+  where $F_A = \one_A - \alpha\one_G$ is the ``balanced'' function.
+
+  So $\angle{F_A\ast \one_A, \one_{2\cdot A}} = |A|-\alpha^3 p^{2n} = \alpha p^n(1-\alpha^2 p^n)$. In particular, if $|A| \geq (2p^n)^{1/2}$ (so that the first condition fails), then $1-\alpha^2p^n \leq -\frac{1}{2}\alpha^2p^n$, and
+  \[|\angle{F_A \ast \one_A, \one_{2\cdot A}}| \geq \frac{1}{2}\alpha^3 p^{2n}\]
+
+  We then use the theory about Fourier transforms:
+  \begin{align*}
+    \angle{F_A \ast \one_A, \one_{2\cdot A}} &= \angle{\widehat{F_A\ast \one_A}, \hat{\one_{2\cdot A}}}\\
+    &= \angle{\hat{F_A}\cdot \hat{\one_A}, \hat{\one_{2\cdot A}}}\\
+    &= \E_\gamma \hat{F_A}(\gamma)\hat{\one_A}(\gamma)\overline{\hat{\one_{2\cdot A}}(\gamma)}
+  \end{align*}
+  By the triangle inequality, $\E_\gamma |\hat{F_A}(\gamma)||\hat{\one_A}(\gamma)||\hat{\one_{2\cdot A}}(\gamma)| \geq \frac{1}{2}\alpha^3 p^{2n}$.
+
+  Note that $\hat{F_A}(\one) = \sum_x F_A(x) = \sum_x (\one_A(x)-\alpha \one_G(x)) = |A| - \alpha |G| = 0$. Hence:
+  \begin{align*}
+    \E_{\gamma \neq \one} |\hat{F_A}(\gamma)||\hat{\one_A}(\gamma)||\hat{\one_{2\cdot A}}(\gamma)| &\geq \frac{1}{2}\alpha^3 p^{2n} \\
+    &\leq (\sup_{\gamma \neq \one} |\hat{F_A}(\gamma)|)(\E_\gamma |\hat{\one_A}(\gamma)||\hat{\one_{2\cdot A}}(\gamma)|)
+  \end{align*}
+  By the Cauchy-Schwarz inequality,
+  \begin{align*}
+    \E_\gamma |\hat{\one_A}(\gamma)||\hat{\one_{2A}}(\gamma)| &\leq (\E_\gamma |\hat{\one_A}(\gamma)|^2)^{1/2}(\E_\gamma|\hat{\one_{2\cdot A}}(\gamma)|^2)^{1/2}\\
+    &= \norm{\hat{\one_A}}_2 \cdot \norm{\hat{\one}_{2\cdot A}}_2 \\
+    &= \norm{\one_A}_2 \cdot \norm{\one_{2\cdot A}}_2 \\
+    &= |A|^{1/2} |2\cdot A|^{1/2} = |A| = \alpha p^n
+  \end{align*}
+  Hence
+  \[\sup_{\gamma \neq \one}|\hat{F_A}(\gamma)| \geq \frac{1}{2}\alpha^2 p^n\]
+  (Compare this to the trivial upper bound $|\hat{F_A}(\gamma)| \leq \sum_x |F_A(x)| \leq |A|+\alpha p^n = 2\alpha p^n$).
+
+  Let $V' \leq \F_p^n$ be the subspace which `annihilates' $\gamma$. I.e., thinking of $\gamma:\F_p^n \to \C$, this means
+  \[V' = \{x \in \F_p^n : \gamma(x) = 1\}\]
+  or, thinking of $\gamma \in \F_p^n$ so the corresponding character is $x \mapsto e\left(\frac{\gamma\cdot x}{p}\right)$ where $e(z) = \exp(2\pi\im z)$, then
+  \[V' = \{x \in \F_p^n : \gamma \cdot x = 0\}\]
+  Then $V'$ is a subspace of codimension 1. The key observation is that $\gamma$ is constant on cosets of $V'$.
+
+  We know that $|\hat{F_A}(\gamma)|$ is large. To relate this to $|A\cap (x+ V')|$, let $V_1', \ldots, V_p'$ be the cosets of $V'$. Then:
+  \begin{align*}
+    \hat{F_A}(\gamma) &= \sum_x(\one_A(x)-\alpha \one_G(x)) \overline{\gamma(x)}\\
+    &= \sum_{i=1}^p\left( \sum_{x \in V_i'}(\one_A(x)-\alpha \one_G(x))\overline{\gamma(x)}\right)\\
+    &= \sum_{i=1}^p \overline{\gamma(v_i)}(|A\cap V_i'| - \alpha p^{n-1})
+  \end{align*}
+  We want to say there exists some $i$ such that $|A\cap V_i'| - \alpha p^{n-1} \geq \frac{1}{4}\alpha^2 p^{n-1}$.
+
+  Let $c \in \C$ such that $|\hat{F_A}(\gamma)| = c\hat{F_A}(\gamma)$, so $|c| = 1$, and consider $\angle{F_A, c\gamma+1}$.
+  \begin{align*}
+    \angle{F_A, c\gamma + 1} &= c \angle{F_A, \gamma} + \angle{F_A, 1}\\
+    &= c\hat{F_A}(\gamma)\\
+    &= |\hat{F_A}(\gamma)|
+  \end{align*}
+  Now note that $x \mapsto c\gamma(x)+1$ is constant on cosets of $V'$ - say it takes the value $x_i$ on $V_i'$. Split this inner product over $V_1', \ldots, V_p'$ as above:
+  \[\angle{F_A, c\gamma+1} = \sum_i x_i \left(|A \cap V_i'| - \alpha p^{n-1}\right)\]
+  Take real parts:
+  \[\Re\angle{F_A, c\gamma +1} = \Re |\hat{F_A}(\gamma)| \geq \frac{1}{2}\alpha^2p^n\]
+  So, by averaging, there is some $1 \leq i \leq p$ such that
+  \[\Re(x_i)\left(|A\cap V_i'| - \alpha p^{n-1}\right) \geq \frac{1}{2}\alpha^2 p^{n-1}\]
+  Finally, note that, since $x_i = c\gamma(v_i) +1$, and $c \gamma(v_i)$ is on $S^1$, we have $\Re(x_i) \in [0,2]$, and hence
+  \[|A\cap V_i'| - \alpha p^{n-1} \geq \frac{1}{4}\alpha^2 p^{n-1}\]
+\end{proof}
+What goes wrong with this in $\Z/N\Z$? There is no large subgroup on which $\gamma(x) = 1$ (in particular, if $N$ is prime, there are no large subgroups at all!)
+
+Instead, we will pass to the subset where $|\gamma(x)-1|\leq \epsilon$ for some small $\epsilon > 0$. These sets form `Bohr sets' - they act like subspaces even when there aren't any.
 \end{document}

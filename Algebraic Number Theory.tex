@@ -279,7 +279,7 @@ If $v$ is infinite and $w|v$, then $L_w/K_v = \begin{cases} \R/\R & f= e=1\\ \C/
 \begin{proof}
   Write $x = a/b$ where $a,b \in O_K^\times$. Then $\{v \in V_K: |x|_v \neq 1\}\subset V_{K, \infty} \cup\{v \in V_{K,f} : v(a)\text{ or }v(b) >0\}$, a finite set.
 
-  Now $\prod_{v\in V_K}|x|_v = \prod_{p\leq \infty} \left(\prod_{v|p}|x|_v) = \prod_{p\leq \infty}|N_{K/\Q}(x)|_p$, so it is enough to prove this for $K= \Q$.
+  Now $\prod_{v\in V_K}|x|_v = \prod_{p\leq \infty} \left(\prod_{v|p}|x|_v\right) = \prod_{p\leq \infty}|N_{K/\Q}(x)|_p$, so it is enough to prove this for $K= \Q$.
 
   By multiplicativity, we reduce to $x = q$, a prime, or $x= -1$. In the former case, $|q|_p = \begin{cases} \frac1q & p =q\\1 & p \neq q, \infty\\ q& p=\infty \end{cases}$, and in the latter, $|-1|_p = 1$ for all $p \leq \infty$. Hence the product over all of these is 1.
 \end{proof}
@@ -344,10 +344,11 @@ As $S \otimes_R K = L$ is separable over $K$, $\disc(L/K) \neq 0$, and so $\disc
   \[\mathscr{Q} \coloneqq \{\text{primes }Q\subset S : v_Q(e_i) < 0\text{ for some $i$}\}\]
   $\mathscr{Q}$ is finite. Then by the CRT, there are $a_i \in S$ such that $v_Q(a_i) + v_Q(e_i) \geq 0$ for all $Q \in \mathscr{Q}$, and $v_P(a_i) \geq 1$.
 
-  Then $x_i = a_ie_i \in S$, and $x_i\equiv e_i$ mod $PS$. So $(x_i)$ is an $R/P$-basis for $S/PS = S_P/PS_P$. So $(x_i)$ is an $R_P$ basis for $S_P$.
+  Then $x_i = a_ie_i \in S$, and $x_i\equiv e_i$ mod $PS$. So $(x_i)$ is an $R/P$-basis for $S/PS = S_P/PS_P$. So $(x_i)$ is an $R_P$ basis for $S_P$ (this follows by Nakayama's lemma).
 
   Hence the discriminant $\disc(S_P/R_P) = \disc(x_i)R_P$, and hence $\disc(x_i) \in \disc(S/R)$. So $\disc(S_P/R_P) \subset \disc(S/R)R_P$, and the other inclusion is obvious.
 \end{proof}
+
 The alternate definition of $\disc(S/R)$ is:
 \begin{itemize}
   \item if $x_1, \ldots, x_n \in S$ is a $K$-basis for $L$, then $\disc_{L/K}(x_i) \neq 0$.
@@ -363,6 +364,9 @@ This is equivalent to the previous definition by \textbf{3.4}.
   \[ S \otimes_R (R/P) \cong S/PS \cong \prod_{Q} S/Q^{e_Q}\]
   So $v_P(\disc(S/R)) = 0$ if and only if $\disc(\frac{S}{PS}/\frac{R}{P}) = \frac{R}{P}$ if and only if each $S/Q^{e_Q}$ is a finite separable field extension of $R/P$, if and only if, for all $Q$, $e_Q = 1$ and $\frac{S}{Q}/\frac{R}{P}$ is separable.
 \end{proof}
+\begin{corollary}
+  In an extension $S/R$ of Dedekind domains (i.e. $S$ is the integral closure of $R$ in a finite separable extension of $\Frac(R)$), only finitely many primes are ramified - precisely the primes such that $v_P(\disc(S/R)) > 0$.
+\end{corollary}
 \begin{proposition}
   Let $P \subset R$. Then $v_P(\disc(S/R)) = \sum_{Q\supset P}v_P(\disc(\hat{S}_Q/\hat{R}_P))$.
 \end{proposition}
@@ -395,6 +399,236 @@ This is clearly an $S$-submodule of $L$. If $\bigoplus_{i=1}^n Rx_i \subset S$, 
       &= \det(b_{ij}) \disc(S/R)
     \end{align*}
     But $N_{L/K}(x^{-1}) = u \det(b_{ij})$ for some unit in $R$. So $(1) = (N_{L/K}(x^{-1}))\disc(S/R)$. Since we are in Dedekind domains we can cancel $\disc(S/R)$, giving the result.
+    \item Assume $R$ is local, $P = (\pi_P)$. Write $\hat{K} = \Frac(\hat{R})$ for $Q = (\pi_Q) \subset S$, and $\hat{L}_Q = \Frac(\hat{S}_Q)$. So $L \otimes_K \hat{K} \cong \prod_Q \hat{L}_Q$ viea $x \mapsto (x_Q)_Q$, say, and $S \otimes_R \hat{R} \cong \prod_Q \hat{S}_Q$.
+
+    We also have $\Tr_{L \otimes_K \hat{K} / \hat{K}} (x) = \sum_Q \Tr_{\hat{L}_Q/\hat{K}}(x)$.
+
+    Let $S = \bigoplus_{i=1}^n R x_i$, and $\mathscr{D}_{S/R}^{-1} = \prod_Q \pi_Q^{-a_Q} S = \bigoplus_{i=1}^n Ry_i$ for some $a_Q \geq 0$, $y_i \in L$ a dual basis to $x_i$.
+
+    Then, as $S\otimes_R \hat{R} = \bigoplus \hat{R}x_i$ (really $x_i \otimes 1$), we have:
+    \begin{align*}
+      \mathscr{D}^{-1}_{S\otimes_R \hat{R}/\hat{R}} &\coloneqq \{x \in L\otimes_K \hat{K} : \forall y\in S\otimes_R \hat{R}, \Tr_{L\otimes_K \hat{K}/\hat{K}}(xy) \in \hat{R}\}\\
+      &= \bigoplus_{i=1}^n \hat{R}y_i\\
+      &= \mathscr{D}^{-1}_{S/R}\cdot S \otimes_R \hat{R} \subset L\otimes_K \hat{K}
+    \end{align*}
+    On the other hand,
+    \[\mathscr{D}^{-1}_{S\otimes_R \hat{R}/\hat{R}} \cong \prod_Q \mathscr{D}^{-1}_{\hat{S}_Q/\hat{R}} \subset \prod_Q \hat{L}_Q\]
+    So:
+    \begin{align*}
+      \mathscr{D}^{-1}_{\hat{S}_Q/\hat{R}} &= (\prod_{Q'}\pi_{Q'}^{-a_{Q'}}) \hat{S}_Q\\
+      &= \pi_Q^{-a_Q} \hat{S}_Q
+    \end{align*}
+    as $v_Q(\pi_{Q'}) = 0$ if $Q' \neq Q$.
   \end{enumerate}
 \end{proof}
+\begin{theorem}
+  Let $\p S = \prod_{i=1}^g Q_i^{e_i} \subset S$. Then $Q_i | \mathscr{D}_{S/R} \iff e_i >1$; and $Q_i^{e_i-1}|\mathscr{D}_{S/R}$.
+\end{theorem}
+\begin{proof}
+  First assume $R$ is complete and local, and $\p = (\pi_R)$. Then $S$ is also local and complete, and there is a unique prime $Q = (\pi_S)$. Then $\mathscr{D}_{S/R} = (\pi_S)^d$ for some $d \geq 0$. By \textbf{3.8.2}, $\disc(S/R) = (N_{L/K}(\pi_s)^d) = (\pi_R)^{df}$. So as $v_P(\disc(S/R)) = 0 \iff \p$ is unramified (\textbf{3.5}), the first statement holds.
+
+  For the second statement, we claim $\Tr_{L/K}(Q) \subset \p$. Let $x \in Q$. Then multiplication by $x$ is a nilpotent endomorphism of $S \otimes (R/\p) \cong S/Q^e$, and so $\Tr_{S \otimes_R (R/\p)/(R/\p)}(x\otimes 1) = 0$, i.e. $\Tr_{L/K}(x) = \Tr_{S/R}(x) \in \p$, and hence the claim.
+
+  Therefore $\Tr_{L/K}(\pi_R^{-1}Q) = \Tr_{L/K}(Q^{1-e}) \subset R$, and hence $Q^{1-e} \subset \mathscr{D}_{S/R}^{-1}$, or $Q^{e-1}| \mathscr{D}_{S/R}$.
+
+  For the general case, apply the above to $\hat{S}_{Q_i}/\hat{R}_P$ and use \textbf{3.8.3}.
+\end{proof}
+Some facts:
+\begin{itemize}
+  \item If $p\nmid e_i$, then $v_{Q_i}(\mathscr{D}_{S/R}) = e_i-1$
+  \item If $p|e_i$ then $v_{Q_i}(\mathscr{D}_{S/R}) \geq e_i$.
+\end{itemize}
+More precisely, $v_{Q_i}(\mathscr{D}_{S/R})$ is determined by the orders of the higher ramification groups for a Galois closure of $L/K$. See e.g. Serre `Local Fields', IV.2.4.
+\begin{itemize}
+  \item If $S = R[x]$ and $x$ has minimal polynomial $f \in R[T]$, then $\mathscr{D}_{S/R} = (f'(x))$ where $f'$ is the derivative.
+\end{itemize}
+This means that $\mathscr{D}_{S/R}$ is the annihilator of the cyclic $S$-module $\Omega_{S/R}$ of Kahler differentials.
+
+For an extension $L/K$ of number fields, we write $\mathscr{D}_{L/K} = \mathscr{D}_{O_L/O_K}$, and $\delta_{L/K} = \disc(O_L/O_K)$.
+\textbf{Remark.} Take $K/\Q$, $(e_i)$ a $\Z$-basis for $O_K$. Then $\delta_{K/\Q} \subset \Z$ is $(\disc(e_i))$, and if $(e_i')$ is another basis, say $e_i' = \sum a_{ji}e_j$, then $\disc(e_i') = (\det a_{ij})^2 \disc(e_i) = \disc(e_i)$.
+
+So the integer $\disc(e_i)$ is independent of the basis (not just the ideal it generates). We call this the absolute discriminant $d_K \in \Z \setminus \{0\}$.
+\begin{theorem}[Kummer-Dedekind Criterion]
+  Let $S/R$ be an extension of Dedekind domains, and $x \in S$ such that $L=K(x)$. Suppose there is $\p \subset R$ such that $S_\p = R_\p[x]$.
+
+  Let $g \in R[T]$ be the min. poly. of $x$, and $\bar{g} = \prod_i \bar{g}_i^{e_i} \in (R/\p)[T]$ be a factorisation of the reduction of $g$ into powers of distinct irreducibles, where $\bar{g}_i$ are monic. Let $g_i \in R[T]$ be any monic lift of $\bar{g}_i$, and $f_i = \deg(g_i) = \deg(\bar{g}_i)$.
+
+  Then $Q_i= \p S + (g_i(x)) \subset S$ is prime, of residue degree $[S/Q_i : R/\p] = f_i$, $Q_i \neq Q_j$ if $i\neq j$, and $\p S = \prod_i Q_i^{e_i}$.
+\end{theorem}
+\begin{proof}
+  We can assume $R$ is local, so $S = R[x]$. Set $\p = (\pi), R/\p = k$. We claim $Q_i$ is prime, $Q_i \neq Q_j$, with residue degree $f_i$.
+
+  Now $S/Q_i \equiv k[T]/(\bar{g}_i)$, and $\bar{g}_i$ is irreducible of degree $f_i$.
+
+  If $i \neq j$, then there exists $a,b \in R[T]$ such that $\bar{a}\bar{g}_i + \bar{b}\bar{g}_j = 1$, and so $1 = ag_i + bg_j + \pi c$ for some $c \in R[T]$, hence $1 \in Q_i +Q_j = (\pi, g_i(x), g_j(x))$.
+
+  Let $g = \prod g_i^{e_i} + \pi h$ where $h \in R[T]$. Then:
+  \[\prod_i Q_i^{e_i} = \prod_i (\pi, g_i(x))^{e_i} \subset \prod_i (\pi, g_i(x)^{e_i}) \subset (\pi, \prod g_i(x)^{e_i}) = (\pi, \pi h(x)) \subset \p S = (\pi)\]
+  Now $\dim_k (S/\p S) = n = [L:K]$, and $\dim_k(S/Q_i^{e_i}) = \sum_{j=0}^{e_i-1}\dim_k(Q_i^j/Q_i^{j-1}) = e_i \dim_k(S/Q_i) = e_i f_i$.
+
+  Hence $\prod_i Q_i^{e_i} \subset \p S$ gives $\sum e_i f_i \geq n$. As $\sum e_i f_i = \sum e_i \deg(\bar{g}_i) = \deg(\bar{g}) = n$, we have equality.
+\end{proof}
+\subsection{Examples}
+\textbf{Quadratic Fields}
+
+Let $K = \Q(\sqrt{d})$, where $d \in \Q^\times$ not a square. Multiplying by a square, we may assume $d \in \Z\setminus \{0,1\}$ squarefree.
+
+Then $O_k \supset \Z[\sqrt{d}] = \Z \oplus \Z\sqrt{d}$. Now the multiplication map by $a+b\sqrt{d}$ takes:
+\begin{align*}
+  (a+b\sqrt{d})\cdot 1 &= a\cdot 1 + b\cdot \sqrt{d}\\
+  (a+b\sqrt{d})\cdot \sqrt{d} &= a\sqrt{d} + bd = bd\cdot 1 + a\cdot \sqrt{d}
+\end{align*}
+so we have:
+\[\Tr_{K/\Q}(a+b\sqrt{d}) = \Tr\begin{pmatrix} a & bd \\ b & a\end{pmatrix} = 2a\]
+And so $\Tr_{K/\Q}(1) = 2, \Tr_{K/\Q}(\sqrt{d}) = 0, \Tr_{K/\Q}(d) = 2d$. Then for the discriminant, we have:
+\[\disc(1, \sqrt{d}) = \det\begin{pmatrix} 2 & 0 \\ 0 & 2d\end{pmatrix} = 4d\]
+Hence we have one of 2 cases:
+\begin{enumerate}
+  \item $d_K = 4d$, and so $O_K = \Z[\sqrt{d}]$, or:
+  \item $d_K = d$, and $(O_K:\Z[\sqrt{d}]) = 2$.
+\end{enumerate}
+We are in the second case iff there are $m, n \in \Z$ not both even with $\frac{m+n\sqrt{d}}{2} \in O_K$ iff $\frac{1+\sqrt{d}}{2} \in O(K)$, since it is obvious that $\frac{1}{2}, \frac{\sqrt{d}}{2} \notin O_K$. The min poly of $\frac{1+\sqrt{d}}{2}$ is $T^2-T-\frac{d-1}{4}$, so we have this precisely when $d \equiv 1 \mod 4$, in which case $O_K = \Z \oplus \Z \frac{1+\sqrt{d}}{2} = \Z[\frac{1+\sqrt{d}}{2}]$.
+
+In case 1, we can then compute $\Tr_{K/\Q}(1\cdot \frac{1}{2}) = 1, \Tr_{K/\Q}(\sqrt{d}\cdot\frac{1}{2\sqrt{d}}) = 1$, so we have a dual basis for the trace form given by $\{\frac12, \frac{1}{2\sqrt{d}}\}$, and hence $\mathscr{D}_{K/\Q}^{-1} = (\frac{1}{2}, \frac{1}{2\sqrt{d}}) = (\frac{1}{2\sqrt{d}}) = (2\sqrt{d})^{-1}$, and so $\mathscr{D}_{K/\Q} = (2\sqrt{d})$
+
+In case 2, our basis is now $\{1, \frac{1+\sqrt{d}}{2}\}$. The dual basis is thus $\{\frac{1}{2}, \frac{1}{1+\sqrt{d}}\}$, so $\mathscr{D}_{K/\Q}^{-1} = (\frac{1}{2}, \frac{1}{1+\sqrt{d}}) = (2, 1+\sqrt{d})^{-1} = (\sqrt{d})^{-1}$, so $\mathscr{D}_{K/\Q} = (\sqrt{d})$.
+
+Alternatively, in case 1, $O_K = \Z[\sqrt{d}]$, and the min. poly. of $\sqrt{d}$ is $f(T) = T^2-d$. Hence $\mathscr{D}_{K/\Q} = (f'(\sqrt{d})) = (2\sqrt{d})$. In case 2, $O_K = \Z[\frac{1+\sqrt{d}}{2}]$, so we have min. poly. $T^2-T-\frac{d-1}{4}$, and so $\mathscr{D}_{K/\Q} = (2\frac{1+\sqrt{d}{2}}{2}-1) = (\sqrt{d})$.
+
+We can now look at the decomposition of $(p)\subset O_K$. Using Kummer-Dedekind:
+\begin{itemize}
+  \item If $p \neq 2$ or $d \nequiv 1 \mod 4$, then $p \nmid (O_K:\Z[\sqrt{d}])$. So, applying the criterion to $T^2-d$, we see:
+  \[(p) = \begin{cases} P^2 & \text{ramified, if $p|d$, $P = (p,\sqrt{d})$}\\ P& \text{inert, if $p \nmid d$, $\legendre{d}{p} = -1$}\\PP' & \text{split, if $p\nmid d, \legendre{d}{p} = +1$}. P = (p, \sqrt{d}-a) \neq P' = (p, \sqrt{d}+a) \end{cases}\]
+  \item If $p=2$ and $d \equiv 1 \mod 4$, then we factor $T^2-T-\frac{d-1}{4}$ mod 2 and get:
+  \[(2) = \begin{cases} (2) & \text{inert, if $d\equiv 5 \mod 8$} \\ PP' & \text{split, if $d \equiv 1 \mod 8$} P=(2, \frac{\sqrt{d}+1}{2}) \neq P' = (2, \frac{\sqrt{d}-1}{2})\end{cases}\]
+\end{itemize}
+
+\textbf{Cyclotomic Fields}
+
+Recall some Galois theory: if $n > 1$, and $K$ is a field of characteristic prime to $n$. Suppose $L = K(\zeta_n)$, where $\zeta_n$ is a primitive $n\th$ root of unity. Equivalently, $\zeta_n$ is a root of the $n\th$ cyclotomic polynomial $\Phi_n$ of degree $\varphi(n)$, defined recursively by
+\[T^n-1 = \prod_{d|n}\Phi_d(T)\]
+Then $L/K$ is Galois with abelian Galois group, and an injective homomorphism
+\[\Gal(L/K) \to (\Z/n\Z)^\times\]
+given by
+\[g\mapsto a \st g(\zeta_n) = \zeta_n^a\]
+\begin{theorem}
+  Let $L = \Q(\zeta_n)$. Then:
+  \begin{enumerate}
+    \item $\Gal(L/\Q) \cong (\Z/n\Z)^\times$.
+    \item $p$ ramifies in $L$ iff $p|n$.
+    \item $O_L = \Z[\zeta_n]$.
+  \end{enumerate}
+\end{theorem}
+\textbf{Remark.} Condition 1 is equivalent to $\Phi_n$ being irreducible over $\Q$, iff $[L:\Q] = \varphi(n)$.
+\begin{proof}
+  Let $n = p^r m$ for $r \geq 1$ where $p$ is a prime not dividing $m$. Let $\zeta_m = \zeta_n^{p^r}, \zeta_{p^r} = \zeta_n^m$. Then there exist $a,b \in \Z$ such that $p^r a + mb =1$, so $\zeta_n = \zeta_{pr}^a\zeta_m^b$. Now let $K = \Q(\zeta_m)$. Then $L = K(\zeta_{p^r})$. We will prove:
+  \begin{itemize}
+    \item $\Phi_{p^r}$ is irreducible over $K$.
+    \item If $v \in V_{K, f}$ and $v \nmid p$, then $v$ is unramified in $L/K$.
+    \item If $v |p$ then $v$ is totally ramified in $L/K$.
+    \item $O_L = O_K[\zeta_{p^r}]$.
+  \end{itemize}
+  This will prove the theorem by induction on $n$.
+
+  For a place $w$ of $L$, write $x_w \in L_w$ for the image of $\zeta_{p^r}$ under $L \injection L_w$. Now suppose $v|p$. By induction, $v$ is unramified in $K/Q$, so $v(p) = 1$. Then:
+  \[\Phi_{p^r}(T+1) = \frac{(T+1)^{p^r} -1 }{(T+1)^{p^{r-1}}-1}\]
+  is an Eisenstein polynomial in $O_{K_v}[T]$, congruent to $T^{p^{r-1}(p-1)}$ mod $p$, and the constant coefficient is $p$, so it has valuation 1.
+
+  Then from local fields, $\Phi_{p^r}$ is irreducible over $K_v$ and hence over $K$, and $L/K$ is totally ramified at $v$, and if $w$ is the unique place of $L$ over $v$, then $O_{L_w} = O_{K_v}[\pi_w]$, where $\pi_w = x_w-1$, a root of $\Phi_{p^r}(T+1)$ in $K_w$.
+
+  Now let $v|q \neq p$. Then $\Phi_{p^r}$ is separable mod $q$. We have:
+  \[K_v \otimes_K  L \cong \prod_{w|v}L_w = \prod_{w|v}K_v(x_w)\]
+  Let $f_w \in O_{K_v}[T]$ be the minimal polynomial of $x_w|K_v$. Then $\prod_{w|v}f_w = \Phi_{p^r}$, so the reduction of $f_w$ at $v$ is separable, and hence $L_w/K_v$ is unramified. Then, by local fields again, $O_{L_w} = O_{K_v}[x_w]$, and $\prod_{w|v}O_{L_w} = \prod_{w|v}O_{K_v}[T]/(f_w) \cong O_{K_v}[T]/(\Phi_{p^r})$.
+
+  Hence, for all $v \in V_{K,f}$,
+  \[O_{K_v}\otimes_{O_K} O_K[\zeta_{p^r}] \cong O_{K_v}[T]/(\Phi_{p^r}) \cong \prod_{w|v} O_{L_w} \cong O_{K_v} \otimes_{O_K} O_L\]
+  So we must have $O_K[\zeta_{p^r}] = O_L$.
+\end{proof}
+Given $L/K$ a Galois extension of number fields with $w|v$ finite places, with $G = \Gal(L/K) \supset G_w \cong \Gal(L_w/K_v)$, the decomposition group of $w$, we have a short exact sequence:
+\[0 \to I_w \to G_w \to \Gal(\ell_w/k_v) \to 1\]
+Suppose $w$ is unramified in $L/K$ (iff $v$ unramified in $L/K$). Then $I_w = \{1\}$. We define the \emph{Frobenius at w} to be the element $\sigma_w \in G_w$ mapping to the generator $x\mapsto x^{q_v}$ of $\Gal(\ell_w/k_v)$.
+
+So the order of $\sigma_w = f(w|v) = [\ell_w:k_v] = [\ell_{w'}:k_v]$ for any other $w'|v$.
+
+In particular, $\sigma_w = 1 \iff v$ splits completely in $L/K$, i.e., there are precisely $[L:K]$ places of $L$ over $v$.
+
+Now suppose $G$ is abelian. Then $G_w, \sigma_w$ are independent of $w$, so depend only on $v$, and so we write $\sigma_v$ or $\sigma_{L/K,v}$ for $\sigma_w$, the \emph{(arithmetic) Frobenius at v}.
+
+\textbf{Remark.} If $L/F/K$ with $L/K$ abelian, then $\sigma_{L/K}|_{F} = \sigma_{F/K}$, by definition.
+
+\textbf{Example.} Take $L = \Q(\zeta_n), K= \Q, n > 2$. We have $(\Z/n\Z)^\times \xrightarrow[\lambda]{\sim} \Gal(L/\Q)$, given by
+\[\lambda(a \mod n):\zeta_n \mapsto \zeta_n^a\]
+We now claim $\sigma_p = \sigma_{L/\Q, p} = \lambda(p)$ if $p \nmid n$.
+
+Indeed, $\sigma_p$ is characterised by, the following property: for all $v|p$, $\sigma_p$ induces $(x\mapsto x^p)$ on the residue field $\Z[\zeta_n]/\p_v$, whereas $\lambda(p)$ induces $(x\mapsto x^p)$ on $\Z[\zeta_n]/(p)$.
+
+\textbf{Remarks.}
+\begin{enumerate}
+  \item These elements $\sigma_p$ generate $\Gal(L/\Q)$, since every integer prime to $n$ is a product of $p\nmid n$. This gives with some thought another proof that $\Gal(L/\Q)\cong (\Z/n\Z)^\times$.
+  \item If $\sigma: L \injection \C$ is any embedding, then $\overline{\sigma(\zeta_n)} = \sigma(\zeta_n^{-1})$. So $\lambda(-1)$ is complex conjugation for any embedding.
+\end{enumerate}
+We will now specialise to the case where $n=q$ is a prime $>2$. Then $\Gal(L/\Q) \cong (\Z/q\Z)^\times$, cyclic of order $q-1$. So we have a unique index 2 subgroup $H$, the squares.
+
+Let $K = L^H$ be a quadratic extension of $\Q$. Every $p \neq q$ is unramified in $L$, hence also in $K$. So $K = \Q(\sqrt{\pm q})$, and as $2$ is unramified we must have $K = \Q(\sqrt{q^\ast})$, where $q^{\ast} = \begin{cases} q & q \equiv 1 \mod 4\\ -q& q \equiv 3 \mod 4 \end{cases}$. Note that $d_K = q^\ast$.
+
+Now let $p \neq q$ be an odd prime. Then $\sigma_{K/\Q, p} = 1 \iff \sigma_{L/\Q, p} \in H \iff \legendre{p}{q} = 1$.
+
+But $\sigma_{K/\Q, p} = 1 \iff p$ splits in $K$ which is equivalent to saying that $\legendre{q^\ast}{p} = 1$, and so:
+\[\legendre{p}{q} = \legendre{q^\ast}{p}\]
+Combining this with $\legendre{-1}{p} = (-1)^{(p-1)/2}$ gives quadratic reciprocity.
+
+In algebraic number theory terms, quadratic reciprocity says that the splitting of $p$ in $K/\Q$ depends only on the congruence class of $p$ mod something. Class field theory tells us that a similar thing holds for any abelian extension of number fields. There is a law describing the decomposition of primes in an abelian extension which is just a congruence condition.
+
+$\llbracket$ Apparently my numbering is off compared to the lecturer - I can't work out where this happened, so we're skipping section numbers 4 and 5$\rrbracket$
+\addtocounter{section}{2}
+\section{Ideles and Adeles}
+To study congruences mod $p^n$, Hensel introduced $\Z, \Q_p, \Q \injection \Q_p$. For congruences to arbitrary moduli or to study ``local-global'' problems in general, it would be nice to simultaneously embed $\Q \injection \Q_p$ for all $p \leq \infty$. The first guess for how to do this would be to embed into $\prod_{p \leq \infty}\Q_p$, but this product is not nice.
+
+Better is to notice that, if $x \in \Q$, then the image of $x$ lies in $\Z_p$ for all but finitely many $p$. So we introduce a small product with better properties. We introduce two objects:
+\begin{itemize}
+  \item $\A_k$, the ring of adeles of $K$ (or valuation vectors).
+  \item $J_k$, the group of ideles of $K$.
+\end{itemize}
+These are topological rings/groups respectively, and are highly disconnected.
+
+\textbf{Definition of $\A_k$.} Let $K$ be a number field, and $V_K = V_{K,\infty} \sqcup V_{K,f}$. It's completion is $K_v$ and if $v \in V_{K,f}$ then $O_v \subset K_v$.
+
+We then define:
+\begin{align*}
+  \A_K &\coloneqq \{(x_v) \in \prod_{v \in V_K}K_v : \text{for all but finitely many $v$, $x_v \in O_v$}\}\\
+  &= \bigcup_{\text{finite } S \subset V_{K,f}}U_{K,S} \subseteq \prod_{v \in V_K}K_v
+\end{align*}
+where
+\[U_{K,S} = \prod_{v \in V_{K,\infty}}K_v \times \prod_{v \in S} K_v \times \prod_{v \in V_{K,f}\setminus S}O_v\]
+We will sometimes refer to $K_{\infty}  =\prod_{v \in V_{K,\infty}}K_v = K\otimes_\Q \R$.
+
+$\A_K$ is a ring. We then put a topology on $\A_K$. IOt will be generated by al $V \subset U_{K,S}$ open as $S$ varies, where $U_{K,S}$ has the product topology.
+
+This means in particular, every $U_{K,S} \subset \A_K$ is open.
+\[U_{K, \emptyset} = K_\infty \times \prod_{v \in V_{K,f}}O_v\]
+is open and has the product topology.
+
+For example, take $K=\Q$. Then $\A_\Q = \R \times \{(x_p) \in \prod_{\p < \infty}\Q_p:\text{for all but finitely many $p$, $x_p \in \Z_p$}\}$.
+
+So, letting $m = \prod_p$(denominator $p^i$ of $x_p$)$\in \Z_{>0}$, we see that $m\cdot (x_p)_p \in \prod_{p <\infty} \Z_p = \hat{\Z}$.
+
+I.e., $(x_p)_p \in \frac{1}{m}\hat{\Z} \subset \prod_p \Q_p$.
+
+Let $\hat{\Q} = \bigcup_{m\geq 1}\frac{1}{m}\hat{\Z} \cong \hat{\Z}\otimes_\Z \Q$. Then $\A_\Q = \R \times \hat{\Q}$.
+\begin{proposition}
+  $\A_K$ is Hausdorff and locally compact (i.e. every point has a compact neighbourhood).
+\end{proposition}
+\begin{proof}
+  $U_{K, \emptyset} = K_\infty \times \prod_{v\nmid\infty}O_v \cong K_\infty \times \hat{O_K}$ is Haudorff and locally compact (as $K_\infty$ is locally compact and $\hat{O_K}$ is compact), and is an open neighbourhood of 0. Then by translation, $\A_K$ is Hausdorff and locally compact.
+\end{proof}
+We have the diagonal embedding $K \injection \A_K$.
+\begin{proposition}
+  $K$ is discrete in $\A_K$.
+\end{proposition}
+\begin{proof}
+  We need to find a neighbourhood of $0$ containing only $0 \in K$. Let
+  \[U = \{x = (x_v) \in \A_K : \forall v \in V_{K,f} |x_v|_v\leq 1, \forall v \in V_{K, \infty} |x_v|_v <1\}\]
+  Then $U \subseteq \A_K$ is open. If $x \in K \cap U$, then the first condition implies $x \in O_K$, and the second implies $|N_{K/\Q}(x)| < 1$, so $x=0$. Hence $K$ is discrete.
+\end{proof}
+\textbf{Remark.} Intuitively, this must be true - if not, we would have a place-independent topology on $K$.
 \end{document}
