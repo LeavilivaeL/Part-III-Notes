@@ -161,7 +161,7 @@ Note - this is contained in van der Waerden's theorem - we prove it here for cla
 
   Inside any interval of length $2n$ we have $r-1$ colour-focused APs of length $2$ (given by the choice of $n$) together with their focus (since we took $2n$).
 
-  There are $k^{2n}$ ways of $k$-colouring a block, and therefore some two blocks are identically coloured - say $B_s$ and $B_{s+t}}$.
+  There are $k^{2n}$ ways of $k$-colouring a block, and therefore some two blocks are identically coloured - say $B_s$ and $B_{s+t}$.
 
   In $B_s$ we have $r-1$ colour focused APs of length 2 - say $\{a_1, a_1+d_!\}, \ldots, \{a_{r-1}, a_{r-1}+d_{r-1}$ focused at $f$. But now the APs $\{a_1, a_1+d_1+2nf\}, \ldots, \{a_{r-1}, a_{r-1}+d_{r-1}+2nf\}$ are colour-focused at $f+4nt$, and $\{f, f+2nt\}$ is also focused there. Hence we have $r$ colour-focused APs of length 2.
 \end{proof}
@@ -264,7 +264,7 @@ For a line $L$ in $[m]^n$ write $L^-$ for its first point and $L^+$ for its last
 
   So, by choice of $n'$, we have a line $L$ in $[m]^{n'}$ such that, for all $a \in [m]^n$ and $b,b' \in L\setminus\{L^+\}$ we have $c(a,b) = c(a,b') = c'(a)$, say.
 
-  By definition of $n$, $c'$ has $r-1$ colour focused lines, say $L_1, \ldots, L_{r-1}$, with active coordinate sets $J_1, \ldots, J_{r-1}$, focused at $f$. Let $L$ have active coord set $I$. Then the lines $L_1', \ldots, L_{r-1}^'$ where $L_i'$ starts at $L_i', L^-$ and has active coord set $J_i \cup I$ are colour focused at $(f, L^+)$, and also the line starting at $(f, L^-)$ with active coords set $I$, are a set of $r$ colour focused lines at $(f, L^+)$. Hence we are done.
+  By definition of $n$, $c'$ has $r-1$ colour focused lines, say $L_1, \ldots, L_{r-1}$, with active coordinate sets $J_1, \ldots, J_{r-1}$, focused at $f$. Let $L$ have active coord set $I$. Then the lines $L_1', \ldots, L_{r-1}'$ where $L_i'$ starts at $L_i', L^-$ and has active coord set $J_i \cup I$ are colour focused at $(f, L^+)$, and also the line starting at $(f, L^-)$ with active coords set $I$, are a set of $r$ colour focused lines at $(f, L^+)$. Hence we are done.
 \end{proof}
 This is essentially the van der Waerden proof, just slightly rephrased.
 
@@ -286,5 +286,251 @@ Let $S$ be a finite subset of $\N^d$. A \emph{homothetic copy} of $S$ is any set
 \end{proof}
 There is an alternate proof via product arguments and focusing.
 
+\section{Partition Regular Equations}
+\subsection{Rado's Theorem}
+Schur says whenever $\N$ is finitely coloured, there is a monochromatic $x,y,z$ with $x+y=z$. Strengthened WDW says whenever $\N$ is finitely coloured, there is a monochromatic $x_1, x_2, y_1, y_2, \ldots, y_m$ such that $y_1=x_1+x_2, y_2=x_1+2x_2, \ldots, y_m = x_1+mx_2$.
 
+Let $A$ be an $m\times n$ matrix with rational entries. We say $A$ is \emph{partition regular} if whenever $\N$ is finitely coloured, there is a monochromatic $x \in \N^n$ with $Ax=0$.
+
+For example, Schur states that $\begin{pmatrix} 1 & 1 & -1 \end{pmatrix}$ is partition regular.
+
+Strengthened VDW says $\begin{pmatrix} 1 & 1 & -1 & 0 & 0 &\cdots & 0\\ 1 & 2 & 0 & -1&0 & \cdots & 0\\ 1 & 3 & 0 & 0 & -1 & \cdots & 0 \\  &  & \vdots & & & & & \\ 1 & m & 0 & 0& 0& \cdots & -1\end{pmatrix}$ is partition regular.
+
+For more examples, we can see obviously that $\begin{pmatrix} 2 & 3 & -5 \end{pmatrix}$ is partition regular - take $x = y = z$. What about something like $\begin{pmatrix} 2 & 3 & -6 \end{pmatrix}$?
+
+\textbf{Remarks.}
+\begin{enumerate}
+  \item If $A$ is partition regular, then so is $\lambda A$ for any $\lambda \in \Q$. So we can assume that all entries of $A$ are integers.
+  \item We can also say `the system of equations $Ax = 0$ is partition regular.'
+  \item Not all matrices are partition regular: $\begin{pmatrix} 1 & -2 \end{pmatrix}$ is not partition regular. Indeed, if it were PR, then for any colouring there is $x$ such that $x$ and $2x$ are the same colour. But we can 2-colour $\N$ by the parity of the highest power of $2$ dividing $x$.
+\end{enumerate}
+Let $A$ be an $m \times n$ rational matrix with columns $C^{(1)}, \ldots, C^{(n)} \in \Q^m$. We say $A$ has the \emph{columns property} if there exists a partition $B_1 \cup \ldots \cup B_r$ of $[m]$ such that
+\begin{itemize}
+  \item $\sum_{i \in B_1}C^{(i)} = 0$
+  \item $\sum_{i \in B_s}C^{(i)} \in \angle{C^{(i)}:i \in B_1 \cup\ldots \cup B_{s-1}}$ for $s >1$
+\end{itemize}
+For example:
+\begin{enumerate}
+  \item $\begin{pmatrix} 1 & 1 & -1 \end{pmatrix}$ has the columns property: $B_1 = \{1,3\}, B_2 = \{2\}$.
+  \item $\begin{pmatrix} 2 & 3 & -5\end{pmatrix}$ has the columns property: $B_1 = \{1,2,3\}$.
+  \item $\begin{pmatrix} 1 & -2 \end{pmatrix}$ does not have the columns property. In fact, $\begin{pmatrix} 1 & -\lambda \end{pmatrix}$ only has the columns property when $\lambda = 1$, and is also partition regular if and only if $\lambda = 1$.
+  \item $\begin{pmatrix} 1 & 1 & -1 & 0 & 0 &\cdots & 0\\ 1 & 2 & 0 & -1&0 & \cdots & 0\\ 1 & 3 & 0 & 0 & -1 & \cdots & 0 \\  &  & \vdots & & & & & \\ 1 & m & 0 & 0& 0& \cdots & -1\end{pmatrix}$ has the columns property: take $B_1 = \{1,3,4,\ldots, m\}$, and $B_2 = \{2\}$.
+\end{enumerate}
+The aim of this chapter is to prove Rado's theorem, that partition regularity is equivalent to the columns property. This gives a finite check of partition regularity. However, neither direction is immediately obvious - this is quite an unusual thing in combinatorics.
+
+For clarity, we will start with Rado for a single equation, so that $m = 1$. Note that here the columns property is equivalent to some non-empty subset of the non-zero entries summing to 0, or all of them being zero.
+
+So our task is, given non-zero $a_1, \ldots, a_n \in \Q$, the equation $a_1x_2 +\ldots + a_nx_n = 0$ is partition regular if and only if $\sum_{I} a_i = 0$ for some nonempty $I \subset [n]$. Note that neither direction is obvious. We expect the right to left direction to be harder.
+
+Fix a prime $p$. Write $d(x)$ for the last non-zero digit of $x$ in base $p$. I.e., if $x = d_rp^r + d_{r-1}p^{r-1} + \ldots + d_1p^1 + d_0$, then $L(x) = \min\{i:d_i \neq 0\}$, and $d(x) = d_{L(x)}$. This gives a $(p-1)$-colouring of $\N$.
+\begin{proposition}
+  Let $a_1, \ldots, a_n \in \Q\setminus \{0\}$, such that $(a_1 a_2 \ldots a_n)$ is partition regular. Then $\sum_{i \in I}a_i = 0$ for some $\emptyset \neq I \subset [n]$.
+\end{proposition}
+\begin{proof}
+  Multiplying up, we may assume $a_i \in \Z$. Fix a large prime $p$, say $> \sum |a_i|$, and a $(p-1)$-colouring of $\N$ as above. We have a monochromatic $x_1, \ldots, x_n, \sum a_ix_i$ all with colour $d$. Let $L = \min_i \{L(x_i)\}$, and put $I = \{i : L(x_i) = L\}$.
+
+  Then we have $\sum_{i \in I} a_i d =\equiv 0 \mod p$, and so $\sum_{i \in I}a_i \equiv 0 \mod p$, hence $\sum_{i \in I}a_i = 0$ by the choice of $p$.
+\end{proof}
+\textbf{Remarks.}
+\begin{enumerate}
+  \item Or, for every prime $p$, we get $I_p \subset[n]$ such that $\sum_{i \in I_p}a_i \equiv 0 \mod p$. Hence some $I$ occurs infinitely often, and then $\sum_{i \in I} a_i = 0$.
+  \item We looked at rightmost digits. We can also do leftmost digits.
+  \item Apart from these, no other proofs are known!
+\end{enumerate}
+\begin{lemma}
+  Let $\lambda \in \Q$. Whenever the naturals are finitely coloured, there are monochromatic $x,y,z$ with $x+\lambda y = z$.
+\end{lemma}
+\begin{proof}
+  Trivial if $\lambda = 0$, and if $\lambda < 0$ rewrite as $z - \lambda y = x$, so wlog we can assume $\lambda > 0$. Write $\lambda = r/s$ for some $r, s \in \N$.
+
+  Task: for every $k$ there exists some $n$ such that whenever $[n]$ is $k$-coloured, there exist monochromatic $x,y,z$ with $x+(r/s)y = z$.
+
+  We do this by induction on $k$ - whenever $k = 1$ this is easy ($n=\max(s,r+1), x=1, y=s, z=r+1$). Now, given $n$ suitable for $k-1$, we'll show that $sW(nr+1,k)$ is suitable for $k$.
+
+  Indeed, given $k$-colouring of $[sW(nr+1, k)]$, inside each $[W(nr+1, k)]$ there is a monochromatic AP of length $nr+1$, say $a, a+d, a+2d, \ldots, a+(nr)d$ all red.
+
+  If any $isd, 1\leq i \leq n$ is red, then we are done - take $x= a, y=isd, z=a+ird$. So wlog we may assume that $sd, 2sd, \ldots, 2sd$ is $k-1$-coloured without reds, and so we're done by induction, from our choice of $n$.
+\end{proof}
+\textbf{Remarks.} This is very similar to the proof of strengthened VDW. For general $\lambda$, this seems not to follow directly from Ramsey's theorem, unlike the case $\lambda = 1$.
+
+\begin{theorem}[Rado for a single equation]
+  Let $a_1, \ldots, a_n \in \Q \setminus \{0\}$. Then $(a_1 \ldots a_n)$ is partition regular if and only if $\sum_{i \in I}a_i = 0$ for some $\emptyset \neq I \subset [n]$.
+\end{theorem}
+\begin{proof}
+  The forwards direction is done in proposition \textbf{4.1}.
+
+  For the other direction, fix $i_0 \in I$. For suitable $x,y,z$, we'll put $x_i = x$ if $i=i_0$, $z$ if $i \in I \setminus \{i_0\}$, and $y$ if $i \notin I$.
+
+  So we need $x,y,z$ monochromatic and:
+  \[a_{i_0}x + \left(\sum_{i \in I\setminus \{i_0\}} a_i\right) z +\left(\sum_{i \notin I} a_i\right)y = 0\]
+  i.e. $a_{i_0}x - a_{i_0} z + \left(\sum_{i \notin I}a_i\right) y =0$. Cancelling the $a_{i_0}$, we are done by the previous lemma.
+\end{proof}
+\textbf{Rado's Boundedness Conjecture}
+Suppose an $m\times n$ matrix $A$ is not partition regular, so for some $k$, there is a bad $k$-colouring of $\N$. Can we bound $k$, in terms of $m$ and $n$? In other words, is there a function $k = k(m,n)$ such that, for any $m \times n$ matrix $A$, we have partition regularity for $k(m,n)$ colours implies partition regularity for any number of colours?
+
+Fox and Kleitman (2006) showed that 24 colours suffice for the case of $1 \times 3$ matrices. This is still open for every other matrix size.
+
+\begin{proposition}
+  Let $A$ be an $m \times n$ rational matrix that is partition regular. Then $A$ has the columns property.
+\end{proposition}
+\begin{proof}
+  WLOG all entries are integers. Let the columns of $A$ be $C^{(1)}, \ldots, C^{(n)} \in \Z^m$.
+
+  Given a prime $p$, colour $\N$ by giving $x \in \N$ the colour $d(x)$ (the last nonzero digit of $x$ in base $p$). We have a monochromatic $x_1, \ldots, x_n \in \N$ with $Ax = 0$ - say all $x_i$ have colour $d$.
+
+  Partition $[n]$ as $B_1 \cup \ldots \cup B_r$, where $i,j \in B_s \iff L(x_i) = L(x_j)$. Then $i \in B_s, j \in B_t \iff L(x_i) < L(x_j)$ for any $s < t$.
+
+  Infinitely many $p$ give the same partition, say all $p \in P$.
+
+  Fix $p \in P$, and consider the sum $\sum x_i C^{(i)} = 0$, calculated in base $p$. We have:
+  \begin{itemize}
+    \item $\sum_{i \in B_1} dC^{(i)} \equiv 0 \mod p$.
+    \item For each $s \geq 2, p^t \sum_{i \in B_s} dC^{(i)} + \sum_{i \in B_1 \cup \ldots \cup B_{s-1}} x_i C^{(i)} \equiv 0 \mod p^{t+1}$.
+  \end{itemize}
+  From the first we get $\sum_{i \in B_1}C^{(i)} \equiv 0 \mod p$, since $d$ is invertible. Since this holds for infinitely many $p$, $\sum_{i \in B_1}C^{(i)} = 0$.
+
+  From the second, for each $s \geq 2$, $p^t \sum_{i \in B_s} C^{(i)} + \sum_{i \in B_1 \cup \ldots \cup B_{s-1}} d^{-1} x_i C^{(i)} \equiv 0 \mod p^{t+1}$. We now claim that $\sum_{i \in B_s}C^{(i)} \in \angle{C^{(i)}: i \in B_1\cup \ldots \cup B_{s-1}}$.
+
+  Indeed, suppose not. Then there's a vector $U \in \Z^m$ with $U \cdot C^{(i)} = 0$ for every $i \in B_1 \cup \ldots \cup B_{s-1}$, $U \cdot \sum_{i \in B_s}C^{(i)} \neq 0$. Dot with $U$: then we have
+  \[p^t U \cdot \sum_{i \in B_s}C^{(i)} + 0 \equiv 0 \mod p^{t+1}\]
+  So $U \cdot \sum_{i \in B_s}C^{(i)} \equiv 0 \mod p$. But this holds for all $p \in P$, so $U \cdot \sum_{i \in B_s}C^{(i)} = 0$ - contradiction.
+\end{proof}
+Let $m,p,c \in \N$. A subset $S \subset \N$ is a called  an $(m,p,c)$-set if there exist naturals $x_1, \ldots, x_n$ (``the generators'') such that
+\[S = \{\sum_{i=1}^m \lambda_i x_i: \exists j\text{ with }\lambda_i = 0 \forall i < j, \lambda_j =c, \lambda_i \in [-p,p] \forall i >j\}\]
+So $S$ consists of all $cx_1 + \lambda_2 x_2 + \ldots + \lambda_m x_m$ for $\lambda_i \in [-p,p]$, all $cx_2 + \lambda_3 x_3 + \ldots + \lambda_m x_m$, and so on, down to elements of the form $cx_{m-1}+\lambda_m x_m$, and $cx_m$. These subsets are often called the rows of $S$.
+
+E.g. a $(2,p,1)$-set is $\{x_1-px_2, x_1-(p-1)x_2, \ldots, x_1+px_2, x_2\}$. I.e., an AP of length $2p+1$, together with its common difference.
+
+A $(2,p,3)$-set is $\{3x_1-px_2,\ldots, 3x_1+px_2, 3x_2\}$. I.e., an AP of length $2p+1$ with middle term a multiple of 3, together with thrice its common difference.
+
+\begin{theorem}
+  Let $m,p,c \in \N$. Whenever $\N$ is finitely coloured, there is a monochromatic $(m,p,c)$-set.
+\end{theorem}
+\begin{proof}
+  Fix $k$, a number of colours.
+
+  We then claim for all $M$ there is $n$ such that, whenever $[n]$ is $k$-coloured, there is an $(m,p,c)$-set with each row monochromatic.
+
+  Then we are done - put $M = km$ and observe that some $m$ rows must be the same colour, yielding a monochromatic $(m,p,c)$-set.
+
+  The case $M = 1$ is trivial.
+
+  Now, given $M > 1$, consider a $k$-colouring of $[n]$ where $n$ is large. Inside $\{c, 2c, 3c, \ldots, \floor{n/c}c\}$, we have an AP of length $2d+1$ ($d$ large). Say that AP is $A = \{cx_1-da, cx_2-(d-1)a, \ldots, cx_1, \ldots, cx_1+da\}$.
+
+  Let $t = \floor{\frac{d}{Mp}}$, and consider $\{a, 2a, \ldots, ta\}$. If $t$ is large enough, this set contains (induction hypothesis) an $(m-1, p, c)$-set with all rows monochromatic, say on generators $x_2, \ldots, x_m$.
+
+  Then $cx_1 + \lambda_2 x_2 + \ldots +\lambda_m x_m \in A$ for all $\lambda_i$ with $|\lambda_i| \leq p$, and so the $(M,p,c)$-set on generators $x_1, \ldots, x_m$ has all rows mono.
+\end{proof}
+The special case $(m,1,1)$ immediately gives the following: for $x_1, \ldots, x_m$ write $FS(x_1, \ldots, x_m)$ for $\{\sum_{i \in I}x_i :\emptyset \neq I \subset [m]\}$. Then:
+\begin{corollary}
+  For all $m$, whenever $\N$ is finitely coloured, there is $x_1, \ldots, x_m$ such that $FS(x_1, \ldots, x_m)$ is monochromatic.
+\end{corollary}
+Note that the case $m=2$ is Schur's theorem. Also, whenever $\N$ if finitely coloured there are $x_1, \ldots, x_m$ such that the set of all products of the $x_i$ is monochromatic, by restricting to $\{2^n : n \in \N\}$, which turns products into sums. How about both simultaneously? This is unknown, even in the case $m=2$! It is very hard, because there are no non-trivial ring homomorphisms $\Z \injection \Z$ - addition and multiplication don't mesh nicely. In fact, the case of just wanting $\{x+y, xy\}$ the same colour (apart from $x=y=2$) was only proven by Morera in 2017.
+
+\begin{proposition}
+  Let matrix $A$ have the columns property. Then there exist $m,p,c \in \N$ such that every $(m,p,c)$-set contains a solution of $Ax = 0$.
+\end{proposition}
+\begin{proof}
+  Let the columns of $A$ be $C^{(i)}$ ($1\leq i\leq n$). Then we have a partition $B_1 \cup \ldots \cup B_r$ of $[n]$ such that, for all $s$, $\sum_{i \in B_s}C^{(i)} \in \angle{C^{(i)} : i \in B_1\cup\ldots \cup B_{s-1}}$.
+
+  Say $\sum_{i\in B_s}C^{(i)} = \sum_{i \in B_1\cup\ldots\cup B_{s-1}} q_{is}C^{(i)}$ for some $q_{is} \in \Q$.
+
+  Then for all $s$, we have $\sum_{i=1}^n d_{is}C^{(i)} = 0$, where $d_{is}$ is 0 if $i \notin B_1 \cup \ldots \cup B_s$, $1$ if $i \in B_s$, and $-q_{is}$ if $i \in B_1 \cup \ldots \cup B_{s-1}$.
+
+  Given $x_1, \ldots, x_r \in \N$, define $y_1, \ldots, y_n$ by $y_i = \sum_{s} d_{is}x_s$.
+
+  Then $Ay = \sum_i C^{i} \sum_s d_{is}x_s = \sum_s x_s \sum_i d_{is}C^{(i)} = 0$.
+
+  So we are done: take $m = r$, $c = $ LCM of the denominators of the $q_{is}$, and $p = c \times$ max numerator of the $q_{is}$.
+\end{proof}
+Putting all these together, we have:
+\begin{theorem}[Rado]
+  Let $A$ be a matrix with entries in $\Q$. Then $A$ is partition regular iff $A$ has the columns property.
+\end{theorem}
+\begin{proof}
+  For the forwards direction, use $\textbf{4.4}$. For the reverse direction, use $\textbf{4.5}$ and $\textbf{4.7}$.
+\end{proof}
+\textbf{Remarks.} Having proved Rado, results like VDW, Schur, finite sums etc. are trivial columns property checks. From the proof of Rado, we have, if a matrix $A$ is partition regular for each ``last digit base $p$'' colourings, then $A$ is partition regular for all colourings. No direct (i.e. not via Rado) proof of this statement is known.
+\begin{theorem}[Consistency Theorem]
+  Let $A$ and $B$ be partition regular matrices. Then $\begin{pmatrix} A & 0 \\ 0 & B\end{pmatrix}$ is partition regular.
+
+  In other words, if we can always solve $Ax=0$ in one colour class, and also $By=0$ in one colour class, then we can solve them both in the same colour class.
+\end{theorem}
+\begin{proof}
+  Trivial, by the columns property.
+\end{proof}
+This is highly non-obvious from the definition of partition regularity. This can be proven directly, not via Rado.
+\begin{theorem}
+  Whenever $\N$ is finitely coloured, there is a colour class containing a solution to every partition regular system of equations.
+\end{theorem}
+\begin{proof}
+  Suppose not. Then we have a partition $D_1 \cup \ldots D_k$ of the naturals such that, for each $i$, there is a partition regular matrix $A_i$ with $D_i$ containing no solution to $A_i x = 0$.
+
+  Now let $A = \diag(A_1, \ldots, A_k)$. Then $A$ is partition regular by the consistency theorem, but no $D_i$ contains a solution. $\contr$
+\end{proof}
+\subsection{Rado's Conjecture (1933)}
+We say $D \subset \N$ is partition regular if $D$ contains a solution to every PR system of equations. So \textbf{4.10} says that, whenever $\N = D_1 \cup \ldots D_k$, then some $D_i$ is partition regular.  Now $\N$ is trivially partition regular, so Rado asked: if $D$ is partition regular, and $D = D_1 \cup \ldots D_k$, must some $D_i$ be partition regular?
+
+This was proved by Deuber (1975). He introduced $(m,p,c)$-sets and proved a fact we know: a set $D$ is partition regular if and only if, for every $m,p,c$, $D$ contains an $(m,p,c)$-set. He showed that, for every $m,p,c,k$, there exist $n,q,d$, such that, whenever we $k$ colour an $(n,q,d)$-set, there exists a monochromatic $(m,p,c)$-set.
+
+This is like our proof of \textbf{4.5}, but replacing the usage of Van der Waerden by extended Hales-Jewett.
+
+\section{Ultrafilters}
+For $x_1, x_2, \ldots$ in $\N$, we write $FS(x_1, x_2, \ldots) = \{\sum_{i \in I} x_i : \emptyset \neq I \subset \N \text{ finite}\}$.
+
+Our aim for this section is Hindman's Theorem, which says that, whenever $\N$ is finitely coloured, there are $x_1, x_2, \ldots$ with $FS(x_1, x_2, \ldots)$ monochromatic. Note that this isn't trivially false, since there are uncountably many such sets, so the trick we used to ruin infinite arithmetic progressions doesn't work.
+
+The idea of the definitions is that a filter is a notion of `large' for subsets of $\N$; an ultrafilter is a more refined such notion.
+
+A \emph{filter} is a non-empty family $\mathcal{F}\subset \P(\N)$ such that:
+\begin{enumerate}
+  \item $\emptyset \notin \mathcal{F}$
+  \item If $A \in \mathcal{F}$ and $A \subseteq B$, then $B \in \mathcal{F}$.
+  \item If $A \in \mathcal{F}$ and $B \in \mathcal{F}$, then $A \cap B \in \mathcal{F}$.
+\end{enumerate}
+\textbf{Examples.}
+\begin{enumerate}
+  \item $\{A \subset \N: 1 \in A\}$.
+  \item $\{A \subset \N: 1,2 \in A\}$.
+  \item \textsc{Not} $\{A \subset \N: A \text{ infinite}\}$.
+  \item $\{A \subset \N: A^c \text{ finite}\}$ - the \emph{cofinite} filter.
+  \item $\{A \subset \N: 2\N \setminus A \text{ is finite}\}$.
+\end{enumerate}
+An \emph{ultrafilter} is a maximal filter.
+\textbf{Examples.} Consider the previous examples of filters. Are they ultrafilters?
+\begin{enumerate}
+  \item Yes. (and for each $x \in \N$, we have $\{A \subset \N: x\in A\}$, the \emph{principal ultrafilter at x}, written $\tilde{x}$).
+  \item No. It's contained in $\tilde{1}$ (and in $\tilde{2}$).
+  \item No. It's not even a filter.
+  \item No. It's contained in 5.
+  \item No. It's contained in $\{A \subset \N: 4\N \setminus A \text{ is finite}\}$.
+\end{enumerate}
+\begin{proposition}
+\end{proposition}
+\begin{proof}
+  One direction is trivial - we cannot add $A$ to $\mathcal{F}$ if $\mathcal{F}$ already contains $A$ or $A^c$.
+
+  For the other direction, suppose $\mathcal{F}$ is maximal and doesn't contain $A$.
+
+  We must have some $B \in \mathcal{F}$ with $B \cap A = \emptyset$, since otherwise $\{C \subset \N: C\supset A \cap B \text{ for some }B \in \mathcal{F}\}$ is a filter that extends $\mathcal{F}$.
+
+  But then $B \subset A^c \implies A^c \in \mathcal{F}$.
+\end{proof}
+\textbf{Remark.} We thus also have, for an ultrafilter $\mathcal{U}$, that if $A \in \mathcal{U}$ and $A = B \cup C$ then $B \in \mathcal{U}$ or $C \in \mathcal{U}$.
+\begin{theorem}
+  Every filter is contained in an ultrafilter.
+\end{theorem}
+\begin{proof}
+  For a filter $\mathcal{F}_0$, we seek a maximal element of $X = \{\mathcal{F}: \mathcal{F} \supset \mathcal{F}_0\}$. By Zorn, it is enough to check that every non-empty chain in $X$ has an upper bound in $X$. Given such a chain $(\mathcal{F}_i)_i$, set $\mathcal{F} = \bigcup_i \mathcal{F}_i$. Then we need that $\mathcal{F}$ is a filter (clearly $\mathcal{F} \supset \mathcal{F}_0$).
+
+  We check the axioms:
+  \begin{enumerate}
+    \item $\emptyset \notin \mathcal{F}$, as $\emptyset \notin \mathcal{F}_i$ for each $i$.
+    \item Given $A \in \mathcal{F}, B \supset A$, we have $A \in \mathcal{F}_i$ for some $i$, so $B \in \mathcal{F}_i \subset \mathcal{F}$.
+    \item Given $A, B \in \mathcal{F}$, we have $A \in \mathcal{F}_i, B \in \mathcal{F}$, where without loss of generality $\mathcal{F}_i \supset \mathcal{F}_j$. So $A \cap B \in \mathcal{F}_j$.
+  \end{enumerate}
+\end{proof}
+\textbf{Remarks.} There must then be a non-principal ultrafilter - just take one extending the cofinite filter. Conversely, if $\mathcal{U}$ is non-principal then it must extend the cofinite filter. Indeed, suppose not. Then there is some finite $A \in \mathcal{U}$. But then by the previous remark after \textbf{5.1}, we can break $A$ apart into $|A|$ singletons, one of which must be in $\mathcal{U}$.
+
+Some form of choice/Zorn is necessary to exhibit a non-principal ultrafilter, and so we can't do so explicitly. If you ever think you have, you're wrong!
 \end{document}

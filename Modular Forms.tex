@@ -829,8 +829,188 @@ So if $f, g$ are invariant under the weight $k$ action of $\Gamma(1)$, we have a
   \item If $f:\H \to \C$ is invariant under the weight $k$ action of $\Gamma(1)$, and $\alpha \in GL_2(\Q)^+$, then $f|_k(\alpha)$ is invariant under the weight $k$ action of the group $\alpha^{-1}\Gamma(1)\alpha \cap \Gamma(1)$, which has finite index in $\Gamma(1)$.
 \end{enumerate}
 \begin{proposition}
-  Let $f, g:\H \to \C$ be smooth function which are invariant under the weight $k$ action of $\Gamma(1)$. Then we have:
+  Let $f, g:\H \to \C$ be smooth functions which are invariant under the weight $k$ action of $\Gamma(1)$. Then we have:
   \[\angle{f|_k[\alpha], g|_k[\alpha]} = \det(\alpha)^{k-2}\angle{f,g}\]
   whenever both sides of this equality are defined.
 \end{proposition}
+\begin{proof}
+  \begin{align*}
+    \angle{f|_k[\alpha], g|_k[\alpha]} &= \int_{\alpha^{-1}\Gamma(1)\alpha \cap \Gamma(1)\diagdown \H}f(\alpha\tau)j(\alpha,\tau)^{-k}\det(\alpha)^{k-1}\overline{g(\alpha\tau)j(\alpha,\tau)^{-k}}\det(\alpha)^{k-1}y^k \frac{dxdy}{y^2}\\
+    &=\int_{\alpha^{-1}\Gamma(1)\alpha \cap \Gamma(1)\diagdown \H} f(\alpha\tau)g(\alpha\tau)|j(\alpha,\tau)|^{-2k}\det(\alpha)^{2k-2}y^k\frac{dxdy}{y^2}\\
+  \end{align*}
+  We have a bijection $\alpha\Gamma(1)\alpha^{-1}\cap \Gamma(1)\diagdown \H \xrightarrow{\alpha^{-1}} \Gamma(1)\cap\alpha^{-1}\Gamma(1)\alpha \diagdown \H$, as if $\gamma \in \alpha\Gamma(1)\alpha^{-1}\cap \Gamma(1)$ and $\tau \in \H$, then $\alpha^{-1}(\gamma\cdot \tau) = (\alpha^{-1}\gamma \alpha)\cdot(\alpha^{-1}\tau)$.
+
+  So we may make a change of variables in the integral to get:
+  \begin{align*}
+    &=\int_{\alpha\Gamma(1)\alpha^{-1} \cap \Gamma(1)\diagdown \H}f(\tau)\overline{g(\tau)}|j(\alpha,\alpha^{-1}\tau)|^{-2k}\det(\alpha)^{2k-2}\Im(\alpha^{-1}\tau)^k \frac{dxdy}{y^2}\\
+    &=\int_{\alpha\Gamma(1)\alpha^{-1} \cap \Gamma(1)\diagdown \H}f(\tau)\overline{g(\tau)}|j(\alpha,\alpha^{-1}\tau)|^{-2k}\det(\alpha)^{2k-2} \frac{\det(\alpha)^{-k}\Im(\tau)}{|j(\alpha^{-1}, \tau)|^{2k}}\frac{dxdy}{y^2}
+  \end{align*}
+  Note if $\alpha, \beta \in GL_2(\R)^+$, then $j(\alpha\beta, \tau) = j(\beta,\tau)j(\alpha,\beta\tau)$.
+  \begin{align*}
+    &= \int_{\alpha\Gamma(1)\alpha^{-1} \cap \Gamma(1)\diagdown \H}f(\tau)\overline{g(\tau)}\det(\alpha)^{k-2}\Im(\tau)\frac{dxdy}{y^2}\\
+    &= \frac{\angle{f,g}\det(\alpha)^{k-2}}{[\Gamma(1):\alpha\Gamma(1)\alpha^{-1}\cap \Gamma(1)]^{-1}}
+  \end{align*}
+  The only thing left to do is to show that $[\Gamma(1):\Gamma(1)\cap\alpha^{-1}\Gamma(1)\alpha] = [\Gamma(1):\alpha\Gamma(1)\alpha^{-1}\cap\Gamma(1)]$.
+
+  This is true since there is a bijective map  $\alpha\Gamma(1)\alpha^{-1}\cap \Gamma(1)\diagdown \H \xrightarrow{\alpha^{-1}} \Gamma(1)\cap\alpha^{-1}\Gamma(1)\alpha \diagdown \H$ which pulls $\frac{dxdy}{y^2}$ to $\frac{dxdy}{y^2}$.
+
+  Hence
+  \begin{align*}
+    \int_{\Gamma(1)\diagdown \H} \frac{dxdy}{y^2} &= [\Gamma(1): \Gamma(1)\cap \alpha^{-1}\Gamma(1)\alpha] \int_{\Gamma(1)\cap \alpha^{-1}\Gamma(1)\alpha \diagdown \H}\frac{dxdy}{y^2}\\
+    &= [\Gamma(1):\Gamma(1)\cap \alpha^{-1}\Gamma(1)\alpha]^{-1}\int_{\alpha\Gamma(1)\alpha^{-1}\cap \Gamma(1)\diagdown \H}\frac{dxdy}{y^2}\\
+    &= \frac{[\Gamma(1):\Gamma(1)\cap \alpha\Gamma(1)\alpha^{-1}]}{[\Gamma(1):\Gamma(1)\cap \alpha^{-1}\Gamma(1)\alpha]}\int_{\alpha\Gamma(1)\alpha^{-1}\cap \Gamma(1)\diagdown \H}\frac{dxdy}{y^2}
+  \end{align*}
+  And since the integral is nonzero, we are done.
+\end{proof}
+\begin{proposition}
+  For all $n \in \N$, the Hecke operator $T_n$ on $S_k(\Gamma(1))$ is self-adjoint with respect to the inner product $\angle{\cdot,\cdot}$.
+\end{proposition}
+\begin{proof}
+  We need to show that, for all $f, g \in S_k(\Gamma(1))$, $\angle{T_n f,g} = \angle{f, T_n g}$. It's enough to do this for prime $n = p$.
+
+  We claim we can find matrices $x_i \in X_p$ such that $X_p = \bigsqcup_i \Gamma(1)x_i = \bigsqcup_i \Gamma(1)px_i^{-1}$.
+
+  Indeed, note that the adjugate map $\text{Adj}:X_p \to X_p$ is a bijection, as it preserves determinant. First choose representatives $a_i, b_i$ so that $X_p = \bigsqcup_i \Gamma(1)a_i = \bigsqcup_i b_i\Gamma(1)$.
+
+  Since every matrix in $X_p$ has Smith normal form $\begin{pmatrix} p & 0 \\ 0 & 1 \end{pmatrix}$, so $X_p$ consists of a single $\Gamma(1)$-double coset.
+
+  So we can choose $u_i, v_i \in \Gamma(1)$ such that $a_i a_i = b_i v_i = x_i$. Then $X_p = \bigsqcup_i \Gamma(1)x_i = \bigsqcup_i x_i \Gamma(1)$. Also $X_p = \text{Adj}(X_p) = \bigsqcup_i \gamma(1)p x_i^{-1}$.
+
+  We then compute
+  \begin{align*}
+    \angle{T_p f, g} &= \angle{\sum_i f|_k[x_i], g} \\
+    &= \sum_i \angle{f|_k[x_i],g} \\
+    &= \sum_i \angle{f|_k[x_i]|_k[x_i^{-1}], g|_k [x_i^{-1}]} \\
+    &= \sum_i \angle{f, g|_{k}[x_i^{-1}]}p^{k-2} \\
+    &= \angle{f, \sum_i g|_k[px_i^{-1}]}\\
+    &= \angle{f, T_p g}
+  \end{align*}
+\end{proof}
+\begin{corollary}
+  The operators $T_n$ on $S_k(\Gamma(1))$ can be simultaneously diagonalised. Their eigenvalues are real numbers.
+\end{corollary}
+\begin{proof}
+  $T_n$ self-adjoint implies that $T_n$ are diagonalisable with real eigenvalues, and since they commute, they can be simultaneously diagonalised.
+\end{proof}
+\begin{definition}
+  We say that $f \in M_k(\Gamma(1))$ is a normalised eigenform if $f$ is an eigenvector for all Hecke operators $T_n$ and $a_1(f) = 1$.
+\end{definition}
+\begin{lemma}
+  If $f \in M_k(SL_2(\Z))$, then if $f$ is an eigenvector for all Hecke operators $T_n$ and $k > 0$, then there's a unique scalar multiple of $f$ which is a normalised eigenform.
+\end{lemma}
+\begin{proof}
+  We have $a_n(f) = a_1(T_n(f))$. If $a_1(f) = 0$ and $T_n$ has eigenvalue $\alpha_n$ on $f$, then $a_n(f) = a_1(T_n(f)) = \alpha_n(a_1(f)) =0$, so $a_n(f) = 0$ for all $n \in \N$. Therefore $a_1(f) \neq 0$, and $f/a_1(f)$ is a normalised eigenform.
+\end{proof}
+We've seen $G_k(\tau) =2\zeta(k) + \frac{2(2\pi\im)^k}{(k-1)!}\sum_{n\geq 1}\sigma_{k-1}(n)q^n$ is an eigenvector for all Hecke generators $T_n$. The corresponding normalised eigenform is
+\[\frac{(k-1)!G_k(\tau)}{2(2\pi\im)^k} = \frac{(k-1)!\zeta(k)}{(2\pi\im)^k} + \sum_{n\geq 1}\sigma_{k-1}(n)q^n\]
+\begin{proposition}
+  The eigenvalues of $T_n$ on $M_k(SL_2(\Z))$ are algebraic integers lying in a number field independent of $n$.
+\end{proposition}
+\begin{proof}
+  We proved earlier that there's a basis $f_1, \ldots, f_N$ for $S_k(SL_2(|Z))$ such that
+  \begin{enumerate}
+    \item $\forall n \in \N, a_n(f_i)\in \Z$
+    \item $a_j(f_i) =\delta_{ij}$
+  \end{enumerate}
+  Consequently, for any $f \in S_k(SL_2(\Z))$, we have $f=\sum_{i=1}^N a_i(f)f_i$.
+
+  Now consider the matrix of $T_n$ with respect to this basis. We have $a_m(T_n f) = \sum_{a|(m,n)}a^{k-1}a_{mn/a^2}(f)$. So $T_n(f)$ has integer $q$-expansion coefficients if $f$ does. We see that the matrix of $T_n$ with respect to the basis $f_1, \ldots, f_N$ has integer entries. Hence the eigenvalues of $T_n$ are algebraic integers.
+
+  If $f$ is a normalised eigenform, then $f = \sum_{i=1}^N a_i(f)f_i$, so the eigenvalues of $T_n$ on $f$ lie in the field generated by $a_1(f),\ldots, a_N(f)$.
+\end{proof}
+To any weight $k$, we can associate the sequences $(a_1(f_i), a_2(f_i), \ldots)$ of Hecke eigenvalues. Since the operators $T_n$ are polynomials in the $T_p$ for $p$ prime, it's equivalent to give the sequences $(a_p(f_i))_p$.
+
+First examples arise when $S_k(SL_2(\Z))$ is 1-dimensional - this happens when $k=12,16,18,20,22,26$. When $k=12, \Delta$ is a normalised eigenform. Ramanujan proved that:
+\[\Delta = q \prod_{n\geq 1}(1-q^n)^{24} = \sum_{n\geq 1}\tau(n) q^n\]
+He conjectured that $\tau(nm) = \tau(n)\tau(m)$ whenever $n,m$ are coprime, and if $p$ is prime, then $\tau(p)\tau(p^n) = \tau(p^{n+1}) + p^{11}\tau(p^{n-1})$. These relations follow from $T_{nm} = T_nT_m$ and $T_p T_{p^n} = T_{p^{n+1}}+p^{k-1}T_{p^{n-1}}$.
+
+In the case $k=24, \dim_{\C}S_k(SL_2(\Z)) > 1$. We know we can find a basis $g_1, g_2$ for $S_{24}(SL_2(\Z))$ such that $g_1 = q + O(q^3), g_2 = q^2 + O(q^3)$. Let's compute the matrix of $T_2$ with respect to this basis. We know $T_2(\sum_{n\geq 1}a_nq^n) = \sum_{n\geq 1}\left(\sum_{a|(2,n)}a^{k-1}a_{2n/a^2}\right)q^n$. In particular, $a_1(T_2(f)) = a_2(f)$, and $a_2(T_2(f)) = a_4(f) + 2^{23}a_1(f)$. So $T_2(f) = a_2(f)g_1 + (a_4(f)+2^{23}a_1(f))g_2$.
+
+After a computation, we see that matrix of $T_2$ with respect to our chosen basis is $\begin{pmatrix} 0 & 1 \\ 20468736 & 1080 \end{pmatrix}$, which has eigenvalues $12(45 \pm \sqrt{144169})$. All of the eigenvalues of $T_n$ on $S_{24}(SL_2(\Z))$ will lie in $\Q(\sqrt{144169})$.
+
+\begin{lemma}
+  Let $p$ be a prime number. Then we have an identity of formal power series:
+  \[1+\sum_{n\geq 1} \tau(p^n)X^n = (1-\tau(p)X+p^{11}X^2)^{-1}\]
+\end{lemma}
+\begin{proof}
+  \begin{align*}
+    \left(\sum_{\geq 0}\tau(p^n)X^n\right)(1-\tau(p) X + p^{11}X^2) &= 1+ \sum_{n \geq 1} \left(\tau(p^{n+2}) - \tau(p)\tau(p^{n+1})+p^{11} \tau(p^n)\right)X^{n+2}
+  \end{align*}
+  But we know $\tau(p)\tau(p^{n+1}) = \tau(p^{n+2}) + p^{11}\tau(p^n)$.
+\end{proof}
+We can write this generating function as $\frac{1}{(1-\alpha_p X)(1-\beta_p X)}$ where $\alpha_p, \beta_p$ are the roots of the polynomial $1-\tau(p)X + p^{11}X^2$, so $\alpha_p, \beta_p = \frac{-\tau(p)\pm \sqrt{\tau(p)^2-4p^{11}}}{2p^{11}}$.
+
+There are two possibilities: $\tau(p^{2}) - 4p^{11} \leq 0$, in which case $\alpha_p, \beta_p$ are complex conjugates of absolute value $p^{11/2}$, or $\tau(p^2) > 4p^{11}$, and $\alpha_p, \beta_p$ are real numbers of distinct absolute values. Ramanujan conjectured that the first case always holds.
+\begin{conjecture}[Ramanujan-Peterson]
+  Let $f$ be a cuspidal normalised eigenform of weight $k$ and level $SL_2(\Z)$. Then for every prime $p$, we have $|a_p(f)| \leq 2p^{(k-1)/2}$.
+\end{conjecture}
+This conjecture is behind many applications of modular forms to number theory. Later in the course we'll prove the formula
+\[r_{24}(p) = \frac{16}{691}\sigma_{11}(p) + \frac{33152}{691}\tau(p)\]
+where $p$ is an odd prime and $r_{24}(n)$ is the number of ways of writing $n$ as a sum of 24 integer squares.
+
+The Ramanujan-Peterson gives the estimate $r_{24}(p) = \frac{16}{691}p^{11} + O(p^{11/2})$.
+
+Another reason for the importance of Hecke operators is the possibility of constructing $L$-functions. First recall the Riemann zeta function $\zeta(s) = \sum_{n\geq 1} n^{-s}$. It has the following properties:
+\begin{enumerate}
+  \item (Euler Product) $\zeta(s) = \prod_p (1-p^{-s})^{-1}$.
+  \item (Analytic Continuation) $\zeta(s)$ has a meromorphic continuation to all of $\C$ with a simple pole at $s=1$ and no other poles.
+  \item (Functional Equation) Let $\xi(s) = \pi^{-s/2}\Gamma(s/2)\zeta(s)$. Then $\xi(s) = \xi(1-s)$.
+  \item (Special Values) The values of $\zeta(s)$ at integers should be related to arithmetic in some way.
+\end{enumerate}
+Recall: $\Gamma(s) = \int_{y=0}^\infty e^{-y}y^s \frac{dy}{y}$. This integral converges absolutely and uniformly in compact subsets of the right half plane $\Re(s) > 0$. Integration by parts gives $s\Gamma(s) = \Gamma(s+1)$, and so $\Gamma(s)$ can be continued meromorphically to $\C$.
+
+A Dirichlet series $\sum_{n \geq 1}a_n n^{-s}$ with properties similar to 1,2,3 is called an \emph{L-function}. Further examples are given by the Dirichlet L-function $L(\chi, s) = \sum_{n\geq 1, (n,N)=1} \chi(n \mod N)n^{-s}$ where $\chi : (\Z/N\Z)^\times \to \C$ is a character.
+
+\begin{definition}
+  Let $f \in M_k(SL_2(\Z))$ be a non-zero modular form and let its $q$-expansion be $f(\tau) = \sum_{n\geq 0}a_n q^{n}$. The associated L-function is $L(f,s) = \sum_{n\geq 1} a_nn^{-s}$.
+\end{definition}
+For example, when $f$ is the normalised eigenform associated to $G_k$, we have $L(f,s) = \sum_{n\geq 1} \sigma_{k-1}(n)n^{-s} = \sum_{n,m \geq 1}m^{k-1}(mn)^{-s} = \zeta(s)\zeta(s+1-k)$.
+
+In this case, there is a functional equation relating $L(f,s)$ and $L(f,k-s)$.
+
+\begin{lemma}
+  Let $f \in S_k(SL_2(\Z))$ be non-zero. Then $L(f,s)$ converges absolutely on the region $\Re(s) > k/2 + 1$.
+\end{lemma}
+\begin{proof}
+  On the example sheet, we show $|a_n(f)| = O(n^{k/2})$, from which we have absolute convergence.
+\end{proof}
+\begin{theorem}
+  Let $f \in S_k(SL_2(\Z))$ be a non-zero cuspidal modular form. Then:
+  \begin{enumerate}
+    \item $L(f,s)$ has an analytic continuation to $\C$.
+    \item Let $\Lambda(f,s) = (2\pi)^{-s}\Gamma(s)L(f,s)$. Then $\Lambda(f,s)$ admits an analytic continuation to $\C$ and satisfies $\Lambda(f,s) = \im^k \Lambda(f, k-s)$.
+  \end{enumerate}
+\end{theorem}
+\begin{proof}
+  We define $F(s) = \int_0^\infty f(\im y) y^s \frac{dy}{y}$, the Mellin transform of $f(\im y)$. The function $F(s)$ converges absolutely in $\C$ and defines a holomorphic function there. We know that $|f(\im y)| = O(e^{-2\pi y})$ as $y \to \infty$. This shows that $\int_1^\infty f(\im y) y^s dy/y$ has the desired properties.
+
+  We know $f(-1/\tau)\tau^{-k} = f(\tau)$ and hence $f(\im y) = f(\im/y)(\im y)^{-k}$. This shows that $|f(\im/y)| = |f(\im y) (\im y)^{k}| = O(e^{-\pi y})$ as $y \to \infty$, and so $\int_0^1 f(\im y) y^s  dy/y$ has the required properties.
+
+  Formally, we can compute:
+  \begin{align*}
+    F(s) &= \int_0^\infty a_n e^{-2\pi n y} y^s dy/y\\
+    &= \sum_{n \geq 1} a_n \int_{0}^\infty e^{-2\pi n y}y^s dy/y\\
+    &= \sum_{n \geq 1} a_n \int_0^\infty e^{-y}\left(\frac{y}{2\pi n}\right)^s dy/y\\
+    &= \sum_{n \geq 1} a_n n^{-s} \Gamma(s) (2\pi)^{-s}\\
+    &= (2\pi)^{-s}\Gamma(s) L(f,s)\\
+    &= \Lambda(f,s)
+  \end{align*}
+  The absolute convergence of $L(f,s)$ in the region $\Re(s) > k/2 + 1$ implies that this computation is valid in the same region.
+
+  To get the functional equation, we compute:
+  \begin{align*}
+    \Lambda(f,s) &= \int_0^1 f(\im y) y^s dy/y + \int_1^\infty f(\im y)y^s dy/y\\
+    &= \int_0^1 f(\im/y) (\im y)^{-k} y^s dy/y + \int_1^\infty f(\im y)y^s dy/y\\
+    &= \int_1^\infty f(\im y) i^k y^{k-s} dy/y + \int_1^\infty f(\im y) y^s dy/y
+  \end{align*}
+  and hence $\Lambda(f,s) = \im ^k \Lambda(f, k-s)$.
+\end{proof}
+\begin{theorem}
+  Let $f \in S_k(SL_2(\Z))$ be a normalised eigenform. Then $L(f,s)$ has the Euler product \[L(f,s) = \prod_p (1-a_p(f)p^{-s} + p^{k-1-2s})^{-1}\]
+\end{theorem}
+\begin{proof}
+  We know $a_{nm}(f) +a_n(f)a_m(f)$ when $n,m$ coprime. Hence $\sum_{n\geq 1} a_n(f) n^{-s} = \prod_p \sum_{k \geq 0} a_{p^k}(f)p^{-ks}$.
+
+  We need to show that $\sum_{k \geq 1} a_{p^k}(f) p^{-ks} = (1-a_p(f)+p^{k-1-2s})^{-1}$. We saw last time that this follows from the relation for $T_p T_{p^k}$.
+\end{proof}
 \end{document}

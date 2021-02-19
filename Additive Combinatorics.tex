@@ -681,4 +681,214 @@ We now try to prove Meshulam's theorem. The strategy is to:
 What goes wrong with this in $\Z/N\Z$? There is no large subgroup on which $\gamma(x) = 1$ (in particular, if $N$ is prime, there are no large subgroups at all!)
 
 Instead, we will pass to the subset where $|\gamma(x)-1|\leq \epsilon$ for some small $\epsilon > 0$. These sets form `Bohr sets' - they act like subspaces even when there aren't any.
+
+\begin{definition}
+  Let $\Gamma \subset \hat{G}$ and $\rho \in [0,2]$. Then the \emph{Bohr set} with frequency set $\Gamma$ and width $\rho$ is
+  \[\text{Bohr}(\Gamma; \rho) = \{x \in G : |1-\gamma(x)| \leq \rho \forall \gamma \in \Gamma\}\]
+  If $\lambda >0$ and $B = \text{Bohr}(\Gamma;\rho)$, then we write $B_\lambda$ for $\text{Bohr}(\Gamma,\lambda\rho)$, the dilate of $B$ by $\lambda$. The size of $\Gamma$ is called the \emph{rank} of $B$.
+\end{definition}
+\textbf{Important note:} The Bohr set does not uniquely determine $\Gamma$ and $\rho$, e.g. $\text{Bohr}(\Gamma;2) = G$ for all $\Gamma$, and hence the rank is not necessarily unique. Formally, we should speak of triples $(\text{Bohr}(\Gamma; \rho), \Gamma; \rho)$, but this is cumbersome, so by convention whenever we speak about a Bohr set we are implicitly fixing $\Gamma$ and $\rho$.
+
+Some trivial properties:
+\begin{enumerate}
+  \item $B$ is symmetric, so $B = -B$, and contains $0$, as $\gamma(-x) = \overline{\gamma(x)}$ and $\gamma(0) = 1$.
+  \item If $\Gamma \supset \Gamma'$, then $\text{Bohr}(\Gamma;\rho) \subseteq \text{Bohr}(\Gamma', \rho)$. They are decreasing in frequency sets.
+  \item If $\rho \leq \rho'$, then $\text{Bohr}(\Gamma;\rho) \subseteq \text{Bohr}(\Gamma, \rho')$. They are increasing in width.
+  \item $\text{Bohr}(\Gamma;\rho_1) + \text{Bohr}(\Gamma; \rho_2) \subseteq \text{Bohr}(\Gamma, \rho_1+\rho_2)$, by the triangle inequality.
+\end{enumerate}
+Note also that a Bohr set of rank $d$ is the inverse image of a cube of dimension $d$: given $G \to \C^d$ by $x \mapsto (\gamma(x))_{\gamma \in \Gamma}$, then $\text{Bohr}(\Gamma, \rho)$ is the inverse image of a cube centered at 1 and side length $2\rho$.
+
+\textbf{Examples.}
+For any $\theta$, $|1-e(\theta)| = |e(-\theta/2) - e(\theta/2)| = 2|\sin(\pi\theta)|$. Jordan's inequality gives:
+\[\frac{2}{\pi}|x| \leq |\sin(x)| \leq |x|\]
+for $x \in (-\pi/2,\pi/2]$, and in particular, if $\norm{\theta}$ is the distance of $\theta$ from the nearest integer, then
+\[4\norm{\theta} \leq |1-e(\theta)| \leq 2\pi \norm{\theta}\]
+In $\F_p^n$, we identify $\hat{G}$ with $\F_p^n$ where $\gamma \in \F_p^n$ induces a character via the dot product, $x \mapsto e(\frac{\gamma \cdot x}{p})$. In particular, if $\rho < 4/p$, then $|1-\gamma(x)| \leq \rho$, so $\norm{\frac{\gamma\cdot x}{p}} <\frac{1}{p}$. So this forces $\gamma \cdot x = 0$, and so, provided $\rho < 4/p$, $\text{Bohr}(\Gamma, \rho)$ is the subspace orthogonal to $\Gamma$, giving an equivalence between subspaces and Bohr sets of sufficiently small width.
+
+In $\Z/N\Z$ for $N$ prime, identify $\hat{G}$ with $\Z/N\Z$ by multiplication, so $\gamma(x) = e(\frac{x\gamma}{N})$. Then, using $|1-e(\theta)| \approx \norm{\theta}$, and so $\text{Bohr}(\Gamma,\rho)\approx \{x \in \Z/N\Z : \norm{\frac{\gamma x}{N}} \ll \rho \}$. In the rank 1 case, say $\gamma = 1$, then $x \in \text{Bohr}(\Gamma;\rho) \iff |x|\ll \rho N$, i.e. the interval centered at 0 of width $O(\rho N)$. If we change $\gamma$, it just dilates this interval. So Bohr sets of rank $1$ correspond here to symmetric APs containing 0.
+
+If the rank > 1, things are more complicated, but they correspond to generalised APs of rank $d$, i.e. terms of the form $a+n_1v_1 + \ldots +n_dv_d$ for $0 \leq n_i < K_i$.
+
+Heuristically, if $\gamma(x)$ were distributed randomly along the unit circle, then $|1-\gamma(x)| \leq \rho$ is true with probability $\approx \rho$, and so assuming independence of $\gamma \in \Gamma$, and so $|B| \approx \rho^d N$. If there is some dependence among the elements of $\Gamma$, this will only help, so this should be an approximate lower bund. We will also show that dilating a Bohr set changes it's size by a factor exponential in $d$.
+\begin{lemma}
+  If $B$ is a Bohr set of rank $d$ and width $\rho \in [0,1]$, then:
+  \[|B| \geq \left(\frac{\rho}{8}\right)^d N\]
+  Also, $|B_{1/2}| \geq 8^{-d}|B|$.
+\end{lemma}
+\begin{proof}
+  Let $B = \text{Bohr}(\Gamma;\rho)$. We can cover the unit circle by $\leq \ceil{2\pi/\rho}$ circles of radius $\rho/2$. It follows that $G$ is covered by sets of the form $\{x \in G: \gamma(x) \in D_\gamma\}$ where $D_\gamma$ are these discs of radius $\rho/2$. There are at most $\ceil{2\pi/\rho}^d$ such sets. If $X$ is any such set, then $X - X \subseteq B$, as if $\gamma(x_1), \gamma(x_2)$ both lie in a disc centered on $a$ of radius $\rho/2$, then $|1-\gamma(x_1-x_2)| \leq \rho$ by the triangle inequality.
+
+  In particular, $|X| \leq |B|$, and hence $N \leq \ceil{2\pi/\rho}^d|B|$. Then, as $2\pi+1 < 8$, we get the bound.
+
+  The second part is similar - cover the part of the unit circle which is distance $\leq \rho$ from $1$ by circles of radius $\rho/4$. If $X'$ is any such set, then $X'-X' \subseteq B_{1/2}$, so $|X'| \leq |B_{1/2}|$. As before, we get $|B| \leq 8^d|B_{1/2}|$.
+\end{proof}
+\subsection{Bohr Sets under Addition}
+Bohr sets may grow exponentially under addition - $\text{Bohr}(\Gamma;\rho) + \text{Bohr}(\Gamma;\rho) \subseteq \text{Bohr}(\Gamma;2\rho)$, and we expect $|B| \approx \rho^d N$. So if this containment is sharp, $|B+B| \approx (2\rho)^d N \approx 2^d |B|$.
+
+Instead, we consider $B+B_\delta$ where $\delta$ is small. The above heuristic now suggests $|B+B_\delta| \approx (1+\delta)^d |B|$, so if $\delta = o(1/d)$, then $|B+B_\delta| \approx (1+o(1))|B|$.
+
+Although this heuristic can fail, as we only showed a lower bound and no upper bound, in practice we can deal with this.
+\begin{definition}[Regularity]
+  A Bohr set $B$ of rank $d$ is \emph{regular} if for all $0 \leq \delta \leq \frac{1}{200d}$, we have
+  \[|B_{1+\delta}| \leq (1+200d \delta)|B|\]
+  and
+  \[|B_{1-\delta}| \geq (1-200d\delta)|B|\]
+\end{definition}
+The constant 200 can be improved, but it's a reasonably nice round number that's big enough. In particular we then have, if $0 \leq \delta \leq \frac{\epsilon}{200d}$, then
+\[|B+B_\delta| \leq |B_{1+\delta}| \leq (1+\epsilon)|B|\]
+Not all Bohr sets are regular! Take $G = \F_2^n$ and let $\Gamma \subset \F_2^n$ be linearly independent of size $d$, and let $B = \text{Bohr}(\Gamma; 2-\frac{1}{1000d})$.
+
+Since $\gamma(x) \in \{\pm 1\}$, then $|1-\gamma(x)| < 2 \iff \gamma(x) = 1$, so $B = \{x \in \F_2^n: \gamma\cdot x = 0 \forall \gamma \in \Gamma\}$, and so $|B| = 2^{n-d}$.
+
+If $\delta = \frac{1}{200d}$, then since $(1+\delta)(2-\frac{2}{1000d}) > 2$, so $B_{1+\delta} = G = \F_2^n$.
+
+The only thing that can go wrong is some malicious choice of initial width. Bourgain showed that, for any $B$, $B$ can be made regular by changing the width.
+\begin{lemma}[Bourgain's Regularity Lemma]
+  For any Bohr set $B$, there is $\lambda \in [\frac12, 1]$ such that $B_\lambda$ is regular.
+\end{lemma}
+We will use the following lemma:
+\begin{lemma}
+  Let $\mathcal{I}$ be a collection of open intervals in $\R$ whose union contains a closed interval of length $\lambda$.
+
+  Then there is an finite collection $I_1, \ldots, I_n \in \mathcal{I}$ of disjoint intervals of total length $\geq \frac{\lambda}{2}$.
+\end{lemma}
+\begin{proof}
+  By compactness, without loss of generality we can assume $\mathcal{I}$ is finite. Let $\mathcal{I}' \subseteq \mathcal{I}$ be a minimal collection covering this closed interval.
+
+  Fix $x \in \R$, and suppose that there are two intervals $I = (a_I, b_I), J = (a_J, b_J)$ in $\mathcal{I}'$ containing $x$. Choose these such that $a_I <x$ is minimal and $b_J > x$ is maximal. If $(a,b) \in \mathcal{I}'$ also contains $x$, then $a_I \leq a$ and $b_J \geq b$. Then $(A,b) \subseteq I \cup J$, so by minimality of $\mathcal{I}'$, $(a,b) = I$ or $J$. So any $x$ is contained in at most 2 intervals from $\mathcal{I}'$.
+
+  Now order the intervals in $\mathcal{I}'$ as $I_1, \ldots, I_n$ by their lower bound, $a_1 \leq a_2 \leq \ldots \leq a_n$.
+
+  Then we must have $a_1 \leq a_2 \leq b_1 \leq a_3 \leq b_2 \leq a_4 \leq \ldots$.
+
+  All the odd intervals are disjoint, as are the evens, so by pigeonhole one of them must union to total length $\geq \frac{\lambda}{2}$.
+\end{proof}
+Regularity says (roughly) that changing the width by $O(1/d)$ doesn't change the size by more than $O(1)$. If we keep failing being regular for $\lambda \in [1/2,1]$, then there are $\gg d$ many `steps' of width, going from $\frac{1}{2}\rho$ to $\rho$, each time multiplying the size of the Bohr set by some constant $C$. Then in the end $|B| \gg C^d |B_{1/2}|$, but $|B| \leq 8^d |B_{1/2}|$, giving a contradiction.
+\begin{proof}[Proof of Bourgain's Regularity Lemma.]
+  Let $B = \text{Bohr}(\Gamma;\rho)$, and $B(\delta) = B_\delta$. Suppose the lemma is false. Then for every $\lambda \in [1/2, 1]$, there is $0 \leq \delta_\lambda \leq \frac{1}{200d}$ such that either
+  \[|B((1+\delta_\lambda)\lambda)| > (1+200\delta_\lambda d)|B(\lambda)|\]
+  or
+  \[|B((1-\delta_\lambda)\lambda)| < (1-200\delta_\lambda d)|B(\lambda)|\]
+  In either case,
+  \[|B((1+\delta_\lambda)\lambda)| > (1+100\delta_\lambda d)|B((1-\delta_\lambda)\lambda)|\]
+  Consider the intervals $I_{\lambda} = ((1-2\delta_\lambda)\lambda, (1+2\delta_\lambda)\lambda)$ for all $\lambda \in [\frac12 +\frac{1}{100d}, 1-\frac{1}{100d}]$.
+
+  By the previous lemma, there is some finite $\lambda_1 < \lambda_2 < \ldots <\lambda_k$ such that the $I_{\lambda_i}$ are disjoint and have total measure:
+  \[\sum_{i=1}^k 4\delta_{\lambda_i}\lambda_i \geq \frac{1}{2}(\frac{1}{2}-\frac{1}{50}d) \geq \frac15\]
+  and so $\sum_{i=1}^k \delta_{\lambda_i} \geq \frac{1}{20}$.
+
+  Since $(1-\delta_{\lambda_1})\lambda_1 \geq \frac12$ and $(1+\delta_{\lambda_k})\lambda_k \leq 1$, we know:
+  \[\frac{|B(1/2)|}{|B|} \leq \frac{|B((1-\delta\lambda_1)\lambda_1)|}{|B((1+\delta_{\lambda_k})\lambda_k)|}\]
+  By disjointedness of the $I_{\lambda_i}$, we know that $(1+\delta_{\lambda_i})\lambda_i < (1-\delta_{\lambda_{i+1}})\lambda_{i+1}$.
+
+  So $\frac{|B((1-\delta_{\lambda_{i+1}})\lambda_{i+1})|}{|B((1+\delta_{\lambda_i})\lambda_i)|} \geq 1$.
+
+  Therefore:
+  \[\frac{|B(1/2)|}{|B|} \leq \frac{|B((1-\delta_{\lambda_1})\lambda_1)|}{|B((1-\delta_{\lambda_k})\lambda_k)|} \leq \prod_{i=1}^k \frac{|B((1-\delta_{\lambda_i})\lambda_i)|}{|B((1+\delta_{\lambda_i})\lambda_i)|} \leq \prod_{i=1}^k (1+100\delta_{\lambda_i}d)^{-1}\]
+  Using $1+x \geq e^{x/2}$ for $0 \leq x \leq 1$, we have:
+  \[\frac{|B(1/2)|}{|B|} \leq e^{-\frac12\cdot 100 \cdot \frac{1}{20}\cdot d} \leq e^{-\frac{5}{2}d}\]
+  But we also have $|B(1/2)| \geq 8^{-d}|B|$, and so $8^{-d} \leq e^{-\frac52 d}$, giving a contradiction, as $5/2 > \log(8)$.
+\end{proof}
+We now use regularity to prove a convenient lemma for removing convolutions by $B_\delta$.
+\begin{lemma}
+  If $B$ is a regular Bohr set of rank $d$ and $B' \subseteq B_\delta$, where $0 < \delta < \frac{1}{200d}$, then for any function $f$ with $|f(x)| \leq m$, we have:
+  \[\angle{f, \one_B \ast \one_{B'}} = \angle{f, \one_B}|B'| + O(\delta d m |B||B'|)\]
+  In particular, if $A \subseteq B$, then
+  \[\angle{\one_A, \one_B \ast \one_{B'}} = |A||B'| + O(\delta d_{|B||B'|})\]
+\end{lemma}
+In future, we will say ``by regularity'' to mean ``by \textbf{Lemma 2.12}'' - this is the critical thing we need regularity for.
+\begin{proof}
+  \begin{align*}
+    \angle{f, \one_B \ast \one_{B'}} - \angle{f, \one_B}|B'| &= \sum_x f(x)(\one_B \ast \one_{B'}(x) - \one_B(x) |B'|)
+  \end{align*}
+  By the triangle inequality, this is at most:
+  \[M \sum_{x} |\one_B \ast \one_{B'}(x) - \one_B(x) |B'|| = M \sum_x \left|\sum_{y \in B'} \one_B(x-y)-\one_B(x)\one_{B'}(y)\right| \leq M \sum_{y \in B'}\sum_x \left| \one_B(x-y) - \one_B(x)\one_{B'}(y)\right|\]
+  This is equal to:
+  \[M \sum_{y \in B'}|B \triangle (B+y)|\]
+  Now $B_{1-\delta} \subseteq B+y \subseteq B_{1+\delta}$ for all $y \in B_\delta$. So:
+  \[|B\triangle(B+y)| \ll |B_{1+\delta}\setminus B| + |B\setminus B_{1-\delta}| \ll \delta d |B|\]
+\end{proof}
+\subsection{Roth's Theorem in the Integers.}
+\begin{theorem}[Bourgain, 1999]
+  If $A \subset \{1, \ldots, N\}$ has no non-trivial 3APs, then $|A| \ll \left(\frac{\log\log N}{\log N}\right)^{1/2}N$. In particular, $\frac{|A|}{N} \to 0$ as $N \to \infty$.
+\end{theorem}
+This will be proven using:
+\begin{theorem}
+  Let $G$ be a finite abelian group of odd order $N$. If $A \subseteq G$ has no nontrivial 3APs then
+  \[|A| \ll \left(\frac{\log\log N}{\log N}\right)^{1/2} N\]
+\end{theorem}
+\begin{proof}[Proof of Bourgain's theorem, assuming \textbf{2.14}.]
+  Let $A \subset \{1, \ldots N\}$ have no nontrivial 3APs.
+
+  Let $M = 2N-1$ (odd). Suppose $A$ had a non-trivial 3AP mod $M$. This means there are $x,y,z \in A$ distinct such that $x+y \equiv 2z \mod M$, with $1 \leq x,y,z \leq N$.
+
+  Then $-M < 2-2N \leq x+y-2z \leq 2N-2 < M$, so $x+y-2z =0$. This is a 3AP in $A$, giving a contradiction.
+
+  Hence $A$ in $\Z/M\Z$ has no nontrivial 3APs, so by \textbf{2.14},
+  \[|A| \ll \left(\frac{\log\log M}{\log M}\right)^{1/2}M \ll \left(\frac{\log\log N}{\log N}\right)^{1/2}N\]
+\end{proof}
+To prove this, we will proceed as in $\F_p^n$ - prove the density increment, and then iteratively apply it.
+\begin{lemma}
+  Let $B$ be a regular Bohr set of rank $d$ and width $\rho$. Let $A \subseteq B$ with density $\alpha = \frac{|A|}{|B|}$, and no non-trivial 3APs.
+
+  There is a constant $c > 0$ such that either:
+  \begin{enumerate}
+    \item $|A| \ll (d/\alpha)^{O(d)}|B|^{1/2}$
+    \item There is a density increment: a regular Bohr set $B' \subseteq B$ of rank $\leq d+1$ and width $\gg (\alpha/d)^{O(1)}\rho$ and $x$ such that
+    \[\frac{|(A-x)\cap B'|}{|B'|} \geq (1+c\alpha)\alpha\]
+  \end{enumerate}
+\end{lemma}
+\begin{proof}[Proof of \textbf{2.14}, assuming \textbf{2.14}]
+  Let $A \subseteq G$ with density $\alpha$, no non-trivial 3APs. Assume WLOG that $\alpha \geq \frac{1}{\log N}$. Let $k \geq 0$ be maximal such that there is a sequence of sets $A_0, \ldots, A_k$, regular Bohr sets $B_0, \ldots, B_k$ with ranks $d_0, \ldots, d_k$, widths $\rho_0, \ldots, \rho_k$ such that:
+  \begin{enumerate}
+    \item $A_0 = A, B_0 = G, d_0 = 1, \rho_0 = 2$
+    \item $A_i \subseteq B_i$
+    \item $A_i$ has no non-trivial 3APs
+    \item $\alpha_i = |A_i|/|B_i|$, then $\alpha_{i+1} \geq (1+c\alpha_i)\alpha_i$, where $c$ is the constant from \textbf{2.15}
+    \item $d_i \leq i+1$
+    \item $\rho_{i+1} \gg (\alpha/d_i)^{O(1)}\rho_i$
+  \end{enumerate}
+  Just as in the $\F_p^n$ case, (4) implies $k \ll \alpha^{-1}$.
+
+  We now apply \textbf{2.15} to $A_k \subseteq B_k$. By maximality of $k$, the second condition of \textbf{2.15} cannot hold, so $\alpha_k \ll (d_k/\alpha)^{O(d_k)}|B_k|^{-1/2}$. $d_k \leq k+1 \ll \alpha^{-1}$, and so $1/\log N \leq \alpha \leq \alpha_k \ll \alpha^{-O(\alpha^{-1})}|B_k|^{-1/2}$
+
+  Compart this to our lower bound for $|B_k|$. For $1 \leq i \leq k$, $\rho_i \gg \alpha^{O(1)} \rho_i$.
+
+  So $\rho_k \gg \alpha^{O(d_k)}\times 2 \gg \alpha^{O(\alpha^{-1})}$.
+
+  Hence, $|B_k| \geq (\rho_K/8)^{d_k}N \geq \alpha^{O(\alpha^{-2})}N$, and thus we have:
+  \[\frac{1}{\log N} \ll \alpha^{-O(\alpha^{-1})} \times \alpha^{-O(\alpha^{-2})} \times N^{-1/2} \ll \alpha^{-O(\alpha^{-2})}N^{-1/2}\]
+  Rearranging, $\alpha^{-2}\log(1/\alpha) \gg \log N$, and since $\alpha \geq \frac{1}{\log N}$, $\log(1/\alpha) \ll \log\log N$, and so $\alpha^{-2} \gg \frac{\log N}{\log\log N}$, or $\alpha \ll \left(\frac{\log\log N}{\log N}\right)^{-1/2}$.
+\end{proof}
+It remains to prove \textbf{2.15}, but first, 2 technical lemmas. The first compensates for not being able to count $\angle{\one_B \ast \one_A, \one_{2\cdot A}}$ - recall in the $\F_p^n$ proof we used that this is equal to $\alpha^2 |V|^2$. We will show that we can recover a suitable lower bound if instead we replace $2\cdot A$ by $2 \cdot B_{\delta}$ for $\delta$ small enough, or we get a density increment.
+
+\begin{lemma}
+  Let $B$ be a regular Bohr set of rank $d$ and width $\rho$. Suppose that $\delta \leq c_0 \frac{\alpha}{d}$ for some absolute constant $c_0 > 0$, and that also $B_\delta$ is regular.
+
+  Let $A \subseteq B$ with density $\alpha = |A|/|B|$. Then either:
+  \begin{enumerate}
+    \item $\angle{\one_A \ast \one_A, \one_{2\cdot B_\delta}} \geq \frac12 \alpha^2 |B||B_\delta|$, or:
+    \item There is a regular $B'$ of rank $d$, width $\gg \delta^2 \rho$ and $x$ such that $|(A-x)\cap B'|/|B'| \geq (1+\frac{1}{256})\alpha$.
+  \end{enumerate}
+\end{lemma}
+\begin{proof}
+  If condition 1 fails, then
+  \[\frac12\alpha^2 |B||B_{\delta}| > \angle{\one_A \ast \one_A, \one_{2\cdot B_\delta}} = \angle{\one_A, \one_{2\cdot B_\delta}\circ \one_A}\]
+  Roughly, this suggests there can't be too many elements of $A$ where $\one_{2\cdot B_\delta} \circ \one_A$ is large. Let $A = A_{\text{large}}\sqcup A_{\text{small}}$ where $A_{\text{large}} = \{x \in A : \one_{2\cdot B_\delta} \circ \one_A (x) > \frac34 \alpha|B_\delta|\}$.
+
+  We then have
+  \[\frac12 \alpha^2 |B||B_\delta| > \angle{\one_A, \one_{2\cdot B_\delta} \circ \one_A} \geq |A_{\text{large}}|\times \frac{3}{4}\alpha |B_\delta|\]
+  and so $|A_{\text{large}}| < \frac{2}{3}|A|$. In particular, $|A_{\text{small}}| \geq \frac13 |A|$.
+
+  So we know there are `many' elements of $A$ where $\one_{2\cdot B_\delta}\circ \one_A$ is small. We know upgrade this to find many elements of $B$ where this is so.
+
+  Let $c \in [\frac12, 1]$ be such that $B_{c\delta^2}$ is regular. We note that, by regularity of $B_\delta$, for any $z \in B_{c\delta^2}$, we have:
+  \[|(2\cdot B_\delta - 2z)\setminus 2 \cdot B_\delta| = |(B_\delta -z)\setminus B_\delta| \leq |B_{(1+c\delta)\delta} \setminus B_\delta| \ll \delta d |B_\delta|\]
+  (assuming $c\delta \leq \frac{1}{200d}$, which can be assumed by taking $c_0$ small.
+
+  Hence for any $y \in A_{\text{small}}$, $\one_{2\cdot B_\delta}\circ \one_A(y+2z) = |(2\cdot B_\delta-2z) \cap (A+y)| \leq |2\cdot B_\delta\cap(A+y)| + O(\delta d |B_\delta|)$, which is equal to $\one_{2\cdot B_\delta} \circ \one_A(y) + O(\delta d|B_\delta|)$. In particular, for any $x \in A_{\text{small}}+2\cdot B_{c\delta^2}$, since $\delta \leq c_0 \frac{\alpha}{d}$, provided $c_0$ is sufficiently small, we have
+  \[\one_{2\cdot B_\delta}\circ \one_A(x) \leq \one_{2\cdot B_\delta}\ast \one_A(y) + O(\delta d |B_\delta|) \leq \frac{3}{4}\alpha|B_\delta| + O(c_0\alpha|B_\delta|) \leq \frac78 \alpha|B_\delta|\]
+
+  Now let $B_{\text{small}} = (A_{\text{small}} + 2 \cdot B_{c\delta^2})\cap B$, so that $x \in B_{\text{small}} \implies \one_{2\cdot B_\delta}\circ \one_A (x) \leq \frac78 \alpha |B_\delta|$.
+\end{proof}
 \end{document}
