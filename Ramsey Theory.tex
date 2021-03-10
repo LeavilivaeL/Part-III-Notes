@@ -533,4 +533,259 @@ An \emph{ultrafilter} is a maximal filter.
 \textbf{Remarks.} There must then be a non-principal ultrafilter - just take one extending the cofinite filter. Conversely, if $\mathcal{U}$ is non-principal then it must extend the cofinite filter. Indeed, suppose not. Then there is some finite $A \in \mathcal{U}$. But then by the previous remark after \textbf{5.1}, we can break $A$ apart into $|A|$ singletons, one of which must be in $\mathcal{U}$.
 
 Some form of choice/Zorn is necessary to exhibit a non-principal ultrafilter, and so we can't do so explicitly. If you ever think you have, you're wrong!
+
+We write $\beta\N$ for the set of all ultrafilters on $\N$. We have a topology on $\beta\N$ by taking basic open sets $C_A = \{U \in \beta\N: A \in U\}$ for each $A \subset \N$. This is indeed a topology: $\bigcup_A C_A = \beta \N$ and $C_A \cap C_B = C_{A\cap B}$ is open.
+
+Thus the open sets are $\bigcup_{i \in I} C_{A_i} = \{U : A_i \in U, \text{ some }i\}$.
+
+The basic closed sets are $\beta \N-C_A = C_{A^c}$, and so the closed sets are $\bigcap_{i \in I}C_{A_i} =\{U: A_i \in U \forall i \}$.
+
+Note that each $\tilde{n}$ is isolated, as $\tilde{n} = C_{\{n\}}$. Moreover, $\N$ (identified as $\{\tilde{n}: n \in \N\}\subset \beta \N$) is dense in $\beta \N$, as $\tilde{n} \in C_A$ for every $A \ni n$.
+\begin{theorem}
+  $\beta \N$ is compact and Hausdorff.
+\end{theorem}
+\begin{proof}
+  For Hausdorff, given $U \neq V$, we have some $A \in U$ with $A \notin V$. So $A^c \in V$. Thus $U \in C_A, V \in C_{A^c}$, and $C_A \cap C_{A^c} = \emptyset$.
+
+  For compactness, need to show that, if $F_i: i \in I$ are closed sets with the finite intersection property, then $\bigcap_{i \in I}F_i \neq \emptyset$. WLOG, each $F_i$ is basic, so $F_i = C_{A_i}$.
+
+  Note that the sets $A_i$ also have the finite intersection property, as $C_{A_1}\cap \ldots C_{A_n} = C_{A_1 \cap \ldots \cap A_n}$.
+
+  Now define $F = \{A \subset \N: A \cap A_{i_1}\cap \ldots \cap A_{i_n}$ for some $n \in \N, i_1, \ldots, i_n \in I\}$.
+
+  Then $F$ is a filter. Let $U \in \beta \N$ extend $F$. So $A_i \in U$ for all $i$, i.e. $U \in C_{A_i} \forall i$.
+\end{proof}
+\textbf{Remarks.} Or we can view an ultrafilter as a function $\powset(\N) \to \{0,1\}$, i.e. as a point in $\{0,1\}^{\powset(\N)}$, so $\beta \N \subset \{0,1\}^{\powset(\N)}$. It can be checked that the topology on $\beta \N$ is the restriction of the product topology, and that $\beta \N$ is closed in the product, hence by Tychonoff $\beta \N$ is compact.
+
+$\beta \N$ is the biggest compact Hausdorff space in which $\N$ is dense. More any continuous function $f:\N \to X$ for $X$ compact Hausdorff extends to a unique continuous function $\beta \N \to X$. For this reason $\beta \N$ is called the Stone-Cech compactification of $\N$.
+
+For an ultrafilter $U$ and statement $p(x)$, we write $\forall_U x, p(x)$ if $\{x:p(x)\text{ is true}\}\in U$. E.g., for $U$ non-principal, $\forall_U x : x > 17$. I.e., according to the ultrafilter $U$, the set of $x$ where $x \leq 17$ is a small set. Or, if $U$ is principal at $7$, $\forall_U x p(x) \iff p(7)$.
+
+Ultrafilter quantifiers behave `perfectly' with respect to logical connectives, as follows.
+\begin{proposition}
+  Let $U$ be an ultrafilter and $p(x), q(x)$ statements.
+  \begin{enumerate}
+    \item $\forall_U x\: p(x) \wedge q(x) \iff \forall_U x\: p(x) \wedge \forall_U x\: q(x)$.
+    \item $\forall_U x\: p(x)\vee q(x) \iff \forall_U x\: p(x) \vee \forall_U x\: q(x)$.
+    \item $\neg \forall_U x\: p(x) \iff \forall_U x\: \neg p(x)$.
+  \end{enumerate}
+\end{proposition}
+\begin{proof}
+  Write $A = \{x : p(x)\}, B = \{x: q(x)\}$. So (1) says $A\cap B \in U \iff A \in U \vee B \in U$, which is true.
+
+  (2) says $A \cup B \in U \iff A \in U \vee B \in U$, which is true.
+
+  (3) says $A \notin U \iff A^c \in U$, which is true.
+\end{proof}
+\textbf{Remark.} It is not true that $\forall_U x \forall_V y p(x,y) \iff \forall_V y \forall_u x p(x,y)$, even when $U =V$.
+
+For example, let $U$ be non-principal. Then $\forall_U x \forall_U y\: x<y$ is true. But $\forall_U y \forall_U x\: x<y$ is false.
+
+For $U, V \in \beta\N$, let $U+V = \{A \subset \N: \forall_U x \forall_U y\:x+y \in A\}$. E.g. $\tilde{m}+\tilde{n} = \tilde{m+n}$. Note that $U+V$ is an ultrafilter:
+\begin{itemize}
+  \item $\emptyset \notin U+V$
+  \item If $A \in U+V$ and $B \supset A$, then $B \in U+V$.
+  \item If $A,B \in U+V$ then $\forall_U x \forall_V y\: x+y \in A$ and $\forall_U x \forall_V y\: x+y \in B$. So $\forall_U x \forall_V y \: x+y \in A\cap B$, and so $A\cap B \in A+V$.
+  \item If $A \notin U+V$, then we do not have $\forall_U x \forall_V y \: x+y \in A$, so $\forall_U x \forall_V y\: x+y \in A^c$. Hence $A^c \in U+V$.
+\end{itemize}
+Note that $+:\beta\N \times \beta \N \to \beta\N$ is associative. Indeed, $U+(V+W) = \{A \subset \N: \forall_U x \forall_V y \forall_W z\:x+(y+z)\in A\} = (U+V)+W$. Also, $+$ is left-continuous: for fixed $V$, the map $U \mapsto U+V$ is continuous. Indeed, for a basic open set $C_A$, $U+V \in C_A \iff A \in U+V \iff \forall_U x \forall_V y\:x+y \in A \iff U \in C_{\{x: \forall_V y\:x+y \in A\}}$.
+
+In fact, $+$ is not commutative and is not right-continuous. We seek $U$ with $U+U = U$ (an idempotent). Of course, such a $U$ cannot be principal, since $\tilde{n} + \tilde{n} = \tilde{2n}$, so we can't hope to write it down explicitly.
+
+\begin{lemma}[Idempotent Lemma]
+  There is $U \in \beta \N$ with $U+U = U$.
+\end{lemma}
+What we will use is: $\beta \N$ is compact, Hausdorff, non-empty, and $+$ is associative and left-continuous.
+\begin{proof}
+  Idea: look for a minimal compact subset $M$ of $\beta \N$ with $M+M \subset M$ (i.e. $\{x+y:x, y \in M\}$), and hope $M$ is a singleton. We know at least one such subset exists, as $\beta \N + \beta \N \subset \beta \N$, so taking $M = \beta\N$ works, but probably isn't minimal.
+
+  So, by Zorn, it is enough to show that if $M_i: i \in I$ form a chain of such sets, then $M \coloneqq \bigcap_{i \in I} M_i$ is also such a set.
+
+  $M$ is compact, since $M$ is an intersection of closed sets and $\beta \N$ is a compact Hausdorff space.
+
+  $M$ is nonempty, as the $M_i$ are closed sets with the finite intersection property, so $\bigcap_{i \in I} M_i$ is nonempty, since $\beta \N$ is compact.
+
+  Given $x, y \in M$, we have $x, y \in M_i$ for every $i$, so $x+y \in M_i$ for every $i$, and hence $M + M \subset M$.
+
+  Fix such a minimal set $M$ and fix $x \in M$. Then $M+x \subset M$, and is nonempty. By left-continuity, $M+x$ is compact. Also, $(M+x)+(M+x) =(M+x+M)+x \subset M+x$, so $M+x = M$, by minimality of $M$.
+
+  Then there is $y \in M$ with $y+x = x$. Let $N = \{y \in M : y+x = x\}$. Certainly, $N \neq \emptyset$, and $N$ is compact, the inverse image of $\{x\}$ under a continuous function. If $y, z \in N$, then $y+z \in N$. So $N = M$, by minimality of $M$.
+
+  So $x \in N$, i.e. $x+x= x$.
+\end{proof}
+Note that this does give $M =\{x\}$ by minimality. This gives a subgroup of $\beta \N$ isomorphic to the trivial group. Does $\beta \N$ contain any other finite subgroups? This is the finite subgroup problem. The answer is no, proven by Zelenyuk, 1996.
+\begin{theorem}[Hindman]
+  Whenever $\N$ is finitely coloured, there are $x_1, x_2, \ldots$ with $FS(x_1, x_2, \ldots)$ monochromatic.
+\end{theorem}
+\begin{proof}
+  Fix an idempotent $U \in \beta \N$ ($U$ will be making lots of passes and choices for us). Given a finite colouring of $\N$, let $A$ be the colour class in $U$. We have $\forall_U y\: y \in A$, so $\forall_U x \forall_U y\: x+y \in A$ by idempotentness.
+
+  So $\forall_U x \forall_U y\:FS(x,y) \subset A$.
+
+  Fix $x_1$ with $\forall_U y\:FS(x,y) \subset A$. Inductively, suppose we have chosen $x_1, \ldots, x_n$ such that, $\forall_U y\:FS(x_1, \ldots, x_n, y) \subset A$. So for each $z \in FS(x_1, \ldots, x_n)$ we have $\forall_U y\:z+y \in A$, and so $\forall_Ux \forall_U y\:x+y+z \in A$, as $U$ is idempotent. So then $\forall_U x \forall_U y\:FS(x_1, \ldots, x_n, x,y) \subset A$. Let $x_{n+1}$ be such an $x$. Then $\forall_U y\:FS(x_1, \ldots, x_n, x_{n+1}, y) \subset A$.
+
+  Then we are done by induction.
+\end{proof}
+Very few examples of infinite partition regular systems are known. There is no Rado-type theorem. The consistency theorem we had fails for infinite PR systems. For example, whenever $\N$ is finitely coloured, there are $x_1, x_2, \ldots$ with $FS_{1,2}(x_1, x_2, \ldots) = \{\sum_{ i \in I}x_i  + 2 \sum_{ i \in J}x_i : I, J \text{ finite nonempty, }\max I < \min J\}$ monochromatic. This is a consequence of the Milliken-Taylor theorem. But it was proven in 1995 that this system is inconsistent with Hindman.
+
+It follows trivially from Hindman's theorem that, whenever $\N$ is finitely coloured, there are $x_1, x_2, \ldots$ such that all $x_i$ and all $x_i+x_j$ have the same colour. Is there a proof not via Hindman? More precisely, is there a set $S \subset \N$ such that whenever $S$ is finitely coloured there is such a system, but false for the Hindman system.
+
+\section{Infinite Ramsey Theory}
+We know that, whenever $\N^{(r)}$ is 2-coloured, then there exists an infinite monochromatic set $M$.
+
+What if we 2-colour the infinite subsets of $\N$, i.e. $\N^{(\omega)}$? Must there be an infinite monochromatic $M$, i.e. $M \in \N^{(\omega)}$ such that $c$ is constant on $M^{(\omega)}$.
+
+E.g. colour $M = \{a_1, a_2, \ldots\}$ red if $\sum_{n}\frac{1}{a_n}$ converges, and blue if not. Then there is a infinite monochromatic subset - take $M = \{1, 2, 4, 8, \ldots\}$.
+
+Sadly, in general, this is not true.
+\begin{proposition}
+  There is a 2-colouring of $\N^{(\omega)}$ for which no $M \in \N^{(\omega)}$ is monochromatic.
+\end{proposition}
+\begin{proof}
+  We will find a colouring $c$ such that, for every infinite $M$ and every $x \in M$, the colour of $M$ is different to the colour of $M \setminus \{x\}$. Then we are done.
+
+  We define a relation $\thicksim$ on $\N^{(\omega)}$ by $L \thicksim M$ if $L \triangle M$ finite. This is an equivalence relation. Let it have equivalence classes $E_i$.
+
+  In each $E_i$, pick a `reference set' $M_i$. For any $M \in \N^{(\omega)}$, say $M \in E_i$. Colour $M$ red if $|M \triangle M_i|$ is even and blue if odd.
+\end{proof}
+\textbf{Remark.} We used the axiom of choice to pick the $M_i$.
+
+A 2-colouring of $\N^{(\omega)}$ corresponds to a partition $Y \cup Y^c = \N^{(\omega)}$, for some $Y \subset \N^{(\omega)}$. We say $Y \subset \N^{(\omega)}$ is \emph{Ramsey} if there is $M \in \N^{(\omega)}$ with $M^{(\omega)} \subset Y$ or $M^{(\omega)} \subset Y^c$. In other words, \textbf{6.1} says ``not all sets are Ramsey''. We no ask ``Which sets are Ramsey? Are `nice' sets Ramsey?''
+
+We have $\N^{(\omega)} \subset \powset(\N) \cong \{0,1\}^{\N}$, so we have a product topology on $\N^{(\omega)}$. We have a metric $d(L,M) = 0$ if $L = M$, otherwise $ = \frac{1}{\min L \triangle M}$.
+
+The basic open neighbourhoods of $M \in \N^{(\omega)}$ is $\{L: A \text{ is an initial segment of }L \}$, for each finite initial segment $A$ of $M$. A base of open sets in total is $\{L: A\text{ is an initial segment of }L\}$ for each finite $A \subset \N$.
+
+\textbf{Remark.} We have $\N^{(\omega)} \cong (0,1] \subset \R$ by binary expansion. This is nearly a homeomorphism - it is indeed a bijection, and it only fails at dyadic rationals. For example:
+\begin{align*}
+  &0.1110101010101\ldots\\
+  &0.1110010010010\ldots\\
+  &0.1110001000100\ldots\\
+  &\vdots
+\end{align*}
+converges to $0.110111111\ldots$, but the sets corresponding to them don't.
+
+This topology is called the \emph{product topology} or \emph{usual topology} or the \emph{$\tau$-topology}.
+
+The \emph{Borel sets} in a topology set $X$ are the smallest family of subsets of $X$ that include the open sets and are closed under complement and countable union.
+
+E.g. in $\R$, open sets, closed sets, countable sets, countable unions of countable intersections of open sets, etc, are all Borel. Essentially, just about every set that we can describe explicitly is Borel.
+
+For a power series $\sum a_n z^n$, the set $\{z \in \C: \sum a_n z^n \text{ converges}\}$ is Borel. Indeed, it is $\{z \in \C: \forall \epsilon >0 \exists N \st \forall m,n \geq N:\left|\sum_{m}^{n}a_i z^i \right| \leq \epsilon\}$. This is a countable intersection of countable unions of closed sets.
+
+Our eventual aim is to show that Borel sets are Ramsey. We will first show that open sets are Ramsey.
+
+\subsection{Sociology}
+Write $M^{(<\omega)}$ for $\{A \subset M: A \text{ finite}\}$, for any $M \in \N^{(\omega)}$. For $A \in \N^{(<\omega)}, M\in \N^{(\omega)}$, we write $(A,M)^{(\omega)} = \{L \in \N^{(\omega)} : A \text{ an initial segment of }L, L\setminus A \subset M\}$.
+
+For fixed $Y \subset \N^{(\omega)}$ and $M \in \N^{(\omega)}, A \in \N^{(<\omega)}$, we say $M$ \emph{accepts} $A$ into $Y$ if $(A, M)^{(\omega)} \subset Y$. We say $M$ \emph{rejects} $A$ if no $L \in M^{(\omega)}$ accepts $A$.
+
+\textbf{Remarks.}
+\begin{enumerate}
+  \item If $M$ accepts $A$, then any $L \in M^{(\omega)}$ accepts $A$.
+  \item If $M$ rejects $A$, then any $L \in M^{(\omega)}$ rejects $A$.
+  \item If $M$ accepts $A$, then $M$ accepts any $A\cup B$, where $B \in M^{(\omega)}$ with $\min B > \max A$.
+  \item $M$ needn't accept or reject $A$.
+\end{enumerate}
+\begin{lemma}[Galvin-Prikry]
+  Let $Y \subset \N^{(\omega)}$. Then there exists $M \in \N^{(\omega)}$ such that either
+  \begin{enumerate}
+    \item $M$ accepts $\emptyset$, or
+    \item $M$ rejects all of its finite subsets.
+  \end{enumerate}
+\end{lemma}
+\begin{proof}
+  Suppose that no $M \in \N^{(\omega)}$ accepts $\emptyset$, i.e. $\N$ rejects $\emptyset$. We'll construct inductively infinite sets $M_1 \supset M_2 \supset \ldots$ and $a_1 < a_2 < \ldots$ with $a_i \in M_i$ for all $i$ such that $M_i$ rejects all subsets of $\{a_1, \ldots, a_{i-1}\}$. Then we will be done, because the set $\{a_1, a_2, \ldots\}$ rejects all of its finite subsets.
+
+  Take $M_1 = \N$. $M_1$ rejects all subsets of $\emptyset$.
+
+  Suppose we've chosen $M_1, \ldots, M_k$, and $a_1, \ldots, a_{k-1}$, we seek $M_{k+1} \subset M_k$ and $a_k \in M_k, a_k > a_{k-1}$ such that $M_{k+1}$ rejects all subsets of $\{a_1, \ldots, a_k\}$.
+
+  Fix $b_1 \in M_k, b_1 > a_{k-1}$, and try $a_k = b_1, M_{k+1} = M_k$. We must have some $N_1 \subset M_k$ accepting some subset of $\{a_1, \ldots, a_{k-1}, b_1\}$, otherwise we are done. This subset has to involve $b_1$, so is of the form $E_1 \cup \{b_1\}$ for some $E_1 \subset \{a_1, \ldots, a_{k-1}\}$, as $M_k$ rejects all subsets of $\{a_1, \ldots, a_{k-1}\}$.
+
+  Now fix $b_2 \in N_1$, $b_2 > b_1$, and try $a_k = b_2, M_{k+1} = N_1$. We must have have some $N_2 \subset N_1$ accepting some $E_2 \cup \{b_2\}$ where $E_2 \subset \{a_1, \ldots, a_{k-1}\}$. Keep going. We obtain $M_k \supset N_1 \supset N_2 \supset \ldots$ and $a_{k-1} < b_1<b_2<\ldots$ with $b_{i+1} \in N_i$ and $N_i$ accepting $E_i \cup \{b_i\}$ for some $E_i \subset \{a_1, \ldots, a_{k-1}\}$. Pass to a subsequence to assume $E_i = E$ for all $i$.
+
+  Thus $\{b_1, b_2, \ldots\}$ accepts $E$, contradicting $M_k$ rejects $E$.
+\end{proof}
+\begin{theorem}
+  Let $Y \subset \N^{(\omega)}$ be open. Then $Y$ is Ramsey.
+\end{theorem}
+\begin{proof}
+  Choose an infinite $M$ as given by Galvin-Prikry. If $M$ accepts $\emptyset$, then done. So we may assume $M$ rejects all of its finite subsets. We claim $M^{(\omega)} \subset Y^c$. Indeed, some $L \subset M$ has $L \in Y$. Since $Y$ is open, we have $(A, \N)^{(\omega)} \subset Y$ for some finite initial segment $A$ of $L$.
+
+  In particular, $(A, M)^{(\omega)}\subset Y$, i.e. $M$ accepts $A$, contradicting the fact that $M$ rejects $A$.
+\end{proof}
+Note that $Y$ Ramsey if and only if $Y^c$ Ramsey, so this theorem also says that closed sets are Ramsey.
+
+\begin{definition}
+  The \emph{$\star$-topology} or \emph{Ellentuck-topology} or \emph{Mathias-topology} on $\N^{(\omega)}$ has basic open sets $(A, M)^{(\omega)}$, each $A \in \N^{(<\omega)}, M \in \N^{(\omega)}$.
+\end{definition}
+This is a base for a topology:
+\begin{enumerate}
+  \item $\N^{(\omega)} = (\emptyset, \N)^{(\omega)}$, so union of all $(A, M)^{(\omega)} = \N^{(\omega)}$.
+  \item $(A,M)^{(\omega)} \cap (A', M')^{(\omega)} = (A\cup A', M \cap M')^{(\omega)}$ or $\emptyset$.
+\end{enumerate}
+This is a finer topology than the $\tau$-topology.
+\begin{theorem}
+  Let $Y \subset \N^{(\omega)}$ be $\star$-open. Then $Y$ is Ramsey.
+\end{theorem}
+\begin{proof}
+  Choose an infinite $M$ as given by Galvin-Prikry. If $M$ accepts $\emptyset$, then done: $M^{(\omega)} \subset Y$. So assume $M$ rejects all of its finite subsets. Then we claim $M^{(\omega)} \subset Y$.
+
+  Suppose not. Some $L \subset M$ has $L \in Y$. Since $Y$  is $\star$-open, we have $(A, L)^{(\omega)}\subset Y$ for some finite initial segment $A$ of $L$. In other words, $L$ accepts $A$, contradicting the fact that $M$ rejects $A$.
+\end{proof}
+As before, $\star$-closed sets are Ramsey.
+
+\begin{definition}
+  We say $Y \subset \N^{(\omega)}$ is \emph{completely Ramsey} if, for every $A \in \N^{(<\omega)}$, $M \in \N^{(\omega)}$, there is $L \in M^{(\omega)}$ such that $(A,L)^{(\omega)}\subset Y$ or $(A, L)^{(\omega)}\subset Y^c$.
+\end{definition}
+This is a stronger notion than just Ramsey. Indeed, let $Y$ be the non-Ramsey set from \textbf{6.1}, and put $Z = Y \cup \{M \in \N^{(\omega)}: 1 \notin M\}$. Then $Z$ is Ramsey: $\{2, 3, \ldots\}^{(\omega)} \subset Z$. However, $Z$ is not completely Ramsey: there is no $L \in \N^{(\omega)}$ with $(\{1\}, L)^{(\omega)} \in Y$ or in $Y^c$.
+
+\begin{theorem}
+  Let $Y \subset \N^{(\omega)}$ be $\star$-open. Then $Y$ is completely Ramsey.
+\end{theorem}
+\begin{proof}
+  Given $(A,M)^{(\omega)}$, we seek $L \subset M$ such that $(A,L)^{(\omega)} \subset Y$ or $Y^c$. We now view $(A,M)^{(\omega)}$ as a copy of $\N^{(\omega)}$, as follows. Without loss of generality, $\max A < \min M$. Write $M = \{m_1, m_2, \ldots\}$ in increasing order.
+
+  Define $f:\N^{(\omega)} \to (A, M)^{(\omega)}$, given by $L \mapsto A \cup \{M_i: i \in L\}$. Then $f$ is a homeomorphism in the $\star$-topology. Let $Y' = \{L \in \N^{(\omega)} : f(L) \in Y\}$. Then $Y'$ is $\star$-open, being the inverse image of an open set under a continuous function.
+
+  So $Y'$ is Ramsey, i.e. there is $L \in \N^{(\omega)}$ such that $L^{(\omega)} \subset Y'$ or $Y'^c$. Now apply $f$. Then $f(L^{(\omega)}) \subset Y$ or $Y^c$, i.e. $(A, \{M_i: i \in L\})^{(\omega)} \subset Y$ or $Y^c$.
+\end{proof}
+Similarly, $\star$-closed sets are completely Ramsey.
+
+Having dealt with the ``locally big'' sets, namely the open sets, we now turn to the ``locally small'' sets, namely the sets that are not dense on any interval. I.e., $\bar{Y}$ has empty interior, so that for any non-empty open $O \subset X$ there is a non-empty open $O' \subset O$ with $O'\cap Y = \emptyset$.
+
+For example, in $\R$, $\N$ is nowhere dense. Or $\{1, \frac12, \frac13, \frac14, \ldots\}$ is nowhere dense. But $\Q \cap (0,1)$, although not dense in $\R$, is dense in $[0,1]$, so is not nowhere dense.
+
+\begin{proposition}
+  Let $Y \subset \N^{(\omega)}$ be nowhere dense. Then $Y$ is $\star$-nowhere dense if and only if, for every $A \in \N^{(<\infty)}$, $M \in \N^{(\omega)}$, there is $L \in M^{(\omega)}$ with $(A,L)^{(\omega)} \subset Y^c$.
+
+  In particular, $\star$-nowhere dense sets are completely Ramsey.
+\end{proposition}
+\begin{proof}
+  If $Y$ is nowhere dense, then inside every $(A, M)^{(\omega)}$ there is $(B, L)^{(\omega)} \subset Y^c$.
+
+  The right hand side of the iff says: inside every $(A, M)^{(\omega)}$ we can find $(A, L)^{(\omega)} \subset Y^c$.
+
+  So certainly RHS implies LHS.
+
+  For LHS implies RHS, given $(A,M)^{(\omega)}$, we have $\bar{Y}$ has no interior. Now $\bar{Y}$ is completely Ramsey, as it is closed. So there is $L \in M^{(\omega)}$ with $(A,L)^{(\omega)} \subset \bar{Y}$ or $\bar{Y}^c$. We cannot have $(A,L)^{(\omega)} \subset \bar{Y}$ as $\bar{Y}$ has no interior, so $(A,L)^{(\omega)} \subset \bar{Y}^c \subset Y^c$, so we're done.
+\end{proof}
+Say a subset $Y$ of a topological space $X$ is \emph{meagre} if it's a countable union of nowhere dense sets.
+
+For instance $\Q \subset \R$ is meagre, being $\bigcup_{n \in \N}\frac{1}{n}\Z$ (and yet also dense).
+
+One often thinks of meagre sets as being small - the Baire category theorem states that if $X$ is a non-empty complete metric space, then $X$ itself is not meagre.
+\begin{theorem}
+  Let $Y \subset \N^{(\omega)}$ be $\star$-meagre. Then for all $A \in \N^{(<\omega)}, M\in \N^{(\omega)}$, there is $L \in M^{(\omega)}$ with $(A,L)^{(\omega)} \subset Y^c$. In particular, $Y$ is $\star$-nowhere dense.
+\end{theorem}
+\begin{proof}
+  Let $Y = \bigcup_{n=1}^\infty Y_n$, each $Y_n$ $\star$-nowhere dense.
+
+  Given $(A,M)^{(\omega)}$, choose $M_1 \subset M$ with $(A, M_1)^{(\omega)}\subset Y_1^c$. Pick $x_1 \in M_1, x_1> \max A$. Now apply \textbf{6.8} to get $M_2'\subset M_1$ with $(A,M_2')^{(\omega)}\subset Y_2^c$, and again, to get $M_2 \subset M_2'$ with $(A\cup \{x_1\}, M_2)^{(\omega)} \subset Y_2^c$.
+
+  Pick $x_2 \in M_2, x_2 > x_1$. Now apply \textbf{6.8} 4 times, to get $M_3 \subset M_2$ with $(A,M_3)^{(\omega)}$ and $(A\cup \{x_1\}, M_3)^{(\omega)}$, $(A\cup\{x_2\}, M_3)^{(\omega)}, (A\cup\{x_1,x_2\}, M_3)^{(\omega)} \subset Y_3^c$.
+
+  Continue. We obtain $M \supset M_1 \supset M_2 \supset \ldots$ and $\max(A) < x_1 < x_2 < \ldots$ with $x_n \in M_n$ for all $n$, and $(A\cup F, M_n)^{(\omega)} \subset Y_n^c$ for all $F \subset \{x_1, x_2, \ldots, x_{n-1}\}$. Now we're done because $(A, \{x_1, x_2, \ldots\})^{(\omega)} \subset Y_n^c$ for all $n$, so $\subset Y^c$.
+\end{proof}
 \end{document}

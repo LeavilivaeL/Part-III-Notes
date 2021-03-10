@@ -1013,4 +1013,529 @@ In this case, there is a functional equation relating $L(f,s)$ and $L(f,k-s)$.
 
   We need to show that $\sum_{k \geq 1} a_{p^k}(f) p^{-ks} = (1-a_p(f)+p^{k-1-2s})^{-1}$. We saw last time that this follows from the relation for $T_p T_{p^k}$.
 \end{proof}
+Now, given $f \in S_k(SL_2(\Z))$ a normalised eigenform, we factor, for each prime $p$:
+\[(1-a_pX + p^{k-1}X^2) = (1-\alpha_p X)(1-\beta_p X)\]
+\begin{definition}
+  For each $m \geq 1$, we define the associated symmetric power $L$-function
+  \[L(Sym^m, f,s) =  \prod_p \prod_{i=0}^m (1-\alpha_p^i \beta_p^{m-i} p^{-s})^{-1}\]
+\end{definition}
+\begin{lemma}
+  $L(Sym^m,f,s)$ converges in some right half-plane.
+\end{lemma}
+\begin{proof}
+  We saw in the previous lecture that $|a_p(f)| = O(p^{k/2})$.
+
+  This implies that $|\alpha_p|, |\beta_p| = O(p^{k/2})$, and hence $|\alpha_p^i \beta_p^{m-i}| = O(p^{mk/2})$. It follows that $\prod_p (1-\alpha_p^i\beta_p^{m-i}p^{-s})^{-1}$ is absolutely convergent in some right half-plane.
+
+  We thus deduce that $L(Sym^m, f,s)$ has the same property.
+\end{proof}
+
+These $L$-functions were first considered in the 1960s by Langlands and Serre. The idea was to associate to each prime $p$ the conjugacy class of the matrix $t_p = \begin{pmatrix} \alpha_p & 0 \\ 0 & \beta_p \end{pmatrix}$.
+
+Then associate to any algebraic representation $R: GL_2(\C) \to GL_N(\C)$ the $L$-function $L(R,f,s) = \prod_p \det(1-R(t_p)p^{-s})^{-1}$. The irreducible representatives of $GL_2$ are the symmetric powers $Sym^m :GL_2(\C) \to GL_{m+1}(\C)$ of the identity representations (up to a twist).
+\begin{conjecture}
+  For all $m \geq 1$, $L(Sym^m, f,s)$ has an analytic continuation and satisfies a functional equation $\Lambda(Sym^m, f,s) = \Lambda(Sym^m, f, m(k-1)+1-s)$, where $\Lambda$ is an explicit completed $L$-function.
+\end{conjecture}
+\begin{proposition}[Langlands]
+  If, for all $m \geq 1, L(Sym^m, f,s)$ has an analytic continuation to $\C$, then the Ramanujan-Peterson conjecture holds for $f$.
+\end{proposition}
+The idea behind this proposition made another appearance in the proof of the Weil conjectures by Deligne.
+\begin{conjecture}[Sato-Tate]
+  Suppose the Ramanujan-Peterson conjecture holds, so $|a_p(f)| \leq 2p^{(k-1)/2}$, and so $a_p/(2p^{(k-1)/2}) \in [-1,1]$. Then these numbers are equidistributed throughout $[-1,1]$ as $p \to \infty$ with respect to the Sato-Tate measure $\frac{2}{\pi}\sqrt{1-t^2}dt$.
+
+  More precisely, for all continuous functions $g:[-1,1]\to \R$,
+  \[\lim_{X\to \infty}\frac{1}{\pi(X)}\sum_{p < X} g(a_p/(2p^{(k-1)/2})) \to \frac{2}{\pi}\int_{-1}^1 g(t)\sqrt{1-t^2}dt\]
+  where $\pi(x)$ is the prime counting function.
+
+  This has the consequence that the Ramanujan-Peterson conjecture is sharp.
+\end{conjecture}
+\begin{proposition}[Serre]
+  Suppose for all $m \geq 1$, $L(Sym^m,f,s)$ has an analytic continuation to $\C$ which is non-vanishing on the line $\Re(s) = 1+m\frac{k-1}{2}$. Then the Sato-Tate conjecture holds for $f$.
+\end{proposition}
+Recall the formula for an odd prime $p$: $r_{24}(p) = \frac{16}{691}(1+p^{11})+\frac{33152}{691}\tau(p)$.
+
+The Sato-Tate conjecture implies that the normalised error terms
+\[(r_{24}(p) - \frac{16}{691}(1+p^{11})\times \frac{691}{33152 \times 2 \times p^{11/2}} \in [-1,1]\]
+are equidistributed.
+
+The Sato-Tate conjecture was proved in 2010 by Barnet-Lamb, Geraghty, Harris, and Taylor. The complete analytic continuation of $L(Sym^m, f,s)$ was established in 2019 by Newton and Thorne.
+
+The next step is to study modular forms $M_k(\Gamma), S_k(\Gamma)$ where $\Gamma$ is any congruence subgroup of $SL_2(\Z)$.
+
+
+\section{Modular Forms on Congruence Subgroups of \(SL_2(\Z)\)}
+\begin{definition}
+  For all $N \in \N$, we define $\Gamma(N) = \ker(SL_2(\Z) \to SL_2(\Z/N\Z))$.
+
+  A \emph{congruence subgroup} $\Gamma \leq SL_2(\Z)$ is any subgroup containing $\Gamma(N)$ for some $N \in \N$.
+\end{definition}
+Important examples:
+\begin{itemize}
+  \item $\Gamma_0(N) = \{\begin{pmatrix} a&b\\c&d\end{pmatrix} \in SL_2(\Z): c \equiv 0 \mod N\}$
+  \item $\Gamma_1(N) = \{\begin{pmatrix} a&b\\c&d\end{pmatrix} \in SL_2(\Z): c \equiv 0, a \equiv 1 \mod N\}$
+\end{itemize}
+The homomorphism $SL_2(\Z) \to SL_2(\Z/N\Z)$ is surjective. This implies that $\Gamma_0(N)/\Gamma_1(N) \cong (\Z/N\Z)^\times$, given by $\begin{pmatrix}a&b\\c&d\end{pmatrix}\mapsto d \mod N$.
+
+We've also seen $\Gamma = \angle{S, \Gamma(2)}$.
+\begin{definition}
+  A \emph{weakly modular function of weight k and level $\Gamma$} where $\Gamma$ is a congruence subgroup is a meromorphic function on $\H$ such that, for all $\gamma \in \Gamma$, $f|_k[\gamma] = f$.
+\end{definition}
+Recall $SL_2(\Z) \cap \H$ had the fundamental domain $\mathscr{F}$.
+\begin{definition}
+  A cusp of a congruence subgroup $\Gamma$ is a $\Gamma$-orbit on the set $\P^1(\Q) = \Q \cup \{\infty\} \subseteq \hat{\C}$.
+\end{definition}
+Note $GL_2(\Q)^+$ acts on $\P^1(\Q)$ by M\"obius transformations.
+\begin{lemma}
+  $SL_2(\Z)$ acts transitively on $\P^1(\Q)$. Equivalently, $SL_2(\Z)$ has a unique cusp.
+\end{lemma}
+\begin{proof}
+  It's enough to show that, if $\frac{a}{c} \in \Q$ with $a,b \in \Z, (a,b)=1$, then there is $\gamma \in SL_2(\Z)$ with $\gamma \cdot 0 = \frac{a}{c}$. If $\gamma = \begin{pmatrix}A&B\\C& D \end{pmatrix}$, then $\gamma \cdot 0 = B/D$.
+
+  Since $(a,b) = 1$, we can find $c,d \in \Z$ such that $ad-bc = 1$. So we can take $\gamma = \begin{pmatrix}-b & a\\-d&c\end{pmatrix}$.
+\end{proof}
+\begin{corollary}
+  If $\Gamma \leq SL_2(\Z)$ is a congruence subgroup, then $\Gamma$ has only finitely many cusps.
+\end{corollary}
+\begin{proof}
+  Let $\Gamma_\infty = \Stab_{\Gamma(1)}(\infty) = \{\pm\begin{pmatrix}1 & b\\ 0 & 1\end{pmatrix} : b \in \Z\}$. There's a bijection $\Gamma(1)/\Gamma_\infty \to \P^1(\Q)$, given by $\gamma \Gamma_\infty \mapsto \gamma\cdot\infty$.
+
+  The set of cusps for $\Gamma$ can be identified with the double quotient $\Gamma \diagdown \Gamma(1) / \Gamma_\infty$.
+\end{proof}
+For example, we compute the cusps of $\Gamma = \angle{S, \Gamma(2)}$. We want to compute $\Gamma \diagdown \Gamma(1)/\Gamma_\infty = \angle{S}\diagdown SL_2(\Z/2\Z)/\Gamma_\infty$. Now $SL_2(\Z/2\Z)/\Gamma_\infty = \F_2^2 \setminus\{0\}$.
+
+So $\Gamma\diagdown \Gamma(1)/\Gamma_\infty = \{\{\begin{pmatrix}1\\0\end{pmatrix}, \begin{pmatrix}0\\1\end{pmatrix}\}, \{\begin{pmatrix}1\\1\end{pmatrix}\}\}$. Representatives are given by 1 and $\begin{pmatrix}-1 & -1 \\ 1 & 0 \end{pmatrix}$.
+
+$\Gamma$ has two cusps, corresponding to $\Gamma \cdot \infty$ and $\Gamma \cdot -1$.
+
+We'll see later that if $\Gamma$ is a congruence subgroup, then $\Gamma \diagdown \H \sqcup \Gamma \diagdown \P^1(\Q)$ can be given the structure of a compact Riemann surface.
+
+\begin{definition}
+  If $\Gamma$ is a congruence subgroup, the width of the csup $\infty$ is:
+  \[\min\{h \in \N:\begin{pmatrix}1&h\\0&1\end{pmatrix} \in \Gamma\} = [\Gamma_\infty:\Gamma_\infty \cap \{\pm 1\}\Gamma]\]
+
+\end{definition}
+Let $h$ be the width of the cusp $\infty$, define $q_h = e^{2\pi\im\tau/h}$.
+
+If $f$ is a weakly modular function of weight $k$ and level $\Gamma$, then $f(\tau+h) = f(\tau)$ for all $\tau \in \H$, so we can define a meromorphic function $\tilde{f}:\{q_h \in \C: 0 <|q_h| < 1\}$ by the formula $\tilde{f}(e^{2\pi\im\tau/h}) = f(\tau)$.
+
+\begin{definition}
+  We say $f$ is meromorphic at $\infty$ if $\tilde{f}$ is meromorphic at $0$, and holomorphic (resp. vanishes) at infinity if $\tilde{f}$ is holmorphic (resp. vanishes) at $q_h = 0$.
+
+  If $f$ is meromorphic at $\infty$, then $\tilde{f}$ admits a $q_h$-expansion $\tilde{f}(q_h) = \sum_{n \in \Z} a_n q_h^n$, and hence $f(\tau) = \sum_{n \in \Z} a_n q_h^n$.
+\end{definition}
+\begin{definition}
+  Let $f$ be a weakly modular function of weight $k$ and level $\Gamma$. We say $f$ is meromorphic at the cusp $\Gamma \cdot z$, $z \in \P^1(\Q)$, if choosing $\alpha  \in SL_2(\Z)$ such that $\alpha \cdot \infty = z$, $f|_k[\alpha]$ is meromorphic at $\alpha$, when viewed as a weakly modular function of level $\alpha^{-1}\Gamma\alpha$.
+
+  Similarly, we define what it means for $f$ to be holomorphic or vanish at the cusp $\Gamma\cdot z$. We define the width of the cusp $\Gamma \cdot z$ to be the width of the cup $\infty$ for the group $\alpha^{-1}\Gamma \alpha$.
+\end{definition}
+\begin{lemma}\hspace*{0cm}
+  \begin{enumerate}
+    \item The width of a cusp is well defined.
+    \item The meromorphy/holomorphy/vanishing of a weakly modular function at a cusp is well-defined.
+  \end{enumerate}
+\end{lemma}
+\begin{proof}\hspace*{0cm}
+  \begin{enumerate}
+    \item We need to first show that if $\alpha\infty = \beta\infty = z$, then the widths given by these choices are equal.
+
+    We must have $\beta = \alpha S$ for some $S \in \Gamma_\infty$
+
+    Then $[\Gamma_\infty:\{\pm 1\}\beta^{-1}\Gamma\beta \cap \Gamma_\infty] = [\Gamma_\infty : \{\pm 1\}S^{-1}\alpha^{-1}\Gamma \alpha S \cap \Gamma_\infty] = [\Gamma_\infty : \{\pm 1\}\alpha^{-1}\Gamma \alpha \cap \Gamma_\infty]$.
+
+    Next we show that, if $\gamma \in \Gamma$ and $\alpha \in SL_2(\Z)$, then $[\Gamma_\infty : \{\pm 1\}\alpha^{-1}\gamma^{-1}\Gamma \gamma \alpha\cap \Gamma_\infty] = [\Gamma_\infty:\{\pm 1\}\alpha^{-1}\Gamma \alpha \cap \Gamma_\infty]$, but this is true since $\gamma^{-1}\Gamma \gamma = \Gamma$.
+
+    \item Suppose $\alpha, \beta \in SL_2(\Z)$ satisfy $\alpha \infty = z = \beta \infty$. Then $\beta = \alpha \delta$ for some $\delta \in \Gamma_\infty$, say $\delta = \pm \begin{pmatrix} 1 & a \\ 0 & 1\end{pmatrix}$. Then $f|_k[\beta](\tau) = f|_k[\alpha\delta](\tau) = f|_k[\alpha](\tau+a)(\pm 1)^{k}$.
+
+    If $f|_k[\alpha](\tau) = \sum_{n \in \Z}a_n q_h^n$, then $f|_k[\beta](\tau) = \sum_{n \in \Z}a_n e^{2\pi\im\tau/h}e^{2\pi\im a/h}(-1)^k$.
+
+    This shows that the meromorphy at $\infty$ of $f|_k[\alpha]$ is independent of choice of $\alpha$.
+
+    Now suppose $\gamma \in \Gamma$ and $\gamma z = z'$. If $\alpha \infty = z$, then $\gamma \alpha \infty = z'$, and hence $f|_k[\gamma\alpha] = f|_k[\alpha]$, and again meromorphy at $\infty$ is independent of the choice of $z$.
+  \end{enumerate}
+\end{proof}
+\textbf{Remark.} The $q$-expansion of a weakly modular function $f$ is not well defined independently of choices. By ``the'' $q$-expansion of a weakly modular function which is meromorphic at $\infty$, we mean the $q$-expansion at $\infty$.
+\begin{definition}
+  A \emph{modular function of weight k and level $\Gamma$}, for $\Gamma$ a congruence subgroup and $k \in \Z$, is a weakly modular function that is meromorphic at every cusp of $\Gamma$.
+
+  $f$ is a \emph{modular form} if $f$ is holomorphic in $\H$ and holomorphic at every cup of $\Gamma$, and a cuspidal modular form if $f$ is a modular form vanishing at every cusp.
+
+  We write $M_k(\Gamma)$ (resp. $S_k(\Gamma)$) for the vector spaces of modular (resp. cuspidal modular) forms.
+\end{definition}
+\textbf{Remark.} An equivalent definition is that $f$ is a modular form if $f$ is holomorphic in $\H$ and for all $\alpha \in \Gamma(1)$, $f|_k[\alpha]$ is holomorphic at $\infty$.
+
+\begin{lemma}\hspace*{0cm}
+  \begin{enumerate}
+    \item If $f \in M_k(\Gamma)$ and $g \in M_\ell(\Gamma)$, then $fg \in M_{k+\ell}(\Gamma)$.
+    \item If $\Gamma' \leq \Gamma$ is another congruence subgroup, then $M_k(\Gamma) \leq M_k(\Gamma')$.
+    \item If $\Gamma, \Gamma'$ are congruence subgroups and $\alpha \in GL_2(\Q)^+$, and $f \in M_k(\Gamma)$ and if $\Gamma' \leq \alpha^{-1}\Gamma\alpha$, then $f|_k[\alpha] \in M_k(\Gamma')$.
+  \end{enumerate}
+  Moreover, these hold if $M_k$ is replaced by $S_k$ everywhere.
+\end{lemma}
+\begin{proof}\hspace*{0cm}
+  \begin{enumerate}
+    \item Clear - same as in the case $\Gamma=\Gamma(1)$.
+    \item Is a special case of 3.
+    \item $f|_k[\alpha]$ is holomorphic in $\H$ and is invariant under the weight $k$ action of $\alpha^{-1}\Gamma\alpha$. We need to check that $f|_k[\alpha]$ is holomorphic at the cusps of $\Gamma'$. Equivalently, we need to check that, for all $\beta in \Gamma(1)$, $f|_k[\alpha\beta]$ is holomorphic at $\infty$.
+
+    We can write $\alpha\beta\infty = \gamma \infty$ for some $\gamma \in \Gamma(1)$, and then $\alpha\beta = \gamma\delta$ for some $\delta \in \Stab_{GL_2(\Q)^+}(\infty)$, say $\delta=\begin{pmatrix}a & b \\0 &d\end{pmatrix}$ with $a,b,d \in \Q$, and $ad>0$.
+
+    Then $f|_k[\alpha\beta](\tau)=f|_k[\gamma\delta](\tau) = f|_k[\gamma](\frac{a\tau+b}{d})(ad)^{k-1}d^{-k}$. Since $f|_k[\gamma]$ is holomorphic at $\infty$, we know $\lim_{\Im \tau \to \infty}f|_k[\gamma](\tau)$ exists. It follows that $\lim_{\Im \tau \to \infty}f|_{k}[\gamma](\frac{a\tau+b}{d})$ also exists, and so $f|_k[\alpha\beta]$ is holomorphic at $\infty$.
+  \end{enumerate}
+\end{proof}
+\textbf{Examples.} Recall $\Gamma_0(N) = \{\begin{pmatrix}a&b\\c&d\end{pmatrix}\in SL_2(\Z): c\equiv 0 \mod N\}$.
+
+If $f \in M_k(\Gamma_0(M))$ and $L\in \N$, then $f(L\tau) \in M_k(\Gamma_0(ML))$.
+
+Why? $L\tau = \begin{pmatrix}L&0\\0&1 \end{pmatrix}\tau$. By the lemma, we need to check that $\Gamma_0(ML) \leq \begin{pmatrix}L&0\\0&1 \end{pmatrix}^{-1}\Gamma_0(M)\begin{pmatrix}L&0\\0&1 \end{pmatrix}$.
+
+So if $k \in 2\N, k\geq4, p$ prime, then $G_k(\tau), G_k(p\tau) \in M_k(\Gamma_0(p))$.
+
+\textbf{Example.} If $\tau \in \H$, we define
+\[\theta(\tau) = \sum_{n \in \Z}e^{\pi\im n^2\tau}\]
+This defines absolutely and uniformly in compact subsets of $\H$, so defines a holomorphic function. We have $\theta(\tau+2) = \theta(\tau)$.
+\begin{proposition}[Poisson Summation Formula]
+  Let $f:\R \to \C$ be a continuous function such that $\sum_{n \in \Z}|f(n+x)|$ converges uniformly in $\R$ and $\sum_{n \in \Z}|\hat{f}(n)|$ converges, where
+  \[\hat{f}(n) = \int_{-\infty}^\infty f(t)e^{-2\pi\im n t}dt\]
+  Then we have:
+  \[\sum_{n \in \Z}f(n) = \sum_{n \in \Z}\hat{f}(n)\]
+\end{proposition}
+\begin{proof}
+  Let $\phi(x) = \sum_{n \in \Z}f(n+x)$. Then $\phi$ is continuous. Its Fourier expansion $\phi(x) = \sum_{n \in \Z}\hat{\phi}(n)e^{2\pi\im n x}$, where $\hat{\phi}(n) = \int_0^1 \phi(t) e^{2p\im n t}dt = \sum_{n \in \Z}\int_0^1 f(n+t)e^{-2\pi\im n t}dt = \int_{-\infty}^\infty f(t)e^{-2\pi\im n t}dt= \hat{f}(n)$.
+
+  If $\psi : \R \to \C$ is continuous and periodic, so $\psi(x) = \psi(x+1)$, and its series of Fourier coefficients is absolutely convergent, then the Fourier series converges uniformly.
+
+  We then evaluate at $x= 0$: $\phi(0)= \sum_{n \in \Z}f(n) = \sum_{n \in \Z}\hat{f}(n)$.
+\end{proof}
+We can use this to prove more properties of the $\theta$ function. We then apply this to $f_y(x) = e^{-\pi x^2 y}$, as then $\theta(\im y) = \sum_{n \in \Z} f_y(n)$.
+
+We compute:
+\begin{align*}
+  \hat{f_y}(s) &=\int_{-\infty}^{\infty} e^{-\pi x^2 y}e^{-2\pi\im xs}dx \\
+  &= \int_{-\infty}^{\infty} e^{-\pi (x\sqrt{y}+\im s/sqrt{y})^2}e^{-\pi s^2/y}dx\\
+  &= \int_{-\infty}^{\infty} e^{-\pi (x+\im s/\sqrt{y})^2} e^{-\pi s^2/y}dx/\sqrt{y}\\
+  &= \frac{e^{-\pi s^2/y}}{\sqrt{y}}\int_{-\infty}^{\infty} e^{-\pi x^2}dx\\
+  &= e^{-\pi s^2/y}/\sqrt{y}
+\end{align*}
+So $\theta(\im y) = \sum_{n \in \Z} e^{-\pi n^2/y}\sqrt{y}^{-1} = \theta(1/y)\sqrt{y}^{-1}$. So $\theta(\tau) = \theta(-1/\tau)\sqrt{\tau/\im}^{-1}$, where $\sqrt{\cdot}$ is the branch of the square root defined on $\Re(z) > 0$, which takes positive real values on $\R_{>0}$.
+
+It then follows that $\theta^8(\tau+ 2) =\theta^8(\tau)$, and $\theta^8(-1/\tau)\tau^{-4} = \theta^8(\tau)$, or equivalently that $\theta^8|_{4}\left[\begin{pmatrix}1&2\\0&1\end{pmatrix}\right] = \theta^8$, and $\theta^8|_{4}\left[\begin{pmatrix}0&-1\\1&0\end{pmatrix}\right] = \theta^8$.
+\begin{proposition}
+  $\theta^8 \in M_4(\Gamma)$, where $\Gamma \leq \Gamma(1)$ is the subgroup of matrices $\gamma$ such that $\gamma \equiv 1 \mod 2$ or $\gamma \equiv S \mod 2$.
+\end{proposition}
+\begin{proof}
+  We know $\theta^8$ is holomorphic in $\H$. We know from ex. sheet 1 that $\Gamma$ is generated by $\pm \begin{pmatrix}1&2\\0&1 \end{pmatrix}$ and $\begin{pmatrix}0&-1\\1&0\end{pmatrix}$.
+
+  This shows that $\theta^8$ is invariant under the weight $4$ action of $\Gamma$. It remains to check that $\theta^8$ is holomorphic at the cusps $\Gamma \cdot \infty$ and $\Gamma \cdot 1$.
+
+  Since $\theta^8 = \left(1 + \sum_{n\geq 1}q_2^{n^2}\right)^8$, we see that $\theta^8$ is holomorphic at $\infty$.
+
+  To show holomorphy at $\Gamma \cdot 1$, we need to show $\theta^8|_{4}\left[\begin{pmatrix}1&-1\\1&0\end{pmatrix}\right]$ is holomorphic at $\infty$. We'll show that $\theta^8|_{4}\left[\begin{pmatrix}1&-1\\1&0\end{pmatrix}\right]$ vanishes at $\infty$.
+
+  We start by looking at $\theta(\tau+1) = \sum_{n \in \Z}(-1)^n q_2^{n^2}$. We thus have $\theta(\tau) + \theta(\tau+1) = 2\theta(4\tau)$.
+
+  So $\theta(-1/\tau) + \theta((\tau-1)/\tau) = 2\theta(-4/\tau)$, and hence:
+  \[\theta(\frac{\tau-1}{\tau})\sqrt{\tau/\im}^{-1} = \theta(-4/\tau)\sqrt{\tau/4\im}^{-1} - \theta(-1/\tau)\sqrt{\tau/\im}^{-1} = \theta(\tau/4) - \theta(\tau)\]
+  It then follows that $\theta^8|_{4}\left[\begin{pmatrix}1&-1\\1&0\end{pmatrix}\right] = (\theta(\tau/4)-\theta(\tau))^8$. Hence $\theta^8$ is holomorphic at vanishes at the cusp $\Gamma \cdot 1$.
+\end{proof}
+One application of $\theta$ functions is the expression:
+\[\theta^k(\tau)  = \left(\sum_{n \in \Z}q_2^{n^2}\right)^k = \sum_{n \in \Z_{\geq 0}}r_k(n)q_2^n\]
+where $r_k(n)$ is the number of ways of writing $n$ as a sum of $k$ squares.
+
+For $k=8$, we know already that $\theta^8 \in M_4(\Gamma)$. What other elements are there? We know $M_4(\Gamma(1)) \leq M_4(\Gamma)$, so $E_4 \in M_4(\Gamma)$. We also have $\begin{pmatrix}1&1\\0&2\end{pmatrix} \Gamma \begin{pmatrix}1&1\\0&2\end{pmatrix}^{-1} \leq \Gamma(1)$ via a direct computation.
+
+This shows that $E_4|_4\left[\begin{pmatrix}1&1\\0&2\end{pmatrix}\right] = \frac12 E_4(\frac{\tau+1}{2}) \in M_4(\Gamma)$.
+
+We will prove later on that $\dim_\C M_4(\Gamma) = 2$, so $E_4(\tau), E_4(\frac{\tau+1}{2})$ span $M_4(\Gamma)$.
+
+So $\theta^8(\tau) = \lambda E_4(\tau) + \mu E_4(\frac{\tau+1}{2})$ for $\lambda, \mu \in \C$. We can either compute $\lambda, \mu$ via $q$ expansions, or using vanishing at cusps.
+
+We know $\theta^8(\infty) = 1$ and $\theta^8|_4\left[\begin{pmatrix}1&-1\\1&0\end{pmatrix}\right](\infty) = 0$.
+
+We also have $E_4(\infty) = 1$ and $E_4|_4\left[\begin{pmatrix}1&-1\\1&0\end{pmatrix}\right](\infty) = E_4(\infty) = 1$, whilst $E_4(\frac{\tau+1}{2}) = 1+\sum_{n \geq 1}\sigma_3(n)(-1)^n q_2^n$, so $E_4(\frac{\tau+1}{2})|_{\tau=\infty} = 1$. We just need to compute $2E_4|_4\left[\begin{pmatrix}1&1\\0&-2\end{pmatrix}\begin{pmatrix}1&-1\\1&0\end{pmatrix}\right](\infty) = 2\cdot2^3 E_4(2\tau) = 16E_4(2\tau)$, so at infinity this is $16$.
+
+So $\mu = -\lambda/16$, $\lambda+\mu = 1$, and hence $\lambda = 16/15, \mu = -1/15$. We conclude that $\theta^8 = \frac{16}{15}E_4(\tau) - \frac{1}{15}E_4(\frac{\tau+1}{2})$, and so $r_8(n) = \frac{16}{15}\cdot 240 \cdot \sigma_3(n/2) - \frac{1}{15}(-1)^n 240 \sigma_3(n) = 2^8 \sigma_3(n/2) - (-1)^n 2^4 \sigma_3(n)$. So if $p$ is an odd prime, then e.g. $r_8(p) = 16\sigma_3(p)$.
+
+\begin{lemma}
+  If $\Gamma \leq \Gamma(1)$ is a congruence subgroup, then $(GL_2(\Q)^+, \Gamma)$ is a Hecke pair.
+\end{lemma}
+\begin{proof}
+  We need to show that, for all $g \in GL_2(\Q)^+$, $\Gamma \diagdown \Gamma g\Gamma$ is finite. Equivalently, $g^{-1}\Gamma g \cap \Gamma \diagdown \Gamma$ is finite.
+
+  Choose $N \in \N$ such that $\Gamma(N) \leq \Gamma$ and $Ng, Ng^{-1} \in M_2(\Z)$.
+
+  We have $g \Gamma(N^3) g^{-1} \subseteq 1 + gN^3 M_2(\Z)g^{-1} \subseteq 1 + (Ng)N M_2(\Z) (Ng^{-1}) \subseteq 1 + NM_2(\Z)$. Hence $g\Gamma(N^3)g^{-1} \leq \Gamma(N)$, so $\Gamma(N^3) \leq g^{-1}\Gamma g \cap \Gamma$.
+\end{proof}
+\begin{definition}
+  Let $k \in \Z$, and let $\mathcal{M}_k = \bigcup_{\Gamma\leq \Gamma(1)}M_k(\Gamma)$, and similarly $\mathcal{S}_k$.
+\end{definition}
+\begin{proposition}
+  $GL_2(\Q)^+$ acts on $\mathcal{M}_k$ and $\mathcal{S}_k$ by the weight $k$ action.
+\end{proposition}
+\begin{proof}
+  We need to show that, if $f \in M_k(\Gamma)$ and $g \in GL_2(\Q)^+$, then there exists $\Gamma' \leq \Gamma(1)$ such that $f|_k[g] \in M_k(\Gamma')$. $f|_k[g]$ is invariant under the weight $k$ action of $g^{-1}\Gamma g$.
+
+  We can always find a congruence subgroup $\Gamma' \leq g^{-1}\Gamma g$, and we've already proven in this case that $f|_{k}[g] \in M_k(\Gamma')$.
+\end{proof}
+\begin{corollary}
+  $\mathcal{H}(GL_2(\Q)^+, \Gamma)$ acts on $M_k(\Gamma)$ and $S_k(\Gamma)$.
+\end{corollary}
+We've seen that $\mathcal{H}(GL_2(\Q)^+, \Gamma(1))$ is commutative, and $S_k(\Gamma(1))$ decomposes with multiplicity one under the action of this Hecke algebra. However, in general, $\mathcal{H}(GL_2(\Q)^+, \Gamma)$ is not commutative.
+
+Recall $\Gamma_0(N) = \left\{\begin{pmatrix}a&b\\c&d\end{pmatrix}\in \Gamma(1): c \equiv 0 \mod N\right\}$ and $\Gamma_1(N) = \left\{\begin{pmatrix}a&b\\c&d\end{pmatrix}\in \Gamma(1): a \equiv d \equiv 1 \mod N, c \equiv 0 \mod N\right\}$.
+
+For any $N \in \N$, $SL_2(\Z) \to SL_2(\Z/N\Z)$ is surjective, and in particular, $\Gamma_1(N) \triangleleft \Gamma_0(N)$, with $\Gamma_0(N)/\Gamma_1(N) \cong (\Z/N\Z)^\times$, mapping to $d \mod N$.
+
+If $d \in \N$ and $(d, N) = 1$,t hen we write $\angle{d}$ for the endomorphism of $M_k(\Gamma_1(N))$ induced by $\left[\left\{\begin{pmatrix}A&B\\C&D\end{pmatrix} \in \Gamma_0(N) : D \equiv d \mod N\right\}\right] \in \mathcal{H}(GL_2(\Q)^+, \Gamma_1(N))$.
+
+If $p$ is prime, then we write $T_p$ for the endomorphism of $M_k(\Gamma)$ induced by $[\Gamma_1(N) \begin{pmatrix}1&0\\0&p \end{pmatrix}\Gamma_1(N)] \in \mathcal{H}(GL_2(\Q)^+, \Gamma_1(N))$. If $N = 1$, then this is the same as $T_p$.
+
+In general, if $p \nmid N$, then $T_p$ behaves in a similar way to the $N=1$ case, but if $p |N$, then $T_p$ is of a different nature.
+
+Let's first discuss the operators $\angle{d}$. We can think about the action of these operators in another way: since $\Gamma_1(N) \triangleleft \Gamma_0(N)$, then $\Gamma_0(N)/\Gamma_1(N)$ acts on $\mathcal{M}_k^{\Gamma_1(N)} = M_k(\Gamma(N))$ via the weight $k$ action.
+\begin{lemma}
+  If $f \in M_k(\Gamma_1(N))$ and $\begin{pmatrix}A&B\\C&D \end{pmatrix} \in \Gamma_0(N)$, and $D \equiv d \mod N$, then $f|_k[D] = \angle{d}(f)$.
+\end{lemma}
+\begin{proof}
+  To compute the RHS, we decompose $\{\begin{pmatrix}X&Y\\Z&W\end{pmatrix}\in \Gamma_0(N) : w \equiv d \mod N\}$ as a disjoint union $\bigsqcup_i \Gamma_1(N) x_i$.
+
+  Then $\angle{d}(f) = \sum_i f|_k [x_i]$. In fact this double coset is $\Gamma_1(N) \begin{pmatrix}A&B\\C&D \end{pmatrix}$, so $\angle{d}(f) = f|_k[D] = LHS$.
+\end{proof}
+\begin{lemma}
+  If $A$ is a finite abelian group acting by linear maps on a $\C$-vector space $V$, then $V = \bigoplus_{\chi \in \Hom(A, \C^\times)}V_\chi$, where $V_\chi = \{v \in V: \forall a \in A, a\cdot v = \chi(a)v\}$.
+\end{lemma}
+\begin{corollary}
+  \[M_k(\Gamma_1(N)) = \bigoplus_\chi M_k(\Gamma_1(N), \chi)\]
+  and similarly for $S_k(\Gamma_1(N))$, where the sums run over the set of homomorphisms $\chi:(\Z/N\Z)^\times \to \C^\times$, and $M_k(\Gamma_1(N), \chi) = \{f \in M_k(\Gamma_1(N)) : \forall d \in \Z, (d,N) = 1 \implies \angle{d}f = \chi(d)f\}$.
+\end{corollary}
+\begin{proposition}\hspace*{0cm}
+  \begin{enumerate}
+    \item If $p |N$ then $\Gamma_1(N)\begin{pmatrix}1&0\\0&p\end{pmatrix}\Gamma_1(N) = \bigsqcup_{j=0}^{p-1}\Gamma_1(N) \begin{pmatrix}1&j\\0&p \end{pmatrix}$.
+
+    \item IF $p \nmid N$, then $\Gamma_1(N)\begin{pmatrix}1&0\\0&p\end{pmatrix}\Gamma_1(N) = \bigsqcup_{j=0}^{p-1}\Gamma_1(N) \begin{pmatrix}1&j\\0&p \end{pmatrix} \sqcup \Gamma_1(N) \begin{pmatrix}p^a&r\\pN & p^j\end{pmatrix}$.
+  \end{enumerate}
+\end{proposition}
+\begin{proof}
+  For any $g \in GL_2(\Q)^+$, there is a bijection $g^{-1}\Gamma_1(N)g \cap \Gamma_1(N)\diagdown \Gamma_1(N) \to \Gamma_1(N)\diagdown \Gamma_1(N)g\Gamma_1(N)$, given by $\gamma \mapsto \Gamma_1(N) g\gamma$. I got fed up with latexing matrices here  -  the proof is a big computation (lecture 17, 41:40).
+\end{proof}
+So, if $f \in M_k(\Gamma_1(N))$, then if $p |N$ we have:
+\[T_p f = \sum_{j=0}^{p-1}f|_k\left[\begin{pmatrix}1&0\\0&p \end{pmatrix}\gamma_j\right]\]
+where $\gamma_0, \ldots, \gamma_{p-1}$ in $\Gamma_1(N)$ project to representatives for the quotient
+\[\{SL_2(\Z/N\Z): c = 0, b= 0 \}\diagdown \{SL_2(\Z/N\Z) : c = 0\}\]
+We can take $\gamma_j = \begin{pmatrix}1&j\\0&1\end{pmatrix}$.
+
+If $p \nmid N$, then we have
+\[T_p f = \sum_{j=0}^{p}f|_k\left[\begin{pmatrix}1&0\\0&p \end{pmatrix}\gamma_j\right]\]
+where $\gamma_0, \ldots, \gamma_p \in \Gamma_1(N)$ project to representatives for the quotient
+\[\{SL_2(\Z/p\Z) : b = 0\} \diagdown SL_2(\Z/p\Z)\]
+We can take $\gamma_j = \begin{pmatrix}1&j\\0&1\end{pmatrix}$ for $0\leq j\leq p-1$, and $\gamma_p = \begin{pmatrix}p^a & r\\ N & s\end{pmatrix}$ where $a \in \N$ such that $p^a \equiv 1 \mod N$, and $p^a s - Nr = 1$.
+
+By definition, $\angle{d}(f) = f|_k[S]$ for any $S =\begin{pmatrix}A&B\\C&D\end{pmatrix} \in \Gamma_0(N)$ such that $D \equiv d \mod N$.
+
+\begin{lemma}
+  $\angle{d}$ and $T_p$ commute.
+\end{lemma}
+\begin{corollary}
+  The operators $T_p$ preserve the subspaces $M_k(\Gamma_1(N), \chi)$ and $S_k(\Gamma_1(N), \chi)$ for characters $\chi : (\Z/N\Z)^\times \to \C^\times$.
+\end{corollary}
+\begin{proof}[Proof of lemma]
+  We just treat the case $p \nmid N$. Choose $\delta \in \Gamma_0(N)$ with entries $A,B,C,D$, congruent to the identity matrix mod $p^2$. Then:
+  \[\angle{d}(T_p(f)) = \sum_{j=0}^p f|_k[\begin{pmatrix}1&0\\0&p \end{pmatrix}\gamma_j \delta]\]
+  \[T_p(\angle{d}(f)) = \sum_{j=0}^p f|_k[\delta\begin{pmatrix}1&0\\0&p \end{pmatrix}\gamma_j ]\]
+  We can rewrite $\angle{d}(T_p(f)) = \sum_{j=0}^p f|_k [\delta \begin{pmatrix}1&0\\0&p\end{pmatrix}\begin{pmatrix}1&0\\0&p\end{pmatrix}^{-1}\delta^{-1}\begin{pmatrix}1&0\\0&p\end{pmatrix}\gamma_j \delta]$.
+
+  This will equal $T_p(\angle{d}(f))$ if the matrices $\epsilon_j = \begin{pmatrix}1&0\\0&p\end{pmatrix}^{-1}\delta^{-1}\begin{pmatrix}1&0\\0&p\end{pmatrix}\gamma_j \delta$ lie in $\Gamma_1(N)$ and project to representatives for the quotient
+  \[\{SL_2(\Z)/p\Z : b = 0\} \diagdown SL_2(\Z/p\Z)\]
+  Now $\begin{pmatrix}1&0\\0&p\end{pmatrix}^{-1}\delta^{-1}\begin{pmatrix}1&0\\0&p\end{pmatrix} = \begin{pmatrix}D & -pB\\ -C/p & A \end{pmatrix} \in \Gamma_0(N)$ and congruent to $I$ mod $p$. We see that $\epsilon_j \in \Gamma_1(N)$ and congruent to $\gamma_j \mod p$.
+\end{proof}
+\begin{proposition}
+  Let $f \in M_k(\Gamma_1(N))$ and write $f(\tau)  =\sum_{n\geq 0}a_n(f)q^n$. Then:
+  \[T_p(f) = \sum_{n\geq 0}[a_{np}(f) + p^{k-1}\delta_{p\nmid N}a_{n/p}(\angle{p}f)]q^n\]
+  where $\delta_{p\nmid N}$ is 1 if $p\nmid N$ and 0 otherwise, and $a_{n/p} = 0$ if $p \nmid n$.
+\end{proposition}
+\begin{proof}
+  \begin{align*}
+    T_p(f) &= \sum_{j =0}^{p-1}f|_k[\begin{pmatrix}1&j\\0&p\end{pmatrix}] + \delta_{p\nmid N}f|_k[\begin{pmatrix}p^a&r\\pN&ps\end{pmatrix}] \\
+    &= p^{k-1}p^{-k} \sum_{j=0}^{p-1} f(\frac{\tau+j}{p}) + \delta_{p\nmid N}f|_k[\begin{pmatrix}p^a&r\\N&ps\end{pmatrix}\begin{pmatrix}p&0\\0&\end{pmatrix}]\\
+    &= \frac{1}{p}\sum_{n\geq 0}\sum_{j=0}^{p-1}a_n(f)e^{2\pi\im n\tau/p}e^{2\pi\im n j/p}+\delta_{p\nmid N}(\angle{p}(f))|_k [\begin{pmatrix}p&0\\0&1\end{pmatrix}]\\
+    &= \sum_{n\geq 0}a_{np}(f)q^{n} + \delta_{p\nmid N}\sum_{n\geq 0}a_n(\angle{p}(f))q^{np}
+  \end{align*}
+\end{proof}
+\begin{corollary}
+  If $p, q$ are primes, then $T_p, T_q$ commute.
+\end{corollary}
+\begin{proof}
+  WLOG $p \neq q$.
+  \begin{align*}
+    a_n(T_p(T_q(f))) &= a_{np}(T_q(f))+p^{k-1}\delta_{p\nmid a_{n/p}}(\angle{p}T_q(f)) \\
+    &= a_{npq}(f) + \delta_{q \nmid N}a_{np/q}(\angle{q}(f))q^{k-1} + p^{k-1}\delta_{p\nmid N}(a_{nq/p}(\angle{p}(f)) + a{n/pq}(\angle{q}\angle{p}f)\delta_{q\nmid N}q^{k-1})\\
+    &= a_{npq}(f) + q^{k-1}\delta_{q\nmid N}a_{np/q}(\angle{q}(f)) + p^{k-1}\delta_{p\nmid N}a_{nq/p}(\angle{p}(f)) + p^{k-1}q^{k-1}\delta_{p\nmid N}\delta_{q\nmid N}a_{n/pq}(\angle{pq}(f))
+  \end{align*}
+  which is symmetric in $p,q$.
+\end{proof}
+\begin{proposition}
+  Define an inner product $\angle{\cdot,\cdot}$ on $S_k(\Gamma_1(N))$ by
+  \[\angle{f,g} = [\Gamma(1):\Gamma_1(N)]^{-1}\int_{\Gamma_1(N)\diagdown \H}f(\tau)\overline{g(\tau)}y^{k}dxdy/y^2\]
+  If $d \in (\Z/N\Z)^\times$, its adjoint is $\angle{d}^\ast = \angle{d^{-1}}$. If $p \nmid N$, the adjoint of $T_p$ is $T_p^\ast = \angle{p^{-1}}T_p$.
+\end{proposition}
+\begin{corollary}
+  The operators $\angle{d}$ and $T_p$ for $p \nmid N$ are simultaneously diagonalisable on $S_k(\Gamma_1(N))$.
+\end{corollary}
+\textbf{Remark.} If $p |N$, then $T_p$ is not diagonalisable on $S_k(\Gamma_1(N))$ in general. The simultaneous eigenspaces of $\angle{d}, T_p$ for $p \nmid N$ not 1-dimensional - both of these defects are explained by the presence of ``oldforms''. Suppose $N >1$ and $f \in S_k(\Gamma(1))$ is a normalised eigenform. Then $f(\tau), f(N\tau) = g(\tau) \in S_k(\Gamma_1(N))$ are linearly independent. If $p \nmid N$ is a prime, then $f, g$ are eigenvectors of $T_p$ with the same eigenvalue, $a_p(f)$.
+
+$T_p f$ is the same considered either in $S_k(\Gamma(1))$ or in $S_k(\Gamma_1(N))$, so $T_p f = a_p(f)f$. We have $g(\tau)  \sum_{n\geq 1}a_n(f)q^{Nn} = \sum_{n\geq 1}a_{n/N}(f)q^n$, so $a_n(T_p g) = a_{np}(g) + p^{k-1}a_{n/p}(g) = a_{np/N}(f) + p^{k-1}a_{n/pN}(f) = a_{n/N}(T_p f) = a_p(f)a_{n/N}(f) = a_p(f)a_n(g)$.
+
+\begin{definition}
+  Let $N \in \N$. The old subspace $S^{old}_k(\Gamma_1(N)) \leq S_k(\Gamma_1(N))$ is the span of all modular forms of type $f(M\tau)$ where $M | N, M> 1$, and $f \in S_k(\Gamma_1(N/M))$.
+
+  The new subspace $S^{new}_k(\Gamma_1(N))$ is the orthogonal complement with respect to the inner product of the old subspace.
+\end{definition}
+\begin{theorem}
+  All of the operators $\angle{d}, T_p$ preserve the direct sum decomposition $S_k(\Gamma_1(N)) = S_k^{old}(\Gamma_1(N)) \oplus S_k^{new}(\Gamma_1(N))$.
+
+  The simultaneous eigenspaces of the operators $\angle{d}, T_p (p \nmid N)$ on $S_k^{new}(\Gamma_1(N))$ are 1-dimensional.
+
+  $S_k^{new}(\Gamma_1(N))$ has a unique basis of normalised eigenforms, i.e. forms $f \in S_k^{new}(\Gamma_1(N))$ which are eigenvectors for all operators $\angle{d}, T_p$ which satisfy $a_1(f) = 1$.
+\end{theorem}
+\begin{definition}
+  A \emph{newform} of weight $k$ and level $\Gamma_1(N)$ is a normalised eigenform in $S_k^{new}(\Gamma_1(N))$.
+\end{definition}
+\textbf{Example.} $S_2(\Gamma(1)) = 0$. If $p$ is a prime, then $S_2(\Gamma_1(p)) = S_2^{new}(\Gamma_1(p))$. The first prime $p$ for which this space is nonzero is $p=11$, in which case it has dimension 1.
+
+Recall $\eta(\tau) = q_{24}\prod_{n \geq 1}(1-q^n)$. Then $\eta(\tau)^2 \eta(11\tau)^2$ is the unique newform in $S_2(\Gamma_1(11))$.
+
+\begin{theorem}
+  Let $f \in S_k(\Gamma_1(N))$ be a newform, say $f(\tau) = \sum_{n\geq 1}a_n q^n$, and define $L(f,s) = \sum_{n\geq 1}a_n n^{-s}$. Then:
+  \begin{enumerate}
+    \item $L(f,s)$ is absolutely convergent in $\Re(s) > k/2+1$.
+    \item There is a character $\chi: (\Z/N\Z)^\times \to \C^\times$ such that $f \in S_k(\Gamma_1(N), \chi)$.
+    \item There's an Euler product $L(f,s) = \prod_p (1-a_p p^{-s}+\chi(p)p^{k-1-2s})^{-1}$ - here we make the convention that $\chi(p) = 0$ if $p |N$.
+    \item $L(f,s)$ has an analytic continuation to $\C$ and if we define
+    \[\Lambda(f,s) = N^{s/2}(2\pi)^{-s}\Gamma(s)L(f,s)\]
+    then there's a sign $\epsilon_f \in \{\pm 1\}$ such that $\Lambda(f,s) = \epsilon_f \Lambda(f, k-s)$.
+  \end{enumerate}
+\end{theorem}
+The Shimura-Taniyama-Weil conjecture (now the Modularity Theorem) asserts that there is a bijection between elliptic curves $E/\Q$ up to isogeny and newforms $f \in S_2(\Gamma_1(N), \one)$ such that, for all $n \in \N$, $a_n(f) \in \Z$, given by $E \mapsto f$ if, for all but finitely many primes $p$, $a_p(f) = p+1-|\tilde{E}(\F_p)|$.
+
+\section{Modular Curves and Riemann Surfaces}
+The goal of this section is to endow $\Gamma \diagdown \H$ and $\Gamma \diagdown \H \sqcup \Gamma \diagdown \P^1(\Q)$ with the structure of Riemann surfaces. These quotients are called modular curves.
+\begin{definition}
+  A \emph{Riemann surface} is a compact Haudorff topological space $X$ together with an atlas $\mathscr{A} = \{(U_i, V_i, \phi_i:U_i \to V_i): i \in I\}$ where
+  \begin{enumerate}
+    \item $U_i \subset X$ is open and $V_i \subset \C$ is open.
+    \item For all $i,j \in I$, the map $\phi_i(U_i \cap U_j) \to \phi_j(U_i \cap U_j)$ is holomorphic.
+    \item $U_{i \in I}U_i = X$.
+  \end{enumerate}
+\end{definition}
+If $X, Y$ are Riemann surfaces, then a morphism $f: X \to Y$ is a continuous map such that, for all charts $\phi_i : U_i \to V_i$ of $X$ and $\psi_j : U_j' \to V_j$ of $Y$, the induced map $V_i \cap f^{-1}(U_j') \to V_j'$ is holomorphic.
+
+\textbf{Examples.} $X = \C, \mathscr{A} = \{(\C, \C, \id:\C \to \C)\}$. If $Y$ is another Riemann surface, then a morphism $f:Y \to \C$ is a continuous function such that, for every chart $\phi_i : U_i \to V_i$ of $Y$, the map $f \circ \phi_i^{-1}:V_i \to \C$ is holomorphic.
+
+$X = \hat{C} = \C \cup \{\infty\}$. We have charts $(\C, \C, \id:\C\to\C)$, and $(\C^\times \cup \{\infty\}, \C, z\mapsto 1/z)$ Then $\phi_2 \circ \phi_1^{-1}:\C^\times \to \C^\times$ is $z \mapsto 1/z$.
+
+The first goal: we can make $Y(\Gamma) = \Gamma \diagdown \H$ for $\Gamma \leq \Gamma(1)$ a congruence subgroup into a connected Hausdorff topological space. We give $\H$ its usual topology and $Y(\Gamma)$ the quotient topology. So, if $\pi: \H \to Y(\Gamma)$ is the quotient map then a subset $U \subset Y(\Gamma)$ is open if and only if $\pi^{-1}(U)$ is open.
+
+\begin{lemma}
+  Suppose $A, B \subset \H$ are compact subsets. Then $\{\gamma \in \Gamma(1): \gamma A \cap B \neq \emptyset\}$ is finite.
+\end{lemma}
+\begin{proof}
+  $\Omega_X = \{\tau \in \H: |\Re \tau| \leq X, \Im \tau \geq 1/X\}$. We showed that there is $C_X >0$ such that, for all $\tau \in \Omega_X$ and $t \in \R$, $|\tau+t| \geq C_X\sup(1, |t|)$.
+
+  If $c,d \in \Z$, then $|c\tau +d| \geq C_X \sup(|c|, |d|)$.
+
+  So, if $\tau \in \Omega_X$, then $\Im(\gamma \tau) \leq \frac{\Im(\tau)}{C_X^2 \sup(|c|,|d|)^2}$, and hence $\sup(|c|,|d|)^2 \leq \frac{\Im(\tau)}{C_X^2 \Im(\gamma \tau)}$.
+
+  Now suppose that $A, B \subseteq \Omega_X$. If $\tau \in A, \gamma \tau \in B$, then $\sup(|c|, |d|)$ is bounded above by a constant only depending on $A$ and $B$.
+
+  If $\gamma \in \Gamma(1)$ and $\gamma A \cap B \neq \emptyset$, then there are only finitely many possibilities for $(c,d)$. Now observe that $\gamma, \delta$ have the same bottom row, then $\delta = \epsilon \gamma$ for some $\epsilon \in \Gamma_\infty = \{SL_2(\Z): a=d=1, c=0\} = \Stab_{SL_2(\Z)}(\infty)$.
+
+  Since $A,B$ are compact, there can only be finitely many $\epsilon$ such that $\epsilon \gamma A \cap B \neq \emptyset$.
+\end{proof}
+\begin{proposition}
+  $Y(\Gamma)$ is Hausdorff.
+\end{proposition}
+\begin{proof}
+  Let $x, y \in \H$ be such that $x, y$ are not $\Gamma$-conjugate. It will be enough to find open sets $W_x \ni x$ and $W_y \ni y$ of $\H$ such that, if $\gamma \in \Gamma(1)$ then $\gamma W_x \cap W_y = \emptyset$.
+
+  We begin by choosing open subsets $U_x \ni x$ and $U_y \ni y$, and compact subsets $K_x \supseteq U_x$ and $K_y \supseteq U_y$ of $\H$.
+
+  The previous lemma tells us that the set $N = \{\gamma \in \Gamma: K_x \cap yK_y \neq \emptyset\}$ is finite. For all $\gamma \in N$, we can choose open sets $A_\gamma \ni x, B_\gamma \ni \gamma y$ such that $A_\gamma \cap B_\gamma = \emptyset$, as $\H$ is Hausdorff.
+
+  We now take $W_x = U_x \cap \bigcap_{\gamma \in N} A_\gamma$, an open set containing $x$, and $W_y = U_y \cap \bigcap_{y \in N}\gamma^{-1}B_\gamma$, an open set containing $y$.
+
+  Then for all $\gamma \in \Gamma, W_x \cap \gamma W_y = \emptyset$. Indeed, $W_x \subset U_x \subset K_x$ and $W_y \subset U_y \subset K_y$, so if $W_x \cap \gamma W_y \neq \emptyset$, then $\gamma \in N$. But if $\gamma \in N$, then $W_x \subset A_\gamma$ and $\gamma W_y \subset B_\gamma$, and $A_\gamma \cap B_\gamma = \emptyset$, so $W_x \cap \gamma W_y = \emptyset$.
+\end{proof}
+The next goal is to define the topology of $X(\Gamma) = \Gamma \diagdown \H \sqcup \Gamma \diagdown \P^1(\Q)$.
+\begin{definition}
+  We set $\H^\ast = \H \sqcup \P^1(\Q)$. We let $GL_2(\Q)^+$ act on $\H^\ast$ by the usual action on $\H$ and $\P^1(\Q)$.
+
+  We define a topology on $\H^\ast$ by declaring $\H$ to be an open subspace with its usual topology, and by giving $z = \alpha\infty$ the basis of open nbhds $\alpha V_R \cup \{z\} = \alpha(V_R \cup \{\infty\})$, where $V_R = \{\tau \in \H: \Im(\tau) > R\}$. Note that $\alpha(V_r \cup \{\infty\})$ only depends on $z$ and $R$, and not on the choice of $\alpha$.
+
+  We give $X(\Gamma)$ the quotient topology
+\end{definition}
+If $\gamma \in \Gamma(1)$, then $\gamma:\H^\ast  \to \H^\ast$ is a homeomorphism. We define $X(\Gamma) = \Gamma \diagdown \H^\ast$, endowed with the quotient topology. We write $\pi : \H^\ast \to X(\Gamma)$ for the quotient map.
+
+Why is the topology defined this way? If $R>2$, then for all $\gamma \in \Gamma(1)$, $\gamma V_r \cap V_r \neq \emptyset \implies \gamma \in \Gamma_\infty = \Stab_{\Gamma(1)}(\infty)$. Indeed, if $\tau \in \gamma V_r \cap V_r$, say $\tau = \gamma \tau'$ for some $\tau' \in V_R$, then there is $\delta, \epsilon \in \Gamma_\infty$ such that $\delta \tau, \epsilon \tau'$ lie in $\mathscr{F}$.
+
+We can further require $\delta \tau, \epsilon \tau$ have real part in $[-\frac12, \frac12)$. It follows that $\delta \tau = \epsilon \tau'$, since they are $\Gamma(1)$-conjugate. We thus have $\tau = \delta^{-1}\epsilon \gamma \tau$, so $\delta^{-1}\epsilon \gamma = \pm 1$, so $\gamma \in \Gamma_\infty$.
+
+We have a commutative diagram:
+\begin{center}
+  \begin{tikzcd}
+    \H^\ast \arrow{r} & X(\Gamma) \\
+    V(R) \arrow{u} \arrow{r} & V_R/\Gamma \cap \Gamma_\infty \arrow{u}
+  \end{tikzcd}
+\end{center}
+The map $V_R/\Gamma \cap \Gamma_\infty \to X(\Gamma)$ is injective, continuous, and open, so a homeomorphism onto its image.
+
+We have a continuous bijection $V_R/\Gamma \cap \Gamma_\infty \to D_R = \{q_h \in \C: |q_h| < e^{-2\pi R/h}\}$ given by the formula $\infty \mapsto 0, \Gamma\cap \Gamma_\infty \cdot \tau \mapsto e^{2\pi \im \tau/h}$. This map is open by the open mapping theorem from complex analysis. Hence $\pi(V_R)$ is an open neighbourhood of $\pi(\infty)$ in $X(\Gamma)$, which is homeomorphic to the disc $D_R \subseteq \C$. Similarly, if $\alpha \in \Gamma(1)$ and $\Gamma \cdot \alpha\infty$ is a cusp of $\Gamma$ of width $h$, then $\pi(\alpha V_R)$ for any $R > 0$ is an open neighbourhood of $\pi(\alpha \infty)$ which is homeomorphic to the disc $D_R$ by the map which sends $\alpha \infty \mapsto 0$, and $\Gamma \cdot \tau$ for $\tau \in \alpha V_R \mapsto e^{2\pi\im \alpha^{-1}\tau/h}$.
+
+\begin{theorem}
+  $X(\Gamma)$ is connected, Hausdorff, and compact.
+\end{theorem}
+\begin{proof}
+  $\H^\ast$ is connected - if $\H^\ast = U\sqcup V$ for $U, V$ open, then $\H = (U \cap \H) \cup (V \cap \H)$, so without loss of generality $\H \subseteq U$, and $V \subset \P^1(\Q)$. If $z \in \P^1(\Q)$, then $\alpha V_R \subset U$ for some $R$, but $\alpha V_R \cap \H = \alpha V_R \cap U \neq \emptyset$, so $V = \emptyset$, and so $\H^\ast$ is connected.
+
+  For $X(\Gamma)$ is Hausdorff, it's enough to take the pairs $\Gamma \cdot \tau, \Gamma \cdot \alpha\infty$, and $\Gamma \alpha \infty, \Gamma \beta \infty$, and construct disjoint open neighbourhoods in each case.
+
+  In the first case, we can find an open set $U_\tau \subset \H$ and a compact set $K_\tau \subset \H$ such that $\tau \in U_\tau \subset K_\tau$. We saw last time that we can find a constant $C_\tau >0$ such that $\Im(\gamma \tau) \leq C_\tau$ for all $\gamma \in \Gamma(1)$ and $z \in K_\tau$.
+
+  If $R > C_\tau$, then $\gamma K_\tau \cap V_R = \emptyset$ for all $\gamma \in \Gamma(1)$, and hence $\gamma U_\tau \cap \alpha V_R =\emptyset$ for all $\gamma \in \Gamma$.
+
+  This means that $\pi(U_\tau)$ and $\pi(\alpha V_R)$ are disjoint.
+
+  If $\Gamma \alpha \infty, \Gamma \beta \infty$ are distinct cusps, then $\alpha V_R, \beta V_R$ are distinct when $R > 2$. If $\gamma \in \Gamma$ and $\gamma\alpha V_R \cap \beta V_R \neq \emptyset$, then there is $\delta \in \Gamma_\infty$ such that $\gamma \alpha= \beta \delta$, and so we have $\gamma \alpha \infty = \beta \infty \contr$.
+
+  Hence $\pi(\alpha V_R), \pi(\beta V_R)$ are disjoint.
+
+  For compactness, we first show that $\mathscr{F}^\ast = \mathscr{F}\cup \{\infty\}$ is compact. It's enough to show that, for all $R > 0$, $\mathscr{F}^\ast - V_R$ is compact. But $\mathscr{F}^\ast -V_R = \{\tau \in \H : |\tau| \geq 1, \Re \tau\in [-\frac12, \frac12], \Im \tau \leq R\}$. This is closed and bounded in $\H$ so is compact.
+
+  If $\gamma_1, \ldots, \gamma_n$ is a transversal for $\Gamma \diagdown \Gamma(1)$, then $\pi(\bigcup_{i=1}^n \gamma_i \mathscr{F}^\ast) = X(\Gamma)$. So $X(\Gamma)$ is a continuous image of a compact set, so compact.
+\end{proof}
+
+We now show how to give $X(\Gamma)$ the structure of a Riemann surface, by giving explicit charts.
+
+We let $I$ be a set of representatives for the $\Gamma$-orbits in $\H^\ast$. For each $x \in I$, we construct a chart $\phi_x : U_x \to V_x$ where $U_x \subset X(\Gamma)$ is an open neighbourhood of $\pi(x)$, and $V_x \subset \C$ is an open subset.
+
+If $x \in \P^1(\Q)$, say $x = \alpha\infty$ for some $\alpha \in \Gamma(1)$, then we define $U_x = \pi(\alpha V_z)$, $V_x = \{q_h \in \C: |q_h|< e^{-2\pi R/h}\}$, and $\phi_x(\pi(\alpha\infty)) = 0, \phi_x(\pi(\alpha \tau)) = e^{2\pi\im \tau/\H}$ if $\tau \in V_z$. We've already seen that $\phi_x$ is a homeomorphism.
+
+If $x \in \H$, we first show that we can find an open set $W_x \subset \H$ with the following properties:
+\begin{enumerate}
+  \item $x \in W_x$ and $W_x$ is stable under $\Stab_\Gamma(x)$.
+  \item If $y \in W_x$ and $y \neq x$, then $\Stab_\Gamma(y) = \Gamma \cap \{\pm 1\}$.
+\end{enumerate}
+To do this, choose $M_x \subset \H$ open and $K_x \subset \H$ compact, such that $x \in M_x \subset K_x$, and let $N = \{\gamma \in \Gamma: \gamma k_x \cap k_y \neq \emptyset\}$. Then $N$ is finite, and contains $\Stab_\Gamma(x)$. If $\gamma \in N - \Stab_\Gamma(x)$, then $\gamma x \neq x$, so we can find $A_\gamma, B_\gamma \subset \H$ open such that $x \in A_\gamma, \gamma x \in B_\gamma$, and $A_\gamma \cap B_\gamma = \emptyset.$
+
+We define $W_x = M_x \cap \bigcap_{\gamma \in N - \Stab_\Gamma(x)} (A_\gamma \cap \gamma^{-1}B_\gamma)$. This is an open subset of $\H$ containing $x$. If $\gamma \in \Gamma$ and $W_x \cap \gamma W_x \neq \emptyset$, then $\gamma \in N$. If $\gamma \notin \Stab_{\Gamma}(x)$, then $W_x \cap \gamma W_x \subset A_\gamma \cap B_\gamma = \emptyset$.
+
+Consider the M\"obius transformation $\psi_x(z) = \frac{z-x}{z-\bar{x}}$. Then $\psi_x(x) = 0, \psi_x(\infty)=\infty, \psi_x \Stab_\Gamma(x) \psi_x^{-1}$ stabilises both $0$ and $\infty$.
+
+Any M\"obius transformation which stabilises $0$ and $\infty$ and which is of finite order must be given by $z \mapsto \zeta z$ for some root of unity $\zeta$. We can assume, after shrinking $W_x$, that $\psi_x(w_x)$ is an open disc $D_\epsilon$ for some $0 < \epsilon <1$. Then $W_X$ is stable under $\Stab_\Gamma(x)$.
+
+If $y \in W_x$ and $y \neq x$ and $\delta \in \Gamma$ and $\delta y = y$. Then $\delta W_x \cap W_x \neq \emptyset$, so $\delta \in \Stab_\Gamma(x)$, so $\psi_X \delta \psi_x^{-1}$ stabilises $\psi_x(y) \neq 0$, and so $\psi_x \delta \psi_x^{-1}$ is trivial, giving $\delta \in \Gamma \cap \{\pm 1\}$.
+
+We conclude that $\pi(W_x)$ is an open subset of $X(\Gamma)$ which contains $\pi(x)$ and which is homeomorphic to $W_x/\Stab_\Gamma(x) \cong D_\epsilon/ \psi_x \Stab_\Gamma(x) \psi_x^{-1}$.
+
+The group $\psi_x \Stab_\Gamma(x) \psi_x^{-1} / \Gamma \cap \{\pm 1\}$ is cyclic of some order $n_X$, generated by $z \mapsto e^{2\pi\im/nx}\cdot z$. It follows that $D_\epsilon/ \psi_x \Stab_\Gamma(x)\psi_x^{-1}$ is homeomorphic to $D_{\epsilon^{n_x}}$, via the map $z \mapsto z^{n_x}$.
+
+We can now write down our chart around the point $\pi(x)$: we take $U_x = \pi(W_x), V_x =D_{\epsilon^{n_x}}, \phi_x:U_x \to V_x$ defined by $\phi_x(\pi(z)) = \psi_x(z)^{n_x}$ when $z \in W_x$.
 \end{document}

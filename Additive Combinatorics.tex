@@ -1,6 +1,8 @@
 \documentclass[10pt,a4paper]{article}
 \input{./preamble.tex}
-
+\let\E\relax
+\DeclareMathOperator*{\E}{\raisebox{-0.45em}{\text{\huge $\mathds{E}$}}}
+\newcommand{\ket}[1]{|#1\rangle}
 \title{Additive Combinatorics}
 \begin{document}
 \maketitle
@@ -463,7 +465,7 @@ We have a natural inner product for functions $f,g:G\to \C$:
 \[\angle{f, g} = \sum_{x \in G} f(x)\overline{g(x)}\]
 And, if $f,g : \hat{G} \to \C$, we use:
 \[\angle{f,g} = \E_{\gamma \in \hat{G}} f(\gamma)\overline{g(\gamma)}\]
-\begin{lemma}[Orthoganality]
+\begin{lemma}[Orthogonality]
   For any $\gamma \in \hat{G}$:
   \[\sum_{x \in G} \gamma(x) = \begin{cases} |G| & \gamma = \one \\ 0 & \ow\end{cases}\]
   For any $x \in G$:
@@ -838,7 +840,7 @@ To prove this, we will proceed as in $\F_p^n$ - prove the density increment, and
     \[\frac{|(A-x)\cap B'|}{|B'|} \geq (1+c\alpha)\alpha\]
   \end{enumerate}
 \end{lemma}
-\begin{proof}[Proof of \textbf{2.14}, assuming \textbf{2.14}]
+\begin{proof}[Proof of \textbf{2.14}, assuming \textbf{2.15}]
   Let $A \subseteq G$ with density $\alpha$, no non-trivial 3APs. Assume WLOG that $\alpha \geq \frac{1}{\log N}$. Let $k \geq 0$ be maximal such that there is a sequence of sets $A_0, \ldots, A_k$, regular Bohr sets $B_0, \ldots, B_k$ with ranks $d_0, \ldots, d_k$, widths $\rho_0, \ldots, \rho_k$ such that:
   \begin{enumerate}
     \item $A_0 = A, B_0 = G, d_0 = 1, \rho_0 = 2$
@@ -890,5 +892,306 @@ It remains to prove \textbf{2.15}, but first, 2 technical lemmas. The first comp
   \[\one_{2\cdot B_\delta}\circ \one_A(x) \leq \one_{2\cdot B_\delta}\ast \one_A(y) + O(\delta d |B_\delta|) \leq \frac{3}{4}\alpha|B_\delta| + O(c_0\alpha|B_\delta|) \leq \frac78 \alpha|B_\delta|\]
 
   Now let $B_{\text{small}} = (A_{\text{small}} + 2 \cdot B_{c\delta^2})\cap B$, so that $x \in B_{\text{small}} \implies \one_{2\cdot B_\delta}\circ \one_A (x) \leq \frac78 \alpha |B_\delta|$.
+
+  We now split into cases:
+  \begin{enumerate}
+    \item $|B_{\text{small}}\leq \frac{1}{16}|B|$. Here consider $\angle{\one_{A_\text{small}}\ast \one_{2 \cdot B_{c\delta^2}}, \one_B} = (\ast)$. By regularity and the fact that $2\cdot B_{c\delta^2} \subseteq B_{2c\delta^2}$, we have:
+    \[(\ast) = |A_{\text{small}}||B_{c\delta^2}| + O(\delta^2 d|B||B_{c\delta^2}|) \geq \frac13 |A||B{c\delta^2}| + \frac{1}{10}\alpha|B||B_{c\delta^2}|\]
+    provided that $\delta^2 \leq c'\frac{\alpha}{d}$ for some small enough $c'$, which we can make true, and so in particular:
+    \[(\ast) \geq \frac18|A||B_{c\delta^2}|\]
+    On the other hand, we have an upper bound for this: $\one_{A_\text{small}}\ast \one_{2\cdot B_{c\delta^2}}$ is supported on $B_{\text{small}}$, so
+    \[(\ast) \leq |B_{\text{small}}| \max_x(\one_{A_\text{small}}\ast \one_{2\cdot B_{c\delta^2}}(x)) \leq \frac{1}{16}|B|\max_x (\one_A \ast \one_{2\cdot Bc\delta^2})(x))\]
+    so there is an $x$ such that
+    \[|(A-x)\cap 2\cdot B_{c\delta^2}| = \one_A\ast \one_{2 \cdot Bc \delta^2}(x) \geq 2\alpha|B_{c\delta^2}|\]
+    and we have a density increment $B' = 2\cdot B_{c\delta^2}$.
+    \item Otherwise, we have $|B_{\text{small}}| \geq \frac{1}{16}|B|$. Here, consider $(\ast) = \angle{\one_{2\cdot B_\delta}\circ \one_A, \one_B}$. By regularity, provided $\delta$ is small, then $(\ast) = |A||B_{\delta}|-O(\delta d|B_\delta||B|) \geq (1-\frac{1}{256})|A||B_\delta|$.
+
+    For an upper bound, $(\ast) \leq |B_\text{small}|\frac78 \alpha|B_\delta| + (|B|-|B_{\text{small}}|)\max_x \one_{2\cdot B_\delta}\circ \one_A(x)$.
+
+    If $\max_x \one_{2\cdot B_\delta}\circ \one_A(x) \geq (1+\frac{1}{256})\alpha|B_\delta$, then we have a density increment $B' = 2\cdot B_\delta$, otherwise:
+    \[(\ast) \leq |B_\text{small}|\frac{7}{8}\alpha |B_\delta| + (|B|-|B_\text{small})(1+\frac{1}{256})\alpha|B_\delta| \geq (1-\frac{1}{256})|A||B_\delta|\]
+    Rearranging gives:
+    \[(1/8 + 1/256)|B_\text{small}| \leq \frac{1}{128}|B|\]
+    but also $\geq \frac{1}{16}\times(\frac{1}{8} + \frac{1}{256})|B|$, giving a contradiction.
+  \end{enumerate}
 \end{proof}
+This lemma shows the need to replace $\angle{\one_A\ast \one_A, \one_{2\cdot A}}$ by $\angle{\one_A\ast \one_A, \one_{2\cdot B_\delta}}$, but $A \subseteq B$ not $B_\delta$, and we don't know that $A \cap B_\delta$ is large, or even non-empty, unlike in the $\F_p^n$ case. We will show that there is some translate of $A$ which is large enough in both a narrowed copy of $B$ and a doubly narrowed copy of $B$.
+\begin{lemma}
+  Let $\epsilon >0$. Let $B$ be regular, of rank $d$, and $A \subseteq B$ with density $\alpha$. Suppose $B', B''\subseteq B_\delta$ where $\delta \leq c_0 \alpha\epsilon/d$ for some small absolute constant $c_0 >0$. Then either:
+  \begin{enumerate}
+    \item There is $x$ such that $\frac{|(A-x)\cap B'|}{|B'|}\geq (1-2\epsilon)\alpha$ and $\frac{|(A-x)\cap B''|}{|B''|} \geq (1-2\epsilon)\alpha$, or
+    \item There is $y$ such that either $\frac{|(A-y)\cap B'|}{|B'|} \geq (1+\epsilon)\alpha$ or $\frac{|(A-y)\cap B''|}{|B''|} \geq (1+\epsilon)\alpha$.
+  \end{enumerate}
+\end{lemma}
+\begin{proof}
+  By regularity,
+  \[\angle{\one_A \ast \one_{B;}, \one_B} = \angle{\one_A, \one_B\circ \one_{B'}} = |A||B'| + O(\delta d |B||B'|) \geq (1-\epsilon/2)\alpha|B||B'|\]
+  if $\delta$ is small enough, and similarly $\angle{\one_A \ast \one_{B''}, \one_B} \geq (1-\epsilon/2)\alpha|B||B'|$.
+
+  Let $\mu_{B'} = \frac{1}{|B'|}\one_{B'}$, and $\mu_{B''} = \frac{1}{|B''|}\one_{B''}$, so adding bounds together, we have:
+  \[ \angle{\one_A \ast \mu_{B'} + \one_A \ast \mu_{B''}, \one_B} \geq (2\epsilon) \alpha |B|\]
+  and so by averaging there is some $x \in B$ such that $\one_A \ast \mu_{B'}(x) + \one_A\ast \mu_{B''}(x) \geq (2-\epsilon)\alpha$.
+
+  If $\one_A\ast \mu_{B'}(x) \geq (1+\epsilon)\alpha$, in the second case, similarly if $\one_A \ast \mu_{B''}(x) \geq (1+\epsilon)\alpha$, so if not, then $\one_A \ast \mu_{B'}(x) \geq (1-2\epsilon)\alpha$ and $\one_A \ast \mu_{B''}(x) \geq (1-2\epsilon)\alpha$.
+\end{proof}
+\begin{proof}[Proof of \textbf{2.15}]
+  Let $A \subseteq B$ of density $\alpha$, and $B$ regular of rank $d$ and width $\rho$. We will need some layers of Bohr sets:
+  \begin{itemize}
+    \item $B^{(1)} = B_{\delta_1}$
+    \item $B^{(2)} = B^{(1)}_{\delta_2} = B_{\delta_1 \delta_2}$
+  \end{itemize}
+  where $\delta_i = c_i \alpha^2/d$ where $c_i$ are small absolute constants chosen so that $B^{(1)}$ and $B^{(2)}$ are regular by Bourgain's regularity lemma.
+
+  Then $A \subseteq B \subset B^{(1)} \subset B^{(2)}$.
+
+  We start by applying \textbf{2.17} with $B' = B^{(1)}, B''=B^{(2)}$, and $\epsilon = c\alpha$, where $c$ is a small constant we'll choose later. If the second case holds, then we have our density increment and are done.
+
+  Otherwise, there is $x$ such that, if $A_1 = (A-x) \cap B^{(1)}$ and $A_2 = (A-x)\cap B^{(2)}$. Let $\alpha_1 = \frac{|A_1|}{|B^{(1)}|}$ and $\alpha_2 = \frac{|A_2|}{|B^{(2)}|}$. Then $\min(\alpha_1, \alpha_2) \geq (1-2\epsilon)\alpha$. In particular, since $\epsilon \leq \frac14$, we have $\alpha_1, \alpha_2 \geq \frac{\alpha}{2}$. Also, we can assume $\max(\alpha_1, \alpha_2) \leq 2\alpha$, or else we have a density increment.
+
+  Because $A$ has no 3APs and 3APs are translation invariant, there are no non-trivial solution to $x+y=2z$ with $x,y \in A_1, z \in A_2$, and so $\angle{\one_{A_1} \ast \one_{A_1}, \one_{2\cdot A_2}} = |A_2|$. By \textbf{2.16}, we have a density increment or $\angle{\one_{A_1}\ast \one_{A_1}, \one_{2\cdot B^{(2)}}} \geq \frac{1}{2}\alpha_1^2|B^{(1)}||B^{(2)}|$.
+
+  So if $f = \one_{2\cdot A_2} - \alpha_2 \one_{2\cdot B^{(2)}}$, then $\angle{\one_{A_1}\ast \one_{A_1}, f} \leq |A_2| - \frac12 \alpha_1^2 |B^{(1)}||A_2| \leq -\frac14 \alpha^2 |B_1||A_2$ or $\alpha_1 < 2|B_1|^{-1/2}$, but by repeated applications of \textbf{2.8}, $|B^{(1)}| \geq (\delta_1)^{O(d)}|B|$, and so $\alpha \leq 2\alpha_1 \ll (\delta_1)^{-O(d)}|B|^{-1/2}$, and so $\alpha \ll (d/\alpha)^{-O(d)}|B|^{-1/2}$, and we are in the first case of \textbf{2.15}.
+
+  So we can assume $|\angle{\one_{A_1}\ast \one_{A_1}, f}|\geq \frac14 \alpha_1^2 |B^{(1)}||A_2|$, and we want a density increment.
+
+  As in the $\F_p^n$ case we apply Parseval + triangle inequality to get:
+  \begin{align*}
+    \E_{\gamma \in \hat{G}} |\hat{f}(\gamma)| |\hat{\one_{A_1}}(\gamma)|^2 \gg \alpha_1^2 |B^{(1)}||A_2|
+  \end{align*}
+  and since $\E_{\gamma \in \hat{G}}|\hat{\one_{A_1}}(\gamma)|^2 = |A_1| = \alpha_1 |B^{(1)}|$ by Parseval, and some $\lambda \in \hat{G}$ such that $|\hat{f}(\lambda)| \gg \alpha_1 |A_2|$.
+
+  Note that, if $f_A = \one_{A_2} - \alpha_2 \one_{B^{(2)}}$ then $f(2x) = f_A(x)$, so $\hat{f}(2\lambda) = \sum_x f(2x)\overline{\lambda(2x)} = \sum_y f(y)\overline{\lambda(y)} = \hat{f}(\lambda)$, and so there is $\gamma$ with $|\hat{f}_A(\gamma)| \gg \alpha_1|A_2|$.
+
+  Now let $B'$ be the Bohr set obtained by adding $\gamma$ to the frequency set of $B^{(2)}$, so rank of $B'$ is $\leq d+1$, and multiply the width of $B^{(2)}$ by $c_3 \alpha^2/d$ where $c_3 > 0$ is a small constant chosen such that $B'$ is regular. First replace $f_A = \one_{A_2}-\alpha \one_{B^{(2)}}$ by $f_A' = \one_{A_2} - \alpha \one_{B^{(2)} +B'}$ by regularity. Namely, $|\hat{f}_A(\gamma) - \hat{f}_{A'}(\gamma)| \leq \alpha_2|(B^{(2)}+B') \setminus B^{(2)}| \ll c_3\alpha_2\alpha^2|B^{(2)}|$.
+
+  In particular, we can assume $|\hat{f}_{A'}(\gamma)| \gg \alpha_1 |A_2|$.
+\end{proof}
+\section{Almost-Periodicity}
+Let $\tau_t$ be the ``translation by $t$ operator'', so that if $f:G \to \C$, then $\tau_t f:G \to \C$ is $\tau_t f(x) = f(x-t)$. A \emph{period} of $f$ is some $t$ such that $\tau_t f = f$. For example, $0$ is a period of every $f$. Or $2\pi$ is a period of $\sin(x)$. More relevant here, if $H \leq G$, then any $t \in H$ is a period for $\one_H$.
+
+Most functions however have no non-zero periods. We instead consider $\tau_t f \approx f$, in which case $t$ is an almost-period, for some definition of $\approx$. We are particularly interested in almost-periods of convolutions. This is because a sum set $A+B$ is just the support of $\one_A \ast \one_B$, so if there is some $x$ such that $\one_A \ast \one_B(x) > 0$, and if $t$ is an almost-period for $\one_A \ast \one_B$, then $\one_A\ast \one_B(x-t) \approx \one_A \ast \one_A(x) > 0$, and so $x-t \in A+B$, so if $T$ is the set of almost-periods, then $x-T \subseteq A+B$. This makes almost-periodicity very useful for finding structure in sum sets, for example ``If $A \subset \{1, \ldots, N\}$ where $|A|$ is large, then how long an AP must $A+A$ contain?''
+
+The modern treatment of almost-periodicity dates back to Croot and Sisask, around 2010, and is a sort of `natural complement' to Fourier analysis.
+
+We can think of almost-periodicity as a sort of continuity. If $f: \R \to \R$ is uniformly continuous, then for all $\epsilon > 0$ there is $\delta$ such that, for $|t| < \delta$, we have $\norm{\tau_t f - f}_{\infty}<\epsilon$, so the ball $|t|<\delta$ is a set of $L^\infty$-almost periods, with error $\epsilon$. We will allow any kind of $L^p$-norm here (where $\norm{f}_p = \left(\sum_{x \in G} |f(x)|^p\right)^{1/p}$).
+
+These are norms, so they satisfy the triangle inequality, and are invariant under $\tau_t$.
+
+\begin{definition}
+  Let $1 \leq p \leq \infty$ and $X>0$. For any $f: G \to \C$, the set of $L^p$-almost-periods for $f$ with error $X$ is defined to be:
+  \[AP_p(f;X) = \{t \in G: \norm{\tau_t f - f}_p \leq x\}\]
+\end{definition}
+For any $p,f,X$, this AP set is symmetric and contains 0, as $\norm{\tau_{-t}f - f} = \norm{\tau_t ( \tau_{-t}f -f)} = \norm{f-\tau_t f} = \norm{\tau_t f-f}$. These sets are increasing in $X$, and for any $p, f$, for large enough $X$, $AP_p(f;X) = G$.
+
+We also have $AP_p(f;X_1) + AP_p(f; X_2) \subseteq AP_p(f; X_1+X_2)$ from the triangle inequality.
+
+We will prove two main results concerning almost periods.
+\begin{itemize}
+  \item For any $f$ with $\norm{\hat{f}}_1 = \E_\gamma |\hat{f}(\gamma)|$ small, there is a large Bohr set of almost periods.
+\end{itemize}
+\begin{theorem}
+  Let $\epsilon > 0$ and $m$ some integer $\geq 1$. For any $f: G \to \C$, the set of $L^{2m}$-almost periods of $f$ with error $\epsilon\norm{\hat{f}}_1 N^{\frac{1}{2m}}$ contains a Bohr set of rank $O(m\epsilon^{-2})$ and width $\gg \epsilon$.
+\end{theorem}
+\begin{itemize}
+  \item Instead of finding a Bohr set of almost periods, we just show there are many almost periods, in the case $f=\one_A \ast \one_B$ where $A$ is structured.
+\end{itemize}
+\begin{theorem}[``Dense Global Version'']
+  Let $\epsilon >0, m \geq 1$. Suppose that $A \subseteq G$ with density $\alpha = |A|/N$. For any set $B$:
+  \[|AP_{2m}(\one_A \ast \one_B; \epsilon |A||B|^{\frac{1}{2m}})| \geq \alpha^{O(m\epsilon^{-2})}N\]
+\end{theorem}
+Note that $\norm{\one_A \ast \one_B}_{2m}^{2m} = \sum_x \left(\sum_{a \in A}\one_B(x-a)\right)^{2m} \leq |A|^{2m-1}\left(\sum_x \sum_{a \in A}\one_{B(x-a)}\right) = |A|^{2m}|B|$, by H\"older's inequality.
+
+So trivially we always have
+\[\norm{\tau_t \one_A \ast \one_B - \one_A\ast \one_B}_{2m} \leq 2|A||B|^{\frac{1}{2m}}\]
+and so this is non-trivial for $\epsilon <2$.
+\begin{theorem}[``Local Version'']
+  Let $\epsilon > 0, m\geq 1$, and $|A+S|\leq K|A|$. Then for any $B$,
+  \[|AP_{2m}(\one_A\ast \one_B; \epsilon |A||B|^{\frac{1}{2m}})| \geq K^{-O(m\epsilon^{-2})}|S|\]
+\end{theorem}
+Note that \textbf{3.4} implies \textbf{3.3} by letting $S=G$.
+
+\subsection{Applications of Almost-Periodicity}
+An essential tool will be H\"older's inequality: for all $a_i, b_i \in \R$, and any $p \geq 1$,
+\[\left|\sum a_i b_i\right| \leq \norm{a_i}_p \norm{b_i}_p\]
+At $p=2$ this is just Cauchy-Schwarz. $p=1$ is trivial.
+
+In particular, for any $f:G \to \C$ and any $A \subseteq G$, for any $m \geq 1$,
+\[|\angle{\one_A, f}| \leq |A|^{1-1/2m}\norm{f}_{2m}\]
+
+We will show that, if $A$ is a set with small doubling, then $A+A-A-A$ is very structured, and in particular contains $k$-fold sumsets for large $k$. E.g. if $|A+A|\ll |A|$ then there is $A'$ such that $|A'|\gg |A|$ and $100A' \subseteq A+A-A-A$.
+
+\begin{theorem}
+  If $|A+A| \leq K|A|$ then for any $k \geq 1$ there is a symmetric set $T$ such that $0 \in T$ and $|T| \geq \exp(-O(k^2(\log K)^2)) |A|$ and $kT = T+\ldots+T \subseteq A+A-A-A$.
+\end{theorem}
+\begin{proof}
+  We apply \textbf{3.4} with $S=A$ and $B=A-A$, and $\epsilon > 0, m\geq 1$ to be chosen later.
+
+  Then if $T$ is the set of $L^{2m}$-almost periods for $\one_A \ast \one_{A-A}$ with error $\epsilon |A||A-A|^{1/2m}$ then $|T| \geq K^{-O(m\epsilon^{-2})}|A|$ since $|A+S| = |A+A| \leq K|A|$ by assumption.
+
+  Addition of almost-periods adds the errors, so if $t \in kT$ then
+  \[\norm{\tau_t(\one_A \ast \one_{A-A}) - \one_A\ast \one_{A-A}}_{2m} \leq k\epsilon |A||A-A|^{1/2m}\]
+
+  Suppose for contradiction that there is $t \in kT$ such that $t \notin A+A-A-A$. Then $\one_{A}\ast\one_{A-A}\circ \one_A(t) = 0$, and hence $\angle{\one_A, \tau_t(\one_A \ast \one_{A-A})} = 0$.
+
+  But $\angle{\one_A, \one_A\ast \one_{A-A}} = \sum_{a,b \in A} \sum_{c \in A-A} \one_{a-b=c} = |A|^2$.
+
+  Hence:
+  \begin{align*}
+    |\angle{\one_A, (\tau_t(\one_A \ast \one_{A-A})-\one_A \ast \one_{A-A})} &= |A|^2\\
+    &\leq |A|^{1-1/2m} \norm{\tau_t(\one_A \ast \one_{A-A})-\one_A \ast \one_{a-A}}_{2m}\\
+    &\leq k\epsilon |A|^2 \left(\frac{|A-A|}{|A|}\right)^{1/2m}
+  \end{align*}
+  By Pl\"unnecke, $|A-A| \leq K^2|A|$, and so this is $\leq k\epsilon |A|^2 K^{1/m}$, so if we choose $m = \ceil{\log K}$, this is $\leq k\epsilon |A|^2 e$.
+
+  So $|A|^2 \leq k\epsilon e |A|^2$, giving a contradiction if we choose $\epsilon = \frac{1}{2ek}$. Hence $kT \subseteq A+A-A-A$ with this choice of $\epsilon, m$, and
+  \[|T| \geq K^{-O(m\epsilon^{-2})}|A| \geq \exp(-O(k^2(\log K)^2))|A|\]
+\end{proof}
+
+The second application will be using \textbf{3.2} (finding a Bohr set of APs), to answer the question ``Given a large subset $A \subseteq\{1, \ldots, N\}$, how large an arithmetic progression must $A+A$ contain?''
+
+Last chapter, we showed $A$ contained an AP of length 3. Here we can do much better, replacing $A$ by $A+A$.
+
+\begin{theorem}
+  There exist constants $c>0, C \geq 1$ such that, if $A \subset \{1, \ldots N\}$ has size $|A| = \alpha N$ where $\alpha \geq C \frac{\log\log(N)}{\sqrt{\log N}}$, then $A+A$ contains an AP of length $\gg \exp(c \alpha \sqrt{\log N})$.
+\end{theorem}
+This is already non-trivial and interesting in the case $\alpha = \frac14$. This proof is due to Croot, Laba, and Sisusk (2011). This was first proved by Ben Green using Fourier methods. The dependence on $N$ is still the best-known. A construction of Ruzsa gives a subset $A \subseteq \{1, \ldots, N\}$ of size $\geq \frac14 N$ such that the longest AP in $A+A$ has length $\ll \exp(O((\log N)^{2/3}\log\log N))$.
+
+Before we prove this, we will first prove:
+\begin{lemma}
+  If $N$ is prime and $B \subseteq \Z/N\Z$ is a Bohr set of rank $d$ and width $\rho$, then $B$ contains an AP of length $\gg \rho N^{1/d}$.
+\end{lemma}
+\begin{proof}
+  Let $\ell \geq 1$ be maximal such that $(\rho/8\ell)^d \geq 2/N$. Note that $\ell \gg \rho N^{1/d}$.
+
+  We know that $|B_{1/2}| \geq 8^{-d} |B|$, so for any $k \geq 1$, $|B_{1/2^k}| \geq 8^{-kd}|B|$.
+
+  So, choosing $k$ such that $1/2^{k+1} \leq 1/\ell < 1/2^k$, then $|B_{1/\ell}| \geq |B_{1/2^{k+1}}| \geq (1/2)^{3kd}|B| \geq (1/\ell)^{3d} |B|$.
+
+  We have $|B_{1/\ell}| \geq (\rho/8\ell)^d N \geq 2$, so in particular there is $x \in B_{1/\ell}$, $x \neq 0$. By the triangle inequality, $\ell B_{1/\ell} \subseteq B$ and in particular $P = \ell\{0,x\} = \{0, \ell, \ldots, \ell x\} \subseteq B$.
+\end{proof}
+\begin{proof}[Proof of \textbf{3.6}]
+  It suffices to prove the result with $\{1, \ldots, N\}$ replaced with $\Z/N\Z$ with $N$ prime. Let $4N < M \leq 8N$ be prime, which exists by Bertrand's postulate.
+
+  Then $A \subseteq \{1, \ldots, N\} \implies A+A \subseteq \{1, \ldots, 2N\}$.
+
+  We claim that any AP modulo $M$ inside $A+A$ is a genuine AP in the integers.
+
+  Let $P$ be an $AP$ modulo $M$ inside $A+A$, say $\{x_0, \ldots, x_k\}\subseteq A+A$ where $x_i \equiv x+id \mod m$, for some $d \in \Z$. Then $d \equiv x_1-x_0 \mod M$, and wlog $d = x_2-x_0$.
+
+  By induction, for any $k \geq i \geq 0$, $x_i=x + id$: suppose not, and let $i \geq 2$ be minimal such that this fails. Then $x_i - (x+id) = x_i - (x_{i-1}+d) = x_i +x_0 -x_{i-1}-x_1 \in \{-4N, \ldots, 4N\}$. So $|x_i - (x+id)| < M$, and so $x_i \equiv x+id \mod M$ implies $x_i = x_id$. So $P$ is indeed a genuine AP of the same length. Hence it suffices to prove the following:
+
+  There exist constants $c>0, C \geq 1$ such that, for all $N$ prime, if $A \subseteq \Z/N\Z$ with $|A| = \alpha N$ where $\alpha \geq C \frac{\log\log(N)}{\sqrt{\log N}}$, then $A+A$ contains an AP of length $\gg \exp(c \alpha \sqrt{\log N})$.
+
+  We use \textbf{3.1} to find a large Bohr set of almost-periods for $\one_A \ast \one_A$, find a progression $P$ inside this Bohr set, then show some translate of $P$ must be in $A+A$.
+
+  Let $T$ be the set of $L^{2m}$-almost-periods for $\one_A \ast \one_A$ with error $\frac{\alpha}{4}|A|N^{1/2m}$ - this is the subject of \textbf{3.1} with $\epsilon = \alpha/4$, since $\E_\gamma|\hat{\one_A \ast \one_A}(\gamma)| = \E_\gamma |\hat{\one_A}(\gamma)|^2 = |A|$ by Parseval.
+
+  So $T$ contains a Bohr set of rank $O(m\alpha^{-2})$ and width $\gg \alpha$.
+
+  By H\"older, for any $f: G \times G \to \C$ and any $P \subseteq G$,
+  \begin{align*}
+    \sum_{x \in G} \sup_{t \in P}|f(x,y)| &\leq \sum_{x \in G}(\sum_{t\in P}|f(x,t)|^{2m})^{1/2m} \\
+    &\leq N^{1-1/2m} (\sum_{t\in P}\sum_{x\in G}|f(x,t)|^{2m})^{1/2m}\\
+    &\leq N^{1-1/2m}|P|^{1/2m}\sup_{t \in P}\norm{f(\cdot,t)}_{2m}
+  \end{align*}
+  In particular, for any $P \subseteq T$,
+  \begin{align*}
+    \sum_{x \in G} \sup_{t \in P}|\one_A \ast \one_A(x+t)-\one_A\ast \one_A(x)| &\leq |P|^{1/2m}N^{1-1/2m}\sup_{t \in P}\norm{\tau_t(\one_A \ast \one_A)-\one_A \ast \one_A}_{2m}\\
+    &\leq |P|^{1/2m}N^{1-1/2m}\frac{\alpha}{4}|A|N^{1/2m}\\
+    &= \frac14 |A|^2 |P|^{1/2m}
+  \end{align*}
+  In particular, if $|P| < 4^{2m}$, this is $< |A|^2$, and $|A|^2 = \sum_{x \in G} \one_A \ast \one_A(x)$, so by pigeonhole, there is some $x \in G$ such that $\sup_{t \in P} |\one_A \ast \one_A(x+t) - \one_A\ast \one_A(x)| < \one_A\ast \one_A(x)$.
+
+  So $\one_A \ast \one_A(x+t) \neq 0$ for all $t \in P$, and so $x+P \subseteq A+A$. We just need to choose $m$ such that $T$ contains a progression $P$ of length $|P| < 4^{2m}$. By the above lemma, $T$ contains a Bohr set of rank $O(m\alpha^{-2})$ and width $\gg \alpha$, which contains a progression $P$ of length $\geq c_1 \alpha N^{c_2\alpha^2/m}$, for some constants $c_1, c_2 > 0$. So we need $m$ such that $N^{\alpha^2/m} \ll C^m$, i.e. $m \gg \alpha \sqrt{\log N}$.
+
+  So, choosing $m = \floor{\alpha \sqrt{\log N}}$, then $m \geq 1$ by assumption, and there is a progression of length $\ell = \floor{c_1\alpha \exp(c_2\alpha \sqrt{\log N})}$, and in particular, $\ell \leq \exp(c_2 \alpha \sqrt{\log N}) \leq 4^{2m}$, and so we have an AP of length $\ell$ inside $A+A$. Noting that $\floor{x} \geq x/2$ if $x \geq 1$, and $\alpha \geq C\frac{\log\log N}{\sqrt{\log N}}$ for large $C \geq 1$, and so $c_1 \alpha \exp(c_2 \alpha \sqrt{\log N}) \geq \exp(c_2/2 \alpha \sqrt{\log N}) \geq 1$, we have the result.
+\end{proof}
+\subsection{A Probabilistic Inequality}
+In this section we will use expectation in the probabilistic sense. All random variables are assumed to be taken over a finite probability space, so that $\E X = \sum_{s \in S} \mu(s)X(s)$.
+
+Suppose we have $n$ independent random variables $X_1, \ldots, X_n$. Can we control the $L^p$ norm of $\sum X_i$ by the $L^p$ norms of the $X_i$? Crudely, the answer is yes, via H\"older's inequality + the triangle inequality. We can say:
+\[\E| \sum_{i}X_i|^p \leq n^{p-1} \E \sum_{i} |X_i|^p = p^{p-1} \sum_i \E |X_i|^p\]
+For our applications, we want to improve this $n^{p-1}$ factor. We can do this if the random variables have expectation $0$ - then we can improve by a factor of $(2p/n)^{p/2}$, which is a big saving. More precisely, we have:
+\begin{lemma}[Marcinkiewicz-Zygmund Inequality]
+  Let $m \geq 1$. If $X_1, \ldots, X_n$ are independent complex valued R.V.s, over some finite probability space, with $\E X_i = 0$ for all $i$. Then:
+  \[\E |\sum_i X_i|^{2m} \leq (4m)^{m}\E \left(\sum_i |X_i|^2\right)^m\]
+  In particular,
+  \[\E |\sum_i X_i|^{2m} \leq (4m)^m n^{m-1} \E\sum_i |X_i|^{2m}\]
+\end{lemma}
+\begin{proof}
+  The second inequality follows from the first by H\"older.
+
+  Our goal is to bound $S = \E |\sum_i X_i|^m$.
+
+  Introduce $Y_i$, distributed identically to $X_i$ by independent. Then $\E Y_i = 0$ also, and so:
+  \[S = \E_{X_i}|\sum_i X_i|^{2m} = \E_{X_i} |\sum_i (X_i-\E_{Y_i}Y_i)|^{2m} = \E_{X_i}|\E_{Y_i}(\sum_i X_i-Y_i)|^{2m}\]
+  By the triangle inequality, this is bounded above by:
+  \[\E_{X_i, Y_i} |\sum_i X_i-Y_i|^{2m}\]
+  Now $X_i-Y_i$ has the same distribution as $Y_i-X_i$, and so for any choice of signs $\epsilon_i \in \{-1,+1\}$, we have
+  \[\E_{X_i, Y_i}|\sum_i (X_i-Y_i)|^{2m} = \E_{X_i, Y_i}|\sum_i \epsilon_i(X_i-Y_i)|^{2m}\]
+  Now choose the $\epsilon_i$ uniformly at random. Then:
+  \[S \leq \E_{\epsilon_i}\E_{X_i, Y_i}|\sum_i \epsilon_i(X_i-Y_i)|^{2m}\]
+  Now change the order of expectation. So for fixed $X_i, Y_i$, consider
+  \[\E_{\epsilon_i} |\sum_i \epsilon_i(X_i-Y_i)|^{2m}\]
+  Let $x_i = X_i-Y_i$. Expanding out, this is:
+  \[\E_{\epsilon_i} \sum_{k_1+\ldots+k_n=2m}\binom{2m}{k_1,\ldots,k_n}x_1^{k_1}\ldots x_n^{k_n}\epsilon_1^{k_1}\ldots \epsilon_n^{k_n} = \sum_{k_1+\ldots+k_n=2m}\binom{2m}{k_1,\ldots,k_n}x_1^{k_1}\ldots x_n^{k_n}\epsilon_1^{k_1}\left(\E_{\epsilon_i} \epsilon_1^{k_1}\ldots \epsilon_n^{k_n}\right) = (\ast)\]
+  and this expectation factors as
+  \[\prod_{i=1}^n \left(\E_{\epsilon_i}\epsilon_i^{k_i}\right)\]
+  and clearly $\E_\epsilon \epsilon^k = \begin{cases} 1 & k \text{ even}\\ 0 & k \text{ odd}\end{cases}$. Hence this expectation vanishes unless all the $k$ are even. So the quantity of interest is equal to
+  \[(\ast) = \sum_{\ell_1+\ldots+\ell_n = m}\binom{2m}{2\ell_1, \ldots, 2\ell_n} x_1^{2\ell_1}\ldots x_n^{2\ell_n}\]
+  We have a bound on the multinomial coefficients given by
+  \[\binom{2m}{2\ell_1,\ldots,2\ell_n} \leq m^m \binom{m}{\ell_1,\ldots, \ell_n}\]
+  and so it follows that
+  \[(\ast) \leq m^m \sum_{\ell_1+\ldots+\ell_n=m}\binom{m}{\ell_1, \ldots, \ell_n}(x_1^2)^{\ell_1}\ldots(x_n^2)^{\ell_n} = m^m \left(\sum_i x_i^2\right)^m\]
+  In particular, we have:
+  \[S \leq m^m \E_{X_i, Y_i}\left(\sum_i |X_i-Y_i|^2\right)^m\]
+  Now C-S inequality gives
+  \[S \leq 2^m m^m \E_{X_i}\left(\sum_i |X_i|^2 + \sum_i |Y_i|^2\right)^m\]
+  Since $(a+b)^m \leq 2^{m-1}(a^m+b^m)$, we have
+  \[S \leq \frac12 4^m m^m \E_{X_i, Y_i}\left(\left(\sum_i |X_i|^2\right)^m + \left(\sum_i |Y_i|^2\right)^m\right) = 4^m m^m \E_{X_i}\left(\sum_i |X_i|^2\right)^m\]
+\end{proof}
+\subsection{Almost-Periodicity via Random Sampling in Fourier Space}
+Here we aim to prove \textbf{Theorem 3.2}. The idea of the proof is to find some $g$ such that $g$ is the sum of not too many characters, and $g \approx f$ in a $L^{2m}$ sense. Then take the Bohr set on the characters in $G$. If $t \in \text{Bohr}(\gamma; \epsilon)$, then $t$ is an $L^\infty$-almost period for $\gamma$ with error $\epsilon$, so for any $x \in G$:
+\[|\gamma(x+t) - \gamma(x)| = |1-\gamma(t)| \leq \epsilon\]
+By the triangle inequality, almost periods for $g$ will also be almost periods for $f$.
+
+How do we find $g$? We randomly choose $\gamma \in \hat{G}$ and let $g(x) = \frac{1}{k}\sum_{i=1}^k \gamma_i(x)$.
+\begin{lemma}
+  Let $\epsilon > 0$ and $m \geq 1$. Then for any $f: G \to \C$, there is $k = O(m\epsilon^{-2})$ and $\gamma_1, \ldots, \gamma_k \in \hat{G}$ not necessarily distinct with $c_i, \ldots, c_k \in \C, |c_i| = 1$, such that, if $g(x) = \frac{\norm{\hat{f}}_1}{k} \sum_{i=1}^k c_i \gamma_i(x)$, then $\norm{g-f}_{2m} \leq \epsilon \norm{\hat{f}}_1 N^{1/2m}$.
+\end{lemma}
+\begin{proof}
+  Dilating $f$ if necessary, we may take $\norm{\hat{f}}_1 = \frac{1}{N}$, and so $\sum_{\gamma \in \hat{G}}|\hat{f}(\gamma)| = 1$, so $|\hat{f}(\gamma)|$ is a probability measure on $\hat{G}$. Consider a random function $h(x) = \frac{1}{N}c_\gamma \gamma(x)$ where $\gamma \in \hat{G}$ is chosen with probability $|\hat{f}(\gamma)|$, and $c_\gamma \in \C$ such that $\hat{f}(\gamma) = c_\gamma |\hat{f}(\gamma)|$.
+
+  Then observe that, for any fixed $x \in G$, \[\E h(x) = \sum_{\gamma \in \hat{G}}|\hat{f}(\gamma)|h(x) = \sum_{\gamma \in \hat{G}}|\hat{f}(\gamma)|\frac{1}{N}c_\gamma \gamma(x) = \frac{1}{N}\sum_{\gamma \in \hat{G}} \hat{f}(\gamma)\gamma(x) = f(x)\]
+  So $h(x) - f(x)$ is a random variable with mean zero, hence we may apply Marcinkiewicz-Zygmund to $k$ copies of $h$, say $h_1, \ldots, h_k$. Then:
+  \[\E\left|\sum_{i=1}^k(h_i(x) - f(x))\right|^{2m} \leq (4m)^m k^{m-1}\E\sum_{i=1}^k |h_i(x)-f(x)|^{2m}\]
+  Note that, for any $x$,
+  \[|f(x)| = \frac{1}{N}\left|\sum_{\gamma \in \hat{G}}\hat{f}(\gamma)\gamma(x)\right| \leq \frac{1}{N}\sum_{\gamma}|\hat{f}(\gamma)| = \frac{1}{N}\]
+  and also $|h_i(x)| = \frac{1}{N}$. So $|h_i(x)-f(x)| \leq 2/N$. So:
+  \[\E \left|\frac{1}{k}\sum_{i=1}^k (h_i(x)-f(x))\right|^{2m} \leq \frac{(4m)^m k^{m-1}}{k^{2m}}\E\sum_{i=1}^k \left(\frac{2}{N}\right)^{2m} = \left(\frac{4m}{k}\right)^m\left(\frac{2}{N}\right)^{2m} = \left(\frac{16m}{k}\right)^m N^{-2m}\]
+  Summing both sides over all $x \in G$, using linearity of expectation, we obtain
+  \[\E \sum_{x \in G}\left|\frac{1}{k}\sum_{i=1}^k (h_i(x)-f(x))\right|^{2m} \leq \left(\frac{16m}{k}\right)^m N^{-2m+1}\]
+  That is,
+  \[\E \norm{g-f}_{2m}^{2m} \leq \left(\frac{16m}{k}\right)^m N^{-2m+1}\]
+  where $g = \frac{1}{k}\sum_{i=1}^k h_i(x)$. In particular, there exists some such $g$ such that
+  \[\norm{g-f}_{2m} \leq \left(\frac{16m}{k}\right)^{1/2} N^{-1+1/2m} = \left(\frac{16m}{k}\right)^{1/2} \norm{\hat{f}}_1 N^{1/2m}\]
+  Choose $k = \ceil{\frac{16m}{\epsilon^2}}$, so this is $\leq \epsilon \norm{\hat{f}}_1 N^{1/2m}$.
+\end{proof}
+\begin{proof}[Proof of \textbf{3.2}]
+  Let $f:G \to \C, m \geq 1, \epsilon > 0, k \ll m\epsilon^{-2}$. By the previous lemma there are characters $\gamma_1, \ldots, \gamma_k \in \hat{G}$ and twists $c_1, \ldots, c_k \in \C, |c_i| = 1$, such that if $g(x) = \frac{1}{k}\sum c_i \gamma_i(x)$ then
+  \[\norm{g-f}_{2m} \leq \frac{1}{3}\epsilon \norm{\hat{f}}_1 N^{1/2m}\]
+  Let $B = \text{Bohr}(\{\gamma_1, \ldots, \gamma_k\}; \epsilon/3)$, which has rank $\ll m\epsilon^{-2}$ and width $\gg \epsilon$ as required.
+
+  For any $t \in B$ and $x \in G$, by the triangle inequality,
+  \[|g(x+t) - g(x)| = \frac{\norm{\hat{f}}_1}{k}\left| \sum c_i(\gamma_i(x+t)-\gamma_i(x))\right| \leq \frac{\norm{\hat{f}}_1}{k}\sum_{i=1}^k |\gamma_i(x+t)-\gamma_i(x)| = \frac{\norm{\hat{f}}_1}{k}\sum_{i=1}^k |\gamma_i(t)-1|\]
+  Now $|\gamma_i(t)-1)| \leq \frac{\epsilon}{3}$, so:
+  \[|g(x+t)-g(x)| \leq \frac{\epsilon}{3}\norm{\hat{f}}_1\]
+  In particular, since, for any f,
+  \[\norm{f}_{2m} = \left|\sum_x |f(x)|^{2m}\right|^{1/2m} \leq (\max |f(x)|)N^{1/2m}\]
+  and so
+  \[\norm{\tau_t g-g}_{2m} \leq \norm{\tau_t g-g}_{\infty} N^{1/2m} \leq \epsilon/3 \norm{\hat{f}}_1 N^{1/2m}\]
+  By the triangle inequality, we have
+  \[\norm{\tau_t f-f}_{2m} \leq \epsilon \norm{\hat{f}}_1 N^{1/2m}\]
+\end{proof}
+The proof of the other almost-periodicity result goes via random sampling in physical space. Instead of approximating $f$ by a sum of characters, we will approximate $\one_A\ast \one_B(x)$ by $\frac{|A|}{k}\sum_{i=1}^k \one_B(x-a_i)$, where $a_i$ are randomly chosen from $A$ uniformly. I.e., we replace the $A$ in $\one_A \ast \one_B$ by a random subset of $A$ of size $k$. Unlike above, there are no obvious almost periods for $\sum_{i=1}^k \one_B(x-a_i)$. We will use the small doubling hypothesis - we actually show that, for almost all $(a_1, \ldots, a_k)$, this convolution is $\approx \one_A \ast \one_B(x)$. Then show, using small doubling, that there must be many $t$ and $(a_1, \ldots, a_k)$ such that $(a_1+t, \ldots, a_k+t)$ is good for all such $t$.
 \end{document}
