@@ -788,4 +788,28 @@ One often thinks of meagre sets as being small - the Baire category theorem stat
 
   Continue. We obtain $M \supset M_1 \supset M_2 \supset \ldots$ and $\max(A) < x_1 < x_2 < \ldots$ with $x_n \in M_n$ for all $n$, and $(A\cup F, M_n)^{(\omega)} \subset Y_n^c$ for all $F \subset \{x_1, x_2, \ldots, x_{n-1}\}$. Now we're done because $(A, \{x_1, x_2, \ldots\})^{(\omega)} \subset Y_n^c$ for all $n$, so $\subset Y^c$.
 \end{proof}
+A subset $Y$ of a topological space $X$ is \emph{Baire} if $Y = O \triangle M$ for some $O$ open and $M$ meagre (so it is ``nearly open''). Every open set is Baire - just take $M = \emptyset$. Also every closed set is Baire - write $Y = Y^o \triangle \partial Y$. $Y^o$ is open by definition, and $\partial Y$ is nowhere dense because it is closed and contains no non-empty open sets.
+
+In fact Baire sets are closed under complements and countable unions - they form a $\sigma$-algebra. Indeed:
+\begin{itemize}
+  \item Given $Y$ Baire, say $Y = O \triangle M$ for some open $O$ and meagre $M$, we have $Y^c = O^c \triangle M$. But $O^c$ is closed, so Baire. Write $O^c = O'\triangle M'$. Then $Y^c = (O' \triangle M') \triangle M = O' \triangle (M \triangle M')$.
+  \item Given $Y_1, Y_2, \ldots$ all Baire, say $Y_i = O_i \triangle M_i$. Thus $\bigcup_i Y_i = \left(\bigcup_i O_i\right) \triangle M$, for some $M \subset \bigcup_i M_i$, and so $M$ is meagre since a countable union of countable sets is countable.
+\end{itemize}
+Hence, for example, all Borel sets are Baire. We can think of the Baire sets as being ``like measurable sets'', although we don't assume any measure.
+\begin{theorem}
+  Let $Y \subset \N^{(\omega)}$. Then $Y$ is $\star$-Baire if and only if $Y$ is completely Ramsey.
+\end{theorem}
+\begin{proof}
+  For the forwards direction, have $Y = W \triangle Z$ for some open $W$, meagre $Z$. Given $(A,M)^{(\omega)}$, there is $L \subset M$ with $(A,L)^{(\omega)} \subset Y$ or $Y^c$, and there exists $N \subset L$ with $(A,L)^{(\omega)} \subset Z^c$. So either $(A,L)^{(\omega)} \subset Z^c \cap W \subset Y$, or $(A,L)^{(\omega)} \subset Z^c \cap W^c \subset Y^c$.
+
+  For the reverse direction, write $Y = Y^o \triangle \partial Y$. It is enough to show that $\partial Y$ is nowhere dense. Given $(A,M)^{(\omega)}$, we have $L \subset M$ with $(A,L)^{(\omega)} \subset Y$ or $Y^c$, as $Y$ is completely Ramsey. If $Y$, then $(A<L)^{(\omega)} \subset Y^o$, by openness, and so is disjoint from $\partial Y$. Otherwise, we have $(A,L)^{(\omega)} \subset Y^c$, and so $(A,L)^{(\omega)}$ is disjoint from $Y$, so from $\partial Y$.
+\end{proof}
+Without \textbf{6.9}, this theorem would read ``completely Ramsey if and only if open $\triangle$ nowhere dense''. However, we would then not know that the completely Ramsey sets form a $\sigma$-algebra.
+\begin{corollary}
+  Let $Y \subset \N^{(\omega)}$ be $\tau$-Borel. Then $Y$ is Ramsey.
+\end{corollary}
+\begin{proof}
+  $Y$ is $\tau$-Borel, so is $\star$-Borel, since $\star$ is a finer topology than $\tau$. So $Y$ is $\star$-Baire, so $Y$ is completely Ramsey, so Ramsey.
+\end{proof}
+\textbf{Example.} 2-colour $\N^{(\omega)}$ by giving $M$ the colour red if $\sum_{n \in M}\frac{1}{\pi^n}$ is rational, and blue if not. This is a Borel colouring, so is Ramsey. Hence there is $M \subset \N$ such that $M^{(\omega)}$ is monochromatically red or monochromatically blue. In fact, we cannot have red - just count the subsequences.
 \end{document}
